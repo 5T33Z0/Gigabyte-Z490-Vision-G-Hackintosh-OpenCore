@@ -1,4 +1,4 @@
-#Gigabyte Z490 Vision G Hackintosh OpenCore
+# Gigabyte Z490 Vision G Hackintosh OpenCore
 
 ##About
 This is my EFI Folder for the Z490 Vision G Board I've worked on and refined since September 2020 using the OpenCore Install Guide by Dortania as well as Daliansky's repo with ACPI Hotpatches for OpenCore to tweak and fine tune the config.
