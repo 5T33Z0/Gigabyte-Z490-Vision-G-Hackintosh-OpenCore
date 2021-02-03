@@ -1,11 +1,11 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
-##About
+## About
 This is my EFI Folder for the Z490 Vision G Board I've worked on and refined since September 2020 using the OpenCore Install Guide by Dortania as well as Daliansky's repo with ACPI Hotpatches for OpenCore to tweak and fine tune the config.
 
 It's configured for and tested with High Sierra, Catalina, as well as the latest Version of Big Sur (11.2). It contains three configs – one for each OS. Enjoy.
 
-##System Specs
+## System Specs
 * **BIOS**: F8c. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`
 * **CPU**: Intel i9 10850K (Codename Comet Lake)
 * **RAM**: 32 GB DDR4 2400 Crucial Basllistix Sport LT
@@ -14,7 +14,7 @@ It's configured for and tested with High Sierra, Catalina, as well as the latest
 * **On-board Audio**: Realtek® ALC1220-VB codec
 * **LAN**: Intel® 2.5GbE LAN chip. Not working in High Sierra, since HS doesn't support it
  
-##OpenCore Infos/Configuration
+## OpenCore Infos/Configuration
 * **Version**: 0.6.7 Nightly (details in config.plist)
 * **Compatible macOS**: 10.13.6 (High Sierra), 10.15.7 (Catalina) and 11.2 (Big Sur)
 * **System Definition:** iMac20,2 (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS))
@@ -28,14 +28,14 @@ It's configured for and tested with High Sierra, Catalina, as well as the latest
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `FF0F0000`
 * **Issues**: High Siera requires SMBIOS iMac18,3 as well as a Fake CPU-ID in order to boot.
 
-##Kexts
+## Kexts
 The following Kexts are disabled by default:
 
 * `CPUFriend.kext`
 * `CPUFriendDataProvider.kext` (create your own if you use a differen CPU moodel using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
 * `FakePCIID_Intel_HDMI_Audio.kext` If you use Audio over HDMI enable this
 
-##Install Instructions
+## Install Instructions
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice (either High Sierra, Catalina or Big Sur) and rename it to `config.plist`
 3. Users of AMD Graphics cards should add their required boot-args
@@ -47,7 +47,7 @@ The following Kexts are disabled by default:
 9. Start macOS
 10. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD
 
-##Credits & Thank you's
+## Credits and Thank you's
 * Acidanthera and Team for the OpenCore Bootloader
 * Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 * Daliansky for [OC Little Repo](https://github.com/daliansky/OC-little) containing all the ACPI Hotpatches for OpenCore
