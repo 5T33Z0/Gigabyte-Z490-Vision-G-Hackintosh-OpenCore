@@ -61,7 +61,7 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 * Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 * Daliansky for [OC Little Repo](https://github.com/daliansky/OC-little) containing all the ACPI Hotpatches for OpenCore
 * [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
-* jsassu20 for MacDown Markdown Editor
+* jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
 * [Schmockloard](https://github.com/SchmockLord/Hackintosh-Intel-i9-10900k-Gigabyte-Z490-Vision-D) for FakePCIID.kext for LAN & HDMI Audio
 * [Samuel211119](https://github.com/samuel21119/Intel-i9-10900-Gigabyte-Z490-Vision-G-Hackintosh) for initial EFI Folder
 * Pavo-IM for [OC-Gen-X](https://github.com/Pavo-IM/OC-Gen-X)
