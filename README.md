@@ -9,7 +9,7 @@ It's configured for and tested with High Sierra, Catalina, as well as the latest
 * **BIOS**: F8c. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`
 * **CPU**: Intel i9 10850K (Codename Comet Lake)
 * **RAM**: 32 GB DDR4 2400 Crucial Basllistix Sport LT
-* **iGPU**: Intel UHD 630 (configured `headless` for computational tasks only). If you need it to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead
+* **iGPU**: Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead
 * **GPU**: Nvidia GeForce 760. AMD users need to add boot-arg `agdpmod=pikera`
 * **On-board Audio**: Realtek® ALC1220-VB codec
 * **LAN**: Intel® 2.5GbE LAN chip. Not working in High Sierra, since HS doesn't support it
@@ -46,6 +46,11 @@ The following Kexts are disabled by default:
 8. Reboot from USB Stick again
 9. Start macOS
 10. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD
+
+## Benchmark
+
+![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
+[Source](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits and Thank you's
 * Acidanthera and Team for the OpenCore Bootloader
