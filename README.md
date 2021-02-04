@@ -47,6 +47,9 @@ The following Kexts are disabled by default:
 9. Start macOS
 10. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD
 
+## Optimzing CPU Power Management
+Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Optimizing%20CPU%20Power%20Management_de.pdf) to create your own (currently in german, english version will be follow soon.)
+
 ## Benchmark
 
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
