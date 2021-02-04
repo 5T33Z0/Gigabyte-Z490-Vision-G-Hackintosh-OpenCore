@@ -50,6 +50,7 @@ The following Kexts are disabled by default:
 ## Benchmark
 
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
+
 [Source](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits and Thank you's
