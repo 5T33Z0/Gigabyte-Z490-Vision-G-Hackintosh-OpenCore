@@ -1,7 +1,7 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
 ## About
-This is my EFI Folder for the Z490 Vision G Board I've worked on and refined since September 2020 using the OpenCore Install Guide by Dortania as well as Daliansky's repo with ACPI Hotpatches for OpenCore to tweak and fine tune the config.
+This is my EFI Folder for the Z490 Vision G Board I've worked on and refined since September 2020 using the OpenCore Install Guide by Dortania as well as Daliansky's repo with ACPI Hotpatches for OpenCore to create custom SSDTs to tweak and fine tune the config.
 
 It's configured for and tested with High Sierra, Catalina, as well as the latest Version of Big Sur (11.2). It contains three configs – one for each OS. Enjoy.
 
