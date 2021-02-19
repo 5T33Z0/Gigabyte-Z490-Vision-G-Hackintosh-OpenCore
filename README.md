@@ -6,7 +6,7 @@ This is my EFI Folder for the Z490 Vision G Board I've worked on and refined sin
 It's configured for and tested with High Sierra, Catalina, as well as the latest Version of Big Sur (11.2). It contains three configs – one for each OS. Enjoy.
 
 ## System Specs
-* **BIOS**: F8c. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`
+* **BIOS**: F20b. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`
 * **CPU**: Intel® i9 10850K (Codename Comet Lake)
 * **RAM**: 32 GB DDR4 2400 Crucial Basllistix Sport LT
 * **iGPU**: Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead
