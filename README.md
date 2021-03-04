@@ -16,7 +16,7 @@ It's configured for and tested with High Sierra, Catalina, as well as the latest
  
 ## OpenCore Infos/Configuration
 * **Version**: 0.6.7 Nightly (details in config.plist)
-* **Compatible macOS**: 10.13.6 (High Sierra), 10.15.7 (Catalina) and 11.2 (Big Sur)
+* **Compatible macOS**: 10.13.6 (High Sierra), 10.15.7 (Catalina) and 11.2.2 (Big Sur)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS))
 * **ACPI Patches:** `SSDT-EC`, `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`, `SSDT-MEM2`
 * **OpenCanopy**: `yes`
