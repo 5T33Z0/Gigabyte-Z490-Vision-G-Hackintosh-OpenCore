@@ -34,7 +34,7 @@ The following Kexts are disabled by default:
 * `CPUFriend.kext`
 * `CPUFriendDataProvider.kext` (create your own if you use a differen CPU moodel using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
 * `FakePCIID_Intel_HDMI_Audio.kext` If you use Audio over HDMI enable this
-* `AGPMInjector.kext`disabled, Kext not present. Generate it or delete entry. See Section "Enable AFPM" 
+* `AGPMInjector.kext`disabled, Kext not present. Generate it or delete entry. See Section "Enable AGPM" 
 
 ## Install Instructions
 1. Download latest EFI Release and unpack it
