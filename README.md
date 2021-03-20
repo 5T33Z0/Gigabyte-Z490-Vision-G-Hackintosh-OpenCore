@@ -25,7 +25,7 @@ It's configured for and tested with High Sierra, Catalina, as well as the latest
 * **FileVault**: `no`
 * **Tools**: `OpenShell`, `CleanNVRAM`
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/USB_Ports.zip?raw=true)
-* **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `FF0F0000`
+* **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
 * **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot.
 
 ## Kexts
