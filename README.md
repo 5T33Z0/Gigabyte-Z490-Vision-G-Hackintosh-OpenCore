@@ -10,7 +10,7 @@ It's configured for and tested with High Sierra, Catalina, as well as the latest
 * **CPU**: Intel® i9 10850K (Codename Comet Lake)
 * **RAM**: 32 GB DDR4 2400 Crucial Basllistix Sport LT
 * **iGPU**: Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead
-* **GPU**: Nvidia GeForce 760. AMD users need to add boot-arg `agdpmod=pikera`
+* **GPU**: Nvidia GeForce 760. AMD users may need to add additional boot-args
 * **On-board Audio**: Realtek® ALC1220-VB codec
 * **LAN**: Intel® 2.5GbE LAN chip. Not working in High Sierra, since HS doesn't support it
  
