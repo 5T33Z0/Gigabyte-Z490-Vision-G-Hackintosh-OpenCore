@@ -105,4 +105,4 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 * jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
 * [Schmockloard](https://github.com/SchmockLord/Hackintosh-Intel-i9-10900k-Gigabyte-Z490-Vision-D) for FakePCIID.kext for LAN & HDMI Audio
 * [Samuel211119](https://github.com/samuel21119/Intel-i9-10900-Gigabyte-Z490-Vision-G-Hackintosh) for initial EFI Folder
-* Pavo-IM for [OC-Gen-X](https://github.com/Pavo-IM/OC-Gen-X)
+* [Pavo-IM](https://github.com/Pavo-IM/) for OC Gen-X and APGM Enabler
