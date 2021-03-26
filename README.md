@@ -1,6 +1,6 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
-**Status: Completed**
+**5T4TU5: Completed**
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-driver)
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.6.8-white.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
