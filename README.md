@@ -13,10 +13,10 @@ This is my EFI Folder for the Z490 Vision G Board I've worked on and refined sin
 
 Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build of Big Sur (11.2.3). It contains three configs – one for each OS. Enjoy.
 
-<details>
-<summary><strong>Build Info</strong></summary>
-
 ## Build Info
+
+<details>
+<summary><strong>Used Hardware Components</strong></summary>
 
 | Specifications      | Details                                     |
 | :------------------ | :------------------------------------------ |
@@ -32,7 +32,7 @@ Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build
 <details>
 <summary><strong>OpenCore and Config Details</strong></summary>
 
-## OpenCore Details
+### OpenCore Details
 * **Version**: 0.6.8 Nightly (details in config.plist)
 * **Compatible macOS**: 10.13.6 (High Sierra), 10.15.7 (Catalina) and 11.2.2 (Big Sur)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS))
@@ -46,7 +46,7 @@ Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
 * **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot.
 
-## Note about Kexts
+### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU, GPU and Audio/Video Setup you are using:
 
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext` 
@@ -54,10 +54,18 @@ The following Kexts are disabled by default since I don't know which CPU, GPU an
 * `FakePCIID_Intel_HDMI_Audio.kext` – If you use Audio over HDMI, enable this
 * `AGPMInjector.kext`disabled, Kext not present. Generate it or delete entry. See Section "Enable AGPM"
 </details>
+
+
+## Installation
+<details>
+<summary><strong>How to install macOS</strong></summary>
+
+To install macOS, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#creating-the-usb)   
+**Useful Tool**: [ANYmacOS](https://www.sl-soft.de/en/anymacos/)
+</details>
 <details>
 <summary><strong>EFI Install Instructions</strong></summary>
 
-## EFI Install Instructions
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice (either High Sierra, Catalina or Big Sur) and rename it to `config.plist`
 3. Users of AMD Graphics cards should add their required boot-args
@@ -85,13 +93,13 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/AGPMEnabler.png)
 </details>
+
+## CPU Benchmark
 <details>
 <summary><strong>CPU Benchmark</strong></summary>
 
-## Geekbench CPU Benchmark
 
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
-
 [Source](https://browser.geekbench.com/v5/cpu/5386949)
 </details>
 
