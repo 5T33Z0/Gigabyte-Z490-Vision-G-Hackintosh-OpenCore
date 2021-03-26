@@ -15,7 +15,6 @@ Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build
 
 <details>
 <summary><strong>Build Info</strong></summary>
-
 ## Build Info
 
 | Specifications      | Details                                     |
@@ -31,7 +30,6 @@ Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build
 </details>
 <details>
 <summary><strong>OpenCore and Config Details</strong></summary>
-
 ## OpenCore Details
 * **Version**: 0.6.8 Nightly (details in config.plist)
 * **Compatible macOS**: 10.13.6 (High Sierra), 10.15.7 (Catalina) and 11.2.2 (Big Sur)
@@ -56,7 +54,6 @@ The following Kexts are disabled by default since I don't know which CPU, GPU an
 </details>
 <details>
 <summary><strong>EFI Install Instructions</strong></summary>
-
 ## EFI Install Instructions
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice (either High Sierra, Catalina or Big Sur) and rename it to `config.plist`
@@ -70,7 +67,6 @@ The following Kexts are disabled by default since I don't know which CPU, GPU an
 </details>
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
-
 ## Post-Install Tweaks
 
 ### Optimizing CPU Power Management
@@ -87,7 +83,6 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 </details>
 <details>
 <summary><strong>CPU Benchmark</strong></summary>
-
 ## Geekbench CPU Benchmark
 
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
