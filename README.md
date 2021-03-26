@@ -74,6 +74,7 @@ To install macOS, follow the guide provided by [Dortania](https://dortania.githu
 7. Perform NVRAM Reset
 8. Start macOS
 9. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD
+
 </details>
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
