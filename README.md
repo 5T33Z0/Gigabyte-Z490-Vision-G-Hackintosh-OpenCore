@@ -55,7 +55,6 @@ The following Kexts are disabled by default since I don't know which CPU, GPU an
 * `AGPMInjector.kext`disabled, Kext not present. Generate it or delete entry. See Section "Enable AGPM"
 </details>
 
-
 ## Installation
 <details>
 <summary><strong>How to install macOS</strong></summary>
@@ -78,8 +77,6 @@ To install macOS, follow the guide provided by [Dortania](https://dortania.githu
 </details>
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
-
-## Post-Install Tweaks
 
 ### Optimizing CPU Power Management
 Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Optimizing%20CPU%20Power%20Management_de.pdf) to create your own (currently in german, english version will follow soon.)
