@@ -2,9 +2,9 @@
 
 **Status: Completed**
 
-[![](https://img.shields.io/badge/Gigabyte_Z490-Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-driver)
+[![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-driver)
 [![OpenCore](https://img.shields.io/badge/OpenCore-0.6.8-white.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)
+[![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 ![MacOS Big Sur](https://img.shields.io/badge/macOS-11.2.3-white.svg)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases)
 
