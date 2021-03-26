@@ -18,7 +18,7 @@ Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build
 <details>
 <summary><strong>Used Hardware Components</strong></summary>
 
-| Specifications      | Details                                     |
+| Component           | Details                                     |
 | :------------------ | :------------------------------------------ |
 | Mainboard           | Gibabyte Z490 Vision G                      |
 | BIOS					  | F20b. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`|
