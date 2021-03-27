@@ -9,9 +9,9 @@
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases)
 
 ## Introduction
-This is my EFI Folder for the Z490 Vision G Board I've worked on and refined since September 2020 using the OpenCore Install Guide by Dortania as well as Daliansky's repo with ACPI Hotpatches for OpenCore to create custom SSDTs to tweak and fine tune the config.
+This is my EFI Folder for the Z490 Vision G Board I've been working on refining since September 2020, using Dortania's OpenCore Install Guide as well as ASCPI Hotpatches from Daliansky's "OC-Little" Repo. I dumped the system DSDT for research and then added the missing components to tweak and fine tune the config.
 
-Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build of Big Sur (11.2.3). It contains three configs – one for each OS. Enjoy.
+Sucessfully running with macOS High Sierra, Catalina, as well as the latest build of Big Sur (11.2.3). It contains three configs – one for each OS. Enjoy.
 
 ## Build Info
 
@@ -21,10 +21,10 @@ Sucessfully tested with macOS High Sierra, Catalina, as well as the latest build
 | Component           | Details                                     |
 | :------------------ | :------------------------------------------ |
 | Mainboard           | Gibabyte Z490 Vision G                      |
-| BIOS					  | F20b. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`|
+| BIOS		      | F20b. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`|
 | CPU                 | Intel® Core i9 10850K (Codename Comet Lake) |
 | RAM                 | 32 GB DDR4 2400 Crucial Basllistix Sport LT |
-| iGPU					  | Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead          |
+| iGPU		      | Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead          |
 | GPU                 | Nvidia GeForce 760.oot-args                 |
 | Audio               | Realtek® ALC1220-VB (Layout-id: `28`)       |
 | Ethernet            | Intel® 2.5GbE LAN chip. Incompatible with macOS High Sierra |
