@@ -87,6 +87,7 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 - Enable the entry in the config.plist
 - Save and reboot.
 - Open [IORegistryExplorer](https://github.com/utopia-team/IORegistryExplorer/releases) and search for`PR00`. If it look like this, CPU Power Management and AGPM are working correctly:
+
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/AGPMEnabler.png)
 </details>
 
