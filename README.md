@@ -30,7 +30,9 @@ Sucessfully running with macOS High Sierra, Catalina, as well as the latest buil
 </details>
 <details>
 <summary><strong>OpenCore and Config Details</strong></summary>
+	
 ### OpenCore Details
+
 * **Version**: 0.6.8 Nightly (details in config.plist)
 * **Compatible macOS**: 10.13.6 (High Sierra), 10.15.7 (Catalina) and 11.2.2 (Big Sur)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS))
@@ -43,13 +45,16 @@ Sucessfully running with macOS High Sierra, Catalina, as well as the latest buil
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/USB_Ports.zip?raw=true)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
 * **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot.
+
 ### Note about Kexts
+
 The following Kexts are disabled by default since I don't know which CPU, GPU and Audio/Video Setup you are using:
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext` 
 	- If you use a different CPU model, create your own DataProvider Kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
 * `FakePCIID_Intel_HDMI_Audio.kext` – If you use Audio over HDMI, enable this
 * `AGPMInjector.kext`disabled, Kext not present. Generate it or delete entry. See Section "Enable AGPM"
 </details>
+
 ## Installation
 <details>
 <summary><strong>How to install macOS</strong></summary>
@@ -58,6 +63,7 @@ To install macOS, follow the guide provided by [Dortania](https://dortania.githu
 </details>
 <details>
 <summary><strong>EFI Install Instructions</strong></summary>
+	
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice (either High Sierra, Catalina or Big Sur) and rename it to `config.plist`
 3. Users of AMD Graphics cards may have to add additional boot-args
@@ -69,8 +75,10 @@ To install macOS, follow the guide provided by [Dortania](https://dortania.githu
 9. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD and reboot.
 10. Done.
 </details>
+
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
+	
 ### Optimizing CPU Power Management
 Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Optimizing%20CPU%20Power%20Management_de.pdf) to create your own (currently in german, english version will follow soon.)
 ### Enabling Apple Graphics Power Management (`AGPM`) for dedicated GPUs (Intel and AMD)
@@ -81,9 +89,11 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 - Open [IORegistryExplorer](https://github.com/utopia-team/IORegistryExplorer/releases) and search for`PR00`. If it look like this, CPU Power Management and AGPM are working correctly:
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/AGPMEnabler.png)
 </details>
+
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
 [Source](https://browser.geekbench.com/v5/cpu/5386949)
+
 ## Credits
 * Acidanthera and Team for the OpenCore Bootloader
 * Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
