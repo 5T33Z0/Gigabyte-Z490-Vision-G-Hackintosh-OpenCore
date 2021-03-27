@@ -17,6 +17,7 @@ Sucessfully running with macOS High Sierra, Catalina, as well as the latest buil
 
 <details>
 <summary><strong>Used Hardware Components</strong></summary>
+
 | Component           | Details                                     |
 | :------------------ | :------------------------------------------ |
 | Mainboard           | Gibabyte Z490 Vision G                      |
@@ -47,7 +48,6 @@ Sucessfully running with macOS High Sierra, Catalina, as well as the latest buil
 * **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot.
 
 ### Note about Kexts
-
 The following Kexts are disabled by default since I don't know which CPU, GPU and Audio/Video Setup you are using:
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext` 
 	- If you use a different CPU model, create your own DataProvider Kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
@@ -75,12 +75,12 @@ To install macOS, follow the guide provided by [Dortania](https://dortania.githu
 9. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD and reboot.
 10. Done.
 </details>
-
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
 	
 ### Optimizing CPU Power Management
-Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Optimizing%20CPU%20Power%20Management_de.pdf) to create your own (currently in german, english version will follow soon.)
+Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Optimizing%20CPU%20Power%20Management_de.pdf) to create your own (currently in german, english version will follow soon).
+
 ### Enabling Apple Graphics Power Management (`AGPM`) for dedicated GPUs (Intel and AMD)
 - Generate `AGPMInjector.kext` for your GPU using [AGPMInjector](https://github.com/Pavo-IM/AGPMInjector) and 
 - Copy it to `EFI\OC\Kexts`
