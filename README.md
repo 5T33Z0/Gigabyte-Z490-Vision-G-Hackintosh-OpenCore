@@ -67,14 +67,14 @@ To install macOS, follow the guide provided by [Dortania](https://dortania.githu
 
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice (either High Sierra, Catalina or Big Sur) and rename it to `config.plist`
-3. Users of AMD Graphics cards should add their required boot-args
+3. Users of AMD Graphics cards may have to add additional boot-args
 4. Create or Copy over SMBIOS Infos for `iMac20,2` or `iMac18,3` (for High Sierra)
 5. Copy the EFI Folder on a FAT32 formated USB Stick
 6. Reboot from USB Stick
 7. Perform NVRAM Reset
 8. Start macOS
-9. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD
-
+9. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD and reboot.
+10. Done.
 </details>
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
