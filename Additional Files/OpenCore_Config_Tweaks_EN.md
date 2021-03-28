@@ -3,6 +3,7 @@ A small collection of useful tipps and tricks for working with OpenCore's `confi
 
 <details>
 <summary><strong>Fixing Config Errors</strong></summary>
+
 ## I. Checking config.plist for errors
 
 Currently there are two automated methods to check your config.plist for errors:
@@ -15,6 +16,7 @@ While Sanity Checker focuses on correct settings for the selected system, OC Val
 </details>
 <details>
 <summary><strong>Fixing Boot Issues</strong></summary>
+
 ## II. Fixing boot problems
 
 If the system won't boot despite correct boot and kernel settings and hangs directly at the boot logo without a progress bar, you should change the following settings:
@@ -25,6 +27,7 @@ If the system won't boot despite correct boot and kernel settings and hangs dire
 </details>
 <details>
 <summary><strong>Security Settings</strong></summary>
+
 ## III. Security Settings
 
 ### How to disable Single User Mode
@@ -65,6 +68,7 @@ You should deactivate the single user mode for security reasons, because it can 
 </details>
 <details>
 <summary><strong>Modify Boot Picker</strong></summary>
+
 ## IV. Adjust BootPicker Attributes, enable mouse support
 
 With **PickerAttributes**, you can assign different properties and functions to the BootPicker. There are 5 parameters, each having it's own value/byte, which can be combined by simple adding them:
@@ -81,6 +85,7 @@ With **PickerAttributes**, you can assign different properties and functions to 
 </details>
 <details>
 <summary><strong>Customizing Boot Options</strong></summary>
+
 ## V. Customizing Boot Options
 
 ### Set default boot drive in BootPicker
@@ -138,6 +143,7 @@ If you want to boot Windows *properly*, you should boot it via the BIOS Boot Men
 </details>
 <details>
 <summary><strong>Resolving NVRAM Issues</strong></summary>
+
 ## VI. Resolving issues with NVRAM Reset
 Certain BIOS variants can be badly affected by the integrated NVRAM reset tool of OpenCore. Symptoms: you can't get into the BIOS anymore or certain parameters in the NVRAM (like boot-args) are not applied or can't be deleted, etc. Older Lenovo Notebooks are affected by this a lot. Therefore, the OpenCore package also contains `CleanNvram.efi` under `Tools`, which should work better with such problematic BIOSes. So if you have problems with NVRAM reset, do the following:
 
@@ -153,6 +159,7 @@ Otherwise, check if there might be a BIOS update available that fixes general pr
 </details>
 <details>
 <summary><strong>Fix wrong OpenCore Version</strong></summary>
+
 ## VII. **Correct falsely reported OpenCore version**.
 It can happen that the OpenCore version info stored in the NVRAM is not updated automatically and is therefore displayed incorrectly in Kext Updater and Hackintool. The problem was fixed in OC 0.6.7 by simply not writing the version info into NVRAM at all, but the wrong version will reside in NVRAM until you delete it.
 
