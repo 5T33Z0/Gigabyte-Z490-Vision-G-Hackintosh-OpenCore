@@ -58,7 +58,8 @@ The following Kexts are disabled by default since I don't know which CPU, GPU an
 ## Installation
 <details>
 <summary><strong>How to install macOS</strong></summary>
-To install macOS, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#creating-the-usb)</br>
+### Installing macOS
+To install macOS, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)</br>
 **Useful Tool**: [ANYmacOS](https://www.sl-soft.de/en/anymacos/)
 </details>
 <details>
