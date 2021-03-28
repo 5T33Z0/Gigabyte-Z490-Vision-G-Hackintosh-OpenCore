@@ -66,6 +66,8 @@ If you are on Windows or Linux follow the guide provided by [Dortania](https://d
 </details>
 <details>
 <summary><strong>EFI Install Instructions</strong></summary>
+
+### EFI Guide
 	
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice (either High Sierra, Catalina or Big Sur) and rename it to `config.plist`
