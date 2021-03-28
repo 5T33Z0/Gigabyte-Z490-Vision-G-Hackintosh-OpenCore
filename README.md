@@ -13,6 +13,8 @@ This is my EFI Folder for the Z490 Vision G Board I've been working on refining 
 
 Sucessfully running with macOS High Sierra, Catalina, as well as the latest build of Big Sur (11.2.3). It contains three configs – one for each OS. Enjoy.
 
+**NOTE**: For more Post-Install goodies, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
+
 ## Build Info
 
 <details>
@@ -97,8 +99,6 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 - Open [IORegistryExplorer](https://github.com/utopia-team/IORegistryExplorer/releases) and search for`PR00`. If it look like this, CPU Power Management and AGPM are working correctly:
 
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/AGPMEnabler.png)
-
-**NOTE**: For more Post-Install goodies, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
 </details>
 
 ## CPU Benchmark
