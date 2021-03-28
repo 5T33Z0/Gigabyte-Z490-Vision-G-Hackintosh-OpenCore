@@ -98,7 +98,8 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
-[Source](https://browser.geekbench.com/v5/cpu/5386949)
+
+[RESULTS:](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits
 * Acidanthera and Team for the OpenCore Bootloader
