@@ -100,9 +100,9 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 </details>
 
 ## CPU Benchmark
-![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/BigSur%20Benchmark.png)
+![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BigSur%20Benchmark.png)
 
-[RESULTS:](https://browser.geekbench.com/v5/cpu/5386949)
+[SEE ALL RESULTS](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits
 * Acidanthera and Team for the OpenCore Bootloader
