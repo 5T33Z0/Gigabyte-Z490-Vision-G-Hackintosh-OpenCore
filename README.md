@@ -27,8 +27,8 @@ Sucessfully running with macOS High Sierra, Catalina, as well as the latest buil
 | BIOS		      | F20d. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`|
 | CPU                 | Intel® Core i9 10850K (Codename Comet Lake) |
 | RAM                 | 32 GB DDR4 2400 Crucial Basllistix Sport LT |
-| iGPU		      | Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead          |
-| GPU                 | Nvidia GeForce 760.oot-args                 |
+| iGPU		      | Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead      |
+| GPU                 | Nvidia GeForce 760	                    |
 | Audio               | Realtek® ALC1220-VB (Layout-id: `28`)       |
 | Ethernet            | Intel® 2.5GbE LAN chip. Incompatible with macOS High Sierra |
 </details>
