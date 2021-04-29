@@ -23,7 +23,7 @@ Sucessfully running with macOS High Sierra, Catalina, as well as the latest buil
 
 | Component           | Details                                     |
 | :------------------ | :------------------------------------------ |
-| Mainboard           | Gibabyte Z490 Vision G                      |
+| Mainboard           | Gigabyte Z490 Vision G                      |
 | BIOS		      | F20d. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock` to disable CFG Lock via `config.plist`|
 | CPU                 | Intel® Core i9 10850K (Codename Comet Lake) |
 | RAM                 | 32 GB DDR4 2400 Crucial Basllistix Sport LT |
