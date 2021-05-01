@@ -1,6 +1,6 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
-**5T4TU5: Completed**
+**5T4TU5**: Completed 100%. Added Clover EFI as well. 
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.6.9-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
