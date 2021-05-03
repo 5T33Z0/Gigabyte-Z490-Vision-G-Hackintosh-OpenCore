@@ -114,6 +114,5 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 * Daliansky for [OC Little Repo](https://github.com/5T33Z0/OC-Little-Translated) containing all the ACPI Hotpatches for OpenCore
 * [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
 * jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
-* [SchmockLord](https://github.com/SchmockLord/Hackintosh-Intel-i9-10900k-Gigabyte-Z490-Vision-D) for FakePCIID.kext for LAN & HDMI Audio
 * [Samuel211119](https://github.com/samuel21119/Intel-i9-10900-Gigabyte-Z490-Vision-G-Hackintosh) for initial EFI Folder
 * [Pavo-IM](https://github.com/Pavo-IM/) for OC Gen-X and APGM Enabler
