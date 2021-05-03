@@ -111,7 +111,7 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 ## Credits
 * Acidanthera and Team for the OpenCore Bootloader
 * Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
-* Daliansky for [OC Little Repo](https://github.com/daliansky/OC-little) containing all the ACPI Hotpatches for OpenCore
+* Daliansky for [OC Little Repo](https://github.com/5T33Z0/OC-Little-Translated) containing all the ACPI Hotpatches for OpenCore
 * [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
 * jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
 * [SchmockLord](https://github.com/SchmockLord/Hackintosh-Intel-i9-10900k-Gigabyte-Z490-Vision-D) for FakePCIID.kext for LAN & HDMI Audio
