@@ -113,6 +113,5 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 * Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 * Daliansky for [OC Little Repo](https://github.com/5T33Z0/OC-Little-Translated) containing all the ACPI Hotpatches for OpenCore
 * [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
+* [Pavo-IM](https://github.com/Pavo-IM/) for APGM Enabler
 * jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
-* [Samuel211119](https://github.com/samuel21119/Intel-i9-10900-Gigabyte-Z490-Vision-G-Hackintosh) for initial EFI Folder
-* [Pavo-IM](https://github.com/Pavo-IM/) for OC Gen-X and APGM Enabler
