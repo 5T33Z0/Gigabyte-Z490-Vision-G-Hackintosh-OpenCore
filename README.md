@@ -3,7 +3,7 @@
 **5T4TU5**: Completed 100%. Added Clover EFI as well. 
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
-[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.6.9-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5134-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.3-white.svg)](https://www.apple.com/macos/big-sur/)
