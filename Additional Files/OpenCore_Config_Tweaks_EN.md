@@ -37,6 +37,7 @@ You should deactivate the single user mode for security reasons, because it can 
 </details>
 <details>
 <summary><strong>Disabling SIP</strong></summary>
+
 ### How to disable System Integrity Protection (SIP)
 
 1. To disable System Integrity Protection, add one of the following values to the config:
