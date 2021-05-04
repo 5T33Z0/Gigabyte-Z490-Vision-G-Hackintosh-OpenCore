@@ -13,7 +13,7 @@
 ## Introduction
 This is my EFI Folder for the Z490 Vision G Board I've been working on refining since September 2020, using Dortania's OpenCore Install Guide as well as ACPI Hotpatches from Daliansky's "OC-Little" Repo. I dumped the system DSDT for research and then added the missing components to tweak and fine tune the config. Doesn't require FakePCIID to get the Intel I225 2.5 Gigabit Ethernet Controller working. This is without a doubt the most sophisticated Z490 Vision G EFI out there on Github to date!
 
-Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3). It contains 2 configs – one for Catalina/BigSur, one for HighSierra/Legacy OSes. Enjoy.
+Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
 
 **NOTE**: For more Post-Install goodies, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
 
@@ -54,8 +54,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3). It conta
 ### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU, GPU and Audio/Video Setup you are using:
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext` 
-	- If you use a different CPU model, create your own DataProvider Kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
-* `FakePCIID_Intel_HDMI_Audio.kext` – If you use Audio over HDMI, enable this
+	- If you use a different CPU model, create your own DataProviderKext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
 * `AGPMInjector.kext`disabled, Kext not present. Generate it or delete entry. See Section "Enable AGPM"
 </details>
 
@@ -74,15 +73,17 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 ### EFI Guide
 	
 1. Download latest EFI Release and unpack it
-2. Select the config of your choice (either High Sierra, Catalina or Big Sur) and rename it to `config.plist`
-3. Users of AMD Graphics cards may have to add additional boot-args
-4. Create or Copy over SMBIOS Infos for `iMac20,2` or `iMac18,3` (for High Sierra)
-5. Copy the EFI Folder on a FAT32 formated USB Stick
-6. Reboot from USB Stick
-7. Perform NVRAM Reset
-8. Start macOS
-9. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD and reboot.
-10. Done.
+2. Select the config of your choice and rename it to `config.plist`
+3. Change `csr-active-config` based on your OS to disable SIP: 67080000 for Bigf Sur, FF070000 for Catalina, FF030000 for High Sierra, 00000000 for enabling SIP
+4. Users of AMD Graphics Cards may have to add additional boot-args
+5. Create or Copy over SMBIOS Infos for `iMac20,2` or `iMac18,3` (for High Sierra)
+6. Copy the EFI Folder on a FAT32 formated USB Stick
+7. Reboot from USB Stick
+8. Perform NVRAM Reset
+9. Start macOS
+10. If your System boots, mount your Systems ESP and copy the EFI Folder over to you HDD and reboot.
+11. Done.
+
 </details>
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
