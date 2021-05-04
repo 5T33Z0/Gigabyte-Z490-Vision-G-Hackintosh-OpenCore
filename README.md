@@ -13,7 +13,7 @@
 ## Introduction
 This is my EFI Folder for the Z490 Vision G Board I've been working on refining since September 2020, using Dortania's OpenCore Install Guide as well as ACPI Hotpatches from Daliansky's "OC-Little" Repo. I dumped the system DSDT for research and then added the missing components to tweak and fine tune the config. Doesn't require FakePCIID to get the Intel I225 2.5 Gigabit Ethernet Controller working. This is without a doubt the most sophisticated Z490 Vision G EFI out there on Github to date!
 
-Sucessfully running with macOS High Sierra, Catalina, as well as the latest build of Big Sur (11.2.3). It contains three configs – one for each OS. Enjoy.
+Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3). It contains 2 configs – one for Catalina/BigSur, one for HighSierra/Legacy OSes. Enjoy.
 
 **NOTE**: For more Post-Install goodies, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
 
