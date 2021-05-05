@@ -38,8 +38,8 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3). It conta
 	
 ### OpenCore Details
 
-* **Version**: 0.6.9 Nightly (details in config.plist)
-* **Compatible macOS**: ~~10.13.6 (High Sierra)~~, 10.15.7 (Catalina) and 11.2.3 (Big Sur)
+* **Version**: 0.7.0 Nightly (details in config.plist)
+* **Compatible macOS**: ~~10.13.6 (High Sierra)~~, 10.15.7 (Catalina) and 11.3+ (Big Sur)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS))
 * **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`
 * **OpenCanopy Enabled**: `yes`
@@ -49,7 +49,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3). It conta
 * **SecureBootModel**: `j185f`(change it to `Disabled` if your system won't boot)
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/USB_Ports.zip?raw=true)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
-* **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot. High Sierra has been srapped, since it seems to break the Big Sur seal: after using High Sierra if you reboot you can no longer start Big Sur without `-no_compat_check` boot-arg. You get a stop sign instead.
+* **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot. High Sierra has been scrapped, since it seems to break the Big Sur seal: after using High Sierra if you reboot you can no longer start Big Sur without `-no_compat_check` boot-arg. You get a stop sign instead.
 
 ### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU, GPU and Audio/Video Setup you are using:
