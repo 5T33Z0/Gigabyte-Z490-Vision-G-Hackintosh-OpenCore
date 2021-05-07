@@ -6,21 +6,21 @@
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5134-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
-[![MacOS Big Sur](https://img.shields.io/badge/macOS-11.3.1-white.svg)](https://www.apple.com/macos/big-sur/)
+[![MacOS Big Sur](https://img.shields.io/badge/macOS-11.3.1+-white.svg)](https://www.apple.com/macos/big-sur/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases)
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BootPicker.png)
 
 ## Introduction
-This is my EFI Folder for the Z490 Vision G Board I've been working on refining since September 2020, using Dortania's OpenCore Install Guide as well as ACPI Hotpatches from Daliansky's "OC-Little" Repo. I dumped the system DSDT for research and then added the missing components to tweak and fine tune the config. Doesn't require FakePCIID to get the Intel I225 2.5 Gigabit Ethernet Controller working. This is without a doubt the most sophisticated Z490 Vision G EFI out there on Github to date!
+This is my EFI Folder for the Z490 Vision G Board I've been working on refining since September 2020, using Dortania's OpenCore Install Guide as well as ACPI Hotpatches from Daliansky's "OC-Little" Repo. I dumped the system DSDT for research and then added the missing components to tweak and fine tune the config. This EFI does not require FakePCIID to get the Intel I225 2.5 Gigabit Ethernet Controller working. This is without a doubt the most sophisticated Z490 Vision G EFI out there on Github to date – don't sleep on it!
 
-Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
+Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
 
 **NOTE**: For more Post-Install goodies, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
 
 ## Build Info
 
 <details>
-<summary><strong>Used Hardware Components</strong></summary>
+<summary><strong>Hardware Components</strong></summary>
 
 | Component           | Details                                     |
 | :------------------ | :------------------------------------------ |
