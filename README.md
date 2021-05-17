@@ -44,7 +44,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 ### OpenCore Details
 
 * **Version**: 0.7.0 Nightly (details in config.plist)
-* **Compatible macOS**: ~~10.13.6 (High Sierra)~~, 10.15.7 (Catalina) and 11.3+ (Big Sur)
+* **Compatible macOS**: ~~10.13.6 (High Sierra)~~*, 10.15.7 (Catalina) and 11.3+ (Big Sur)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a divergent SMBIOS rather than `iMac20,2` may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
 * **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`
 * **OpenCanopy Enabled**: `yes`
@@ -54,7 +54,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 * **SecureBootModel**: `j185f`(change it to `Disabled` if your system won't boot)
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports.zip)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
-* **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot. High Sierra has been scrapped, since it seems to break the Big Sur seal: after using High Sierra if you reboot you can no longer start Big Sur without `-no_compat_check` boot-arg. You get a stop sign instead.
+* **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot. Also, Internet doesn't work in High Sierra since it does not contain the necessary kext for the I225 Controller. </br> **NOTE**: I've since scrapped the idea of running High Sierra altogether, because it partly breaks Big Sur: if you reboot the system after using macOS High Sierra, you can no longer start Big Sur without using the boot-arg`-no_compat_check` – otherwise you get the dreaded stop sign instead. I don't know what causes this issue. I assume booting High Sierra breaks the seal of Big Sur somehow but I am not sure. To fix this, simply reinstall Big Sur over your existing installation and everything is back to normal. So don't panic! ;)
 * **Config Validation**: </br>
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/ConfigValidation.png)
 
