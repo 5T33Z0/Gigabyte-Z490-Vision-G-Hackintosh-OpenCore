@@ -59,10 +59,10 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/ConfigValidation.png)
 
 ### Note about Kexts
-The following Kexts are disabled by default since I don't know which CPU, GPU and Audio/Video Setup you are using:
+The following Kexts are disabled by default since I don't know which CPU, GPU you are using:
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext` 
 	- If you use a different CPU model, create your own DataProviderKext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
-* `AGPMInjector.kext`disabled, Kext not present. Generate it or delete entry. See Section "Enable AGPM"
+* `AGPMInjector.kext`disabled. Generate it or delete config entry and kext. See Section "Enable AGPM"
 </details>
 
 ## Installation
