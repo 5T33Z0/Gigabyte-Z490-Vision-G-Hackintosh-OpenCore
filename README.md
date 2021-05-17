@@ -55,7 +55,8 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports.zip)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
 * **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot. High Sierra has been scrapped, since it seems to break the Big Sur seal: after using High Sierra if you reboot you can no longer start Big Sur without `-no_compat_check` boot-arg. You get a stop sign instead.
-* **Config Validation**: ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/ConfigValidation.png)
+* **Config Validation**: </br>
+![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/ConfigValidation.png)
 
 ### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU, GPU and Audio/Video Setup you are using:
