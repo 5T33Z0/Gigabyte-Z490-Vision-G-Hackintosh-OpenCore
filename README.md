@@ -43,7 +43,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 
 * **Version**: 0.7.0 Nightly (details in config.plist)
 * **Compatible macOS**: ~~10.13.6 (High Sierra)~~, 10.15.7 (Catalina) and 11.3+ (Big Sur)
-* **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS))
+* **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a divergent SMBIOS rather than `iMac20,2` may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as the `model` which the port mappings are for.
 * **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`
 * **OpenCanopy Enabled**: `yes`
 * **Iconset**: `modern`
