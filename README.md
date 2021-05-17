@@ -14,7 +14,7 @@
 
 This is my EFI Folder for the Z490 Vision G Board I've been working on and constantly refining since September 2020, based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I dumped the system `DSDT`, analyzed it and added missing components to tweak and fine tune the config and build. This system is used as a workstation for music production and sound design exclusively. No funny business like taking Schmocklords Vision D EFI, relabeling and reposting it as a "Vision G EFI" going on here – unlike in some Forums, Githubs and the Hackindrom App especially. 
 
-My EFI doesn't require `FakePCIID.kext` to get the Intel I225 2.5 Gigabit Ethernet Controller working. It also doesn't require `SSDT-USBW.aml` – which doesn't do anything besides turning the screen back on with one instead of two mouse/keyboard inputs anyway. This is without a doubt the most sophisticated Z490 Vision G EFI you can find on Github to date! And just for fun, I added Clover, too.
+My EFI doesn't require `FakePCIID.kext` to get the Intel I225 2.5 Gigabit Ethernet Controller working. It also doesn't require any wake-related SSDTs like `SSDT-GPRW.aml` since there are no wake issues. `SSDT-USBW.aml` – which doesn't do anything besides turning the screen back on with one instead of two mouse/keyboard inputs - is also unnecessary. This is without a doubt the most sophisticated Z490 Vision G EFI you can find on Github to date! And just for fun, I added Clover, too.
 
 Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
 
