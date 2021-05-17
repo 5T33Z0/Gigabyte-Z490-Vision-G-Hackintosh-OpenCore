@@ -82,7 +82,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
 3. choose `csr-active-config` based on macOS version to disable SIP: `67080000` for Big Sur, `FF070000` for Catalina/Mojave, `FF030000` for High Sierra
-4. Users of AMD GPUs may have to add additional `boot-args`
+4. Users of AMD GPUs may have to add additional `boot-args`. Check WhateverGreen Github repo to find out which.
 5. Create or Copy over SMBIOS Infos for `iMac20,2` or `iMac18,3` (for High Sierra)
 6. Copy the EFI Folder on a FAT32 formated USB Stick
 7. Reboot from USB Stick
