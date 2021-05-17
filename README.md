@@ -4,14 +4,16 @@
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![Clover Version](https://img.shields.io/badge/Clover-r5134-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
+[![Clover Version](https://img.shields.io/badge/Clover-r5135-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![MacOS Big Sur](https://img.shields.io/badge/macOS-11.3.1+-white.svg)](https://www.apple.com/macos/big-sur/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases)
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BootPicker.png)
 
 ## Introduction
-This is my EFI Folder for the Z490 Vision G Board I've been working on refining since September 2020, using Dortania's OpenCore Install Guide as well as ACPI Hotpatches from Daliansky's "OC-Little" Repo. I dumped the system DSDT for research and then added the missing components to tweak and fine tune the config. This EFI does not require FakePCIID to get the Intel I225 2.5 Gigabit Ethernet Controller working. This is without a doubt the most sophisticated Z490 Vision G EFI out there on Github to date – don't sleep on it!
+This is my EFI Folder for the Z490 Vision G Board I've been working on and constantly refining since September 2020, based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I dumped the system `DSDT`, analyzed it and added missing components to tweak and fine tune the config. No funny business like taking Schmocklords Vision D EFI, relabeling and reposting it as a "Vision G EFI" going on here – unlike in some Forums, Githubs and the Hackindrom App especially.
+
+My EFI doesn't require `FakePCIID.kext` to get the Intel I225 2.5 Gigabit Ethernet Controller working. Alsoe doesn't require `SSDT-USBW.aml` – it doesn't do anything else then turning the screen back on with one instead of to mouse/keyboard inputs anyway. This is without a doubt the most sophisticated Z490 Vision G EFI you can find on Github to date! And just for fun, I added Clover, too.
 
 Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
 
