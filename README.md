@@ -12,13 +12,15 @@
 
 ## Introduction
 
-This is my EFI Folder for the Z490 Vision G Board I've been working on and constantly refining since September 2020, based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I dumped the system `DSDT`, analyzed it and added missing components to fine tune the config and build. This system is used as a workstation for music production and sound design exclusively. No funny business like taking Schmocklords Vision D EFI, relabeling and reposting it as a "Vision G EFI" going on in here – unlike in some Forums, Githubs and the Hackindrom App especially. 
+Here's my EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research and "development". I dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
 
-This EFI doesn't require `FakePCIID.kext` to get the Intel I225 2.5 Gigabit Ethernet Controller working. It also doesn't require any wake-related ACPI Hotpatches like SSDT-GPRW.aml or SDT-USBW.aml – which doesn't do anything besides turning the screen back on with one instead of two mouse/keyboard inputs anyway. This is  the most sophisticated Z490 Vision G EFI you can find on Github to date! And just for fun, I added Clover, too.
+This is a *genuine* Z490 Vision G EFI folder – unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. They are either based on a generically patched DSDT by Olarilla (patched DSTDs in 2021… in OpenCore… really?) or on Schmocklords EFI for the Vision D, which contains unnecessary DeviceProperties and SSDTs for devices that don't even exist on the Vision G board, like an additional 1 Gig Ethernet port and a Wifi/BT module – all the small config issues included, which won't let it pass config validation.
+
+My EFI does not contain all this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel I225 2.5 Gigabit Ethernet Controller working. I think it is the most sophisticated Z490 Vision G EFI folder you can find on Github to date! And just for fun, I added Clover, too.
 
 Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
 
-**NOTE**: For more Post-Install goodies, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
+**NOTE**: For best results, read and follow the install instruction thoroughly. 
 
 ## Build Info
 
@@ -106,6 +108,8 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 - Open [IORegistryExplorer](https://github.com/utopia-team/IORegistryExplorer/releases) and search for`PR00`. If it look like this, CPU Power Management and AGPM are working correctly:
 
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/AGPMEnabler.png)
+
+**NOTE**: For more Post-Install tweaks and tips, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
 </details>
 
 ## CPU Benchmark
