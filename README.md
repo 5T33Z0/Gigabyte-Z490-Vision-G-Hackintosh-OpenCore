@@ -12,9 +12,9 @@
 
 ## Introduction
 
-Here's my EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research and "development". I dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
+Here's my EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
 
-This is a *genuine* Z490 Vision G EFI folder – unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. They are either based on a generically patched DSDT by Olarilla (patched DSTDs in 2021… in OpenCore… really?) or on Schmocklords EFI for the Vision D, which contains unnecessary DeviceProperties and SSDTs for devices that don't even exist on the Vision G board, like an additional 1 Gig Ethernet port and a Wifi/BT module – all the small config issues included, which won't let it pass config validation.
+This is a *genuine* Z490 Vision G EFI folder – unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. They are either based on a generically patched DSDT by Olarilla (patched DSTDs in 2021… in OpenCore… really?) or on Schmocklords EFI for the Vision D, which contains unnecessary DeviceProperties and SSDTs for devices that don't even exist on the Vision G board; like an additional 1 Gig Ethernet port and a Wifi/BT module – all the small config issues included, which won't pass config validation.
 
 My EFI does not contain all this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel I225 2.5 Gigabit Ethernet Controller working. I think it is the most sophisticated Z490 Vision G EFI folder you can find on Github to date! And just for fun, I added Clover, too.
 
