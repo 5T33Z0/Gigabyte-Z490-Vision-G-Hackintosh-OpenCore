@@ -98,12 +98,12 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 <summary><strong>Post-Install Tweaks</strong></summary>
 	
 ### Optimizing CPU Power Management
-Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Optimizing_CPU_Power_Management_de.pdf) to create your own (currently in german, english version will follow at some point).
+Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/CPU_Power_Management_EN.pdf) to create your own.
 When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadget. You can see, that the CPU idle frequency should be lower now:
 
 ![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/CPU_PM.png)
 
-### Enabling Apple Graphics Power Management (`AGPM`) for dedicated GPUs (Intel and AMD)
+### Enabling Apple Graphics Power Management (AGPM) for dedicated GPUs (NVDIA and AMD)
 - Generate `AGPMInjector.kext` for your GPU using [AGPMInjector](https://github.com/Pavo-IM/AGPMInjector) and 
 - Copy it to `EFI\OC\Kexts`
 - Enable the entry in the config.plist
