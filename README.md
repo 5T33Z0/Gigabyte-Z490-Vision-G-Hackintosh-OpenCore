@@ -77,9 +77,9 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 <details>
 <summary><strong>EFI Install Instructions</strong></summary>
 
-### EFI Guide
+### EFI Install Guide for OpenCore 
 	
-1. Download latest EFI Release and unpack it
+1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
 3. choose `csr-active-config` based on macOS version to disable SIP: `67080000` for Big Sur, `FF070000` for Catalina/Mojave, `FF030000` for High Sierra
 4. Graphics:
