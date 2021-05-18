@@ -82,10 +82,10 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 1. Download latest EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
 3. choose `csr-active-config` based on macOS version to disable SIP: `67080000` for Big Sur, `FF070000` for Catalina/Mojave, `FF030000` for High Sierra
-4. Graphics: 
+4. Graphics:
  - AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
- - If you want to use the Intel UHD 630 iGPU to drive a Display, you have to copy the Framebuffer-Patch located under "Additional Files" to the `DeviceProperties > Add`
-5. Create or Copy over SMBIOS for `iMac20,2` or `iMac18,3` (for High Sierra)
+ - If you want to use the integrated Intel UHD 630 graphics to drive a Display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to your config, replacing the existing.
+5. Create or Copy over SMBIOS for `iMac20,2` or `iMac18,3` (for High Sierra) to the config.plist
 6. Copy the EFI Folder on a FAT32 formated USB Stick
 7. Reboot from USB Stick
 8. Perform NVRAM Reset
