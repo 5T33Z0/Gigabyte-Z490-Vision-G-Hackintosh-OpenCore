@@ -27,6 +27,8 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 <details>
 <summary><strong>Hardware Components</strong></summary>
 
+### System Specs
+
 | Component           | Details                                     |
 | :------------------ | :------------------------------------------ |
 | Mainboard           | Gigabyte Z490 Vision G                      |
@@ -40,6 +42,8 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 </details>
 <details>
 <summary><strong>BIOS Settigs</strong></summary>
+
+### BIOS Settings
 
 * **Tweaker [TAB]**
 	* XMP: Enabled (if supported by RAM)
