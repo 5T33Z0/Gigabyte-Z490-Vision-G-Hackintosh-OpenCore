@@ -53,14 +53,19 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 		* Platform Power Management: Enabled
 		* ErP: Enabled (so USB Power turns off, after PC is shut down)
 	* IO Ports
-		* Above 4G Decoding: Enabled 
+		* Internal Graphics: enabled (if CPU has integrated Graphic)
+		* OnBoard LAN COntroller: Enabled
 		* Audio Controller: Enabled (if On-Board Sound Card is used)
+		* Above 4G Decoding: Enabled
+		* Re-Size BAR Support
 		* Initial Display Output: PCIe 1 Slot (if Discrete GPU is used, otherwise IGFX. </br>
-		**NOTE**: "IGFX" requires a different Frambuffer-Patch!
-		* Internal Graphics: enabled
+		**NOTE**: "IGFX" requires a different Frambuffer-Patch to drive a display. Default config uses dGPU for Display(s) and iGPU for computational tasks only!
 		* IOAPIC 24-119 Entries: Enabled
 		* Super IO Configurtaion
 			* Serial Port: Disabled
+		* USB Configuration
+			* Legacy USB Support: Disabled
+			* XHCI Hand-off: Enabled
 * **Boot [TAB]**
 	* CFGLock: Disabled (Option only available on newer BIOS versions)
 	* Windows 10 Features: Windows 10 
