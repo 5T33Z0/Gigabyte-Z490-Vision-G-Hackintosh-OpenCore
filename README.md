@@ -48,7 +48,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 * **Tweaker [TAB]**
 	* Extreme Memory Profile (XMP): Enabled (if supported by RAM)
 	* Advanced CPU Settings
-		* VT-d: Enabled (disabled in config.plist anyway)
+		* VT-d: Enabled (disabled in config.plist anyway, so only relevant to Windows)
 		* Intel Speed Shit: Enabled
 * **Setings [TAB]**
 	* Platform Power
@@ -63,7 +63,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 		* Audio Controller: Enabled (if On-Board Sound Card is used)
 		* Above 4G Decoding: Enabled
 		* Re-Size BAR Support: Disabled
-				* IOAPIC 24-119 Entries: Enabled
+		* IOAPIC 24-119 Entries: Enabled
 		* Super IO Configurtaion
 			* Serial Port: Disabled
 		* USB Configuration
