@@ -41,7 +41,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 | Ethernet            | Intel® 2.5GbE LAN chip. Incompatible with macOS High Sierra |
 </details>
 <details>
-<summary><strong>BIOS Settigs</strong></summary>
+<summary><strong>BIOS Settings</strong></summary>
 
 ### BIOS Settings
 
