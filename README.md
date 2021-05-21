@@ -46,26 +46,31 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 ### BIOS Settings
 
 * **Tweaker [TAB]**
-	* XMP: Enabled (if supported by RAM)
-	* VT-d: Enabled (disabled in config.plist anyway)
+	* Extreme Memory Profile (XMP): Enabled (if supported by RAM)
+	* Advanced CPU Settings
+		* VT-d: Enabled (disabled in config.plist anyway)
+		* Intel Speed Shit: Enabled
 * **Setings [TAB]**
 	* Platform Power
 		* Platform Power Management: Enabled
+		* PEG ASPM: Enabled
+		* PCH ASPM: Enabled
+		* DMI ASPM: Enabled 
 		* ErP: Enabled (so USB Power turns off, after PC is shut down)
 	* IO Ports
-		* Internal Graphics: enabled (if CPU has integrated Graphic)
-		* OnBoard LAN COntroller: Enabled
+		* Internal Graphics: enabled (if CPU has integrated Graphic) </br> **NOTE**: "IGFX" requires a different Frambuffer-Patch to drive a display. Default config uses dGPU for Display(s) and iGPU for computational tasks only!
+		* OnBoard LAN Controller: Enabled
 		* Audio Controller: Enabled (if On-Board Sound Card is used)
 		* Above 4G Decoding: Enabled
-		* Re-Size BAR Support
-		* Initial Display Output: PCIe 1 Slot (if Discrete GPU is used, otherwise IGFX. </br>
-		**NOTE**: "IGFX" requires a different Frambuffer-Patch to drive a display. Default config uses dGPU for Display(s) and iGPU for computational tasks only!
-		* IOAPIC 24-119 Entries: Enabled
+		* Re-Size BAR Support: Disabled
+				* IOAPIC 24-119 Entries: Enabled
 		* Super IO Configurtaion
 			* Serial Port: Disabled
 		* USB Configuration
 			* Legacy USB Support: Disabled
 			* XHCI Hand-off: Enabled
+		* Network Stack Configuration
+			* Network Stack: Disabled
 * **Boot [TAB]**
 	* CFGLock: Disabled (Option only available on newer BIOS versions)
 	* Windows 10 Features: Windows 10 
