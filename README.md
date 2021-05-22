@@ -58,7 +58,7 @@ Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It con
 		* DMI ASPM: Enabled 
 		* ErP: Enabled (so USB Power turns off, after PC is shut down)
 	* IO Ports
-		* Internal Graphics: enabled (if CPU has integrated Graphic) </br> **NOTE**: "IGFX" requires a different Frambuffer-Patch to drive a display. Default config uses dGPU for Display(s) and iGPU for computational tasks only!
+		* Internal Graphics: enabled (if CPU has integrated graphics). **NOTE**: The config.plist uses dGPU for Display(s) and iGPU for computational tasks by default. If you want to use the iGPU to drive a display you need a different Framebuffer Patch (see "EFI Install Instructions for details).
 		* OnBoard LAN Controller: Enabled
 		* Audio Controller: Enabled (if On-Board Sound Card is used)
 		* Above 4G Decoding: Enabled
@@ -124,7 +124,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 3. choose `csr-active-config` based on your macOS version to disable SIP: `67080000` for Big Sur, `FF070000` for Catalina/Mojave, `FF030000` for High Sierra
 4. Graphics:
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
-	- If you want to use the integrated Intel UHD 630 graphics to drive you display(s), download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to your config, replacing the existing one under `DeviceProperties > Add`.
+	- If you want to use the Intel UHD 630 integrated graphics to drive a display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to `DeviceProperties > Add` (comment-out the existing entry with "#" first, to disable the existing entry).
 5. Create SMBIOS infos for `iMac20,2` or `iMac18,3` (for High Sierra) to the config.plist and save it.
 6. Copy the EFI Folder to a FAT32 formated USB Stick
 7. Reboot from USB Stick
@@ -156,8 +156,7 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 </details>
 
 ## CPU Benchmark
-![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BigSur%20Benchmark.png)
-
+![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BigSur%20Benchmark.png)</br>
 [SEE ALL RESULTS](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits and Thank yous
@@ -165,11 +164,9 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 - Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 - rierdorf for [OpenCore Sanity Checker](https://opencore.slowgeek.com/)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
-- khronokernel for [Clover Vanilla Install Guide](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/)
-- [SchmockLord](https://github.com/SchmockLord/Hackintosh-Intel-i9-10900k-Gigabyte-Z490-Vision-D) for FakePCIID.kext for getting the Intel(r) I225 2.5 Gigabit Ethernet Controller working before a Kernel Patch was available
+- [SchmockLord](https://github.com/SchmockLord/Hackintosh-Intel-i9-10900k-Gigabyte-Z490-Vision-D) for FakePCIID.kext to get the I225 2.5 Gigabit Ethernet Controller working before a Kernel Patch existed
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
-- daliansky for [OC Little](https://github.com/5T33Z0/OC-Little-Translated) ACPI Hotpatch Collection
-- [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
+- daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
 - [Pavo-IM](https://github.com/Pavo-IM/) for APGM Injector
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
