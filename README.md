@@ -1,13 +1,13 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
-**5T4TU5**: Completed 100%. Added Clover EFI as well.
-**IMPORTANT**: In Big Sur 10.4, the Kernel Patch for the I225 Ethernet Controller doesn't work currently. Revert back to the FackePCI ID kext for now!
+**5T4TU5**: Completed 100%. Added Clover EFI as well.</br>
+**IMPORTANT**: In macOS Big Sur 11.4, the Kernel Patch for the I225 Ethernet Controller doesn't work currently. Revert back to the FackePCIID kext for now!
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5135-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![MacOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
-[![MacOS Big Sur](https://img.shields.io/badge/macOS-11.3.1+-white.svg)](https://www.apple.com/macos/big-sur/)
+[![MacOS Big Sur](https://img.shields.io/badge/macOS-11.4-white.svg)](https://www.apple.com/macos/big-sur/)
 [![release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases)
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BootPicker.png)
 
