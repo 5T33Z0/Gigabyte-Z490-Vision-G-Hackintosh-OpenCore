@@ -17,7 +17,7 @@ EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and ref
 
 This is a *genuine* Z490 Vision G EFI – unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. These are either based on a generically patched DSDT by Olarilla (patched DSTDs in 2021… in OpenCore… really?) or on SchmockLords EFI for the Gigabyte Z490 Vision D, which contains DeviceProperties and SSDTs useless to the Vision G; like Tunderbolt, an additional 1 Gig Ethernet Controller and a Wifi/BT Module – all the minor config.plist issues included, which won't let it pass config validation.
 
-My EFI does not contain all this unnecessary junk. It also does no longer require `FakePCIID.kext` to get the Intel(r) I225 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
+My EFI does not contain all this unnecessary junk. It also does no longer require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
 Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
 
