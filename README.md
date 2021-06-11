@@ -2,8 +2,8 @@
 
 **5T4TU5**: Completed 100%. Added Clover EFI as well.</br>
 **IMPORTANT**: 
-* Concerning macOS Big Sur 11.4: the Kernel Patch for the I225 Ethernet Controller suggested in Dortania's OpenCore Install Guide does no longer work. Revert back to the FackePCIID kext included in my latest EFI release.
-* Concerning macOS Monterey 12.0 beta: installs without issues, but shutdown causes Kernel Panic (use `-lilubetaall` boot-arg to fix it). No Ethenet available since FakePCIID.kexts don't work currently (disable them both to avoid Freezes afert a few minutes).
+* **Concerning macOS Big Sur 11.4**: the Kernel Patch for the I225 Ethernet Controller suggested in Dortania's OpenCore Install Guide does no longer work. Revert back to the FackePCIID kext included in my latest EFI release for the time being.
+* **Concerning macOS Monterey 12.0 beta**: installs without issues, but shutdown causes Kernel Panics (use `-lilubetaall` boot-arg to fix it). No Ethernet available since FakePCIID.kexts are currently incompatible (disable them both to avoid Freezes afert a few minutes).
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
