@@ -131,14 +131,14 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 
 	- Catalina and Big Sur Users up to version 11.3, do the following to get internet working:
 		1. In config, go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
-		2. comment-out (disable) entry: `device-id` `0x15f28086` (Type: String) if enabled
-		3. enable (un-comment) entry `device-id` `F2150000` (Type: Data) if disabled
+		2. disable (comment-out) entry: `device-id` `F3158680` (Type: `Data`) if enabled
+		3. enable (un-comment) entry `device-id` `F2158680` (Type: `Data`) if disabled
 		4. Go to `Kernel` > `Patch` and enable `I225-V Patch`
 		
 	- Big Sur Users from 11.4 or higher, do the following to get internet working (default): 
 		1. In config, go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
-		2. comment-out (disable) entry: `device-id` `F2150000` (Type: Data) if enabled
-		3. enable (un-comment) entry `device-id` `0x15f28086 ` (Type: String) if disabled
+		2. disable (comment-out) entry: `device-id` `F2158680` (Type: `Data`) if enabled
+		3. enable (un-comment) entry `device-id` `F3158680` (Type: `Data`) if disabled
 		4. Go to `Kernel` > `Patch` and disable `I225-V Patch`
 
 	- Monterey 12.0 beta Users: No working method known yet
