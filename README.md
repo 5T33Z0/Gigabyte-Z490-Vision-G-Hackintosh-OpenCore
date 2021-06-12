@@ -2,14 +2,14 @@
 
 **5T4TU5**: Completed 100%. Added Clover EFI as well.</br>
 **IMPORTANT**: 
-* **Concerning macOS Big Sur 11.4**: the Kernel Patch for the I225 Ethernet Controller suggested in Dortania's OpenCore Install Guide does no longer work. Revert back to the FackePCIID kext included in my latest EFI release for the time being.
-* **Concerning macOS Monterey 12.0 beta**: installs without issues, but shutdown causes Kernel Panics (use `-lilubetaall` boot-arg to fix it). No Ethernet available since FakePCIID.kexts are currently incompatible (disable them both to avoid Freezes afert a few minutes).
+* **Concerning macOS Monterey 12.0 beta**: installs without issues, but shutdown causes Kernel Panics (use `-lilubetaall` boot-arg to fix it). No Ethernet available at the moment. Working on it…
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5136-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.4-white.svg)](https://www.apple.com/macos/big-sur/)
+[![macOS Monterey](https://img.shields.io/badge/macOS-12.0_beta-white.svg)](https://www.apple.com/macos/monterey-preview/)
 [![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases)
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BootPicker.png)
 
@@ -128,13 +128,28 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 4. Graphics:
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to `DeviceProperties > Add` (comment-out the existing entry with "#" first, to disable the existing entry).
-5. Create SMBIOS infos for `iMac20,2` or `iMac18,3` (for High Sierra) to the config.plist and save it.
-6. Copy the EFI Folder to a FAT32 formated USB Stick
-7. Reboot from USB Stick
-8. Perform an NVRAM Reset
-9. Boot macOS
-10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
-11. Continue with Post-Install!
+5. Getting Intel(R) I225-V Ethernet Controller to work:
+
+	- Catalina and Big Sur Users up to version 11.3, do the following to get internet working:
+		1. In config, go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
+		2. comment-out (disable) entry: `device-id` `0x15f28086` (Type: String) if enabled
+		3. enable (un-comment) entry `device-id` `F2150000` (Type: Data) if disabled
+		4. Go to `Kernel` > `Patch` and enable `I225-V Patch`
+		
+	- Big Sur Users from 11.4 or higher, do the following to get internet working (default): 
+		1. In config, go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
+		2. comment-out (disable) entry: `device-id` `F2150000` (Type: Data) if enabled
+		3. enable (un-comment) entry `device-id` `0x15f28086 ` (Type: String) if disabled
+		4. Go to `Kernel` > `Patch` and disable `I225-V Patch`
+
+	- Monterey 12.0 beta Users: No working method known yet
+6. Create SMBIOS infos for `iMac20,2` or `iMac18,3` (for High Sierra) to the config.plist and save it.
+7. Copy the EFI Folder to a FAT32 formated USB Stick
+8. Reboot from USB Stick
+9. Perform an NVRAM Reset
+10. Boot macOS
+11. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
+12. Continue with Post-Install!
 
 </details>
 <details>
