@@ -1,7 +1,7 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
 **5T4TU5**: Completed 100%. Added Clover EFI as well.</br>
-**IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without issues (use `-lilubetaall` boot-arg to fix it) but the I225 Ethernet Controller is currently not working…
+**IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without problems (use `-lilubetaall` boot-arg to avoid issues), but the I225 Ethernet Controller is currently not working…
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
