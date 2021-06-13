@@ -181,6 +181,7 @@ When you're done, reboot. Have a look at the CPU behavior using Intel Power Gadg
 - Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 - rierdorf for [OpenCore Sanity Checker](https://opencore.slowgeek.com/)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
+- LAbyOne for [Clover Suite Builder](https://www.insanelymac.com/forum/topic/347872-introducing-clover-suite-builder/)
 - [SchmockLord](https://github.com/SchmockLord/Hackintosh-Intel-i9-10900k-Gigabyte-Z490-Vision-D) for FakePCIID.kext to get the I225 2.5 Gigabit Ethernet Controller working before a Kernel Patch existed
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
 - daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
