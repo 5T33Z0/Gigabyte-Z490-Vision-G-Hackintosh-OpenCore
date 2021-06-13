@@ -1,7 +1,7 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
 **5T4TU5**: Completed 100%. Added Clover EFI as well.</br>
-**IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without issues, but shutdown causes Kernel Panics (use `-lilubetaall` boot-arg to fix it). No Ethernet available at the moment. Working on it…
+**IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without issues, but shutdown causes Kernel Panic (use `-lilubetaall` boot-arg to fix it). No Ethernet available at the moment. Working on it…
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
