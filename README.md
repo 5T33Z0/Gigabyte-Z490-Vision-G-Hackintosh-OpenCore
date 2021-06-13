@@ -20,7 +20,7 @@ This is a *genuine* Z490 Vision G EFI – unlike most EFIs posted on Forums, Rep
 
 My EFI does not contain all this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-Sucessfully tested with macOS High Sierra (needs tweaks, no Internet), Catalina, Big Sur. I am currently working on getting Internet to work in Monterey.
+Sucessfully tested with Catalina and Big Sur and Monterey (work in progrss).
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
 
@@ -83,8 +83,8 @@ Sucessfully tested with macOS High Sierra (needs tweaks, no Internet), Catalina,
 	
 ### OpenCore Details
 
-* **Version**: 0.7.0 Nightly (details in config.plist)
-* **Compatible macOS**: 10.13.6 (High Sierra)*, 10.15.7 (Catalina) and 11.3+ (Big Sur)
+* **Version**: 0.7.1 Nightly (details see `config.plist`)
+* **Compatible macOS**: 10.15.7 (Catalina) and 11.4+ (Big Sur)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a divergent SMBIOS rather than `iMac20,2` may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
 * **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`
 * **OpenCanopy Enabled**: `yes`
