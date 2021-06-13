@@ -16,13 +16,13 @@
 
 EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
 
-This is a *genuine* Z490 Vision G EFI – unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. These are either based on a generically patched DSDT by Olarilla (patched DSTDs in 2021… in OpenCore… really?) or on SchmockLords EFI for the Gigabyte Z490 Vision D, which contains DeviceProperties and SSDTs useless to the Vision G; like Tunderbolt, an additional 1 Gig Ethernet Controller and a Wifi/BT Module – all the minor config.plist issues included, which won't let it pass config validation.
+This is a *genuine* Z490 Vision G EFI – unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. These are either based on a generic patched DSDT by Olarilla (patched DSTDs in 2021… in OpenCore… really?) or on SchmockLords EFI for the Gigabyte Z490 Vision D, which contains DeviceProperties and SSDTs useless to the Vision G; like Tunderbolt, an additional 1 Gig Ethernet Controller and a Wifi/BT Module – along with all the minor config.plist issues which won't let it pass config validation sucessfully.
 
-My EFI does not contain all this unnecessary junk. It also does no longer require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
+My EFI does not contain all this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-Sucessfully tested with macOS High Sierra, Catalina and Big Sur (11.3.1). It contains 2 configs: one for Catalina/BigSur, one for HighSierra/Legacy OSes.
+Sucessfully tested with macOS High Sierra (needs tweaks, no Internet), Catalina, Big Sur. I am currently working on getting Internet to work in Monterey.
 
-**NOTE**: For best results, read and follow the install instruction thoroughly. 
+**NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
 
 ## Build Info
 
