@@ -127,22 +127,30 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 4. Graphics:
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to `DeviceProperties > Add` (comment-out the existing entry with "#" first, to disable the existing entry).
-5. Getting Intel(R) I225-V Ethernet Controller to work:
+5. Getting the Intel(R) I225-V Ethernet Controller to work:
 
-	- Catalina and Big Sur Users up to version 11.3, do the following to get internet working:
-		1. In config, go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
-		2. disable (comment-out) entry: `device-id` `F3158680` (Type: `Data`) if enabled
-		3. enable (un-comment) entry `device-id` `F2158680` (Type: `Data`) if disabled
-		4. Go to `Kernel` > `Patch` and enable `I225-V Patch`
+	- macOS Big Sur Users (macOS 11.4 or later) don't have to change anything here since this is the currently active config! But for completeness sake, this is what you would have to do otherwise:
+	
+		1. Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
+		2. Go to `Kernel` > `Patch` and disable `I225-V Patch`.
+		3. Add boot-arg `dk.e1000=0`
 		
-	- Big Sur Users from 11.4 or higher, do the following to get internet working (default): 
-		1. In config, go to `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
-		2. disable (comment-out) entry: `device-id` `F2158680` (Type: `Data`) if enabled
-		3. enable (un-comment) entry `device-id` `F3158680` (Type: `Data`) if disabled
-		4. Go to `Kernel` > `Patch` and disable `I225-V Patch`
+	- macOS Catalina and Big Sur Users (up to macOS version 11.3 ≤ Kernel 20.4) need to do the following:
 
-	- Monterey 12.0 beta Users: No working method known yet
-6. Create SMBIOS infos for `iMac20,2` or `iMac18,3` (for High Sierra) to the config.plist and save it.
+		1. Enable (un-comment) `DeviceProperties` > `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
+		2. Go to `Kernel` > `Patch` and enable `I225-V Patch`.
+		3. Delete/disable boot-arg `dk.e1000=0`
+
+	- macOS Monterey beta 2 Users (should supossedly work like this):
+	
+		1. Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
+		2. Go to `Kernel` > `Patch` and disable `I225-V Patch`.
+		3. Add boot-arg `dk.e1000=0`
+		4. In Network Settings, manually assign an IP Address and set it up as a 1 gig connection (base1000T). I can't confirm this since I only have a base100T router and I can't get a connection to the internet going for reasons unknown to me.
+	
+	**NOTE**: In fact, you could leave the Device Property, Kernel Patch and boot-arg enabled for *both* macOS Catalina and Big Sur altogether. But I think it's cleaner to just enable what's necessary for each OS unless you run a multiboot setup with both Catalina and Big Sur. Then it's probably easier to leave the Device Property, the Kernel Patch and boot-arg enabled. See this discussion for more insight: https://github.com/dortania/bugtracker/issues/213
+
+6. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
 7. Copy the EFI Folder to a FAT32 formated USB Stick
 8. Reboot from USB Stick
 9. Perform an NVRAM Reset
