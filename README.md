@@ -4,7 +4,7 @@
 **IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without problems (use `-lilubetaall` boot-arg to avoid issues), but the I225 Ethernet Controller is currently not working…
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
-[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.0-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.1-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5136-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.4-white.svg)](https://www.apple.com/macos/big-sur/)
