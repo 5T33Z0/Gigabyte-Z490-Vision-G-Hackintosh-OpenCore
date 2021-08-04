@@ -83,7 +83,7 @@ Sucessfully tested with Catalina and Big Sur and Monterey (work in progrss).
 	
 ### OpenCore Details
 
-* **Version**: 0.7.1 Nightly (details see `config.plist`)
+* **Version**: 0.7.2 (check comments in `config.plist` for version details)
 * **Compatible macOS**: 10.15.7 (Catalina) and 11.4+ (Big Sur)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a divergent SMBIOS rather than `iMac20,2` may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
 * **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`
