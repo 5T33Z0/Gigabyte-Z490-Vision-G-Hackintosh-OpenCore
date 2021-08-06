@@ -4,7 +4,7 @@
 **IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without issues, but the I225 Ethernet Controller is currently not working…
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
-[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.1-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.2-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5136-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.5.1-white.svg)](https://www.apple.com/macos/big-sur/)
@@ -20,7 +20,7 @@ This is a *genuine* Z490 Vision G EFI – unlike most EFIs posted on Forums, Rep
 
 My EFI does not contain all this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-Sucessfully tested with Catalina and Big Sur and Monterey (work in progrss).
+Sucessfully tested with Catalina and Big Sur and Monterey (work in progress).
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
 
