@@ -7,7 +7,7 @@
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.2-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5136-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
-[![macOS Big Sur](https://img.shields.io/badge/macOS-11.5.1-white.svg)](https://www.apple.com/macos/big-sur/)
+[![macOS Big Sur](https://img.shields.io/badge/macOS-11.5.2-white.svg)](https://www.apple.com/macos/big-sur/)
 [![macOS Monterey](https://img.shields.io/badge/macOS-12.0_beta-white.svg)](https://www.apple.com/macos/monterey-preview/)
 [![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases)
 ![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BootPicker.png)
