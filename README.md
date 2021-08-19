@@ -84,14 +84,14 @@ Sucessfully tested with Catalina and Big Sur and Monterey (work in progress).
 ### OpenCore Details
 
 * **Version**: 0.7.2 (check comments in `config.plist` for version details)
-* **Compatible macOS**: 10.15.7 (Catalina) and 11.4+ (Big Sur)
-* **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a divergent SMBIOS rather than `iMac20,2` may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
+* **Compatible macOS**: 10.15.7 (Catalina), 11.4+ (Big Sur), 12.0 beta (Monterey)
+* **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a different SMBIOS may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
 * **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`
 * **OpenCanopy Enabled**: `yes`
 * **Iconset**: `modern`
 * **Chime**: `no`
 * **FileVault**: `no`
-* **SecureBootModel**: `j185f`(change it to `Disabled` if your system won't boot)
+* **SecureBootModel**: `j185f`(change it to `Disabled` for macOS Monterey and if your system won't boot)
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports.zip)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
 * **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot. Also, Internet doesn't work in High Sierra since it does not contain the necessary kext for the I225 Controller.
@@ -123,11 +123,10 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	
 1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
-3. choose `csr-active-config` based on your macOS version to disable SIP: `67080000` for Big Sur, `FF070000` for Catalina/Mojave, `FF030000` for High Sierra
-4. Graphics:
+3. choose `csr-active-config` based on your macOS version to disable SIP: `EF0F0000` for Monterey, `67080000` for Big Sur and `FF070000` for Catalina/Mojave
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to `DeviceProperties > Add` (comment-out the existing entry with "#" first, to disable the existing entry).
-5. Getting the Intel(R) I225-V Ethernet Controller to work:
+4. Getting the Intel(R) I225-V Ethernet Controller to work:
 
 	- macOS Big Sur Users (macOS 11.4 or later) don't have to change anything here since this is the currently active config! But for completeness sake, this is what you would have to do otherwise:
 	
@@ -150,13 +149,13 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	
 	**NOTE**: In fact, you could leave the Device Property, Kernel Patch and boot-arg enabled for *both* macOS Catalina and Big Sur altogether. But I think it's cleaner to just enable what's necessary for each OS unless you run a multiboot setup with both Catalina and Big Sur. Then it's probably easier to leave the Device Property, the Kernel Patch and boot-arg enabled. See this discussion for more insight: https://github.com/dortania/bugtracker/issues/213
 
-6. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
-7. Copy the EFI Folder to a FAT32 formated USB Stick
-8. Reboot from USB Stick
-9. Perform an NVRAM Reset
-10. Boot macOS
-11. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
-12. Continue with Post-Install!
+5. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
+6. Copy the EFI Folder to a FAT32 formated USB Stick
+7. Reboot from USB Stick
+8. Perform an NVRAM Reset
+9. Boot macOS
+10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
+11. Continue with Post-Install!
 
 </details>
 <details>
