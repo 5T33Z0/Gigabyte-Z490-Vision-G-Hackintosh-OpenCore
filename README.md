@@ -83,15 +83,15 @@ Sucessfully tested with Catalina and Big Sur and Monterey (work in progress).
 	
 ### OpenCore Details
 
-* **Version**: 0.7.2 (check comments in `config.plist` for version details)
-* **Compatible macOS**: 10.15.7 (Catalina), 11.4+ (Big Sur), 12.0 beta (Monterey)
+* **Version**: 0.7.2 (check comments in `config.plist` for details)
+* **Compatible macOS**: 10.14 (Mojave), 10.15.7 (Catalina), 11.5+ (Big Sur), 12.0 beta (Monterey)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a different SMBIOS may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
-* **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-DMAC`, `SSDT-PPMC`
+* **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-PPMC`
 * **OpenCanopy Enabled**: `yes`
 * **Iconset**: `modern`
 * **Chime**: `no`
 * **FileVault**: `no`
-* **SecureBootModel**: `j185f`(change it to `Disabled` for macOS Monterey and if your system won't boot)
+* **SecureBootModel**: `j185f`(change to `Disabled` for macOS Monterey and if your system won't boot)
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports.zip)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
 * **Issues**: Intel(r) I-225 Ethernet Controller does not work with macOS Versions prior to macOS Catalina and macOS Monterey (as of now).
