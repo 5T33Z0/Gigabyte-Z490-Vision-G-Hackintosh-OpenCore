@@ -94,11 +94,7 @@ Sucessfully tested with Catalina and Big Sur and Monterey (work in progress).
 * **SecureBootModel**: `j185f`(change it to `Disabled` for macOS Monterey and if your system won't boot)
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports.zip)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
-* **Issues**: High Siera requires SMBIOS `iMac18,3` as well as a Fake CPU-ID in order to boot. Also, Internet doesn't work in High Sierra since it does not contain the necessary kext for the I225 Controller.
-* **Config Validation**: </br>
-![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/ConfigValidation.png)
-
-***NOTE**: I've since scrapped the idea of running High Sierra altogether, because it partly breaks Big Sur: if you reboot the system after using macOS High Sierra, you can no longer start Big Sur without using the boot-arg`-no_compat_check` – otherwise you get the dreaded stop sign instead. I don't know what causes this issue. I assume booting High Sierra breaks the seal of Big Sur somehow but I am not sure. If you happen to face this isssue, simply reinstall Big Sur over your existing installation and everything will be back to normal. So don't panic! ;)
+* **Issues**: Intel(r) I-225 Ethernet Controller does not work with macOS Versions prior to macOS Catalina and macOS Monterey (as of now).
 
 ### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU, GPU you are using:
@@ -123,7 +119,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	
 1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
-3. choose `csr-active-config` based on your macOS version to disable SIP: `EF0F0000` for Monterey, `67080000` for Big Sur and `FF070000` for Catalina/Mojave
+3. Change the value for `csr-active-config` based on your macOS version to disable SIP: `EF0F0000` for Monterey, `67080000` for Big Sur and `FF070000` for Catalina/Mojave
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to `DeviceProperties > Add` (comment-out the existing entry with "#" first, to disable the existing entry).
 4. Getting the Intel(R) I225-V Ethernet Controller to work:
@@ -160,6 +156,9 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 </details>
 <details>
 <summary><strong>Post-Install Tweaks</strong></summary>
+
+### Strengthen System Security
+OpenCore 0.7.2 introduced a new security feature which prevents loading the APFS Driver if it does not match a specific date and version. If these values are left at their default (`0`), your macOS partition will not show up in the Bootpicker unless macOS Big Sur or newer is installed since the APFS driver will not be loaded. For ease of use (and since I don't know which macOS you will be using) I've deactivated this feature. Change UEFI > APFS: `MinDate` and `MinVersion`from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for macOS High Sierra up to Big Sur can be found [here](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Acidanthera/Library/OcApfsLib.h). *NOTE*: if you plan to setup a multiboot system running various iterations of macOS you probably should leave it at `-1`. Otherwise you won't be able to boot the older OSes.
 	
 ### Optimizing CPU Power Management
 Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management of your CPU for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/CPU_Power_Management_EN.pdf) to create your own.
