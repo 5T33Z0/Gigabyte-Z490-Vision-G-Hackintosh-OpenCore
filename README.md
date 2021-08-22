@@ -91,7 +91,7 @@ Sucessfully tested with Catalina and Big Sur and Monterey (work in progress).
 * **Iconset**: `modern`
 * **Chime**: `no`
 * **FileVault**: `no`
-* **SecureBootModel**: `j185f`(change to `Disabled` for macOS Monterey and if your system won't boot)
+* **SecureBootModel**: `Disabled`
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports.zip)
 * **car-active-config:** HighSierra: `FF030000`, Catalina: `FF070000`, Big Sur: `67080000`
 * **Issues**: Intel(r) I-225 Ethernet Controller does not work with macOS Versions prior to macOS Catalina and macOS Monterey (as of now).
