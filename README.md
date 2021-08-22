@@ -4,7 +4,7 @@
 **IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without issues, but the I225 Ethernet Controller is currently not working…
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
-[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.2-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.3-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5136-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5134)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.5.2-white.svg)](https://www.apple.com/macos/big-sur/)
@@ -83,7 +83,7 @@ Sucessfully tested with Catalina and Big Sur and Monterey (work in progress).
 	
 ### OpenCore Details
 
-* **Version**: 0.7.2 (check comments in `config.plist` for details)
+* **Version**: 0.7.3 (check comments in `config.plist` for details)
 * **Compatible macOS**: 10.14 (Mojave), 10.15.7 (Catalina), 11.5+ (Big Sur), 12.0 beta (Monterey)
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a different SMBIOS may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
 * **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-PPMC`
