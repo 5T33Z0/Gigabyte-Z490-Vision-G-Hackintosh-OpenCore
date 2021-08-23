@@ -20,7 +20,7 @@ This is a *genuine* Z490 Vision G EFI – unlike most EFIs posted on Forums, Rep
 
 My EFI does not contain all this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-Sucessfully tested with Catalina and Big Sur and Monterey (work in progress).
+Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey (work in progress).
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
 
