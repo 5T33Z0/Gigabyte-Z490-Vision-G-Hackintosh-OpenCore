@@ -155,7 +155,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 
 </details>
 <details>
-<summary><strong>Post-Install Tweaks</strong></summary>
+<summary><strong>Post-Install</strong></summary>
 
 ### Strengthen Security
 Change the following settings to make your systm more secure:
