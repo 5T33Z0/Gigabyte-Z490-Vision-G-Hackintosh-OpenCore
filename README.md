@@ -14,11 +14,11 @@
 
 ## Introduction
 
-EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
+EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I've dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
 
-This is a *genuine* Z490 Vision G EFI – unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. These are either based on a generic patched DSDT by Olarilla (patched DSTDs in 2021… in OpenCore… really?) or on SchmockLords EFI for the Gigabyte Z490 Vision D, which contains DeviceProperties and SSDTs useless to the Vision G; like Tunderbolt, an additional 1 Gig Ethernet Controller and a Wifi/BT Module – along with all the minor config.plist issues which won't let it pass config validation sucessfully.
+This is a *genuine* Z490 Vision G EFI unlike most EFIs posted on Forums, Repos and the newly released HackinDROM App. These EFIs are either based on a generic patched DSDT by Olarilla (please stay away from those!) or on SchmockLords EFI for the Gigabyte Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 1 Gig Ethernet Controller, a Wifi/BT Module and won't pass validation sucessfully.
 
-My EFI does not contain all this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
+My EFI Folder does not contain any of this unnecessary ballast. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
 Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey (work in progress).
 
