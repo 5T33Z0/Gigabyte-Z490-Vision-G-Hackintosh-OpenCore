@@ -103,6 +103,54 @@ The following Kexts are disabled by default since I don't know which CPU, GPU yo
 * `AGPMInjector.kext`disabled. Generate it or delete config entry and kext. See Section "Enable AGPM"
 </details>
 
+<details>
+<summary><strong>EFI Folder Content</strong></summary>
+
+### EFI Folder Structure
+
+```
+EFI
+├── BOOT
+│   └── BOOTx64.efi
+├── Changelog.md
+├── OC
+│   ├── ACPI
+│   │   ├── SSDT-AWAC-DISABLE.aml
+│   │   ├── SSDT-EC-USBX.aml
+│   │   ├── SSDT-PLUG.aml
+│   │   ├── SSDT-PPMC.aml
+│   │   └── SSDT-SBUS-MCHC.aml
+│   ├── Drivers
+│   │   ├── HfsPlus.efi
+│   │   ├── OpenCanopy.efi
+│   │   └── OpenRuntime.efi
+│   ├── Kexts
+│   │   ├── AGPMInjector.kext
+│   │   ├── AppleALC.kext
+│   │   ├── CPUFriend.kext
+│   │   ├── CPUFriendDataProvider.kext
+│   │   ├── Lilu.kext
+│   │   ├── SMCProcessor.kext
+│   │   ├── SMCSuperIO.kext
+│   │   ├── USBPorts_iMac191.kext
+│   │   ├── USBPorts_iMac202.kext
+│   │   ├── VirtualSMC.kext
+│   │   └── WhateverGreen.kext
+│   ├── OpenCore.efi
+│   ├── Resources (NOTE: removed files of sub-folders from tree view to reduce clutter)
+│   │   ├── Font
+│   │   ├── Image
+│   │   │   └── Acidanthera
+│   │   │       ├── Chardonnay
+│   │   │       ├── GoldenGate
+│   │   │       └── Syrah
+│   │   └── Label
+│   ├── config.plist
+│   └── config_iMac19,1.plist
+└── ReadMe.md
+```
+</details>
+
 ## Installation
 <details>
 <summary><strong>How to install macOS</strong></summary>
