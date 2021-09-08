@@ -248,4 +248,5 @@ To change the `ScanPolicy` to your liking, you can make use of this online calcu
 - daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
 - [Pavo-IM](https://github.com/Pavo-IM/) for APGM Injector and OC Gen X
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
+- Chris1111 for [Simple OC Themes](https://github.com/chris1111/My-Simple-OC-Themes)
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
