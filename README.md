@@ -217,16 +217,14 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 
 ![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/CPU_PM.png)
 
-### Enabling Apple Graphics Power Management (AGPM) for dedicated GPUs (NVDIA and AMD)
-- Generate `AGPMInjector.kext` for your GPU using [AGPMInjector](https://github.com/Pavo-IM/AGPMInjector) and 
+### Enabling AGPM (Apple Graphics Power Management) for dedicated GPUs (NVDIA and AMD)
+- Generate an `AGPMInjector.kext` for your GPU using [AGPMInjector](https://github.com/Pavo-IM/AGPMInjector) 
 - Copy it to `EFI\OC\Kexts`
-- Enable the entry in the config.plist
+- Enable the entry in the `config.plist`
 - Save and reboot.
-- Open [IORegistryExplorer](https://github.com/utopia-team/IORegistryExplorer/releases) and search for`PR00`. If it look like this, CPU Power Management and AGPM are working correctly:
+- Open [IORegistryExplorer](https://github.com/utopia-team/IORegistryExplorer/releases) and search for`PR00`. CPU Power Management and AGPM are working correctly if it looks like this:
 
-![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/AGPMEnabler.png)
-
-**NOTE**: For more Post-Install tweaks and tips, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
+	![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/AGPMEnabler.png)
 
 ### Calculating Scan Policy (optional)
 The items displayed in the Boot Picker Menu are based on a combination of bits representing kinds of devices (SATA, NVME, USB, etc.) as well as Filesystems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under Misc > Security in the config.plist. The default value of my EFI is `0` which means "scan for everything which is bootable on the system". Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
@@ -235,6 +233,9 @@ To change the `ScanPolicy` to your liking, you can make use of this online calcu
 
 **IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker beeing empty, so you can't boot into macOS. So make sure to test the value first by booting from FAT32 formatted USB Stick containing your EFI Folder with the new value for "Scan Policy".
 </details>
+
+**NOTE**: For more Post-Install tweaks and tips, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
+
 
 ## CPU Benchmark
 ![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BigSur%20Benchmark.png)</br>
