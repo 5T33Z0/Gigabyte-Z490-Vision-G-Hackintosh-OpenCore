@@ -138,11 +138,14 @@ EFI
     ├── OpenCore.efi
     ├── Resources (NOTE: removed files of sub-folders from tree view to reduce clutter)
     │   ├── Font
-    │   ├── Image
-    │   │   └── Acidanthera
-    │   │       ├── Chardonnay
-    │   │       ├── GoldenGate
-    │   │       └── Syrah
+    │   ├── Image
+    │   │   └── Acidanthera
+    │   │   │   ├── Chardonnay
+    │   │   │   ├── GoldenGate
+    │   │   │   └── Syrah
+    │   │   └── chris1111
+    │	│	├── Minimal
+    │   │       └── Minimal-SSD
     │   └── Label
     ├── config.plist
     └── config_iMac19,1.plist
@@ -232,10 +235,18 @@ The items displayed in the Boot Picker Menu are based on a combination of bits r
 To change the `ScanPolicy` to your liking, you can make use of this online calculator: https://oc-scanpolicy.vercel.app/. I am using `2687747` for example which hides EFI Folders and NTFS Drives. If I need windows I just boot it from the BIOS Boot Menu (F12).
 
 **IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker beeing empty, so you can't boot into macOS. So make sure to test the value first by booting from FAT32 formatted USB Stick containing your EFI Folder with the new value for "Scan Policy".
-</details>
+
+### Changing Themes
+Besides the 3 themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes by Chris1111: `Minimal` and `Minimal-SSD.` Neither of them is enabled by default. To enable them, do the following:
+
+- Open `config.plist`
+- Go to Misc > Boot and change `PickerVariant` to: `chris1111\Minimal` or `chris1111\Minimal-SSD`
+- Save and reboot
+
+To revert these changes, enter `Acidanthera\GoldenGate` as PickerVarinat and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
 **NOTE**: For more Post-Install tweaks and tips, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
-
+</details>
 
 ## CPU Benchmark
 ![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BigSur%20Benchmark.png)</br>
