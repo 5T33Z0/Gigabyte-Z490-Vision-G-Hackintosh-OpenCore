@@ -201,7 +201,6 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 9. Boot macOS
 10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
 11. Continue with Post-Install!
-
 </details>
 <details>
 <summary><strong>Post-Install</strong></summary>
@@ -246,6 +245,17 @@ Besides the 3 themes from Acidanthera which provide the standard macOS look and 
 To revert these changes, enter `Acidanthera\GoldenGate` as PickerVarinat and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
 **NOTE**: For more Post-Install tweaks and tips, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
+</details>
+</details>
+<details>
+<summary><strong>Switching between OpenCore and Clover easily</strong></summary>
+
+### Bootloader Chooser
+I recently dicovered [BootloaderChooser](https://github.com/jief666/BootloaderChooser) which lets you pick the bootloader of choice prior to booting. This is how the folder structure looks like:	
+
+![](https://user-images.githubusercontent.com/76865553/134049430-31a289ee-c5f2-4982-8e0b-7a3728c0bf46.png)
+
+Basically, you put the "Clover" Folder on the same level as the the "OC" Folder and then replace the "BootX64.efi" in the "BOOT" Folder with the one that come with the Bootloader Chooser. Then you can select which Bootloader you want to use. Pretty nice for setting up your USB Bootstick with Clover and OC at the same time. 
 </details>
 
 ## CPU Benchmark
