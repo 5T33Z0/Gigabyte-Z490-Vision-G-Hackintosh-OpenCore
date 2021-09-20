@@ -1,7 +1,6 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
 **5T4TU5**: Completed 100%. Added Clover EFI as well.</br>
-**IMPORTANT**: Concerning macOS Monterey 12.0 beta: installs without issues, but the I225 Ethernet Controller is currently not working…
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.3-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
@@ -20,7 +19,7 @@ This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs poste
 
 My EFI Folder does not contain any of this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
+Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey. Although macOS Monterey installs without issues, the onboard I225 Ethernet Controller is currently incompatible. I just bought a cheap 1 gig Intle PCI Ethernet Card to not be bothered about it anymore (see "Hardware Components" for details).
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
 
@@ -37,10 +36,12 @@ Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 | BIOS		      | F20. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
 | CPU                 | Intel® Core i9 10850K (Codename Comet Lake) |
 | RAM                 | 32 GB DDR4 2400 Crucial Basllistix Sport LT |
-| iGPU		      | Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead      |
+| iGPU		      | Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead          |
 | GPU                 | MSI Geforce GTX 760 Twin Frozr Gaming       |
 | Audio               | Realtek® ALC1220-VB (Layout-id: `28`)       |
-| Ethernet            | Intel® 2.5GbE LAN chip. Incompatible with macOS High Sierra |
+| Ethernet (onboard) | Intel® 2.5GbE LAN. Compatiböe with macOS 10.15 - 11.5 only|
+| Ethernet (PCI Card) | Intel® PRO/1000 PT Dual Port Server Adapter (for every macOS)|
+
 </details>
 <details>
 <summary><strong>BIOS Settings</strong></summary>
@@ -102,7 +103,6 @@ The following Kexts are disabled by default since I don't know which CPU, GPU yo
 	- If you use a different CPU model, create your own DataProviderKext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
 * `AGPMInjector.kext`disabled. Generate it or delete config entry and kext. See Section "Enable AGPM"
 </details>
-
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
 
