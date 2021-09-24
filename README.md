@@ -250,18 +250,23 @@ To revert these changes, enter `Acidanthera\GoldenGate` as PickerVarinat and cha
 
 ### Bootloader Chooser
 I recently dicovered [BootloaderChooser](https://github.com/jief666/BootloaderChooser) which lets you pick the bootloader of choice prior to booting. This is how the folder structure looks like:	
-
 ![](https://user-images.githubusercontent.com/76865553/134049430-31a289ee-c5f2-4982-8e0b-7a3728c0bf46.png)
 
 Basically, you put the "Clover" Folder on the same level as the the "OC" Folder and then replace the "BootX64.efi" in the "BOOT" Folder with the one that come with the Bootloader Chooser. Then you can select which Bootloader you want to use. Pretty nice for setting up your USB Bootstick having Clover and OC to chose from:
 
 ![1614718620_Screenshot2020-10-06at19_59_49 png c92924a458ee86f0a4ff504d7a9118a6](https://user-images.githubusercontent.com/76865553/134054798-0e0e1f96-b2d6-4447-9daf-44c4df3e9601.png)
+</details>
+<details>
+<summary><strong>Enabling NVDIA Kepler Drivers (macOS 12.0 beta 7)</strong></summary>
 
+### Patching-in Kepler Drivers
+
+Apple removed Keppler support from macOS Monterey beta 7. So users of NVIDIA GeForce Cards from the Kepler family need to patch them back in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
 </details>
 
 ## CPU Benchmark
-![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/BigSur%20Benchmark.png)</br>
-[SEE ALL RESULTS](https://browser.geekbench.com/v5/cpu/5386949)
+![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur%20Benchmark.png)</br>
+[**SEE ALL RESULTS**](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits and Thank yous
 - Acidanthera and Team for the [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
@@ -271,5 +276,5 @@ Basically, you put the "Clover" Folder on the same level as the the "OC" Folder 
 - daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
 - [Pavo-IM](https://github.com/Pavo-IM/) for APGM Injector and OC Gen X
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
-- Chris1111 for [Simple OC Themes](https://github.com/chris1111/My-Simple-OC-Themes)
+- Chris1111 for [GeForce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher)
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
