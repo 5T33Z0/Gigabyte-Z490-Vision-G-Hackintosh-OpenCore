@@ -19,7 +19,7 @@ This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs poste
 
 My EFI Folder does not contain any of this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey. Although macOS Monterey installs without issues, the onboard I225 Ethernet Controller is currently incompatible. I just bought a cheap 1 Gig Intel® PCI Ethernet Card to not be bothered about it anymore (see "Hardware Components" for details).
+Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
 
@@ -30,17 +30,17 @@ Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey. Although m
 
 ### System Specs
 
-| Component               | Details                                     |
-| :---------------------- | :------------------------------------------ |
-| Mainboard               | Gigabyte Z490 Vision G                      |
-| BIOS		          | F20. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
-| CPU                     | Intel® Core i9 10850K (Codename Comet Lake) |
-| RAM                     | 32 GB DDR4 2400 Crucial Basllistix Sport LT |
-| iGPU		          | Intel® UHD 630. Configured `headless` for computational tasks only. If you need to drive a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) instead          |
-| GPU                     | MSI Geforce GTX 760 Twin Frozr Gaming       |
-| Audio                   | Realtek® ALC1220-VB (Layout-id: `28`)       |
-| Ethernet (onboard)      | Intel® 2.5GbE LAN. Compatible with macOS 10.15 - 11.5 only|
-| Ethernet (PCI Card)     | Intel® PRO/1000 PT Dual Port Server Adapter (for every macOS)|
+| Component             | Details                                                 |
+| :-------------------------------  | :------------------------------------------------------ |
+| Mainboard             | Gigabyte Z490 Vision G                                  |
+| BIOS		        | F20. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
+| CPU                   | Intel® Core i9 10850K (Codename Comet Lake)             |
+| RAM                   | 32 GB DDR4 2400 Crucial Basllistix Sport LT             |
+| iGPU		        | Intel® UHD 630. Set-up for computing tasks only. For running a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) |
+| GPU                   | MSI Geforce GTX 760 Twin Frozr Gaming                   |
+| Audio                 | Realtek® ALC1220-VB (Layout-id: `28`)                   |
+| Ethernet (onboard)    | Intel® 2.5GbE LAN (req. macOS 10.15 and newer)          |
+| Ethernet (PCI Card)   | Intel® PRO/1000 PT Dual Port Server Adapter (amy macOS) |
 
 </details>
 <details>
@@ -95,7 +95,6 @@ Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey. Although m
 * **SecureBootModel**: `Disabled`
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports_List.pdf)
 * **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur/Monterey: `67080000`
-* **Issues**: Intel(r) I-225 Ethernet Controller does not work with macOS Versions prior to macOS Catalina and macOS Monterey (as of now).
 
 ### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU, GPU you are using:
@@ -173,7 +172,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to `DeviceProperties > Add` (comment-out the existing entry with "#" first, to disable the existing entry).
 4. Getting the Intel(R) I225-V Ethernet Controller to work:
 
-	- macOS Big Sur Users (macOS 11.4 or later) don't have to change anything here since this is the currently active config! But for completeness sake, this is what you would have to do otherwise:
+	- macOS Big Sur/Monterey users don't have to change anything here since this is the currently active config! But for completeness sake, this is what you would have to do otherwise:
 	
 		1. Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
 		2. Go to `Kernel` > `Patch` and disable `I225-V Patch`.
@@ -185,14 +184,9 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 		2. Go to `Kernel` > `Patch` and enable `I225-V Patch`.
 		3. Delete/disable boot-arg `dk.e1000=0`
 
-	- macOS Monterey beta 2 Users (should supossedly work like this):
+	- macOS Mojave: not supported. Needs additional PCI Card (See "Hardware Components".
 	
-		1. Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
-		2. Go to `Kernel` > `Patch` and disable `I225-V Patch`.
-		3. Add boot-arg `dk.e1000=0`
-		4. In Network Settings, manually assign an IP Address and set it up as a 1 gig connection (base1000T). I can't confirm this since I only have a base100T router and I can't get a connection to the internet going for reasons unknown to me.
-	
-	**NOTE**: In fact, you could leave the Device Property, Kernel Patch and boot-arg enabled for *both* macOS Catalina and Big Sur altogether. But I think it's cleaner to just enable what's necessary for each OS unless you run a multiboot setup with both Catalina and Big Sur. Then it's probably easier to leave the Device Property, the Kernel Patch and boot-arg enabled. See this discussion for more insight: https://github.com/dortania/bugtracker/issues/213
+	**NOTE**: In fact, you could leave the Device Property, Kernel Patch and boot-arg enabled for macOS Catalina and Big Sur/Monterey altogether, since the patch only is applied to Catalina and the boot-arg takes care of picking the correct Ethernet Driver in Big Sur/Monterey. But I think it's cleaner to just enable what's necessary for each OS unless you run a multiboot setup with both Catalina and Big Sur. Then it's probably easier to leave the Device Property, the Kernel Patch and boot-arg enabled. See this discussion for more insight: https://github.com/dortania/bugtracker/issues/213
 
 5. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
 6. Copy the EFI Folder to a FAT32 formated USB Stick
