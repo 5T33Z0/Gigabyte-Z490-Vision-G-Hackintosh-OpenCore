@@ -169,14 +169,18 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 2. Select the config of your choice and rename it to `config.plist`
 3. Change the value for `csr-active-config` based on your macOS version to disable SIP: `EF0F0000` for Monterey, `67080000` for Big Sur and `FF070000` for Catalina/Mojave
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
-	- If you want to use the Intel UHD 630 integrated graphics to drive a display, download this [Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist). Open it with a plist editor and copy the dictionary `PciRoot(0x0)/Pci(0x2,0x0)` to `DeviceProperties > Add` (comment-out the existing entry with "#" first, to disable the existing entry).
+	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
+		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put a `##` in front of it)
+		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
 4. Getting the Intel(R) I225-V Ethernet Controller to work:
 
 	- macOS Big Sur/Monterey users don't have to change anything here. But for the sake of completeness, this is what you would have to do otherwise:
 	
 		1. Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`(put a `#` in front of it) 
 		2. Go to `Kernel` > `Patch` and disable `I225-V Patch`.
-		3. Add boot-arg `dk.e1000=0`
+		3. Add boot-arg `dk.e1000=0`</br> 
+	
+		**NOTE**: For getting the I225 Controller to work in macOS Monterey, version beta 7 is required at least!
 		
 	- macOS Catalina and Big Sur Users (up to macOS version 11.3 ≤ Kernel 20.4) need to do the following:
 
