@@ -6,10 +6,12 @@
 2. Open `config.plist`
 3. Go to `PickerVariant`
 4. To change a theme, enter NameOfArtsit\NameOfTheme.</br>
-	**Examples**: `Antuneddu\Blue` or `chris1111\Minimal-SSD`</br>
-5. Change `PickerAttributes` to `145` (should be set already)
-6. Save, reboot.
+	**Examples**: `Antuneddu\Blue` or `chris1111\Minimal-SSD`
+5. Save, reboot.
 
-#### Theme Credits
+**NOTE**: If an Icon is not applied to a Tool, try to set is manually. Each Tool has an field for `Flavour` as well.
 
-Antuneddu and Chris1111 from InsanelyMac Forum
+## Theme Credits
+
+[**Chris1111**](https://github.com/chris1111)</br>
+**[Antuneddu](https://www.insanelymac.com/forum/profile/1390874-antuneddu/)** and from InsanelyMac Forum
