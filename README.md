@@ -1,7 +1,5 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
-**5T4TU5**: Completed 100%. Added Clover EFI as well.</br>
-
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.3-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5139-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
@@ -15,7 +13,7 @@
 
 EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I've dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
 
-This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarilla/MadLon (please stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller, an on-board WiFi/BT module. On top of that it won't even pass OC validate sucessfully.
+This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MadLon (please stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller, an on-board WiFi/BT module. On top of that it won't even pass OC validate successfully.
 
 My EFI Folder does not contain any of this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
@@ -67,7 +65,7 @@ Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 		* Above 4G Decoding: Enabled
 		* Re-Size BAR Support: Disabled
 		* IOAPIC 24-119 Entries: Enabled
-		* Super IO Configurtaion
+		* Super IO Configuration
 			* Serial Port: Disabled
 		* USB Configuration
 			* Legacy USB Support: Disabled
@@ -167,7 +165,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	
 1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
-3. Opem `config.plist` and adjust the following parameters according to your hardware and software configuration:
+3. Open `config.plist` and adjust the following parameters according to your hardware and software configuration:
 	- Change `csr-active-config` based on the macOS version to disable SIP: 
 		- For High Sierra: `FF030000` (0x3FF)
     	- For Mojave/Catalina: `FF070000` (0x7FF)
@@ -197,7 +195,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	**NOTE**: In fact, you could leave the Device Property, Kernel Patch and boot-arg enabled for macOS Catalina and Big Sur/Monterey altogether, since the patch only is applied to Catalina and the boot-arg takes care of picking the correct Ethernet Driver in Big Sur/Monterey. But I think it's cleaner to just enable what's necessary for each OS unless you run a multiboot setup with both Catalina and Big Sur. Then it's probably easier to leave the Device Property, the Kernel Patch and boot-arg enabled. See this discussion for more insight: https://github.com/dortania/bugtracker/issues/213
 
 5. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
-6. Copy the EFI Folder to a FAT32 formated USB Stick
+6. Copy the EFI Folder to a FAT32 formatted USB Stick
 7. Reboot from USB Stick
 8. Perform an NVRAM Reset
 9. Boot macOS
@@ -214,10 +212,10 @@ Once you got macOS running, change the following settings to make your system mo
 
 	**BACKGROUND**: OpenCore 0.7.2 introduced a new security feature which prevents the APFS driver from loading if it does not match OS-specific Date (`MinDate`) and Version (`MinVersion`). If left at their default value `0` (as set in the `sample.plist`), the macOS partition will not show up in the Boot Picker unless Big Sur or newer is installed. For ease of use (and since I don't know which macOS you will be using) I've deactivated this feature. If you plan to setup a multiboot system running various iterations of macOS you probably should leave it at `-1`. Otherwise you won't be able to boot older macOSes.
 
-- Change `SecureBootModel`from `Disabled` to `j185f` (for iMac20,2) or `j185` (for iMac20,1). **NOTE**: Only applicable to macOS Catalina and newer. You should test these settings first using a USB Bootstick since it can prevent the system from booting. Disable it for installing macOS Monterey if you have issues.
+- Change `SecureBootModel`from `Disabled` to `j185f` (for iMac20,2) or `j185` (for iMac20,1). **NOTE**: Only applicable to macOS Catalina and newer. You should test these settings first using a USB flash drive since it can prevent the system from booting. Disable it for installing macOS Monterey if you have issues.
 	
 ### Optimizing CPU Power Management
-Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management for a more efficent overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/CPU_Power_Management_EN.pdf) to create your own. Once you're done, reboot. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower now:
+Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` to optimize the CPU Power Management for a more efficient overall performance. You can [follow this Guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/CPU_Power_Management_EN.pdf) to create your own. Once you're done, reboot. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower now:
 
 ![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/CPU_PM.png)
 
@@ -235,7 +233,7 @@ The items displayed in the Boot Picker Menu are based on a combination of bits r
 
 To change the `ScanPolicy` to your liking, you can make use of this online calculator: https://oc-scanpolicy.vercel.app/. I am using `2687747` for example which hides EFI Folders and NTFS Drives. If I need windows I just boot it from the BIOS Boot Menu (F12).
 
-**IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker beeing empty, so you can't boot into macOS. So make sure to test the value first by booting from FAT32 formatted USB Stick containing your EFI Folder with the new value for "Scan Policy".
+**IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker being empty, so you can't boot into macOS. So make sure to test the value first by booting from FAT32 formatted USB Stick containing your EFI Folder with the new value for "Scan Policy".
 
 ### Changing Themes
 Besides the 3 themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes by Chris1111: `Minimal` and `Minimal-SSD.` Neither of them is enabled by default. To enable them, do the following:
@@ -244,7 +242,7 @@ Besides the 3 themes from Acidanthera which provide the standard macOS look and 
 - Go to Misc > Boot and change `PickerVariant` to: `chris1111\Minimal` or `chris1111\Minimal-SSD`
 - Save and reboot
 
-To revert these changes, enter `Acidanthera\GoldenGate` as PickerVarinat and change the Flavour of the NVRAM Reset Tool back to `Auto`.
+To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVarinat` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
 **NOTE**: For more Post-Install tweaks and tips, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
 </details>
@@ -253,10 +251,10 @@ To revert these changes, enter `Acidanthera\GoldenGate` as PickerVarinat and cha
 <summary><strong>Switching between OpenCore and Clover easily</strong></summary>
 
 ### Bootloader Chooser
-I recently dicovered [BootloaderChooser](https://github.com/jief666/BootloaderChooser) which lets you pick the bootloader of choice prior to booting. This is how the folder structure looks like:	
+I recently discovered [BootloaderChooser](https://github.com/jief666/BootloaderChooser) which lets you pick the bootloader of choice prior to booting. This is how the folder structure looks like:	
 ![](https://user-images.githubusercontent.com/76865553/134049430-31a289ee-c5f2-4982-8e0b-7a3728c0bf46.png)
 
-Basically, you put the "Clover" Folder on the same level as the the "OC" Folder and then replace the "BootX64.efi" in the "BOOT" Folder with the one that come with the Bootloader Chooser. Then you can select which Bootloader you want to use. Pretty nice for setting up your USB Bootstick having Clover and OC to chose from:
+Basically, you put the "Clover" Folder on the same level as the the "OC" Folder and then replace the "BootX64.efi" in the "BOOT" Folder with the one that come with the Bootloader Chooser. Then you can select which Bootloader you want to use. Pretty nice for setting up your USB flash drive having Clover and OC to chose from:
 
 ![1614718620_Screenshot2020-10-06at19_59_49 png c92924a458ee86f0a4ff504d7a9118a6](https://user-images.githubusercontent.com/76865553/134054798-0e0e1f96-b2d6-4447-9daf-44c4df3e9601.png)
 </details>
