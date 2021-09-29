@@ -17,7 +17,7 @@ This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs poste
 
 My EFI Folder does not contain any of this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
+Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
 
@@ -33,7 +33,7 @@ Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 | Mainboard             | Gigabyte Z490 Vision G                                  |
 | BIOS		        | F20. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
 | CPU                   | Intel® Core i9 10850K (Codename Comet Lake)             |
-| RAM                   | 32 GB DDR4 2400 Crucial Basllistix Sport LT             |
+| RAM                   | 32 GB DDR4 2400 Crucial Ballistix Sport LT              |
 | iGPU		        | Intel® UHD 630. Set-up for computing tasks only. For running a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) |
 | GPU                   | MSI Geforce GTX 760 Twin Frozr Gaming                   |
 | Audio                 | Realtek® ALC1220-VB (Layout-id: `28`)                   |
@@ -51,7 +51,7 @@ Sucessfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 	* Advanced CPU Settings
 		* VT-d: Enabled (disabled in config.plist anyway, so only relevant to Windows)
 		* Intel Speed Shit: Enabled
-* **Setings [TAB]**
+* **Settings [TAB]**
 	* Platform Power
 		* Platform Power Management: Enabled
 		* PEG ASPM: Enabled
@@ -229,7 +229,7 @@ Use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a
 	![](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/AGPMEnabler.png)
 
 ### Calculating Scan Policy (optional)
-The items displayed in the Boot Picker Menu are based on a combination of bits representing kinds of devices (SATA, NVME, USB, etc.) as well as Filesystems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under Misc > Security in the config.plist. The default value of my EFI is `0` which means "scan for everything which is bootable on the system". Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
+The items displayed in the Boot Picker Menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and Filesystems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under Misc > Security in the `config.plist.` The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
 
 To change the `ScanPolicy` to your liking, you can make use of this online calculator: https://oc-scanpolicy.vercel.app/. I am using `2687747` for example which hides EFI Folders and NTFS Drives. If I need windows I just boot it from the BIOS Boot Menu (F12).
 
@@ -242,7 +242,7 @@ Besides the 3 themes from Acidanthera which provide the standard macOS look and 
 - Go to Misc > Boot and change `PickerVariant` to: `chris1111\Minimal` or `chris1111\Minimal-SSD`
 - Save and reboot
 
-To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVarinat` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
+To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
 **NOTE**: For more Post-Install tweaks and tips, check out my small collection of [Config Tweaks](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/OpenCore_Config_Tweaks_EN.md)
 </details>
@@ -259,7 +259,7 @@ Basically, you put the "Clover" Folder on the same level as the the "OC" Folder 
 ![1614718620_Screenshot2020-10-06at19_59_49 png c92924a458ee86f0a4ff504d7a9118a6](https://user-images.githubusercontent.com/76865553/134054798-0e0e1f96-b2d6-4447-9daf-44c4df3e9601.png)
 </details>
 <details>
-<summary><strong>Enabling NVDIA Kepler Drivers (macOS 12.0 beta 7)</strong></summary>
+<summary><strong>Enabling NVIDIA Kepler Drivers (macOS 12.0 beta 7)</strong></summary>
 
 ### Patching-in Kepler Drivers
 
@@ -272,7 +272,7 @@ Apple removed Keppler support from macOS Monterey beta 7. So users of NVIDIA GeF
 
 ## Credits and Thank yous
 - Acidanthera and Team for the [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
-- Dortantia for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
+- Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
 - daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
