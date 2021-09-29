@@ -167,18 +167,17 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	
 1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
-3. Opem config.plist and adjust the following parameters according to your hardware and software configuration:
+3. Opem `config.plist` and adjust the following parameters according to your hardware and software configuration:
 	- Change `csr-active-config` based on the macOS version to disable SIP: 
 		- For High Sierra: `FF030000` (0x3FF)
-    		- For Mojave/Catalina: `FF070000` (0x7FF)
-    		- For Big Sur: `67080000` (0x867)
-    		- For Monterey: `EF0F0000` (0xFEF)
+    	- For Mojave/Catalina: `FF070000` (0x7FF)
+    	- For Big Sur: `67080000` (0x867)
+    	- For Monterey: `EF0F0000` (0xFEF)
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
 		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put a `##` in front of it)
 		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
 4. Getting the Intel(R) I225-V Ethernet Controller to work:
-
 	- macOS Big Sur/Monterey users don't have to change anything here. But for the sake of completeness, this is what you would have to do otherwise:
 	
 		1. Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`(put a `#` in front of it) 
