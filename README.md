@@ -137,13 +137,10 @@ EFI
     │   ├── Font
     │   ├── Image
     │   │   └── Acidanthera
-    │   │   │   ├── Chardonnay
-    │   │   │   ├── GoldenGate
-    │   │   │   └── Syrah
-    │   │   └── chris1111
-    │	│	├── Minimal
-    │   │       └── Minimal-SSD
-    │   └── Label
+    │   │       ├── Chardonnay
+    │   │       ├── GoldenGate
+    │   │       └── Syrah
+    │   └── Label
     ├── config.plist
     └── config_iMac19,1.plist
 ```
