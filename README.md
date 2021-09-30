@@ -141,7 +141,7 @@ EFI
     │   │   │   ├── GoldenGate
     │   │   │   └── Syrah
     │   │   └── chris1111
-    │	│	    ├── Minimal
+    │	│	├── Minimal
     │   │       └── Minimal-SSD
     │   └── Label
     ├── config.plist
@@ -197,7 +197,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 5. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
 6. Copy the EFI Folder to a FAT32 formatted USB Stick
 7. Reboot from USB Stick
-8. Perform an NVRAM Reset
+8. Perform an NVRAM Reset (hit Space Bar to reveal Tools)
 9. Boot macOS
 10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
 11. Continue with Post-Install!
