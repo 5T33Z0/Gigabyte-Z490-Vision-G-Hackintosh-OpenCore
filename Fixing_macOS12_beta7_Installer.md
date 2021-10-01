@@ -20,3 +20,4 @@ If done correctly, the folder structure should look like this:
 
 ![](https://raw.githubusercontent.com/5T33Z0/Lenovo-T530-Hackinosh-OpenCore/main/Pics/SharedSupport.png)
 
+Now you can run the "Install macOS Monterey" App as usual.
