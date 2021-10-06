@@ -1,11 +1,11 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
-[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.3-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![Clover Version](https://img.shields.io/badge/Clover-r5139-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
+[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.4-important.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![Clover Version](https://img.shields.io/badge/Clover-r5140-important.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
-[![macOS Monterey](https://img.shields.io/badge/macOS-12.0_beta7-white.svg)](https://www.apple.com/macos/monterey-preview/)
+[![macOS Monterey](https://img.shields.io/badge/macOS-12.0_beta-white.svg)](https://www.apple.com/macos/monterey-preview/)
 [![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BootPicker.png)
 
