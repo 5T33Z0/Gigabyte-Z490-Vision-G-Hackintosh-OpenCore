@@ -264,7 +264,7 @@ Apple removed Keppler support from macOS Monterey beta 7. So users of NVIDIA GeF
 </details>
 
 ## CPU Benchmark
-![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur%20Benchmark.png)</br>
+![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
 [**SEE ALL RESULTS**](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits and Thank yous
