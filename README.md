@@ -19,8 +19,12 @@ My EFI Folder does not contain any of this unnecessary junk. It also doesn't req
 
 Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
-**NOTE**: For best results, read and follow the install instruction carefully and thoroughly. 
+**NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
 
+| :warning: WARNING |
+|:------------------|
+The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey beta 9…
+		
 ## Build Info
 
 <details>
@@ -31,7 +35,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 | Component             | Details                                                 |
 | :-------------------------------  | :------------------------------------------------------ |
 | Mainboard             | Gigabyte Z490 Vision G                                  |
-| BIOS		        | F20. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
+| BIOS		        | F21a. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
 | CPU                   | Intel® Core i9 10850K (Codename Comet Lake)             |
 | RAM                   | 32 GB DDR4 2400 Crucial Ballistix Sport LT              |
 | iGPU		        | Intel® UHD 630. Set-up for computing tasks only. For running a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) |
