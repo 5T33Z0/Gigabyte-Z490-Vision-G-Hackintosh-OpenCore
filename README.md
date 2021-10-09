@@ -1,6 +1,6 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
-[![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-blueviolet.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
-![BIOS](https://img.shields.io/badge/BIOS-F21a-important.svg)
+[![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-blueviolet.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x#kf)
+[![BIOS](https://img.shields.io/badge/BIOS-F21a-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.4-blue.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5140-green.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15-white.svg)](https://www.apple.com/li/macos/catalina/)
