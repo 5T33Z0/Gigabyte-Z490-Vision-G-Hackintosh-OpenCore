@@ -5,7 +5,7 @@
 [![Clover Version](https://img.shields.io/badge/Clover-r5140-green.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
-[![macOS Monterey](https://img.shields.io/badge/macOS-12-white.svg)](https://www.apple.com/macos/monterey-preview/)
+[![macOS Monterey](https://img.shields.io/badge/macOS-12_beta_9-white.svg)](https://www.apple.com/macos/monterey-preview/)
 [![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BootPicker.png)
 
@@ -23,7 +23,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
 | :warning: WARNING |
 |:------------------|
-The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey beta 9…
+The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey beta 9!
 		
 ## Build Info
 
