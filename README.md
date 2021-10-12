@@ -1,7 +1,7 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 [![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-blueviolet.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x#kf)
 [![BIOS](https://img.shields.io/badge/BIOS-F21a-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
-[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.4-blue.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+[![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.5-blue.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5140-green.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
@@ -15,7 +15,7 @@ EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and ref
 
 This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MadLon (please stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller, an on-board WiFi/BT module. On top of that it won't even pass OC validate successfully.
 
-My EFI Folder does not contain any of this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
+My EFI Folder does not contain any of this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. USB Ports are mapped via ACPI, using a fixed OEM Table for macOS, so no `USBPorts.kext` is needed any more. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
 Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
@@ -33,7 +33,7 @@ The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey beta 9!
 ### System Specs
 
 | Component             | Details                                                 |
-| :-------------------------------  | :------------------------------------------------------ |
+| :---------------------|-------------------------------------------------------- |
 | Mainboard             | Gigabyte Z490 Vision G                                  |
 | BIOS		        | F21a. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
 | CPU                   | Intel® Core i9 10850K (Codename Comet Lake)             |
@@ -41,7 +41,7 @@ The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey beta 9!
 | iGPU		        | Intel® UHD 630. Set-up for computing tasks only. For running a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) |
 | GPU                   | MSI Geforce GTX 760 Twin Frozr Gaming                   |
 | Audio                 | Realtek® ALC1220-VB (Layout-id: `28`)                   |
-| Ethernet (onboard)    | Intel® 2.5GbE LAN (req. macOS 10.15 and newer)          |
+| Ethernet (onboard)    | Intel® 2.5GbE LAN (requires macOS 10.15 or newer)       |
 | Ethernet (PCI Card)   | Intel® PRO/1000 PT Dual Port Server Adapter (amy macOS) |
 
 </details>
@@ -118,6 +118,7 @@ EFI
     │   ├── SSDT-AWAC-DISABLE.aml
     │   ├── SSDT-EC-USBX.aml
     │   ├── SSDT-PLUG.aml
+    │   ├── SSDT-PORTS.aml
     │   ├── SSDT-PPMC.aml
     │   └── SSDT-SBUS-MCHC.aml
     ├── Drivers
@@ -130,10 +131,10 @@ EFI
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
     │   ├── Lilu.kext
+    │   ├── NVMeFix.kext
+    │   ├── RestrictEvents.kext
     │   ├── SMCProcessor.kext
     │   ├── SMCSuperIO.kext
-    │   ├── USBPorts_iMac191.kext
-    │   ├── USBPorts_iMac202.kext
     │   ├── VirtualSMC.kext
     │   └── WhateverGreen.kext
     ├── OpenCore.efi
