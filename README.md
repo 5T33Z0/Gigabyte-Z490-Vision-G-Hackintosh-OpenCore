@@ -23,7 +23,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
 | :warning: WARNING |
 |:------------------|
-The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey beta 9!
+The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey 12.0.1!
 		
 ## Build Info
 
