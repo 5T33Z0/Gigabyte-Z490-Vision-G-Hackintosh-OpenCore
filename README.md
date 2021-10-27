@@ -100,7 +100,7 @@ The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey 12.0.1!
 
 ### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU and Hard Disk you are using:
-- `CPUFriend.kext` and `CPUFriendDataProvider.kext`.Create your own DataProvider.kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
+- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider.kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
 - `NVMeFix.kext`: recommended for all 3rd part NVME drives
 </details>
 <details>
