@@ -21,9 +21,10 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
 
-| :warning: WARNING |
-|:------------------|
-The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey 12.0.1!
+| :warning: Issues related to macOS Monterey 12.0.1|
+|:-------------------------------------------------|
+I-225 Ethernet Controller doesn't work. No fix available yet.
+Bluetooth issues related to macOS Monterey. No fix available yet.
 		
 ## Build Info
 
