@@ -86,10 +86,10 @@ The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey 12.0.1!
 	
 ### OpenCore Details
 
-* **Version**: 0.7.3 (check comments in `config.plist` for details)
-* **Compatible macOS**: 10.14 (Mojave), 10.15.7 (Catalina), 11.5+ (Big Sur), 12.0 beta (Monterey)
-* **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS)). Using a different SMBIOS may require remapping of USB Ports, since the `info.plist` inside the `USBPorts.kext` refers to `iMac20,2` as `model`.
-* **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-PPMC`
+* **Version**: 0.7.5 (check comments in `config.plist` for details)
+* **Compatible macOS**: 10.14 (Mojave), 10.15.7 (Catalina), 11.5+ (Big Sur), 12.0.1 (Monterey)
+* **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig)).
+* **ACPI Patches:** `SSDT-AWAC`, `SSDT-EC-USBX`, `SSDT-PLUG`, `SSDT-SBUS-MCHC`, `SSDT-PPMC`, `SSDT-PORTS`
 * **OpenCanopy Enabled**: `yes`
 * **Iconset**: `modern`
 * **Chime**: `no`
@@ -99,10 +99,9 @@ The I-225 Ethernet Controller doesn't work (again) in MacOS Monterey 12.0.1!
 * **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur/Monterey: `67080000`
 
 ### Note about Kexts
-The following Kexts are disabled by default since I don't know which CPU, GPU you are using:
-- `CPUFriend.kext` and `CPUFriendDataProvider.kext` 
-	- If you use a different CPU model, create your own DataProviderKext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
-* `AGPMInjector.kext`disabled. Generate it or delete config entry and kext. See Section "Enable AGPM"
+The following Kexts are disabled by default since I don't know which CPU and Hard Disk you are using:
+- `CPUFriend.kext` and `CPUFriendDataProvider.kext`.Create your own DataProvider.kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
+- `NVMeFix.kext`: recommended for all 3rd part NVME drives
 </details>
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
@@ -126,7 +125,6 @@ EFI
     │   ├── OpenCanopy.efi
     │   └── OpenRuntime.efi
     ├── Kexts
-    │   ├── AGPMInjector.kext
     │   ├── AppleALC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
