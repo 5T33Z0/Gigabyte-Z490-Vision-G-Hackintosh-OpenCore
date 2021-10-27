@@ -263,7 +263,7 @@ Basically, you put the "Clover" Folder on the same level as the the "OC" Folder 
 
 ### Patching-in Kepler Drivers
 
-Apple removed Keppler support from macOS Monterey beta 7. So users of NVIDIA GeForce Cards from the Kepler family need to patch them back in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
+Apple removed Keppler support from macOS Monterey beta 7. So users of NVIDIA GeForce Cards from the Kepler family need to patch them back in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher). If you require this patch,you can no longer boot with SIP enabled,so you have to disable it.
 </details>
 
 ## CPU Benchmark
