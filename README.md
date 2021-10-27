@@ -24,7 +24,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 | :warning: Issues related to macOS Monterey 12.0.1|
 |:-------------------------------------------------|
 I-225 Ethernet Controller doesn't work. No fix available yet. Get a PCI LAN Card!
-[Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth).
+[Bluetooth issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
 		
 ## Build Info
 
