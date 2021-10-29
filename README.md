@@ -34,17 +34,17 @@ NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris111
 
 ### System Specs
 
-| Component             | Details                                                 |
-| :---------------------|-------------------------------------------------------- |
-| Mainboard             | Gigabyte Z490 Vision G                                  |
+| Component           | Details                                                 |
+| :-------------------|-------------------------------------------------------- |
+| Mainboard           | Gigabyte Z490 Vision G                                  |
 | BIOS		        | F21a. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
-| CPU                   | Intel® Core i9 10850K (Codename Comet Lake)             |
-| RAM                   | 32 GB DDR4 2400 Crucial Ballistix Sport LT              |
-| iGPU		        | Intel® UHD 630. Set-up for computing tasks only. For running a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/Intel%20UHD%20630_HDMI_DP_Framebuffer-Patch.plist) |
-| GPU                   | MSI Geforce GTX 760 Twin Frozr Gaming                   |
-| Audio                 | Realtek® ALC1220-VB (Layout-id: `28`)                   |
-| Ethernet (onboard)    | Intel® 2.5GbE LAN (requires macOS 10.15 or newer)       |
-| Ethernet (PCI Card)   | Intel® PRO/1000 PT Dual Port Server Adapter (amy macOS) |
+| CPU                 | Intel® Core i9 10850K (Codename Comet Lake)             |
+| RAM                 | 32 GB DDR4 2400 Crucial Ballistix Sport LT              |
+| iGPU		        | Intel® UHD 630. Set-up for computing tasks only. For running a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist)|
+| GPU                 | MSI Geforce GTX 760 Twin Frozr Gaming                   |
+| Audio               | Realtek® ALC1220-VB (Layout-id: `28`)                   |
+| Ethernet (onboard)  | Intel® 2.5GbE LAN (requires macOS 10.15 or newer)       |
+| Ethernet (PCI Card) | Intel® PRO/1000 PT Dual Port Server Adapter (amy macOS) |
 
 </details>
 <details>
@@ -97,7 +97,7 @@ NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris111
 * **Chime**: `no`
 * **FileVault**: `no`
 * **SecureBootModel**: `Disabled`
-* **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional%20Files/USB_Ports_List.pdf)
+* **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist)
 * **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur/Monterey: `67080000`
 
 ### Note about Kexts
