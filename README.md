@@ -175,7 +175,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
     	- For Monterey: `EF0F0000` (0xFEF)
 	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
-		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put a `##` in front of it)
+		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put `##` in front of it)
 		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
 4. Getting the Intel(R) I225-V Ethernet Controller to work:
 	- macOS Big Sur/Monterey users don't have to change anything here. But for the sake of completeness, this is what you would have to do otherwise:
