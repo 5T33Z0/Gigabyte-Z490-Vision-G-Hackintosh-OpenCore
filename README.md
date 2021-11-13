@@ -51,6 +51,7 @@ NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris111
 <summary><strong>BIOS Settings</strong></summary>
 
 ### BIOS Settings
+![](/Users/steezonics/Desktop/BIOS.jpg)
 
 * **Tweaker [TAB]**
 	* Extreme Memory Profile (XMP): Enabled (if supported by RAM)
@@ -59,10 +60,7 @@ NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris111
 		* Intel Speed Shit: Enabled
 * **Settings [TAB]**
 	* Platform Power
-		* Platform Power Management: Enabled
-		* PEG ASPM: Enabled
-		* PCH ASPM: Enabled
-		* DMI ASPM: Enabled 
+		* Platform Power Management: Disabled
 		* ErP: Enabled (so USB Power turns off, after PC is shut down)
 	* IO Ports
 		* Internal Graphics: enabled (if CPU has integrated graphics). **NOTE**: The config.plist uses dGPU for Display(s) and iGPU for computational tasks only by default. If you want to use the iGPU to drive a display you need a different Framebuffer Patch (see "EFI Install Instructions" for details).
