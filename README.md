@@ -51,7 +51,7 @@ NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris111
 <summary><strong>BIOS Settings</strong></summary>
 
 ### BIOS Settings
-![](/Users/steezonics/Desktop/BIOS.jpg)
+![BIOS](https://user-images.githubusercontent.com/76865553/141654274-6d6a5803-e18e-407e-aa9f-767ab18094bc.jpg)
 
 * **Tweaker [TAB]**
 	* Extreme Memory Profile (XMP): Enabled (if supported by RAM)
