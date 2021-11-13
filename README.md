@@ -23,7 +23,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
 | :warning: Issues related to macOS Monterey 12.1 (beyond my control)|
 |:-------------------------------------------------|
-I-225 Ethernet Controller doesn't work. No fix available yet. Get a PCI LAN Card!
+I-225 Ethernet Controller doesn't work by default. You need to [replace some kexts](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/page/9/?tab=comments#comment-2771833)
 Bluetooth stack was rewritten in macOS 12 which causes [Bluetooth Issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
 NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
 		
