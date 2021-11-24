@@ -4,8 +4,8 @@
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.6-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 [![Clover Version](https://img.shields.io/badge/Clover-r5142-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15-white.svg)](https://www.apple.com/li/macos/catalina/)
-[![macOS Big Sur](https://img.shields.io/badge/macOS-11.6-white.svg)](https://www.apple.com/macos/big-sur/)
-[![macOS Monterey](https://img.shields.io/badge/macOS-12.1-white.svg)](https://www.apple.com/macos/monterey/)
+[![macOS Big Sur](https://img.shields.io/badge/macOS-11.6.1-white.svg)](https://www.apple.com/macos/big-sur/)
+[![macOS Monterey](https://img.shields.io/badge/macOS-12.1_beta_3-white.svg)](https://www.apple.com/macos/monterey/)
 [![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BootPicker.png)
 
@@ -23,7 +23,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
 | :warning: Issues related to macOS Monterey 12.1 (beyond my control)|
 |:-------------------------------------------------|
-Intel I225-V Ethernet Controller doesn't work by default on macOS 12. You need to [replace some kexts](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/page/9/?tab=comments#comment-2771833)
+Intel I225-V Ethernet Controller doesn't work on macOS 12. You need to get an extra Network Card.
 Bluetooth stack was rewritten in macOS 12 which causes [Bluetooth Issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
 NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
 		
