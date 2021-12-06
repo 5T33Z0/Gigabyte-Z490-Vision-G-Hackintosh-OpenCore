@@ -25,7 +25,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 |:-------------------------------------------------|
 Intel I225-V Ethernet Controller doesn't work on macOS 12. You need to get an extra Network Card.
 Bluetooth stack was rewritten in macOS 12 which causes [Bluetooth Issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
-NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
+NVIDIA Kepler Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
 		
 ## Build Info
 
@@ -37,13 +37,13 @@ NVIDIA Kepler Cards require [Geforce Kepler patcher](https://github.com/chris111
 | Component           | Details                                                 |
 | :-------------------|-------------------------------------------------------- |
 | Mainboard           | Gigabyte Z490 Vision G                                  |
-| BIOS		        | F21a. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
-| CPU                 | Intel® Core i9 10850K (Codename Comet Lake)             |
+| BIOS		      | F21a. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
+| CPU                 | Intel® Core i9 10850K (Comet Lake)          	        |
 | RAM                 | 32 GB DDR4 2400 Crucial Ballistix Sport LT              |
-| iGPU		        | Intel® UHD 630. Set-up for computing tasks only. For running a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist)|
+| iGPU		      | Intel® UHD 630. Configured for computing tasks only. For driving a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) instead|
 | GPU                 | MSI Geforce GTX 760 Twin Frozr Gaming                   |
 | Audio               | Realtek® ALC1220-VB (Layout-id: `28`)                   |
-| Ethernet (onboard)  | Intel® 2.5GbE LAN (requires macOS 10.15 or newer)       |
+| Ethernet (onboard)  | Intel® I225-V 2.5GbE. Compatible with macOS Catalina and Big Sur only|
 | Ethernet (PCI Card) | Intel® PRO/1000 PT Dual Port Server Adapter (amy macOS) |
 
 </details>
@@ -114,6 +114,7 @@ EFI
 │   └── BOOTx64.efi
 └── OC
     ├── ACPI
+    │   ├── DNAR.aml
     │   ├── SSDT-AWAC-DISABLE.aml
     │   ├── SSDT-EC-USBX.aml
     │   ├── SSDT-PLUG.aml
