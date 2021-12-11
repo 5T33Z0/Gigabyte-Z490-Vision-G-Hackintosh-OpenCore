@@ -37,7 +37,7 @@ NVIDIA Kepler Cards require [Geforce Kepler Patcher](https://github.com/chris111
 | Component           | Details                                                 |
 | :-------------------|-------------------------------------------------------- |
 | Mainboard           | Gigabyte Z490 Vision G                                  |
-| BIOS		      | F21a. F5 or higher is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
+| BIOS		      | F21. F5 or newer is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`|
 | CPU                 | Intel® Core i9 10850K (Comet Lake)          	        |
 | RAM                 | 32 GB DDR4 2400 Crucial Ballistix Sport LT              |
 | iGPU		      | Intel® UHD 630. Configured for computing tasks only. For driving a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) instead|
