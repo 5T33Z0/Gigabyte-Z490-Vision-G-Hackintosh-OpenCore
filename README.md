@@ -259,7 +259,7 @@ Basically, you put the "Clover" Folder on the same level as the the "OC" Folder 
 ![1614718620_Screenshot2020-10-06at19_59_49 png c92924a458ee86f0a4ff504d7a9118a6](https://user-images.githubusercontent.com/76865553/134054798-0e0e1f96-b2d6-4447-9daf-44c4df3e9601.png)
 </details>
 <details>
-<summary><strong>Enabling NVIDIA Kepler Drivers (macOS 12.0 beta 7)</strong></summary>
+<summary><strong>Enabling NVIDIA Kepler Drivers (macOS 12.0 beta 7 and newer)</strong></summary>
 
 ### Patching-in Kepler Drivers
 
