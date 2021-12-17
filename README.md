@@ -25,7 +25,7 @@ Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 |:-------------------------------------------------|
 Intel I225-V Ethernet Controller doesn't work on macOS 12. You need to get an extra Network Card.
 Bluetooth stack was rewritten in macOS 12 which causes [Bluetooth Issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
-NVIDIA Kepler Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
+600/700 NVDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
 		
 ## Build Info
 
