@@ -13,9 +13,9 @@
 
 EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I've dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
 
-This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MaLDon (please stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. On top of that it won't even pass OC validate successfully.
+This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MaLDon (please stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. On top of that it won't even pass OC validation successfully.
 
-My EFI Folder does not contain any of this unnecessary junk. It also doesn't require `FakePCIID.kext` to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. USB Ports are mapped via ACPI, so no `USBPorts.kext` is required . I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
+My EFI Folder does not contain any of this junk. It also doesn't require FakePCIID kexts to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. USB Ports are mapped via ACPI, so no USBPort kext is required either. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
 Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
