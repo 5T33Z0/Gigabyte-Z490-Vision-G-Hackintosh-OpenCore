@@ -179,10 +179,10 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	
 	|macOS Version|Procedure|
 	|-------------|---------|
-**macOS 12.0.1+**|Not working. Get a PCI LAN Card
-**macOS 11.4+**|	1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (add `#` in front of it)</br>2. Go to `Kernel` > `Patch` and disable `I225-V Patch` </br> 3. Add boot-arg `dk.e1000=0`</br> 4. Save and reboot</br>**NOTE**: This is the default configuration. If you are running Big Sur 11.4 and newer you don’t have to change anything here!
-**macOS 10.15 to 11.3**|	1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel` > `Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot
-**macOS 10.14 and older**|I225-V Controller is not supported. You need an additional PCI Card.
+	**macOS 12.0.1+**|Not working. Get a PCI LAN Card
+	**macOS 11.4+**|	1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (add `#` in front of it)</br>2. Go to `Kernel` > `Patch` and disable `I225-V Patch` </br> 3. Add boot-arg `dk.e1000=0`</br> 4. Save and reboot</br>**NOTE**: This is the default configuration. If you are running Big Sur 11.4 and newer you don’t have to change anything here!
+	**macOS 10.15 to 11.3**|	1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel` > `Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot
+	**macOS 10.14 and older**|I225-V Controller is not supported. You need an additional PCI Card.
 **NOTE**: You could just leave the Device Property, Kernel Patch (since it will only apply up to Kernel 20.4 anyway) and boot-arg enabled for macOS Catalina, Big Sur/Monterey without causing issues. But I think it's cleaner to just enable what's necessary for each OS, unless you have a multiboot system with Catalina and Big Sur/Monterey installed. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
 5. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
 6. Copy the EFI Folder to a FAT32 formatted USB Stick
