@@ -11,7 +11,7 @@
 
 ## Introduction
 
-EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I've dumped the system `DSDT`, analyzed it and added missing components to fine tune the config. 
+EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpaches. 
 
 This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MaLDon (please stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. On top of that it won't even pass OC validation successfully.
 
@@ -175,25 +175,18 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
 		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put `##` in front of it)
 		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
-4. Getting the Intel(R) I225-V Ethernet Controller to work:
-	- macOS Big Sur/Monterey users don't have to change anything here. But for the sake of completeness, this is what you would have to do otherwise:
-	
-		1. Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`(put a `#` in front of it) 
-		2. Go to `Kernel` > `Patch` and disable `I225-V Patch`.
-		3. Add boot-arg `dk.e1000=0`</br> 
-	
-		**NOTE**: For getting the I225 Controller to work in macOS Monterey, version beta 7 is required at least!
-		
-	- macOS Catalina and Big Sur Users (up to macOS version 11.3 ≤ Kernel 20.4) need to do the following:
-
-		1. Enable (un-comment) `DeviceProperties` > `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
-		2. Go to `Kernel` > `Patch` and enable `I225-V Patch`.
-		3. Delete/disable boot-arg `dk.e1000=0`
-
-	- macOS Mojave: I225-V is not supported. Needs additional PCI Card (See "Hardware Components").
-	
-	**NOTE**: In fact, you could leave the Device Property, Kernel Patch and boot-arg enabled for macOS Catalina and Big Sur/Monterey altogether, since the patch only is applied to Catalina and the boot-arg takes care of picking the correct Ethernet Driver in Big Sur/Monterey. But I think it's cleaner to just enable what's necessary for each OS unless you run a multiboot setup with both Catalina and Big Sur. Then it's probably easier to leave the Device Property, the Kernel Patch and boot-arg enabled. See this discussion for more insight: https://github.com/dortania/bugtracker/issues/213
-
+4. Getting the Intel(R) I225-V Ethernet Controller to work
+	- **macOS Big Sur/Monterey**:
+		- Disable (comment-out) `DeviceProperties` > `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`(put a `#` in front of it) 
+		- Go to `Kernel` > `Patch` and disable `I225-V Patch`.
+		- Add boot-arg `dk.e1000=0`</br> 
+		**NOTE**: Intel i225-V is not working in macOS Monterey final!
+	- **macOS Catalina and Big Sur** (up to macOS version 11.3 ≤ Kernel 20.4) need the following:
+		- Enable (un-comment) `DeviceProperties` > `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
+		- Go to `Kernel` > `Patch` and enable `I225-V Patch`.
+		- Delete/disable boot-arg `dk.e1000=0`
+	- **macOS Mojave** or older: I225-V is not supported. Needs additional PCI Card (See "Hardware Components"). </br></br>
+**NOTE**: In fact, you could leave the Device Property, Kernel Patch and boot-arg enabled for macOS Catalina and Big Sur/Monterey altogether, since the patch only is applied to Catalina and the boot-arg takes care of picking the correct Ethernet Driver in Big Sur/Monterey. But I think it's cleaner to just enable what's necessary for each OS unless you run a multiboot setup with both Catalina and Big Sur. Then it's probably easier to leave the Device Property, the Kernel Patch and boot-arg enabled. See this discussion for more insight: https://github.com/dortania/bugtracker/issues/213
 5. Create SMBIOS infos for `iMac20,2` to the config.plist and save it.
 6. Copy the EFI Folder to a FAT32 formatted USB Stick
 7. Reboot from USB Stick
