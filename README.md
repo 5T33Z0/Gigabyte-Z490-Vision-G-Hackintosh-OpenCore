@@ -176,6 +176,7 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put `##` in front of it)
 		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
 4. Getting the Intel(R) I225-V Ethernet Controller to work in…
+	
 	|macOS Version|Procedure|
 	|-------------|---------|
 **macOS 12.0.1+**|Not working. Get a PCI LAN Card
