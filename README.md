@@ -255,7 +255,6 @@ Apple removed Keppler support from macOS Monterey beta 7. So users of NVIDIA GeF
 - SergeySlice for [Clover Bootloader](https://github.com/CloverHackyColor/CloverBootloader)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
 - daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
-- [Pavo-IM](https://github.com/Pavo-IM/) for APGM Injector and OC Gen X
 - [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
 - Chris1111 for [GeForce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher)
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
