@@ -15,11 +15,7 @@ The resulting terminal output should be:
 
 If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName` is set to `iMac20,2` or `iMac20,1, correct it, save the `config.plist` and reboot to apply the new SMBIOS.
 
-<<<<<<< Updated upstream
-## Using CPUFriendFriend
-=======
 ## Generating a data provider kext using `CPUFriendFriend` 
->>>>>>> Stashed changes
 1. Download and unpack `CPUFriendFriend-master.zip`
 2. Doubleclick `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
 	![LFM](https://user-images.githubusercontent.com/76865553/151773085-f181f1d2-e8f3-4f97-8b29-5c8e741b2765.png)
