@@ -15,7 +15,11 @@ The resulting terminal output should be:
 
 If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName` is set to `iMac20,2` or `iMac20,1, correct it, save the `config.plist` and reboot to apply the new SMBIOS.
 
+<<<<<<< Updated upstream
 ## Using CPUFriendFriend
+=======
+## Generating a data provider kext using `CPUFriendFriend` 
+>>>>>>> Stashed changes
 1. Download and unpack `CPUFriendFriend-master.zip`
 2. Doubleclick `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
 	![LFM](https://user-images.githubusercontent.com/76865553/151773085-f181f1d2-e8f3-4f97-8b29-5c8e741b2765.png)
@@ -27,7 +31,7 @@ This This describes how fast the CPUS scales from the lowest to the highest Turb
 	![BIAS](https://user-images.githubusercontent.com/76865553/151773244-f1bd7d7c-182e-468d-86ec-5702283dad13.png)</br>
 6. Next, you can apply Additional Energy Savings Options from the MacBook Air SMBIOS (optional):</br>![mba](https://user-images.githubusercontent.com/76865553/151773342-8ac88574-9926-4efb-af9d-7e4599f57e40.png)</br>Make your choice and hit `Enter`
 7. Finally, the `CPUFrienDataProver.kext` and additional Files are created:</br>![files](https://user-images.githubusercontent.com/76865553/151773395-212d209b-0e6b-43ca-b105-ccf0172f90e7.png)
-8. Copy this kext together with `CPUFriend.kext` into the kext folder of your OpenCore EFI folder and add it to the `config.plist`. 
+8. Copy `CPUFrienDataProver.kext` together with [`CPUFriend.kext`](https://github.com/acidanthera/CPUFriend/releases) into the kext folder and add it to your `config.plist`
 9. Save and reboot
 
 ## Testing
