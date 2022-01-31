@@ -10,11 +10,11 @@
 
 ## Introduction
 
-EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpaches from Daliansky's "OC-Little" Repo. USB Ports are mapped via `ACPI`, so no USBPort kext is required.
+EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an .ioreg file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpaches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USBPort kext is required. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
-This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MaLDon (stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. On top of that it won't even pass OC validation successfully. My EFI Folder doesn't contain any of this junk. It also doesn't require FakePCIID to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
+This is a *genuine* Z490 Vision G EFI, built from scratch. Unlike most pseudo Z490 Vision G EFIs posted on Forums and Repos, which are either based on generically patched DSDTs by Olarila/MaLDon (stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. My EFI Folder doesn't contain any of this junk.
 
-Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
+Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
 
