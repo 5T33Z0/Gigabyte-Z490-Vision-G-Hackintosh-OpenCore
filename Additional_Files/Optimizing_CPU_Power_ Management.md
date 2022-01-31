@@ -18,15 +18,15 @@ If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName
 ## Using CPUFriendFriend
 1. Inpack `CPUFriendFriend-master.zip`
 2. Doubleclick `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
-	![](/Users/steezonics/Desktop/LFM.png)
+	![LFM](https://user-images.githubusercontent.com/76865553/151773085-f181f1d2-e8f3-4f97-8b29-5c8e741b2765.png)
 3. Enter a hex value for the `Low Frequency Mode`. It's the lowest possible frquency the CPU should clock down to without crashing. I am using `08` for 800 MHz. Add your value and hit `Enter`.
 4. Next, adjust the `Energy Performance Preference (EPP)`:</br>
-	![](/Users/steezonics/Desktop/EPP.png)</br>
+	![EPP](https://user-images.githubusercontent.com/76865553/151773160-38aa587d-93e7-414d-9fbe-50c0eee1c437.png)</br>
 This This describes how fast the CPUS scales from the lowest to the highest Turbo frequency, which has an impact on the overall power consumption. I use `00`.
 5. Next, you have to specify the `Performamce Bias Range`, which is used to set the general bias of the system between performance and energy efficiency. The scale ranges from `00` (maximum performance) to `15` (maximum power saving). Since this is more relevant for notebooks than an i9 workstation, I am using `01`:</br>
-	![](/Users/steezonics/Desktop/BIAS.png)</br>
-6. Next, you can apply Additional Energy Savings Options from the MacBook Air SMBIOS (optional):</br>![](/Users/steezonics/Desktop/mba.png). Make your choice and hit `Enter`
-7. Finally, the `CPUFrienDataProver.kext` and additional Files are created:</br>![](/Users/steezonics/Desktop/files.png)
+	![BIAS](https://user-images.githubusercontent.com/76865553/151773244-f1bd7d7c-182e-468d-86ec-5702283dad13.png)</br>
+6. Next, you can apply Additional Energy Savings Options from the MacBook Air SMBIOS (optional):</br>![mba](https://user-images.githubusercontent.com/76865553/151773342-8ac88574-9926-4efb-af9d-7e4599f57e40.png)</br>Make your choice and hit `Enter`
+7. Finally, the `CPUFrienDataProver.kext` and additional Files are created:</br>![files](https://user-images.githubusercontent.com/76865553/151773395-212d209b-0e6b-43ca-b105-ccf0172f90e7.png)
 8. Copy this kext together with `CPUFriend.kext` into the kext folder of your OpenCore EFI folder and add it to the `config.plist`. 
 9. Save and reboot
 
