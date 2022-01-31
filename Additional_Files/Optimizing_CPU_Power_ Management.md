@@ -2,7 +2,7 @@
 
 For 10th gen Intel CPUs, the `iMac20,2` SMBIOS is best suited, since [these models](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,2) are equipped with i7/i9 CPUs. If you are using an i5, you should use [iMac20,1](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,1) instead.
 
-Since I have an i9-10850K, I am using SMBIOS `iMac20,2`. The system runs smoother when using iMac20.2 instead of iMac19.1. The performance is also better and the idle frequency is lower. But it can be optimized even further with the help of `CPUFriend.kext` and an additional data provider kext which can be generated using a python script caled [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend). (Click on »Code« and select »Download zip«). 
+Since I have an i9-10850K, I am using SMBIOS `iMac20,2`. The system runs smoother when using iMac20.2 instead of iMac19.1. The performance is also better and the idle frequency is lower. But it can be optimized even further with the help of `CPUFriend.kext` and an additional data provider kext which can be generated using a python script caled [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) (click on »Code« and select »Download zip«). 
 
 This optimization has to be performed on the each machine individually (unless you are using an i9 10850K as well). To do so, we first verify the current board ID by executing the following command in terminal:
 
