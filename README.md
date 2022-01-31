@@ -1,21 +1,20 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
-[![Board](https://img.shields.io/badge/Gigabyte-Z490_Vision_G-informational.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x#kf)
 [![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.7.7-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![Clover Version](https://img.shields.io/badge/Clover-r5143-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
+[![Clover Version](https://img.shields.io/badge/Clover-r5144-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
-[![macOS Big Sur](https://img.shields.io/badge/macOS-11.6.2-white.svg)](https://www.apple.com/macos/big-sur/)
-[![macOS Monterey](https://img.shields.io/badge/macOS-12.2-white.svg)](https://www.apple.com/macos/monterey/)
+[![macOS Big Sur](https://img.shields.io/badge/macOS-11.6.3-white.svg)](https://www.apple.com/macos/big-sur/)
+[![macOS Monterey](https://img.shields.io/badge/macOS-12.3-white.svg)](https://www.apple.com/macos/monterey/)
 [![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BootPicker.png)
 
 ## Introduction
 
-EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining constantly since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo and my own research. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpaches. 
+EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide, ACPI Hotpatches from Daliansky's "OC-Little" Repo. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpaches. USB Ports are mapped via `ACPI`, so no USBPort kext is required either.
 
-This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MaLDon (please stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. On top of that it won't even pass OC validation successfully.
+This is a *genuine* Z490 Vision G EFI built from scratch, unlike most EFIs posted on Forums, Repos and in the terribly awful HackinDROM App. These EFIs are either based on generically patched DSDTs by Olarila/MaLDon (stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. On top of that it won't even pass OC validation successfully.
 
-My EFI Folder does not contain any of this junk. It also doesn't require FakePCIID kexts to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. USB Ports are mapped via ACPI, so no USBPort kext is required either. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
+My EFI Folder doesn't contain any of this junk. It also doesn't require FakePCIID kexts to get the Intel® I225-V 2.5 Gigabit Ethernet Controller working. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added Clover, too.
 
 Successfully tested with macOS Mojave, Catalina, Big Sur and Monterey.
 
