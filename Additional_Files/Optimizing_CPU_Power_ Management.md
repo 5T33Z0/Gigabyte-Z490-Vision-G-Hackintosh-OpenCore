@@ -16,7 +16,7 @@ The resulting terminal output should be:
 If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName` is set to `iMac20,2` or `iMac20,1, correct it, save the `config.plist` and reboot to apply the new SMBIOS.
 
 ## Using CPUFriendFriend
-1. Inpack `CPUFriendFriend-master.zip`
+1. Download and unpack `CPUFriendFriend-master.zip`
 2. Doubleclick `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
 	![LFM](https://user-images.githubusercontent.com/76865553/151773085-f181f1d2-e8f3-4f97-8b29-5c8e741b2765.png)
 3. Enter a hex value for the `Low Frequency Mode`. It's the lowest possible frquency the CPU should clock down to without crashing. I am using `08` for 800 MHz. Add your value and hit `Enter`.
