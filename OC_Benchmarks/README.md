@@ -3,7 +3,7 @@
 ## About
 **CPU**: 10th Gen Intel Core i9-10850K (Comet Lake)</br>
 **Geekbench**: 5.4.4</br>
-**macOS**: macOS 11.6.3 (Big Sur)
+**macOS**: macOS 11.6.3 (Big Sur)</br>
 **OpenCore**: 0.7.8
 
 ## Results
