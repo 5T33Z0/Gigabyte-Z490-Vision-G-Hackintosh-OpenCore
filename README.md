@@ -110,9 +110,10 @@ EFI
 └── OC
     ├── ACPI
     │   ├── DNAR.aml
-    │   ├── SSDT-AWAC.aml
+    │   ├── SSDT-AWAC-ARTC.aml
     │   ├── SSDT-DMAC.aml
     │   ├── SSDT-EC-USBX.aml
+    │   ├── SSDT-FWHD.aml
     │   ├── SSDT-PLUG.aml
     │   ├── SSDT-PMC.aml
     │   ├── SSDT-PORTS.aml
@@ -126,8 +127,10 @@ EFI
     │   ├── AppleALC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
+    │   ├── FeatureUnlock
     │   ├── Lilu.kext
     │   ├── NVMeFix.kext
+    │   ├── RestrictEvents
     │   ├── SMCProcessor.kext
     │   ├── SMCSuperIO.kext
     │   ├── VirtualSMC.kext
@@ -136,10 +139,12 @@ EFI
     ├── Resources (NOTE: removed files of sub-folders from tree view to reduce clutter)
     │   ├── Font
     │   ├── Image
-    │   │   └── Acidanthera
-    │   │       ├── Chardonnay
-    │   │       ├── GoldenGate
-    │   │       └── Syrah
+    │   │   ├── Acidanthera
+    │   │   │   ├── Chardonnay
+    │   │   │   ├── GoldenGate
+    │   │   │   └── Syrah
+    │   │   └── Blackosx
+    │   │  	└── BsxM1
     │   └── Label
     ├── config.plist
     └── config_iMac19,1.plist
