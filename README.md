@@ -83,20 +83,20 @@ Bluetooth stack was rewritten in macOS 12 which causes [Bluetooth Issues](https:
 	
 ### OpenCore Details
 
-* **Version**: 0.7.7 (check comments in `config.plist` for details)
-* **Compatible macOS**: 10.14 to 12.1
+* **Version**: 0.8.0
+* **Compatible macOS**: 10.14 to 12.3
 * **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig)).
 * **OpenCanopy Enabled**: `yes`
 * **Chime**: `no`
 * **FileVault**: `no`
 * **SecureBootModel**: `Disabled`
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist)
-* **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur/Monterey: `67080000`
+* **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur: `67080000`, Monterey: `EF0F0000`
 
 ### Note about Kexts
 The following Kexts are disabled by default since I don't know which CPU and Hard Disk you are using:
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider.kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
-- `NVMeFix.kext`: recommended for all 3rd part NVME drives
+- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 </details>
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
@@ -109,7 +109,7 @@ EFI
 │   └── BOOTx64.efi
 └── OC
     ├── ACPI
-    │   ├── DNAR.aml
+    │   ├── DMAR.aml
     │   ├── SSDT-AWAC-ARTC.aml
     │   ├── SSDT-DMAC.aml
     │   ├── SSDT-EC-USBX.aml
