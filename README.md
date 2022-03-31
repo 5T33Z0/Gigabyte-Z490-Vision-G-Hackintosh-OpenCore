@@ -233,8 +233,9 @@ To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and c
 <summary><strong>Switching between OpenCore and Clover easily</strong></summary>
 
 ### Bootloader Chooser
-I recently discovered [BootloaderChooser](https://github.com/jief666/BootloaderChooser) which lets you pick the bootloader of choice prior to booting. This is how the folder structure looks like:	
-![](https://user-images.githubusercontent.com/76865553/134049430-31a289ee-c5f2-4982-8e0b-7a3728c0bf46.png)
+I recently discovered [BootloaderChooser](https://github.com/jief666/BootloaderChooser) which lets you pick the bootloader of choice prior to booting. This is how the folder structure looks like:
+
+![folderstruc](https://user-images.githubusercontent.com/76865553/161126438-db229746-8d18-46f9-a72d-c55c09a02ee3.png)
 
 Basically, you put the "Clover" Folder on the same level as the the "OC" Folder and then replace the "BootX64.efi" in the "BOOT" Folder with the one that come with the Bootloader Chooser. Then you can select which Bootloader you want to use. Pretty nice for setting up your USB flash drive having Clover and OC to chose from:
 
