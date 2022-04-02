@@ -1,7 +1,7 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 [![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios)
 [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.8.0-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest)
-[![Clover Version](https://img.shields.io/badge/Clover-r5146-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/tag/5139)
+[![Clover Version](https://img.shields.io/badge/Clover-r5146-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/)
 [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/)
 [![macOS Big Sur](https://img.shields.io/badge/macOS-11.6.5-white.svg)](https://www.apple.com/macos/big-sur/)
 [![macOS Monterey](https://img.shields.io/badge/macOS-12.3-white.svg)](https://www.apple.com/macos/monterey/)
@@ -93,10 +93,6 @@ Bluetooth stack was rewritten in macOS 12 which causes [Bluetooth Issues](https:
 * **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist)
 * **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur: `67080000`, Monterey: `EF0F0000`
 
-### Note about Kexts
-The following Kexts are disabled by default since I don't know which CPU and Hard Disk you are using:
-- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider.kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and reenable the kext as well as `CPUFriend.kext`)
-- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 </details>
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
@@ -151,6 +147,27 @@ EFI
     ├── config.plist
     └── config_iMac19,1.plist
 ```
+### About included ACPI Tables
+My EFI Folder contains additional ACPI Tables besides the usual, which you won't find in the OpenCore Install Guide. Some of them are board-specific, some of them are modified versions of the regular tables, some are just cosmedic. Here's what the extra tables do:
+
+- **DMAR**: This is a DMAR replacement table. It's basically the same as the original DMAR Table but I removed the 2 included Reserved Memory Regions so my 3rd party Ethernet Card works. If you are planning to only use the on-board Intel I225-V Ethernet Port then you don't need this. In this case you should also disable the drop rule under ACPI &rarr; Delete.
+- **SSDT-AWAC-ARTC**: Special variant of SSDT-AWAC. Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
+- **SSDT-DMAC**: Adds DMA Controller to I/O Registry device tree.
+- **SDT-FWHD**: Adds Firmware Hub Device (FWHD) to I/O Reg. Used by almost every intel-based Mac.
+- **SSDT-PMC**: Adds Apple exclusice `PCMR` Device to ACPI (required for 300-series boards, optional on 400-serie and newer)
+- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G.
+- **SSDT-XSPI**: Adds Intel PCH SPI Controller to I/O Reg. Present on 10th gen Intel Macs (and some 9th Gen Mobile CPUs).
+
+**NOTE**: More info about additional ACPI Tables can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
+
+### About Kexts
+
+The following Kexts are disabled by default since I don't know which CPU, Hard Disk amd SMBIOS you will be using:
+
+- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and re-enable the kext as well as `CPUFriend.kext`)
+- `FeatureUnlock`: see comments for details
+- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
+- `RestrictEvents`: see comments for details
 </details>
 
 ## Installation
@@ -171,11 +188,11 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 2. Select the config of your choice and rename it to `config.plist`
 3. Open `config.plist` with [OpenCore Auxiliary Tools](https://github.com/ic005k/QtOpenCoreConfig/releases) and adjust the following parameters according to your hardware and software configuration:
 	- Change `csr-active-config` based on the macOS version to disable SIP (if you use the Kepler Patcher for NVIDIA Cards you have to disables SIP!): 
-		- For High Sierra: `FF030000` (0x3FF)
-    	- For Mojave/Catalina: `FF070000` (0x7FF)
-    	- For Big Sur: `67080000` (0x867)
-    	- For Monterey: `EF0F0000` (0xFEF)</br>
-	- AMD GPUs may require additional `boot-args`. Check WhateverGreen repo to find out which you need.
+		- For **High Sierra**: `FF030000` (0x3FF)
+    	- For **Mojave/Catalina**: `FF070000` (0x7FF)
+    	- For **Big Sur**: `67080000` (0x867)
+    	- For **Monterey**: `EF0F0000` (0xFEF)</br>
+	- AMD GPUs may require additional `boot-args`. Check [WhateverGreen](https://github.com/acidanthera/WhateverGreen#boot-arguments=) repo to find out which you need.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
 		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put `##` in front of it)
 		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
