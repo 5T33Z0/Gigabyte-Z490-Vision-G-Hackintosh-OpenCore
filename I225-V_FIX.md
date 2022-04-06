@@ -27,7 +27,7 @@ Fortunately, a new method to get the I225 working again was discovered. But it r
 ## Flashing the I225-V EEPROM via OpenShell	
 - From the OpenCore GUI, select `OpenShell`
 - Type `fs0:` and hit `Enter` to change the workung drive (`fs:0` is most likely your USB flash drive)
-- Type `ls` to list the content of the drive. In this cas `ls0` is correct drive letter:</br>![06143142](https://user-images.githubusercontent.com/76865553/162020822-40ec13d1-f07d-47db-8a7a-1763763fa3c0.png)
+- Type `ls` to list the content of the drive. In this cas `ls0` is correct drive letter:</br>![06143142](https://user-images.githubusercontent.com/76865553/162021483-39a7d188-5b96-4607-a1cd-a550dd1560d5.png)
 - Next, run eeupdate64e.efi in gui mode. Type `eeupdate64e /gui` and hit `Enter`
 - In the next screen, select the Intel I225 Controler and hit `Enter`:</br>![06143155](https://user-images.githubusercontent.com/76865553/162020889-a98abf45-6f58-4c96-a7d3-ffb743895b16.png)
 - In the next screen, select "Raw EEPROM - Extended":</br>![06143203](https://user-images.githubusercontent.com/76865553/162020929-65ff5300-0838-4b6f-a26c-2401274b6b10.png)
