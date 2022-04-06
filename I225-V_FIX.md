@@ -27,13 +27,13 @@ Fortunately, a new method to get the I225 working again was discovered. But it r
 ## Flashing the I225-V EEPROM via OpenShell	
 - From the OpenCore GUI, select `OpenShell`
 - Type `fs0:` and hit `Enter` to change the workung drive (`fs:0` is most likely your USB flash drive)
-- Type `ls` to list the content of the drive. In this cas `ls0` is correct drive letter:</br>![](/Users/5t33z0/Desktop/Screenshots/06143142.png)
+- Type `ls` to list the content of the drive. In this cas `ls0` is correct drive letter:</br>![06143142](https://user-images.githubusercontent.com/76865553/162020822-40ec13d1-f07d-47db-8a7a-1763763fa3c0.png)
 - Next, run eeupdate64e.efi in gui mode. Type `eeupdate64e /gui` and hit `Enter`
-- In the next screen, select the Intel I225 Controler and hit `Enter`:</br>![](/Users/5t33z0/Desktop/Screenshots/06143155.png)
-- In the next screen, select "Raw EEPROM - Extended":</br>![](/Users/5t33z0/Desktop/Screenshots/06143203.png)
-- Next, press `F3` to dump the original EEPROM to your Flash Drive:</br> ![](/Users/5t33z0/Desktop/Screenshots/06143217_01.png)
+- In the next screen, select the Intel I225 Controler and hit `Enter`:</br>![06143155](https://user-images.githubusercontent.com/76865553/162020889-a98abf45-6f58-4c96-a7d3-ffb743895b16.png)
+- In the next screen, select "Raw EEPROM - Extended":</br>![06143203](https://user-images.githubusercontent.com/76865553/162020929-65ff5300-0838-4b6f-a26c-2401274b6b10.png)
+- Next, press `F3` to dump the original EEPROM to your Flash Drive:</br>![06143217_01](https://user-images.githubusercontent.com/76865553/162021033-ec75129f-4f4b-48f6-8403-2fc37f75446d.png)
 - Enter a name for the backup and confirm it with "OK"
-- Next, press `F4` to load the new EEPROM:</br>![](/Users/5t33z0/Desktop/Screenshots/06143217_02.png)
+- Next, press `F4` to load the new EEPROM:</br>![06143217_02](https://user-images.githubusercontent.com/76865553/162021068-d4102c40-94e8-42f5-bc83-85605019ae0c.png)
 - Now type `I225MOD`, press `ENTER` and confirm loading the file. :warning: Keep the original MAC Address when importing the EEPROM (you will be asked).
 -  Press `ESC` to exit and confirm saving.
 -  Shutdown the system
