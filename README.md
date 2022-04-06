@@ -18,11 +18,10 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
 
-| :warning: Issues related to macOS Monterey 12.1 (beyond my control)|
+| :warning: Issues related to macOS Monterey 12.3+ |
 |:-------------------------------------------------|
-Intel I225-V Ethernet Controller doesn't work on macOS 12. You need to get an extra Network Card.
-Bluetooth stack was rewritten in macOS 12 which causes [Bluetooth Issues](https://dortania.github.io/OpenCore-Install-Guide/extras/monterey.html#bluetooth)
-600/700-series NVDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
+|The I225-V Ethernet Controller doesn't work in macOS 12 by default. You need to [flash a different EEPROM](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
+|600/700-series NVDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
 		
 ## Build Info
 
