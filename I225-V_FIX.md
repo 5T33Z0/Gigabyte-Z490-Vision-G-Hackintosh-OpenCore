@@ -19,6 +19,7 @@ Fortunately, a new method to get the I225 working again was discovered. But it r
 	- Add `OpenShell` to OC/Tools and `config.plist`
 	- Disable/remove `DeviceProperties` for `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` and boot-arg `dk.e1000=0`  for the I225-V from `config.plist` 
 	- Unselect Kernel > Quirks > `DisableIOMapper` if activated
+	- Drop `DMAR`table (optional)
 	- Save your `config.plist`
 - Download `I225-Vmod.zip` from [here](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) and extract it
 - Copy `eeupdate64.efi` and `I225MOD` from the to the root folder of a FAT32 formatted USB Flash Drive.
