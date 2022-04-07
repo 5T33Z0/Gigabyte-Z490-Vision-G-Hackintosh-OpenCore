@@ -3,11 +3,11 @@
 > **Disclaimer**: This fix requires flashing a custom EEPROM onto the Intel I225-V controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
 
 ## About
-On the Z490 Vision G (and possibly other Gigabyte mainboards), the Intel I225-V 2.5 Gbit Ethernet Controller stopped working soon after the first betas of macOS Monterey were released. A lot of workarounds were tried to fix it: assigning manual network addresses or replacing network kexts of previously working builds, overwriting newer ones, which requires a special tool and could corrupt macOS, leaving it in an unbootable state.
+On the Z490 Vision G (and possibly other Gigabyte mainboards), the Intel I225-V 2.5 Gbit Ethernet Controller stopped working soon after the first betas of macOS Monterey were released. A lot of workarounds were tried to fix it: assigning manual network addresses or replacing network kexts of previously working builds, overwriting newer ones, which requires a special tool and can corrupt macOS, leaving it in an unbootable state.
 
 Until now, the only reliable option was to just buy a third party network card supported by macOS 12.
 
-Fortunately, a new method to get the I225 working again was discovered. But it requires flashing a modified EEPROM on it…
+Fortunately, a new method to get the I225-V working again was discovered. But it requires flashing a modified EEPROM on it so macOS can detect and attach it to its `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully.
 
 ## Preparations
 
@@ -33,16 +33,16 @@ Fortunately, a new method to get the I225 working again was discovered. But it r
 - Next, type `eeupdate64e /gui` and hit `Enter` to run the tool.
 - Select the "Intel(R) Ethernet Controler I225-V" with the arrow keys and hit `Enter`:</br>![06143155](https://user-images.githubusercontent.com/76865553/162020889-a98abf45-6f58-4c96-a7d3-ffb743895b16.png)
 - In the next screen, select "Raw EEPROM - Extended":</br>![06143203](https://user-images.githubusercontent.com/76865553/162020929-65ff5300-0838-4b6f-a26c-2401274b6b10.png)
-- Next, press `F3` to dump the original EEPROM to your Flash Drive:</br>![06143217_01](https://user-images.githubusercontent.com/76865553/162021033-ec75129f-4f4b-48f6-8403-2fc37f75446d.png)
-- Enter a name for the backup and confirm it with "OK" (there won't be a any confirmation, though)
+- Next, press `F3` to dump the original EEPROM to your Flash Drive
+- Enter a name for the backup file and confirm it with "OK". There won't be a any confirmation dialog, though:</br>![06143217_01](https://user-images.githubusercontent.com/76865553/162021033-ec75129f-4f4b-48f6-8403-2fc37f75446d.png)
 - Next, press `F4` to load the new EEPROM:</br>![06143217_02](https://user-images.githubusercontent.com/76865553/162021068-d4102c40-94e8-42f5-bc83-85605019ae0c.png)
 - Now type `I225MOD`, press `ENTER` and confirm loading the file. :warning: Keep the original MAC Address when importing the EEPROM (you will be asked).
 -  Press `ESC` to exit and confirm saving.
 -  Reboot the system into macOS Monterey. 
 
-If everything was done correct, you should now have working Internet connectivity. You may need to remove and add the network adapter again undefrr System Preferences > Network.
+If everything was done correct, you should now have working Internet connectivity. You may need to remove and add the network adapter again under System Preferences > Network.
 
-For me, the I225 worked immediately after flashing the EEPROM.
+For me, the I225-V worked immediately after flashing the EEPROM and rebooting. The device is also recognized by Hackintool as "Ethernet Controller I225-V". If you are still facing issues afterwards, you could try attaching the I225-V to  `com.apple.driver.AppleIntelI210Ethernet.kext` by using boot boot-arg `e1000=0`.
 
 ## Credits and Resources
 [**Original Guide**](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) by badbrain. Translated from german and modified by me.
