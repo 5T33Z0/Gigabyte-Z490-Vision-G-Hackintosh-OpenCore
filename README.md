@@ -18,8 +18,8 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
 
-| :warning: Issues related to macOS Monterey 12.3+ |
-|:-------------------------------------------------|
+| :warning: Issues related to macOS Monterey|
+|:------------------------------------------|
 |The I225-V Ethernet Controller doesn't work in macOS 12 by default. You need to [flash a different EEPROM](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
 |600/700-series NVDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration
 		
