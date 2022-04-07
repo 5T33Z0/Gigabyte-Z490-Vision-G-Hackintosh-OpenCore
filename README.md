@@ -40,7 +40,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | GPU                 | MSI Geforce GTX 760 Twin Frozr Gaming                   |
 | Audio               | Realtek® ALC1220-VB (Layout-id: `28`)                   |
 | Ethernet (onboard)  | Intel® I225-V 2.5GbE. Compatible with macOS Catalina and Big Sur only|
-| Ethernet (PCI Card) | Intel® PRO/1000 PT Dual Port Server Adapter (amy macOS) |
+| Ethernet (PCI Card) | Intel® PRO/1000 PT Dual Port Server Adapter (any macOS) |
 
 </details>
 <details>
