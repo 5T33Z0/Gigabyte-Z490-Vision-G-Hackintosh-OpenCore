@@ -1,9 +1,9 @@
 # Gigabyte Z490 Vision G Intel I225-V fix for macOS Monterey
  
-> **Disclaimer**: This fix requires flashing a custom EEPROM onto the Intel I225-V controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
+> **Disclaimer**: This fix requires flashing a custom EEPROM onto the Intel(r) I225-V Ethernet Controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
 
 ## About
-On the Z490 Vision G (and possibly other Gigabyte mainboards), the Intel I225-V 2.5 Gbit Ethernet Controller stopped working soon after the first betas of macOS Monterey were released. Several workarounds were tried to fix it: assigning manual network addresses, replacing network kexts of previously working builds, overwriting newer ones, which requires a special tool and can corrupt macOS, leaving it in an unbootable state.
+On the Z490 Vision G (and possibly other Gigabyte mainboards), the I225-V stopped working soon after the first betas of macOS Monterey were released. Several workarounds were tried to fix it: like assigning manual network addresses or replacing network kexts of previously working builds, overwriting newer ones, which requires a special tool and can corrupt macOS, leaving it in an unbootable state. There's a long thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
 
 Until now, the only reliable option was to just buy a third party network card supported by macOS 12.
 
@@ -20,7 +20,7 @@ Fortunately, a new method to get the I225-V working again was discovered. But it
 	- Disable/remove `DeviceProperties` for `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
 	- Disable/remove boot-arg `dk.e1000=0`
 	- Unselect Kernel > Quirks > `DisableIOMapper`
-	- Drop `DMAR`table (Optional)
+	- Drop `DMAR`table (optional)
 	- Save your `config.plist`
 - Download `I225-Vmod.zip` from [here](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) and extract it
 - Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
