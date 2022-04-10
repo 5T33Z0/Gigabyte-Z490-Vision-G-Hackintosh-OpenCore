@@ -18,7 +18,7 @@ Until now, the only reliable option was to just buy a third party network card s
 	- Disable/remove `DeviceProperties` for `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
 	- Disable/remove boot-arg `dk.e1000=0`
 	- Unselect Kernel > Quirks > `DisableIOMapper`
-	- Drop `DMAR`table (optional)
+	- Drop `DMAR`table (Optional. May be required when using 3rd Party Network Cards for macOS older than Catalina)
 	- Save your `config.plist`
 - Download `I225-Vmod.zip` from [here](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) and extract it
 - Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
