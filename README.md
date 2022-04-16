@@ -153,7 +153,7 @@ My EFI Folder contains additional ACPI Tables besides the usual, which you won't
 - **SSDT-AWAC-ARTC**: Special variant of SSDT-AWAC. Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 - **SSDT-DMAC**: Adds DMA Controller to I/O Registry device tree.
 - **SDT-FWHD**: Adds Firmware Hub Device (FWHD) to I/O Reg. Used by almost every intel-based Mac.
-- **SSDT-PMC**: Adds Apple exclusice `PCMR` Device to ACPI (required for 300-series boards, optional on 400-serie and newer)
+- **SSDT-PMC**: Adds Apple exclusice `PCMR` Device to ACPI (required for 300-series mainboards, optional on 400-series and newer)
 - **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G.
 - **SSDT-XSPI**: Adds Intel PCH SPI Controller to I/O Reg. Present on 10th gen Intel Macs (and some 9th Gen Mobile CPUs).
 
