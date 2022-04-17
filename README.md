@@ -149,13 +149,13 @@ EFI
 ### About included ACPI Tables
 My EFI Folder contains additional ACPI Tables besides the usual, which you won't find in the OpenCore Install Guide. Some of them are board-specific, some of them are modified versions of the regular tables, some are just cosmedic. Here's what the extra tables do:
 
-- **DMAR**: This is a DMAR replacement table. It's basically the same as the original DMAR Table but I removed the 2 included Reserved Memory Regions so my 3rd party Ethernet Card works. If you are planning to only use the on-board Intel I225-V Ethernet Port then you don't need this. In this case you should also disable the drop rule under ACPI &rarr; Delete.
-- **SSDT-AWAC-ARTC**: Special variant of SSDT-AWAC. Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
-- **SSDT-DMAC**: Adds DMA Controller to I/O Registry device tree.
+- **DMAR**: DMAR replacement table. It's basically the same as the original, but I removed the 2 included Reserved Memory Regions so my 3rd party LAN Card works in macOS Big Sur and Monterey. If you're planning to use the on-board Intel I225-V Ethernet Card only, then you don't need this. In this case you should also disable the drop rule for the original DMAR Table under `ACPI` &rarr; `Delete`.
+- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
+- **SSDT-DMAC**: Adds [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tre of I/O Registry. I am uncertain if this does something or if it is only cosmedic.
 - **SDT-FWHD**: Adds Firmware Hub Device (FWHD) to I/O Reg. Used by almost every intel-based Mac.
 - **SSDT-PMC**: Adds Apple exclusice `PCMR` Device to ACPI (required for 300-series mainboards, optional on 400-series and newer)
-- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G.
 - **SSDT-XSPI**: Adds Intel PCH SPI Controller to I/O Reg. Present on 10th gen Intel Macs (and some 9th Gen Mobile CPUs).
+- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* macOS. See the "Additional Files" folder for a detailed list of available and mapped ports.
 
 **NOTE**: More info about additional ACPI Tables can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
