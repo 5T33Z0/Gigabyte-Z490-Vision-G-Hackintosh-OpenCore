@@ -239,7 +239,7 @@ To change the `ScanPolicy` to your liking, you can make use of this online calcu
 Besides the 3 themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
 
 - Open `config.plist`
-- Go to Misc > Boot and change `PickerVariant` to: `Blackosx\BsxM1` or `velickovicdj\EnterTwilight
+- Go to Misc > Boot and change `PickerVariant` to: `Blackosx\BsxM1` or `velickovicdj\EnterTwilight`
 - Save and reboot
 
 To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
