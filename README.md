@@ -37,7 +37,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | CPU                 | Intel® Core i9 10850K (Comet Lake)          	        |
 | RAM                 | 32 GB DDR4 2400 Crucial Ballistix Sport LT              |
 | iGPU		      | Intel® UHD 630. Configured for computing tasks only. For driving a display [use this Framebuffer-Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) instead|
-| GPU                 | MSI Geforce GTX 760 Twin Frozr Gaming                   |
+| GPU                 | Saphire RX580 Nitro+  (4 GB)                            |
 | Audio               | Realtek® ALC1220-VB (Layout-id: `28`)                   |
 | Ethernet (onboard)  | Intel® I225-V 2.5GbE. Compatible with macOS Catalina and Big Sur only|
 | Ethernet (PCI Card) | Intel® PRO/1000 PT Dual Port Server Adapter (any macOS) |
