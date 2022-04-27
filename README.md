@@ -161,11 +161,11 @@ My EFI Folder contains additional ACPI Tables besides the usual, which you won't
 
 ### About Kexts
 
-The following Kexts are disabled by default since I don't know which CPU, Hard Disk amd SMBIOS you will be using:
+The following Kexts are disabled by default since I don't know which CPU, Hard Disk and SMBIOS you will be using:
 
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and re-enable the kext as well as `CPUFriend.kext`)
-- `FeatureUnlock`: see comments for details
 - `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
+- `FeatureUnlock`: see comments for details
 - `RestrictEvents`: see comments for details
 </details>
 
