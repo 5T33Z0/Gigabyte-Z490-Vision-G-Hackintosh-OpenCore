@@ -12,7 +12,7 @@ On the Intel I225-V Controller of this and possible other Gigabyre Boards, the S
 
 The following screenshot shows the file header of the I225MOD binary in hex code. The values highlighted in green are the ones that were changed to make the controller work again:
 
-![](/Users/5t33z0/Desktop/I225VEE.png)
+<img width="554" alt="I225VEE" src="https://user-images.githubusercontent.com/76865553/166050133-ff5ec23e-68af-439f-af07-81c32f7ebe76.png">
 
 ## Preparations
 
