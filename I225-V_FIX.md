@@ -31,7 +31,7 @@ Following shows the file header of the I225MOD binary in hex code. The values hi
 - Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
 - Restart the system
 
-## Flashing the custom I225-V firmware via OpenShell	
+## Flashing the firmware with OpenShell	
 - From the OpenCore GUI, select `OpenShell`
 - Type `fs0:` and hit `Enter` to change the working drive (`fs:0` is most likely your USB flash drive)
 - Type `ls` to list the content of the drive. In this case `ls0` is the correct drive letter:</br>![06143142](https://user-images.githubusercontent.com/76865553/162021483-39a7d188-5b96-4607-a1cd-a550dd1560d5.png)
