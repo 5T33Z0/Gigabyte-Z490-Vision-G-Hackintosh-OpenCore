@@ -20,7 +20,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 
 | :warning: Issues related to macOS Monterey|
 |:------------------------------------------|
-|The I225-V Ethernet Controller doesn't work in macOS 12 by default. You need to [flash a different EEPROM](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
+|The I225-V Ethernet Controller doesn't work in macOS 12 by default. You need to [flash a custom firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
 |600/700-series NVDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration.
 		
 ## Build Info
@@ -38,7 +38,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | **iGPU**      | Intel® UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.|
 | **GPU**       | Saphire RX580 Nitro+  (4 GB)                                  |
 | **Audio**     | Realtek® ALC1220-VB (Layout-id: `28`)                         |
-| **Ethernet**  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [EEPROM Update](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey|
+| **Ethernet**  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey|
 | **Ethernet** (PCI)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS)        |
 
 </details>
