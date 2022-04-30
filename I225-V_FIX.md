@@ -1,6 +1,6 @@
 # Gigabyte Z490 Vision G Intel I225-V fix for macOS Monterey
  
-> **Disclaimer**: This fix requires flashing a custom EEPROM onto the Intel(r) I225-V Ethernet Controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
+> **Disclaimer**: This fix requires flashing a custom firmware onto the EEPROM of the Intel(r) I225-V Ethernet Controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
 
 ## About
 On the Z490 Vision G, the I225-V Controller stopped working soon after the first betas of macOS Monterey were released. Various tricks were tried to fix it: assigning IP addresses and settings manually, dropping tables, changing BIOS and Quirks settigs and – the scariest trick of them all – replacing network kexts of previously working builds, which breaks the seal of the snapshot partition and could corrupt macOS, leaving it in an unbootable state. On top of that, this method only worked temporarily until the next beta was released. There's a lengthy thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
