@@ -26,7 +26,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 ## Build Info
 
 <details>
-<summary><strong>Hardware Components</strong> (Click to reveal content)</summary>
+<summary><strong>Hardware Components</strong> (click to reveal content)</summary>
 
 ### System Specs
 
@@ -214,21 +214,19 @@ If you are on Windows or Linux, follow the guide provided by [Dortania](https://
 <details>
 <summary><strong>Post-Install</strong></summary>
 
-### Strengthen Security
-Once you got macOS running, change the following settings to make your system more secure:
+### Strengthen Security (recommended)
+Once you got macOS running, you may want to change the following settings to make your system more secure:
 
-1. Change UEFI > APFS: `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for macOS High Sierra up to Big Sur can be found [here](https://github.com/acidanthera/OpenCorePkg/blob/master/Include/Acidanthera/Library/OcApfsLib.h).</br>
-
-	**BACKGROUND**: OpenCore 0.7.2 introduced a new security feature which prevents the APFS driver from loading if it does not match OS-specific Date (`MinDate`) and Version (`MinVersion`). If left at their default value `0` (as set in the `sample.plist`), the macOS partition will not show up in the Boot Picker unless Big Sur or newer is installed. For ease of use (and since I don't know which macOS you will be using) I've deactivated this feature. If you plan to setup a multiboot system running various iterations of macOS you probably should leave it at `-1`. Otherwise you won't be able to boot older macOSes.
-
-2.  Change `SecureBootModel` from `Disabled` to `j185f` (for iMac20,2) or `j185` (for iMac20,1). You should test these settings first booting from a USB flash drive since it can prevent the system from booting. Disable it for installing macOS Monterey if you have issues.
+1. Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000`.</br> **NOTE**: If you need GeForce Kepler Patcher, SIP needs to be disabled!
+2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
+3. Change `SecureBootModel` from `Disabled` to `j185f` (for iMac20,2) or `j185` (for iMac20,1). You should test these settings first booting from a USB flash drive since it can prevent the system from booting. Disable it for installing macOS Monterey if you have issues.
 
 	**IMPORTANT**
 
 	- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notfied about System Updates if `SecureBootModel` is set to `Disabled`. To workaround this, enable the following Kernel Patches in the config.plist:
-		- `Force IOGetVMMPresent`
-		- `Reroute kern.hv_vmm_present patch (1)`
-		- `Reroute kern.hv_vmm_present patch (2)`
+		- Force IOGetVMMPresent
+		- Reroute kern.hv_vmm_present patch (1)
+		- Reroute kern.hv_vmm_present patch (2)
 	- If you have to use Geforce Kepler Patcher to get your GeForce Kepler Card working, you have to set `SecureBootModel` to `Disabled`
 	- `SecureBootModel` is only applicable to macOS Catalina and newer. 
  	
