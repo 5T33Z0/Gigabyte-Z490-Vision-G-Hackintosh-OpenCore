@@ -5,12 +5,12 @@
 ## About
 On the Z490 Vision G, the I225-V Controller stopped working soon after the first betas of macOS Monterey were released. Various tricks were tried to fix it: assigning IP addresses and settings manually, dropping tables, changing BIOS and Quirks settigs and – the scariest trick of them all – replacing network kexts of previously working builds, which breaks the seal of the snapshot partition and could corrupt macOS, leaving it in an unbootable state. On top of that, this method only worked temporarily until the next beta was released. There's a lengthy thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
 
-Until now, the only reliable option was to just buy a third party network card supported by macOS 12. Fortunately, a new method to get the I225-V working again was discovered. But it requires flashing a modified EEPROM on it so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully.
+Until now, the only reliable option was to just buy a third party network card supported by macOS 12. Fortunately, a new method to get the I225-V working again was discovered. But it requires flashing a modified firmware onto the EEPROM  so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully.
 
 ## Technical Backgroud
-On the Intel I225-V Controller of this and possible other Gigabyre Boards, the Subsystem-ID and Subsystem Vendor-ID were not correct. The Vendor-ID (`8086` for Intel) was also used as Subsystem-Vendor-ID and the Subsystem-ID only contained of zeros instead of the correct value `E000`. 
+On the Intel I225-V Controller of this and possible other Gigabyre Boards, the Subsystem-ID and Subsystem Vendor-ID were incorrect. The Vendor-ID (`8086` for Intel) was also used as Subsystem-Vendor-ID and the Subsystem-ID only contained zeros instead of the correct value `E000`. 
 
-The following screenshot shows the file header of the I225MOD binary in hex code. The values highlighted in green are the ones that were changed to make the controller work again:
+Following shows the file header of the I225MOD binary in hex code. The values highlighted in green are the ones that were changed to make the controller work again:
 
 <img width="554" alt="I225VEE" src="https://user-images.githubusercontent.com/76865553/166050133-ff5ec23e-68af-439f-af07-81c32f7ebe76.png">
 
