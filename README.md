@@ -26,20 +26,20 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 ## Build Info
 
 <details>
-<summary><strong>Hardware Components</strong> (click to reveal content)</summary>
+<summary><strong>System Specs</strong> (click to reveal content)</summary>
 
 ### System Specs
 
-|     | Details                                                       |
+| Component | Details                                                       |
 | :------------:|-------------------------------------------------------------- |
 | **Board**     | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`            |
-| **CPU**       | Intel® Core i9 10850K (Comet Lake)                            |
+| **CPU**       | Intel Core i9 10850K (Comet Lake)                            |
 | **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT                    |
-| **iGPU**      | Intel® UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.|
-| **GPU**       | Saphire RX580 Nitro+  (4 GB)                                  |
-| **Audio**     | Realtek® ALC1220-VB (Layout-id: `28`)                         |
+| **iGPU**      | Intel UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.|
+| **GPU**       | Saphire RX580 Nitro+ (4 GB)                                  |
+| **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)                         |
 | **Ethernet**  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey|
-| **Ethernet** (PCI)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS)        |
+| **Ethernet** (PCI)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS)    |
 
 </details>
 <details>
@@ -77,17 +77,17 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 	* CSM: Disabled (to get rid of legacy code from `DSDT`)
 </details>
 <details>
-<summary><strong>OpenCore and Config Details</strong></summary>
+<summary><strong>OpenCore Details</strong></summary>
 	
 ### OpenCore Details
 
-* **System Definition:** `iMac20,2` (SMBIOS Infos need to be added with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig)).
-* **Compatible macOS**: 10.14 to 12.3+
-* **OpenCanopy Enabled**: `yes`
-* **Chime**: `no`
-* **FileVault**: `no`
+* **System Definition:** `iMac20,2`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig) for this.
+* **Compatible macOS**: 10.14 to 12.4+ (10.14 requires `iMac19,1` config)
+* **OpenCanopy**: enabled
+* **Chime**: no
+* **FileVault**: `Optional`
 * **SecureBootModel**: `Disabled`
-* **USB Ports Mapped:** `yes`. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist)
+* **USB Ports Mapped:** yes. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf)
 * **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur: `67080000`, Monterey: `EF0F0000`
 
 </details>
