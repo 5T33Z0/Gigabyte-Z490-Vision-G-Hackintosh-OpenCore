@@ -196,7 +196,7 @@ The following Kexts are disabled by default since I don't know which CPU, Hard D
 4. Getting the Intel(R) I225-V Ethernet Controller to work in…</br>
 	|macOS Version|Procedure|
 	|-------------|---------|
-	**macOS 12+**|Not working by default. You need to [flash a different EEPROM](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
+	**macOS 12+**|Not working by default. You need to [flash a custom firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
 	**macOS 11.4+**|	1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (add `#` in front of it)</br>2. Go to `Kernel` > `Patch` and disable `I225-V Patch` </br> 3. Add boot-arg `dk.e1000=0`</br> 4. Save and reboot</br></br>**NOTE**: This is the default configuration. If you are running Big Sur 11.4 and newer you don’t have to change anything here!
 	**macOS 10.15 to 11.3**|	1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel` > `Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot
 	**macOS 10.14 and older**|I225-V Controller is not supported. You need an additional PCI Card.</br>
