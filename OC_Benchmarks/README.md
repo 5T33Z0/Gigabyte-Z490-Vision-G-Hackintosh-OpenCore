@@ -49,4 +49,4 @@ As you can see, the Metal score increased by apporx. 580 points when using the "
 In contrast to the Metal, the OpenCL performance decreased when using the "tweaked" configuration.
 
 ### Conclusion
-As expected, Metal is the best option when it comes to GPU base computational tasks in macOS. Unless I made a mistake it's kind of weird, that the "stock" configuration performs better in OpenCL than the "tweaked" setup.
+As expected, Metal is the best option when it comes to GPU-based computational tasks in macOS. Unless I made a mistake, it's kind of weird that the "stock" configuration performs better in OpenCL than the "tweaked" one.
