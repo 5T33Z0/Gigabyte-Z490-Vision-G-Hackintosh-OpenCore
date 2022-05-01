@@ -51,7 +51,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 * **Tweaker [TAB]**
 	* Extreme Memory Profile (XMP): Enabled (if supported by RAM)
 	* Advanced CPU Settings
-		* VT-d: Enabled (disabled in config.plist anyway, so only relevant to Windows)
+		* VT-d: Enabled
 		* Intel Speed Shit: Enabled
 * **Settings [TAB]**
 	* Platform Power
@@ -72,7 +72,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 		* Network Stack Configuration
 			* Network Stack: Disabled
 * **Boot [TAB]**
-	* CFGLock: Disabled (Option only available on newer BIOS versions)
+	* CFGLock: Disabled (only available on newer BIOS versions)
 	* Windows 10 Features: Windows 10 
 	* CSM: Disabled (to get rid of legacy code from `DSDT`)
 </details>
@@ -149,7 +149,7 @@ My EFI Folder contains additional ACPI Tables besides the usual, which you won't
 
 Here's what the extra tables do:
 
-- **DMAR**: DMAR replacement table. It's basically the same as the original, but I removed two Reserved Memory Regions so my 3rd party LAN Card works in macOS Big Sur and Monterey. If you're planning to use the on-board Intel I225-V Ethernet Card only, then you don't need this. In this case you should also disable the drop rule for the original DMAR Table under `ACPI` &rarr; `Delete`.
+- **DMAR**: DMAR replacement table without Reserved Memory Regions so the I225-V LAN Card works in macOS Big Sur and Monterey.
 - **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 - **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* macOS. See the "Additional Files" folder for a detailed list of available and mapped ports.
 - **SSDT-DMAC** (optional): Adds [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tree of I/O Registry. I am uncertain if this does something or if it's just cosmetic. By default, it's disabled.
