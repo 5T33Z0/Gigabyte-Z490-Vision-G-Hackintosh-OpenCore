@@ -152,18 +152,17 @@ Here's what the extra tables do:
 - **DMAR**: DMAR replacement table without Reserved Memory Regions so the I225-V LAN Card works in macOS Big Sur and Monterey.
 - **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 - **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* macOS. See the "Additional Files" folder for a detailed list of available and mapped ports.
-- **SSDT-DMAC** (optional): Adds [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tree of I/O Registry. I am uncertain if this does something or if it's just cosmetic. By default, it's disabled.
-- **SDT-FWHD** (optional): Adds fake Firmware Hub Device (FWHD) to I/O Reg. Used by almost every intel-based Mac. Disabled.
-- **SSDT-PMC** (optional): Adds Apple-exclusice `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
-- **SSDT-XSPI** (optional): Adds Intel PCH SPI Controller to I/O Reg. Present on 10th gen Intel Macs (and some 9th Gen Mobile CPUs). I have to do some more research if this adds any functionality or not, so for the time being, I've disabled it as well.
+- **SSDT-DMAC** (optional): Adds a fake [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tree of I/O Registry. Disablked By default, since it's cosmetic.
+- **SDT-FWHD** (optional): Adds fake Firmware Hub Device (FWHD) to I/O Registry. Used by almost every intel-based Mac. Disabled by default since it's comsetic.
+- **SSDT-PMC** (optional): Adds fake Apple-exclusice `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
+- **SSDT-XSPI** (optional): Adds Intel PCH SPI Controller to I/O Registry. Present on 10th gen Intel Macs (and some 9th Gen Mobile CPUs). I have to do some more research if this adds any functionality or not. For the time being, I've disabled it as well.
 
 **NOTE**: More info about additional ACPI Tables can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 ### About Kexts
-
 The following Kexts are disabled by default since I don't know which CPU, Hard Disk and SMBIOS you will be using:
 
-- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace it and re-enable the kext as well as `CPUFriend.kext`)
+- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace the existing one and enable both
 - `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 - `FeatureUnlock`: see comments for details
 - `RestrictEvents`: see comments for details
@@ -174,7 +173,7 @@ The following Kexts are disabled by default since I don't know which CPU, Hard D
 <summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
-If you already have macOS installed but want to perform a clean install, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). It's a hassle-free app than can download macOS High Sierra to macOS Monterey. It also can create a USB Installer for you. And if you create multiple HFS partitions in the correct sizes on a big enough USB flash drive, you can use it to create a multi macOS USB Installer as well. 
+If macOS installed already but want to perform a clean install, you can use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) to download macOS High Sierra to macOS Monterey and let it create a USB Installer for you. 
 
 If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer)
 </details>
