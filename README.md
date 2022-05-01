@@ -157,7 +157,7 @@ Here's what the extra tables do:
 - **SSDT-PMC** (optional): Adds fake Apple-exclusice `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
 - **SSDT-XSPI** (optional): Adds Intel PCH SPI Controller to I/O Registry. Present on 10th gen Intel Macs (and some 9th Gen Mobile CPUs). I have to do some more research if this adds any functionality or not. For the time being, I've disabled it as well.
 
-**NOTE**: More info about additional ACPI Tables can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
+**NOTE**: More info about additional ACPI Tables can be found on my [OC Little Repo](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 ### About Kexts
 The following Kexts are disabled by default since I don't know which CPU, Hard Disk and SMBIOS you will be using:
