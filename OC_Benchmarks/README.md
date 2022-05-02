@@ -29,7 +29,7 @@ Ut's weird that the recommended SMBIOS which supposedly should work best for thi
 **SMBIOS**: iMac20,2</br>
 **OpenCore**: 0.8.1
 
-HI made some GPU benchmark tests for Metal and OpenCL performance with two different configurations: "stock" and "tweaked". "Stock" uses the card as is, while "tweaked" makes use of [AMD Radeon Tweaks](https://www.tonymacx86.com/threads/amd-radeon-performance-enhanced-ssdt.296555/) by mattiestonnie.
+I did some GPU benchmark tests for Metal and OpenCL performance with two different configurations: "stock" and "tweaked". "Stock" uses the card as is, while "tweaked" makes use of [AMD Radeon Tweaks](https://www.tonymacx86.com/threads/amd-radeon-performance-enhanced-ssdt.296555/) by mattiestonnie.
 
 ### Results using `iMac20,2` SMBIOS
 #### Metal Scores
