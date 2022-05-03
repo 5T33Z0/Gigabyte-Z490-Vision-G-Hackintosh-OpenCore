@@ -158,8 +158,8 @@ Here's what the extra tables do:
 - **SDT-FWHD** (optional): Adds fake Firmware Hub Device (FWHD) to I/O Registry. Used by almost every intel-based Mac. Disabled by default since it's comsetic.
 - **SSDT-PMC** (optional): Adds fake Apple-exclusice `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
 - [**SDT-RX580**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/AMD_Radeon_Tweaks#method-2-using-amd-radeon-patches-by-mattystonie) (disabled) &rarr; Improves Metal Performance on Radeon RX580 cards. See the test [results](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/tree/main/OC_Benchmarks#gpu-computing-benchmarks)
-- **SSDT-XSPI** (optional): Adds Intel PCH SPI Controller to I/O Registry. Present on 10th gen Intel Macs (and some 9th Gen Mobile CPUs). I have to do some more research if this adds any functionality or not. For the time being, I've disabled it as well.
-
+- **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
+ 
 **NOTE**: More info about additional ACPI Tables can be found on my [OC Little Repo](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 ### Disabled Kexts
