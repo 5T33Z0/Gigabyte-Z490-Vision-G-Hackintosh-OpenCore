@@ -110,6 +110,7 @@ EFI
     │   ├── SSDT-PLUG.aml
     │   ├── SSDT-PMC.aml
     │   ├── SSDT-PORTS.aml
+    │   ├── SSDT-RX580.aml
     │   ├── SSDT-SBUS-MCHC.aml
     │   └── SSDT-XSPI.aml
     ├── Drivers
@@ -117,6 +118,7 @@ EFI
     │   ├── OpenCanopy.efi
     │   └── OpenRuntime.efi
     ├── Kexts
+    │   ├── AGPMInjector.kext
     │   ├── AppleALC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
