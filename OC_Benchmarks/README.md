@@ -43,7 +43,7 @@ As you can see, the Metal score increased by apporx. 580 points when using the "
 #### Open CL Scores
 1. **RX 580 OpenCL**, stock:
 	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/RX580_OpenCL_notweaks.png)
-2. **RX 580 OpenCL**, tweaked
+2. **RX 580 OpenCL**, tweaked:
 	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/RX580_OpenCL_Tweaks.png)
 
 ### Results using `iMacPro1,1` SMBIOS
@@ -57,21 +57,37 @@ As you can see, the Metal score increased by apporx. 580 points when using the "
 #### Open CL Scores
 1. **RX 580 OpenCL**, stock:
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMacPro1%2C1_OpenCL_stock.png)
-2. **RX 580 OpenCL**, tweaked
+2. **RX 580 OpenCL**, tweaked:
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMacPro1%2C1_OpenCL_tweaked.png)
+
+### Results using `MacPro7,1` SMBIOS
+#### Metal Scores
+1. **RX 580 Metal**, stock:
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_Metal_stock.png)
+2. **RX 580 Metal**, tweaked:
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_Metal_Tweaked.png)
+
+#### Open CL Scores
+1. **RX 580 OpenCL**, stock:
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_OpenCL_stock.png)
+2. **RX 580 OpenCL**, tweaked:
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_OpenCL_Tweaked.png)
 
 **All Results compared**:
 
-Method  | Score (stock) | Score (tweaked)
+Method             | Score (stock) | Score (tweaked)
 -------------------|---------------|----------------
-Metal (iMac20,2)   | 50107         | **50683**
+Metal (MacPro7,1)  | 48394         | **51323**
+Metal (iMac20,2)   | 50107         | 50683
 Metal (iMacPro1,1) | 48230         | 50032
+||
+OpenCL (MacPro7,1) | 43304         | **46056**
+OpenCL (iMacPro1,1)| 45230         | 44929
 OpenCL (iMac20,2)  | 44762         | 44566
-OpenCL (iMacPro1,1)| **45230**     | 44929
 
 In contrast to the Metal, the OpenCL performance decreased when using the "tweaked" configuration.
 
 ### Conclusions
 1. As expected, Metal is the best option when it comes to GPU-based computing tasks in macOS. 
-2. With OpenCL, the "stock" configurations out-perform the "tweaked" versions which makes use of "SSDT-RX580.aml".
-3. Overall, the machines achieves higher scores in Metal using the `iMac20,2` SMBIOS, but the OpenCL performance is slightly better when using `iMacPro1,1`. But maybe it behaves different in 3D Benchmark test.
+2. With OpenCL, MacPro7,1 "tweaked" comes out on top, hich makes use of "SSDT-RX580.aml", while for iMac20,2 and iMacPro1,1 the "stock" version performs better.
+3. Overall, the GPU performs best in Metal and OpenCL when using the "MacPro7,1 tweaked" configuration. But since CPU power Management is not as efficient when using MacPro7,1, I think `iMac20,2` tweaked is still the most suitable SMBIOS. But maybe it behaves different in 3D Benchmark test.
