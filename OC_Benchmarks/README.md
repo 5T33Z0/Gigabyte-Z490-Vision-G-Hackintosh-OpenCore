@@ -73,5 +73,5 @@ In contrast to the Metal, the OpenCL performance decreased when using the "tweak
 
 ### Conclusions
 1. As expected, Metal is the best option when it comes to GPU-based computing tasks in macOS. 
-2. In OpenCLThe, the "stock" configuration out-performs the "tweaked" version which makes use of "SSDT-RX580.aml".
+2. With OpenCL, the "stock" configurations out-perform the "tweaked" versions which makes use of "SSDT-RX580.aml".
 3. Overall, the machines achieves higher scores in Metal using the `iMac20,2` SMBIOS, but the OpenCL performance is slightly better when using `iMacPro1,1`. But maybe it behaves different in 3D Benchmark test.
