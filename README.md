@@ -81,7 +81,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 	
 ### OpenCore Details
 
-* **System Definition:** `iMac20,2`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig) for this.
+* **System Definition:** `iMac20,2`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this.
 * **macOS Compatibility**: 10.14 up to 12.4+ (10.14 requires `iMac19,1` config)
 * **OpenCanopy**: enabled
 * **Chime**: no
