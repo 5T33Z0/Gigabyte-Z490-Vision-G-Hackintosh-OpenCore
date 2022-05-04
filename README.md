@@ -192,7 +192,7 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 		- For **High Sierra**: `FF030000` (0x3FF)
     	- For **Mojave/Catalina**: `FF070000` (0x7FF)
     	- For **Big Sur**: `67080000` (0x867)
-    	- For **Monterey**: `EF0F0000` (0xFEF)</br></br>
+    	- For **Monterey**: `EF0F0000` (0xFEF)</br>
 		**NOTE**: Using `EF0F0000` disables incremental system updates on macOS 11 and newer. So everytime an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI (hit spacebar to reveal hidden entries) or use `EF0F0000` instead.
 	- AMD GPUs may require additional `boot-args`. Check [WhateverGreen's](https://github.com/acidanthera/WhateverGreen#boot-arguments) documentation for details.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
