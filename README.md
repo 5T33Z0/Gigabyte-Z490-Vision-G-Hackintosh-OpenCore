@@ -162,7 +162,7 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 - `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own DataProvider kext using [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend), replace the existing one and enable both
 - `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 - `FeatureUnlock`: see comments for details
-- `RestrictEvents`: see comments for details
+- `RestrictEvents`: Only required when using `MacPro7,1` SMBIOS. Needs `revpatch=auto` boot-arg to disable Warning about unpopulated RAM slots.
 </details>
 
 ## Installation
