@@ -88,7 +88,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 * **FileVault**: `Optional`
 * **SIP:** `Disabled`
 * **SecureBootModel**: `Disabled`
-* **USB Ports Mapped:** Yes, via ACPI. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf)
+* **USB Ports Mapped:** Yes, via ACPI. Details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features#readme)
 
 </details>
 <details>
