@@ -82,13 +82,13 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 ### OpenCore Details
 
 * **System Definition:** `iMac20,2`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig) for this.
-* **Compatible macOS**: 10.14 to 12.4+ (10.14 requires `iMac19,1` config)
+* **macOS Compatibility**: 10.14 up to 12.4+ (10.14 requires `iMac19,1` config)
 * **OpenCanopy**: enabled
 * **Chime**: no
 * **FileVault**: `Optional`
+* **SIP:** `Disabled`
 * **SecureBootModel**: `Disabled`
-* **USB Ports Mapped:** yes. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf)
-* **csr-active-config:** macOS Mojave/Catalina: `FF070000`, Big Sur: `67080000`, Monterey: `EF0F0000`
+* **USB Ports Mapped:** Yes, via ACPI. Details [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf)
 
 </details>
 <details>
