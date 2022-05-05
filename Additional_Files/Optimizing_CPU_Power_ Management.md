@@ -23,7 +23,7 @@ If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName
 4. Next, adjust the `Energy Performance Preference (EPP)`:</br>
 	![EPP](https://user-images.githubusercontent.com/76865553/151773160-38aa587d-93e7-414d-9fbe-50c0eee1c437.png)</br>
 This This describes how fast the CPUS scales from the lowest to the highest Turbo frequency, which has an impact on the overall power consumption. I use `00`.
-5. Next, you have to specify the `Performamce Bias Range`, which is used to set the general bias of the system between performance and energy efficiency. The scale ranges from `00` (maximum performance) to `15` (maximum power saving). Since this is more relevant for notebooks than an i9 workstation, I am using `01`:</br>
+5. Next, you have to specify the `Performance Bias Range`, which is used to set the general bias of the system between performance and energy efficiency. The scale ranges from `00` (maximum performance) to `15` (maximum power saving). Since this is more relevant for notebooks than an i9 workstation, I am using `01`:</br>
 	![BIAS](https://user-images.githubusercontent.com/76865553/151773244-f1bd7d7c-182e-468d-86ec-5702283dad13.png)</br>
 6. Next, you can apply Additional Energy Savings Options from the MacBook Air SMBIOS (optional):</br>![mba](https://user-images.githubusercontent.com/76865553/151773342-8ac88574-9926-4efb-af9d-7e4599f57e40.png)</br>Make your choice and hit `Enter`
 7. Finally, the `CPUFrienDataProver.kext` and additional Files are created:</br>![files](https://user-images.githubusercontent.com/76865553/151773395-212d209b-0e6b-43ca-b105-ccf0172f90e7.png)
