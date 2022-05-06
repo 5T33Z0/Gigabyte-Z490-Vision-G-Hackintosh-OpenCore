@@ -78,8 +78,9 @@ As you can see, the Metal score increased by apporx. 580 points when using the "
 Method             |macOS      |  Score (stock) OC/Clover | Score (tweaked) (OC/Clover)
 -------------------|:---------:|--------------------------|----------------------------
 Metal (iMac20,2)   |12.4 beta 4|                          | [50438](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/macOS12.4_Metal_Tweaked_OpenCore.png) / **[51387](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/macOS12.4_Metal_Tweaked_Clover.png)**
+||
 Metal (MacPro7,1)  |11.6.7     | 48394                    | 51323
-Metal (iMac20,2)   |"          | 50107                    | 50683
+Metal (iMac20,2)   |"          | 50107                    | 50683 / **[51211](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMac20.2_Metal_Tweaked_Clover.png)**
 Metal (iMacPro1,1) |"          | 48230                    | 50032
 ||
 OpenCL (MacPro7,1) |11.6.7     | 43304                    | **46056**
