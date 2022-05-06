@@ -75,16 +75,16 @@ As you can see, the Metal score increased by apporx. 580 points when using the "
 
 **All Results compared**:
 
-Method             |macOS|  Score (stock) OC/Clover | Score (tweaked) (OC/Clover)
--------------------|:-----:|----------|---------------|----------------
-Metal (iMac20,2)   |12.4 beta 4|| 50438 / **51387**
-Metal (MacPro7,1)  |11.6.7| 48394         | 51323
-Metal (iMac20,2)   |"| 50107         | 50683
-Metal (iMacPro1,1) |"| 48230         | 50032
+Method             |macOS.     |  Score (stock) OC/Clover | Score (tweaked) (OC/Clover)
+-------------------|:---------:|--------------------------|----------------------------
+Metal (iMac20,2)   |12.4 beta 4|                          | 50438 / **51387**
+Metal (MacPro7,1)  |11.6.7     | 48394                    | 51323
+Metal (iMac20,2)   |"          | 50107                    | 50683
+Metal (iMacPro1,1) |"          | 48230                    | 50032
 ||
-OpenCL (MacPro7,1) |11.6.7| 43304         | **46056**
-OpenCL (iMacPro1,1)|"| 45230         | 44929
-OpenCL (iMac20,2)  |"| 44762         | 44566
+OpenCL (MacPro7,1) |11.6.7     | 43304                    | **46056**
+OpenCL (iMacPro1,1)|"          | 45230                    | 44929
+OpenCL (iMac20,2)  |"          | 44762                    | 44566
 
 In contrast to the Metal, the OpenCL performance decreased when using the "tweaked" configuration.
 
