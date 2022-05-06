@@ -7,13 +7,13 @@
 
 ### Results
 #### iMac20,2 (recommended for this CPU)
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMac20%2C2.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMac20%2C2.png)
 
 #### iMacPro1,1
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMacPro1%2C1.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMacPro1%2C1.png)
 
 #### iMacPro19,1 (with emulated i9-9900K)
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMac19%2C1_with_emuated_i9-9900K.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMac19%2C1_with_emuated_i9-9900K.png)
 
 ### Summary and Conclusion
 1. **iMac20,2** is the slowest of the 3 tested SMBIOS configurations
@@ -50,28 +50,28 @@ As you can see, the Metal score increased by apporx. 580 points when using the "
 
 #### Metal Scores
 1. **RX 580 Metal**, stock:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMacPro1%2C1_Metal_stock.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMacPro1%2C1_Metal_stock.png)
 2. **RX 580 Metal**, tweaked:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMacPro1%2C1_Metal_tweaked.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMacPro1%2C1_Metal_tweaked.png)
 
 #### Open CL Scores
 1. **RX 580 OpenCL**, stock:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMacPro1%2C1_OpenCL_stock.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMacPro1%2C1_OpenCL_stock.png)
 2. **RX 580 OpenCL**, tweaked:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/iMacPro1%2C1_OpenCL_tweaked.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/iMacPro1%2C1_OpenCL_tweaked.png)
 
 ### Results using `MacPro7,1` SMBIOS
 #### Metal Scores
 1. **RX 580 Metal**, stock:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_Metal_stock.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/MacPro7%2C1_Metal_stock.png)
 2. **RX 580 Metal**, tweaked:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_Metal_Tweaked.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/MacPro7%2C1_Metal_Tweaked.png)
 
 #### Open CL Scores
 1. **RX 580 OpenCL**, stock:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_OpenCL_stock.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/MacPro7%2C1_OpenCL_stock.png)
 2. **RX 580 OpenCL**, tweaked:
-![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/MacPro7%2C1_OpenCL_Tweaked.png)
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/MacPro7%2C1_OpenCL_Tweaked.png)
 
 **All Results compared**:
 
