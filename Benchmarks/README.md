@@ -34,17 +34,17 @@ I did some GPU benchmark tests for Metal and OpenCL performance with two differe
 ### Results using `iMac20,2` SMBIOS
 #### Metal Scores
 1. **RX 580 Metal**, stock:
-	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/RX580_Metal_notweaks.png)
+	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/RX580_Metal_notweaks.png)
 2. **RX 580 Metal**, tweaked:
-	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/RX580_Metal_Tweaks.png)
+	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/RX580_Metal_Tweaks.png)
 
 As you can see, the Metal score increased by apporx. 580 points when using the "tweaked" configuration.
 
 #### Open CL Scores
 1. **RX 580 OpenCL**, stock:
-	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/RX580_OpenCL_notweaks.png)
+	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/RX580_OpenCL_notweaks.png)
 2. **RX 580 OpenCL**, tweaked:
-	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/OC_Benchmarks/RX580_OpenCL_Tweaks.png)
+	![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Benchmarks/RX580_OpenCL_Tweaks.png)
 
 ### Results using `iMacPro1,1` SMBIOS
 
