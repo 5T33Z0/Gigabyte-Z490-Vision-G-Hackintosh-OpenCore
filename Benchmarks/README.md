@@ -75,15 +75,16 @@ As you can see, the Metal score increased by apporx. 580 points when using the "
 
 **All Results compared**:
 
-Method             | Score (stock) | Score (tweaked)
--------------------|---------------|----------------
-Metal (MacPro7,1)  | 48394         | **51323**
-Metal (iMac20,2)   | 50107         | 50683
-Metal (iMacPro1,1) | 48230         | 50032
+Method             |macOS|  Score (stock) OC/Clover | Score (tweaked) (OC/Clover)
+-------------------|:-----:|----------|---------------|----------------
+Metal (iMac20,2)   |12.4 beta 4|| 50438 / **51387**
+Metal (MacPro7,1)  |11.6.7| 48394         | 51323
+Metal (iMac20,2)   |"| 50107         | 50683
+Metal (iMacPro1,1) |"| 48230         | 50032
 ||
-OpenCL (MacPro7,1) | 43304         | **46056**
-OpenCL (iMacPro1,1)| 45230         | 44929
-OpenCL (iMac20,2)  | 44762         | 44566
+OpenCL (MacPro7,1) |11.6.7| 43304         | **46056**
+OpenCL (iMacPro1,1)|"| 45230         | 44929
+OpenCL (iMac20,2)  |"| 44762         | 44566
 
 In contrast to the Metal, the OpenCL performance decreased when using the "tweaked" configuration.
 
@@ -91,3 +92,4 @@ In contrast to the Metal, the OpenCL performance decreased when using the "tweak
 1. As expected, Metal is the best option when it comes to GPU-based computing tasks in macOS. 
 2. With OpenCL, MacPro7,1 "tweaked" comes out on top, hich makes use of "SSDT-RX580.aml", while for iMac20,2 and iMacPro1,1 the "stock" version performs better.
 3. Overall, the GPU performs best in Metal and OpenCL when using the "MacPro7,1 tweaked" configuration. But since CPU power Management is not as efficient when using MacPro7,1, I think `iMac20,2` tweaked is still the most suitable SMBIOS. But maybe it behaves different in 3D Benchmark test.
+4. As far as macOS Monterey is concerned, Clover (r5146) achieves the highest Metal score overall and seems to have a clear advantage over OpenCore.
