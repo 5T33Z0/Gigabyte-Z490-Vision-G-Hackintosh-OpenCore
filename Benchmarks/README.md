@@ -24,6 +24,7 @@ It's weird that the recommended SMBIOS which supposedly should work best for thi
 **Geekbench**: 5.4.4</br>
 **macOS**: macOS 11.6.5 (Big Sur)</br>
 **OpenCore**: 0.8.1
+**Clover: UEFI r5146
 
 I did some GPU benchmark tests for Metal and OpenCL performance with two different configurations: "stock" and "tweaked". "Stock" uses the card as is, while "tweaked" makes use of [AMD Radeon Tweaks](https://www.tonymacx86.com/threads/amd-radeon-performance-enhanced-ssdt.296555/) by mattiestonnie.
 
