@@ -27,7 +27,7 @@ Following shows the file header of the I225MOD binary in hex code. The values hi
 	- Unselect Kernel > Quirks > `DisableIOMapper`
 	- Drop `DMAR`table (already implemented in my OC/Clover configs)
 	- Save your `config.plist`
-- Download `I225-Vmod.zip` from [here](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/?do=findComment&comment=2779420) and extract it. (Ask the author of the post for the file)
+- Download `I225-Vmod.zip` from [here](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/?do=findComment&comment=2779420) and extract it. If the file is unavailable, ask the author of the post or send me a PM.
 - Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
 - Restart the system
 
