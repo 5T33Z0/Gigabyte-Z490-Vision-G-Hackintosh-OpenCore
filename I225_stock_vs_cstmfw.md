@@ -1,4 +1,4 @@
-## Conditions for Intel(R) I225-V and 3rd Party WiFi/LAN Cards to work
+## Conditions for Intel I225-V and 3rd Party WiFi/LAN Cards to work
 
 ### Settings for Intel I225, stock firmware:
 
@@ -10,7 +10,7 @@ macOS            |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V /
 10.11.4 to 12.4+ | ON            | NO        | YES / YES              | **NO / YES**
 
 
-#### Procedure for enabling the Intel(R) I225-V Ethernet Controller (stock firmware)
+#### Procedure for enabling the Intel I225-V Ethernet Controller (stock firmware)
 
 |macOS Version|Procedure|
 |-------------|---------|
@@ -21,7 +21,7 @@ macOS            |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V /
 	
 **NOTE**: You could just leave the Device Property, Kernel Patch (since it will only apply up to Kernel 20.4 anyway) and boot-arg enabled for macOS Catalina, Big Sur/Monterey without causing issues. But I think it's cleaner to just enable what's necessary for each OS, unless you have a multiboot system with Catalina and Big Sur/Monterey installed. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
 
-### Settings for Intel I225, custom firmware:
+### Settings for Intel I225-V, custom firmware:
 
 macOS            |DisableIoMapper|DMAR (OEM)|DMAR (dropped / replaced)| I225-V / 3rd Party working|
 :---------------:|:-------------:|:--------:|:-----------------------:|:-------------------------:
