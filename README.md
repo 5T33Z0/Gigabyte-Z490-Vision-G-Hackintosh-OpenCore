@@ -181,23 +181,17 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
 3. Open `config.plist` with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) and adjust the following parameters according to your hardware and software configuration:
-	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):</br></br>
+	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):</br>
 		- For **Monterey**: `EF0F0000` (0xFEF)</br>
 		- For **Big Sur**: `67080000` (0x867)
 		- For **Mojave/Catalina**: `FF070000` (0x7FF)
 		- For **High Sierra**: `FF030000` (0x3FF)</br></br>
-	**IMPORTANT**: Using `EF0F0000` also disables incremental system updates on macOS 11 and newer. So everytime an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br></br>
+	**IMPORTANT**: Using `EF0F0000` also disables incremental system updates on macOS 11 and newer. So everytime an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
 	- AMD GPUs may require additional `boot-args`. Check [WhateverGreen's](https://github.com/acidanthera/WhateverGreen#boot-arguments) documentation for details.
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
 		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put `##` in front of it)
 		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
-4. Getting the Intel(R) I225-V Ethernet Controller to work in…</br>
-	|macOS Version|Procedure|
-	|-------------|---------|
-	**macOS 12+**|Not working by default. You need to [flash a custom firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-	**macOS 11.4+**|	1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (add `#` in front of it)</br>2. Go to `Kernel` > `Patch` and disable `I225-V Patch` </br> 3. Add boot-arg `dk.e1000=0`</br> 4. Save and reboot</br></br>**NOTE**: This is the default configuration. If you are running Big Sur 11.4 and newer you don’t have to change anything here!
-	**macOS 10.15 to 11.3**|	1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel` > `Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot
-	**macOS 10.14 and older**|I225-V Controller is not supported. You need an additional PCI Card.</br>
+4. Getting the Intel(R) I225-V Ethernet Controller to work: read [this](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme)
 5. Generate SMBIOS data for [iMac20,1](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,1) or [iMac20,2](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,2).
 6. Save the `config.plist`
 6. Copy the EFI Folder to a FAT32 formatted USB Stick
