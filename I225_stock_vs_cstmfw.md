@@ -5,7 +5,7 @@
 macOS            |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V / 3rd Party working|
 :---------------:|:-------------:|:---------:|:----------------------:|:-------------------------:|
 10.15 to 11.3    | ON            | YES       | NO / NO                | YES / YES
-10.11.4 to 12.4+ | OFF           | NO        | YES / YS               | YES / YES
+10.11.4 to 12.4+ | OFF           | NO        | YES / YES               | YES / YES
 10.11.4 to 12.4+ | OFF           | NO        | YES / YES              | **NO / NO**
 10.11.4 to 12.4+ | ON            | NO        | YES / YES              | **NO / YES**
 
