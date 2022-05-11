@@ -39,6 +39,6 @@ macOS            |DisableIoMapper|DMAR (OEM)|DMAR (dropped / replaced)| I225-V /
 
 ### I225 custom Firmware and macOS Catalina
 
-Once you flash the custom firmware, the I225-V does nolonger work in macOS Catalina. macOS doesn't have drivers for the 2,5 Gbit I225-V controller. The trick was to use a combination of Device Properties and a Kernel Patch to make it look like 1 gigabit Intel I219-LM to macOS Catalina, so it would use the I219 driver instead. This works fine when using the stock firmware but with the custom one it doesnt.
+Once you flash the custom firmware, the I225-V does no longer works in macOS Catalina. macOS doesn't have drivers for the 2,5 Gbit I225-V controller. The trick was to use a combination of Device Properties and a Kernel Patch to make it look like 1 gigabit Intel I219-LM to macOS Catalina, so it would use the I219 driver instead. This works fine when using the stock firmware but with the custom one it doesnt.
 
 Maybe there is a way, but I couldn't figure it out yet. As soon as you activate the rquired DeviceProperties to make macOS Catalina detect it as an 1 gigabit Intel I219-LM, the system crashes on boot.
