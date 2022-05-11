@@ -181,7 +181,7 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
 3. Open `config.plist` with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) and adjust the following parameters according to your hardware and software configuration:
-	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):</br>
+	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):</br></br>
 		- For **Monterey**: `EF0F0000` (0xFEF)</br>
 		- For **Big Sur**: `67080000` (0x867)
 		- For **Mojave/Catalina**: `FF070000` (0x7FF)
