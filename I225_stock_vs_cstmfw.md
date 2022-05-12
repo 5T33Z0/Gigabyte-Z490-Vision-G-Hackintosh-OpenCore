@@ -1,4 +1,7 @@
 ## Conditions for Intel I225-V and 3rd Party WiFi/LAN Cards to work
+I noticed that some users have issues with getting 3rd party WiFi and Ethernet cards to work if they dropped the DMAR table and replaced it with a modified one with removed memory regions. The DMAR table of the Z490 Vision G contains 2 reserved memory regions – on is for the XCHI Controller. 
+
+I've read in support thread for the Aniqua 10 Gigabit Card that it worked when the memory region for the XHCI controller (PCI Path : 14,00) remained in the DMAR table. So I did some test with 3 tables: no memory regions included, and 2 more with either one or the other memory region included. It turns out: if you've flashed the custom firmware for the Intel I225-V Controller it doesn't matter if you drop, replace or keep the stock DMAR table. On the stock firmware, it's a different story. Below you find the results of my tests.
 
 ### Settings for Intel I225, stock firmware:
 
@@ -8,7 +11,6 @@ macOS            |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V /
 10.11.4 to 12.4+ | OFF           | NO        | YES / YES               | YES / YES
 10.11.4 to 12.4+ | OFF           | NO        | YES / YES              | **NO / NO**
 10.11.4 to 12.4+ | ON            | NO        | YES / YES              | **NO / YES**
-
 
 #### Procedure for enabling the Intel I225-V Ethernet Controller (stock firmware)
 
