@@ -7,6 +7,7 @@ AppleALC kext for the Z490 Vision G Board using Realtek ALC 1220. It only includ
 
 ### How to
 
+- Download and extract the .zip
 - Replace existing AppleALC kext in EFI folder
 - Change Layout-ID in boot-args or Device Properties to `17`   
 
