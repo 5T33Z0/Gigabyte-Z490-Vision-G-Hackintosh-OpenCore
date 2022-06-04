@@ -13,4 +13,5 @@ AppleALC kext for the Z490 Vision G Board using Realtek ALC 1220. It only includ
 
 ### Notes
 
-- If you update AppleALC with OCAT or similar, this kext will be overw
+- If you update AppleALC with OCAT or similar, this kext will be overwritten and you're back to stock.
+- Don't use this kext with any other Layout-Id than 17 – it's won't work!
