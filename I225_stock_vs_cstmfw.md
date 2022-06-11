@@ -18,7 +18,7 @@ macOS            |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V /
 |-------------|---------|
 **macOS 12.0.1+**| You need to [flash a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) to make it work again.
 **macOS 11.4+**|	1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (add `#` in front of it)</br>2. Go to `Kernel` > `Patch` and disable `I225-V Patch` </br> 3. Add boot-arg `dk.e1000=0`</br> 4. Save and reboot</br></br>**NOTE**: This is the default configuration. If you are running Big Sur 11.4 and newer you don’t have to change anything here!
-**macOS 10.15 to 11.3**|1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel/Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot</br></br>**IMPORTANT**: Once you flash the custom firmware, the I225 no longer works in macOS Catalina! Once enable the DeviceProperty, the system crashes on boot.
+**macOS 10.15 to 11.3**|1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel/Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot.
 **macOS 10.14 and older**| Not compatible. You need a third party Ethernet Card.
 	
 **NOTE**: You could just leave the Device Property, Kernel Patch (since it will only apply up to Kernel 20.4 anyway) and boot-arg enabled for macOS Catalina, Big Sur/Monterey without causing issues. But I think it's cleaner to just enable what's necessary for each OS, unless you have a multiboot system with Catalina and Big Sur/Monterey installed. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
