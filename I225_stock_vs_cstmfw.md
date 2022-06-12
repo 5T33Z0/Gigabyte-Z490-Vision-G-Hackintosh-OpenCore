@@ -16,20 +16,19 @@ I've read in a support thread for the Aniqua 10 Gigabit Card that it worked when
 	
 #### Config settings for Intel I225-V, custom firmware:
 
-macOS            |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)|I225-V / 3rd Party working|
-:----------------|:---:|:--------------:|:---------:|:----------------------:|:--------------------------:
-11.4 to 13.0  | **ON** |**OFF**   | **YES**  | **NO / NO**             | **YES / YES**
-11.4 to 12.4+ | ON     | OFF      | NO       | YES / YES               | YES/ NO
-11.4 to 12.4+ | OFF/ON |ON        | NO       | YES / YES               | NO / YES
-10.15 to 11.3 | OFF/ON |ON        | YES      | NO / NO                 | **YES / YES**
+macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd Party working|
+:-------------|:------:|:--------------:|:---------:|:----------------------:|:--------------------------:
+11.4 to 13.0  | **ON** |**OFF**         | **YES**   | **NO / NO**            | **YES / YES**
+11.4 to 12.5  | ON     | OFF            | NO        | YES / YES              | YES/ NO
+11.4 to 12.5  | OFF/ON |ON              | NO        | YES / YES              | NO / YES
+10.15 to 11.3 | OFF/ON |ON              | YES       | NO / NO                | **YES / YES**
 
 #### Config settings for Intel I225, stock firmware:
 
 macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
--------------:|----|:-------------:|:--------:|:---------------------:|:-----------------:
-11.4 to 12.5+ | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
-11.4 to 12.5+ | OFF/ON |ON         | NO       | YES / YES             | NO / YES
-11.4 to 12.5+ | ON |OFF            | NO       | YES / YES             | YES/ NO
+:------------|----|:-------------:|:--------:|:---------------------:|:-----------------:
+12.5+ | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
+11.4 to 11.6.7 | ON | ON            | NO       | YES / YES             | [YES / YES](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/19#issuecomment-1153315826)
 10.15 to 11.3 | OFF/ON|OFF/ON      | YES      | NO / NO               | **YES / NO**
 
 ### NOTES
