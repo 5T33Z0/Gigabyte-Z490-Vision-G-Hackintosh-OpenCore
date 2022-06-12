@@ -18,18 +18,18 @@ I've read in a support thread for the Aniqua 10 Gigabit Card that it worked when
 
 macOS            |DisableIoMapper|DMAR (OEM)|DMAR (dropped / replaced)| I225-V / 3rd Party working|
 :---------------:|:-------------:|:--------:|:-----------------------:|:-------------------------:
-10.11.4 to 12.5+ | **OFF**       | **YES**  | **NO / NO**             | **YES / YES**
-10.11.4 to 12.5+ | ON            | NO       | YES / YES               | NO / YES
-10.11.4 to 12.5+ | OFF           | NO       | YES / YES               | YES/ NO
-10.15 to 11.3    | OFF/ON (doesn't matter)  | YES      | NO / NO                 | **NO / NO**
+11.4 to 12.5+    | **OFF**       | **YES**  | **NO / NO**             | **YES / YES**
+11.4 to 12.5+    | ON            | NO       | YES / YES               | NO / YES
+11.4 to 12.5+    | OFF           | NO       | YES / YES               | YES/ NO
+10.15 to 11.3    | OFF/ON (doesn't matter)  | YES      | NO / NO      | **NO / NO**
 
 #### Config settings for Intel I225, stock firmware:
 
-macOS   |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V / 3rd Party working|
-------|:-------------:|:---------:|:----------------------:|:-------------------------:|
-10.11.4 to 12.4+ | ON            | NO        | YES / YES              | **NO / YES**
-10.11.4 to 12.4+ | OFF           | NO        | YES / YES              | **NO / NO**
-10.11.4 to 12.4+ | OFF           | NO        | YES / YES              | YES / YES
+macOS            |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V / 3rd Party working|
+-----------------|:-------------:|:---------:|:----------------------:|:-------------------------:|
+11.4 to 12.4+    | ON            | NO        | YES / YES              | **NO / YES**
+11.4 to 12.4+    | OFF           | NO        | YES / YES              | **NO / NO**
+11.4 to 12.4+    | OFF           | NO        | YES / YES              | YES / YES
 10.15 to 11.3    | ON            | YES       | NO / NO                | YES / YES
 
 ### NOTES
