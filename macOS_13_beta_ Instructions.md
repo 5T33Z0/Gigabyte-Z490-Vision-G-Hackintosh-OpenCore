@@ -10,7 +10,7 @@
 		- `Reroute kern.hv_vmm_present patch (1)`
 		- `Reroute kern.hv_vmm_present patch (2)`
 		- `Disable Library Validation Enforcement`
-	- Disable `AvoidRuntimeDefrag` Kernel Quirk &rarr; Otherwise the Installer won't start
+	- ~~Disable `AvoidRuntimeDefrag` Kernel Quirk &rarr; Otherwise the Installer won't start~~. Latest OpenCore release fixes the `AvoidRuntimeDefrag` Quirk, so enable it.
 	- Add `-lilubeta` and `-v` to boot-args (optional)
 - Save the config.plist
 - Prepare a New Partition for Installing macOS Ventura in Disk Utility. Don't install this over your perfectly working OS!
