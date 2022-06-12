@@ -33,5 +33,5 @@ macOS   |DisableIoMapper|DMAR (OEM) |DMAR dropped / replaced | I225-V / 3rd Part
 10.15 to 11.3    | ON            | YES       | NO / NO                | YES / YES
 
 ### NOTES
-- You can leave the Kernel Patch for macOS Catalina enabled since it it will only be applied up to Kernel 20.4. Big Sur, Monterey and Venture will boot without issues. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
+- You can leave the Kernel Patch for macOS Catalina enabled since it it will only be applied up to Kernel 20.4. Big Sur, Monterey and Ventura will boot without issues. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` because the combination of the Kernel patch and the Device-ID used in the Device Property will spoof the Intel I225V as I219 to macOS Catalina to make Internet work. But this isn't required for Bigsur 11.4+. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
 - The provided info about WiFi is based on reports from this [**thread**](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/) since I don't use WiFi on my rig.
