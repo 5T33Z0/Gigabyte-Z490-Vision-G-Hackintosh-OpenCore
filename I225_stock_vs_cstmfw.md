@@ -21,7 +21,7 @@ macOS            |DisableIoMapper|DMAR (OEM)|DMAR (dropped / replaced)| I225-V /
 11.4 to 12.5+    | **OFF**       | **YES**  | **NO / NO**             | **YES / YES**
 11.4 to 12.5+    | ON            | NO       | YES / YES               | NO / YES
 11.4 to 12.5+    | OFF           | NO       | YES / YES               | YES/ NO
-10.15 to 11.3    | OFF/ON (doesn't matter)  | YES      | NO / NO      | **YES / YES**
+10.15 to 11.3    | OFF/ON        | YES      | NO / NO                 | **YES / YES**
 
 #### Config settings for Intel I225, stock firmware:
 
