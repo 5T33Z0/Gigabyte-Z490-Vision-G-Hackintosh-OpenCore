@@ -100,10 +100,10 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 * **SecureBootModel**: `Disabled`
 * **USB Ports Mapped:** Yes, via ACPI. Details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features#readme)
 
+### EFI Folder Structure
+
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
-
-### EFI Folder Structure
 
 ```
 EFI
