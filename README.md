@@ -53,11 +53,12 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | **Ethernet**  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey|
 | **Ethernet** (PCI)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS)    |
 
+### BIOS Settings
+
 </details>
 <details>
 <summary><strong>BIOS Settings</strong></summary>
 
-### BIOS Settings
 ![BIOS](https://user-images.githubusercontent.com/76865553/141654274-6d6a5803-e18e-407e-aa9f-767ab18094bc.jpg)
 
 * **Tweaker [TAB]**
