@@ -55,9 +55,8 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 
 ### BIOS Settings
 
-</details>
 <details>
-<summary><strong>BIOS Settings</strong></summary>
+<summary><strong>Click to reveal</strong></summary>
 
 ![BIOS](https://user-images.githubusercontent.com/76865553/141654274-6d6a5803-e18e-407e-aa9f-767ab18094bc.jpg)
 
@@ -104,7 +103,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 ### EFI Folder Structure
 
 <details>
-<summary><strong>EFI Folder Content</strong></summary>
+<summary><strong>Click to reveal</strong></summary>
 
 ```
 EFI
@@ -213,7 +212,8 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
 11. Continue with Post-Install!
 
-**IMPORTANT**: 
+**IMPORTANT**:
+
 - Using csr-active-config `EF0F0000` also disables incremental system updates on macOS 11 and newer. So everytime an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
 - AMD GPUs may require additional `boot-args`. Check [WhateverGreen's](https://github.com/acidanthera/WhateverGreen#boot-arguments) documentation for details.
 
