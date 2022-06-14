@@ -1,6 +1,28 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 [![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.8.2-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![Clover Version](https://img.shields.io/badge/Clover-r5146-lime.svg)](https://github.com/CloverHackyColor/CloverBootloader/releases/) [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![macOS Big Sur](https://img.shields.io/badge/macOS-11.6.7-white.svg)](https://www.apple.com/macos/big-sur/) [![macOS Monterey](https://img.shields.io/badge/macOS-12.5-white.svg)](https://www.apple.com/macos/monterey/) [![macOS Monterey](https://img.shields.io/badge/macOS-13_beta-white.svg)](https://www.apple.com/macos/macos-ventura-preview/)[![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest) ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BootPicker.png)
 
+**TABLE of CONTENTS**
+
+- [About](#about)
+- [Build Info](#build-info)
+	- [System Specs](#system-specs)
+	- [BIOS Settings](#bios-settings)
+	- [OpenCore Details](#opencore-details)
+	- [EFI Folder Structure](#efi-folder-structure)
+	- [About included ACPI Tables](#about-included-acpi-tables)
+	- [Disabled Kexts](#disabled-kexts)
+- [Installation](#installation)
+	- [Installing macOS](#installing-macos)
+	- [EFI Install Guide for OpenCore](#efi-install-guide-for-opencore)
+- [Post-Install](#post-installation)
+	- [Strengthen Security (recommended)](#strengthen-security-recommended)
+	- [Optimizing CPU Power Management](#optimizing-cpu-power-management)
+	- [Calculating Scan Policy (optional)](#calculating-scan-policy-optional)
+	- [Changing Themes](#changing-themes)
+	- [Bootloader Chooser](#bootloader-chooser)
+	- [Patching-in Kepler Drivers](#patching-in-kepler-drivers)
+- [CPU Benchmark](#cpu-benchmark)
+
 ## About
 EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an .ioreg file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpaches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USBPort kext is required. I think this is the most sophisticated Z490 Vision G EFI folder on Github yet! And just for fun, I added a Clover as well which boots super-fast. 
 
@@ -16,9 +38,6 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 |600/700-series NVDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration.
 		
 ## Build Info
-
-<details>
-<summary><strong>System Specs</strong> (click to reveal content)</summary>
 
 ### System Specs
 
@@ -68,8 +87,6 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 	* Windows 10 Features: Windows 10 
 	* CSM: Disabled (to get rid of legacy code from `DSDT`)
 </details>
-<details>
-<summary><strong>OpenCore Details</strong></summary>
 	
 ### OpenCore Details
 
@@ -82,7 +99,6 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 * **SecureBootModel**: `Disabled`
 * **USB Ports Mapped:** Yes, via ACPI. Details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features#readme)
 
-</details>
 <details>
 <summary><strong>EFI Folder Content</strong></summary>
 
@@ -138,6 +154,8 @@ EFI
     ├── config.plist
     └── config_iMac19,1.plist
 ```
+</details>
+
 ### About included ACPI Tables
 My EFI Folder contains additional ACPI Tables besides the usual, which you won't find in the OpenCore Install Guide. Some of them are board-specific, some of them are modified versions of the regular tables, some are just cosmetic. 
 
@@ -162,18 +180,13 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 - `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 - `FeatureUnlock`: see comments for details
 - `RestrictEvents`: Only required when using `MacPro7,1` SMBIOS. Needs `revpatch=auto` boot-arg to disable Warning about unpopulated RAM slots.
-</details>
 
 ## Installation
-<details>
-<summary><strong>How to install macOS</strong></summary>
 
 ### Installing macOS
 **Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). **NOTE**: No support from my end for issues related to UBS Installers created in Windows or Linux!
 
-**Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and create a USB Installer as well.</details>
-<details>
-<summary><strong>EFI Install Instructions</strong></summary>
+**Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/) instead. It's a hassle-free app than can download any macOS from High Sierra up to Monterey and create a USB Installer as well.
 
 ### EFI Install Guide for OpenCore 
 	
@@ -199,9 +212,8 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 9. Boot macOS
 10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
 11. Continue with Post-Install!
-</details>
-<details>
-<summary><strong>Post-Install</strong></summary>
+
+## Post-Install
 
 ### Strengthen Security (recommended)
 Once you got macOS running, you may want to change the following settings to make your system more secure:
@@ -222,7 +234,7 @@ Once you got macOS running, you may want to change the following settings to mak
 ### Optimizing CPU Power Management
 You can follow my [guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md) to use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` alongside `CPUFriend.kext` to optimize the CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
 
-![image](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Pics/CPU_PM.png)
+![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/CPU_PM.png)
 
 ### Calculating Scan Policy (optional)
 The items displayed in the Boot Picker Menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under Misc > Security in the `config.plist.` The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
@@ -241,10 +253,6 @@ Besides the 3 themes from Acidanthera which provide the standard macOS look and 
 To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
 **NOTE**: For more config tips and tricks, you can check out [this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
-</details>
-</details>
-<details>
-<summary><strong>Switching between OpenCore and Clover easily</strong></summary>
 
 ### Bootloader Chooser
 I recently discovered [BootloaderChooser](https://github.com/jief666/BootloaderChooser) which lets you pick the bootloader of choice prior to booting. This is how the folder structure looks like:
@@ -254,9 +262,6 @@ I recently discovered [BootloaderChooser](https://github.com/jief666/BootloaderC
 Basically, you put the "Clover" Folder on the same level as the the "OC" Folder and then replace the "BootX64.efi" in the "BOOT" Folder with the one that come with the Bootloader Chooser. Then you can select which Bootloader you want to use. Pretty nice for setting up your USB flash drive having Clover and OC to chose from:
 
 ![1614718620_Screenshot2020-10-06at19_59_49 png c92924a458ee86f0a4ff504d7a9118a6](https://user-images.githubusercontent.com/76865553/134054798-0e0e1f96-b2d6-4447-9daf-44c4df3e9601.png)
-</details>
-<details>
-<summary><strong>Enabling NVIDIA Kepler Drivers (macOS 12.0 beta 7 and newer)</strong></summary>
 
 ### Patching-in Kepler Drivers
 
