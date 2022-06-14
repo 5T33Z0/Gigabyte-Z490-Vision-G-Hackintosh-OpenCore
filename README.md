@@ -194,13 +194,11 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 1. Download latest OC EFI Release and unpack it
 2. Select the config of your choice and rename it to `config.plist`
 3. Open `config.plist` with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) and adjust the following parameters according to your hardware and software configuration:
-	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):</br></br>
+	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):
 		- For **Monterey**: `EF0F0000` (0xFEF)</br>
 		- For **Big Sur**: `67080000` (0x867)
 		- For **Mojave/Catalina**: `FF070000` (0x7FF)
-		- For **High Sierra**: `FF030000` (0x3FF)</br></br>
-	**IMPORTANT**: Using `EF0F0000` also disables incremental system updates on macOS 11 and newer. So everytime an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
-	- AMD GPUs may require additional `boot-args`. Check [WhateverGreen's](https://github.com/acidanthera/WhateverGreen#boot-arguments) documentation for details.
+		- For **High Sierra**: `FF030000` (0x3FF)
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
 		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put `##` in front of it)
 		- Enable `#PciRoot(0x0)/Pci(0x2,0x0)` (delete the `#`)
@@ -213,6 +211,10 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 9. Boot macOS
 10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
 11. Continue with Post-Install!
+
+**IMPORTANT**: 
+- Using csr-active-config `EF0F0000` also disables incremental system updates on macOS 11 and newer. So everytime an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
+- AMD GPUs may require additional `boot-args`. Check [WhateverGreen's](https://github.com/acidanthera/WhateverGreen#boot-arguments) documentation for details.
 
 ## Post-Install
 
