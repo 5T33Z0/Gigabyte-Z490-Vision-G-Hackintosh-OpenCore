@@ -226,15 +226,17 @@ Once you got macOS running, you may want to change the following settings to mak
 2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
 3. Change `SecureBootModel` from `Disabled` to `j185f` (for iMac20,2) or `j185` (for iMac20,1). You should test these settings first booting from a USB flash drive since it can prevent the system from booting. Disable it for installing macOS Monterey if you have issues.
 
-	**IMPORTANT**
+**IMPORTANT**
 
-	- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notfied about System Updates if `SecureBootModel` is set to `Disabled`. To workaround this, enable the following Kernel Patches in the config.plist:
-		- Force IOGetVMMPresent
-		- Reroute kern.hv_vmm_present patch (1)
-		- Reroute kern.hv_vmm_present patch (2)
-	- If you have to use Geforce Kepler Patcher to get your GeForce Kepler Card working, you have to set `SecureBootModel` to `Disabled`
-	- `SecureBootModel` is only applicable to macOS Catalina and newer. 
- 	
+- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notfied about System Updates if `SecureBootModel` is set to `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following Patches in the config.plist:
+	- Skip Board ID check (&rarr; Booter/Patch)
+	- Reroute HW_BID to OC_BID (&rarr; Booter/Patch)
+	- Force IOGetVMMPresent (&rarr; Kernel/Patch)
+	- Reroute kern.hv_vmm_present patch (1) (&rarr; Kernel/Patch)
+	- Reroute kern.hv_vmm_present patch (2) (&rarr; Kernel/Patch)
+- `SecureBootModel` is only applicable to macOS Catalina and newer.
+- If you have to use Geforce Kepler Patcher to get your GeForce Kepler Card working, you have to set `SecureBootModel` to `Disabled`
+
 ### Optimizing CPU Power Management
 You can follow my [guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md) to use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` alongside `CPUFriend.kext` to optimize the CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
 
