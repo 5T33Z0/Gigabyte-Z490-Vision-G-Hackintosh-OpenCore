@@ -41,7 +41,7 @@ In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworki
 
 I have working Internet from macOS Catalina all the way up to Ventura.
 
-#### Stock Firmware
+### Stock Firmware
 If you are using the stock firmware, you _can_ try the following:
 
 - Add [AppleIntelI210Ethernet.kext](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) to EFI/OC/Kext and config.plist
