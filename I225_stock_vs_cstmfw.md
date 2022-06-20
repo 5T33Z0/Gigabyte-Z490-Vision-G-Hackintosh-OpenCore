@@ -9,7 +9,7 @@ I've read in a support thread for the Aniqua 10 Gigabit Card that it worked when
 
 |macOS |Procedure|
 |-------------|---------|
-**12 and 13 beta**| You need to [flash a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) to make it work. After that, settings for macOS 11.4+ apply!
+**12 and 13 beta**| You need to [flash a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) to make it work. After that, settings for macOS 11.4+ apply!</br> Disable/delete `dk.e1000=0` and `e1000=0` when using macOS Ventura.
 **11.4+**|1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (add `#` in front of it)</br>2. Go to `Kernel` > `Patch` and disable `I225-V Patch` </br> 3. Add boot-arg `dk.e1000=0`</br> 4. Save and reboot</br></br>**NOTE**: This is the default configuration. If you are running Big Sur 11.4 and newer you don’t have to change anything here!
 **10.15 to 11.3**|1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel/Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot.
 **10.14 and older**| Not compatible. You need a third party Ethernet Card.
