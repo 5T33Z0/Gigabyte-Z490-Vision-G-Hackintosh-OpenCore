@@ -26,7 +26,7 @@
 </details>
 
 ## About
-EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an .ioreg file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpaches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USBPort kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
+EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an .ioreg file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USBPort kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
 
 This is a *genuine* Z490 Vision G EFI, built from scratch. Unlike most pseudo Z490 Vision G EFIs posted on Forums and Repos, which are either based on generically patched DSDTs by Olarila/MaLDon (stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. My EFI Folder doesn't contain any of this junk.
 
@@ -37,22 +37,22 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | :warning: Issues related to macOS Monterey|
 |:------------------------------------------|
 |The I225-V Ethernet Controller doesn't work in macOS 12 by default. You need to [flash a custom firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-|600/700-series NVDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration.
+|600/700-series NVIDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to enable GPU acceleration.
 		
 ## Build Info
 
 ### System Specs
 
-| Component | Details                                                       |
-| :------------:|-------------------------------------------------------------- |
-| **Board**     | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`            |
-| **CPU**       | Intel Core i9 10850K (Comet Lake)                            |
-| **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT                    |
-| **iGPU**      | Intel UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.|
-| **GPU**       | Saphire RX580 Nitro+ (4 GB)                                  |
-| **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)                         |
-| **Ethernet**  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey|
-| **Ethernet** (PCI)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS)    |
+Component     | Details                                                       
+:------------:|-------------------------------------------------------------- 
+**Board**     | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`
+**CPU**       | Intel Core i9 10850K (Comet Lake)         
+**RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT
+**iGPU**      | Intel UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.|
+**GPU**       | Saphire RX580 Nitro+ (4 GB)
+**Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
+**Ethernet** (on-board)  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey
+**Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS)
 
 ### BIOS Settings
 
@@ -168,8 +168,8 @@ Here's what the extra tables do:
 - **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 - **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* macOS. See the "Additional Files" folder for a detailed list of available and mapped ports.
 - **SSDT-DMAC** (optional): Adds a fake [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tree of I/O Registry. Disablked By default, since it's cosmetic.
-- **SDT-FWHD** (optional): Adds fake Firmware Hub Device (FWHD) to I/O Registry. Used by almost every intel-based Mac. Disabled by default since it's comsetic.
-- **SSDT-PMC** (optional): Adds fake Apple-exclusice `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
+- **SDT-FWHD** (optional): Adds fake Firmware Hub Device (FWHD) to I/O Registry. Used by almost every intel-based Mac. Disabled by default since it's cosmetic.
+- **SSDT-PMC** (optional): Adds fake Apple-exclusive `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
 - [**SDT-RX580**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features/AMD_Radeon_Tweaks#method-2-using-amd-radeon-patches-by-mattystonie) (disabled) &rarr; Improves Metal Performance on Radeon RX580 cards. See the test [results](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/tree/main/OC_Benchmarks#gpu-computing-benchmarks)
 - **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
  
@@ -267,7 +267,7 @@ To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and c
 
 ### Patching-in Kepler Drivers
 
-Apple removed Keppler support from macOS Monterey beta 7. So users of NVIDIA GeForce Cards from the Kepler family need to patch them back in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher). If you require this patch, you can no longer boot with SIP enabled, so you have to disable it!
+Apple removed Kepler support from macOS Monterey beta 7. So users of NVIDIA GeForce Cards from the Kepler family need to patch them back in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher). If you require this patch, you can no longer boot with SIP enabled, so you have to disable it!
 </details>
 
 ## CPU Benchmark
