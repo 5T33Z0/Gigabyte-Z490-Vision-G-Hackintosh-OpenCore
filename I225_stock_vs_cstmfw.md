@@ -3,7 +3,7 @@ I noticed that some users have issues with getting 3rd party WiFi and Ethernet c
 
 I've read in a support thread for the Aniqua 10 Gigabit Card that it worked when the memory region for the XHCI controller (PCI Path : 14,00) remained in the DMAR table. So I did some test with 3 tables: no memory regions included, and 2 more with either one or the other memory region included. It turns out: if you've flashed the custom firmware for the Intel I225-V Controller it doesn't matter if you drop, replace or keep the stock DMAR table as long as Vt-d is enabled and `DisableIoMapper` is set to `false`. On the stock firmware, it's a different story. Below you find the results of my tests and recommended settings for different scenarios.
 
-:warning: Always use the latest [release](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) of my EFI folder! Don't report issues if you don't my EFI and Config. I will close them immediately!
+:warning: Please use the latest [release](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) of my EFI folder before reporting issues.
 
 ## Enabling the Intel I225-V Ethernet Controller
 
