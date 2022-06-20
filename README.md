@@ -20,7 +20,6 @@
 	- [Optimizing CPU Power Management](#optimizing-cpu-power-management)
 	- [Calculating Scan Policy (optional)](#calculating-scan-policy-optional)
 	- [Changing Themes](#changing-themes)
-	- [Bootloader Chooser](#bootloader-chooser)
 	- [Patching-in Kepler Drivers](#patching-in-kepler-drivers)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
