@@ -37,7 +37,13 @@ macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V /
 - Luckily for us, the .dext version  is still present under /S/L/DriverExtensionst:![](/Users/steezonics/Desktop/dexti225.png)
 - Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` so that the I225 can connect to the .dect version of the driver instead.
 - If you are using the modded firmware this works without issues.
-- If you are using the stock firmware, re-injecting the [kext](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) may fix the issue.
+
+If you are using the stock firmware, do the following:
+
+- Add [AppleIntelI210Ethernet.kext](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) to EFI/OC/Kext and config.plist
+- Set `MinKernel`to 22.0.0 so it is only injected into macOS Ventura
+- Enable `e1000=0` boot-arg so the I225-V uses the kext instead of the dext driver
+- Save and reboot
 
 ## NOTES
 - You can leave the Kernel Patch for macOS Catalina enabled since it it will only be applied up to Kernel 20.4. Big Sur, Monterey and Ventura will boot without issues. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` because the combination of the Kernel patch and the Device-ID will spoof the Intel I225V as I219 to macOS Catalina to make Internet work. But this isn't required for Bigsur 11.4+ and will result in Internet not working, so put an `#` in front of the mentioned PCI path to disable it. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
