@@ -32,21 +32,27 @@ macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V /
 10.15 to 11.3 | OFF/ON|OFF/ON      | YES      | NO / NO               | **YES / NO**
 
 ## Intel I225-V and macOS Ventura
-- In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworkingFamily.kext` located under /S/L/E/.
-- Therefore, boot-args `dk.e1000=0` (Big Sur) and `e1000=0` (Monterey) which ensured that the I225 Controller connected to the `AppleIntelI210Ethernet.kext` will no longer work in macOS Ventura!
-- Luckily for us, the .dext version  is still present under /S/L/DriverExtensionst:![](/Users/steezonics/Desktop/dexti225.png)
-- Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` so that the I225 can connect to the .dect version of the driver instead.
-- If you are using the modded firmware this works without issues.
+In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworkingFamily.kext` located under /S/L/E/ because there are no Apple devices which have a 2.5 gigabot port. Therefore, boot-args `dk.e1000=0` (Big Sur) and `e1000=0` (Monterey) which ensured that the I225 Controller could connect to the `AppleIntelI210Ethernet.kext` will no longer work.
 
-If you are using the stock firmware, do the following:
+### Modded firmware users
+- Luckily for us, the .dext version is still present under /S/L/DriverExtensionst:![](/Users/steezonics/Desktop/dexti225.png)
+- Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` if you haven't already so that the I225 can connect to the .dext version of the driver.
+- So, if you are using the modded firmware this works without issues. 
+
+I have working Internet from macOS Catalina all the way up to Ventura.
+
+#### Stock Firmware
+If you are using the stock firmware, you _can_ try the following:
 
 - Add [AppleIntelI210Ethernet.kext](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) to EFI/OC/Kext and config.plist
 - Set `MinKernel`to 22.0.0 so it is only injected into macOS Ventura
 - Enable `e1000=0` boot-arg so the I225-V uses the kext instead of the dext driver
 - Save and reboot
 
+I doubt this will work, though. Because macOS Monterey still has the .kext and even then the I225-V Controller on this Board wouldn't work because the stock firmware contains an incorrect Subsystem-ID and Subsystem Vendor-ID as explained [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#technical-backgroud), so flashing the modded firmware is mandatory on macOS 12+.
+
 ## NOTES
-- You can leave the Kernel Patch for macOS Catalina enabled since it it will only be applied up to Kernel 20.4. Big Sur, Monterey and Ventura will boot without issues. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` because the combination of the Kernel patch and the Device-ID will spoof the Intel I225V as I219 to macOS Catalina to make Internet work. But this isn't required for Bigsur 11.4+ and will result in Internet not working, so put an `#` in front of the mentioned PCI path to disable it. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
-- The provided info about WiFi is based on reports from this [**thread**](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/) since I don't use WiFi on my rig.
+- You can leave the Kernel Patch for macOS Catalina enabled since it it will only be applied up to Kernel 20.4 so it won't affect. Big Sur, Monterey and Ventura. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` since the included Device-ID will spoof the Intel I225V as I219 which will result in Internet not working on Big Sur 11.4 and newer. So put `#` in front of the mentioned PCI path to disable it. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
+- The provided info about WiFi is based on issue reports dicusses here, the [I225-V thread for macOS Monterey](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/) since I don't use WiFi on my rig. There's also a support thread for [I225-V on macOS Ventura](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/#comment-2786429)
 - Guide for [dropping/replacing the DMAR table](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_About_ACPI/ACPI_Dropping_Tables#method-2-dropping-tables-based-on-table-signature)
 - If you've changed something in the `DeviceProperties` for testing and revert the settings later, Internet may not work. In this case reset the kernel cache by entering `sudo kextcache -i /` in Terminal.
