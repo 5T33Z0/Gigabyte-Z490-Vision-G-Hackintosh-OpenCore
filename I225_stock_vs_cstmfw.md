@@ -28,12 +28,6 @@ If you can't access the Internet after applying the settings, remove the followi
 - `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`
 - `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist` 
 
-If this doesn't fix it, delete the following preferences followed by a reboot:
-
-- `/Library/Preferences/com.apple.networkextension.necp.plist`
-- `/Library/Preferences/com.apple.networkextension.plist`
-- `/Library/Preferences/com.apple.networkextension.uuidcache.plist`
-
 ### Config settings for Intel I225, stock firmware:
 
 macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
