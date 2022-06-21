@@ -47,7 +47,15 @@ Following shows the file header of the I225MOD binary in hex code. The values hi
 
 If everything was done correct, you should now have working Internet connectivity. You may need to remove and add the network adapter again under System Preferences > Network.
 
-For me, the I225-V worked immediately after flashing the EEPROM and rebooting. The device is also recognized by Hackintool as "Ethernet Controller I225-V". If you are still facing issues afterwards, you could try attaching the I225-V to  `com.apple.driver.AppleIntelI210Ethernet.kext` by using boot boot-arg `e1000=0`.
+## Troubleshooting
+
+For me, the I225-V worked immediately after flashing the EEPROM and rebooting. The device is recognized by Hackintool as "Ethernet Controller I225-V". If you are still facing issues afterwards, you could try attaching the I225-V to the `AppleIntelI210Ethernet.kext` by using boot boot-arg `dk.e1000=0` (Big Sur) or `e1000=0` (Monterey).
+
+If you still can't access the Internet, delete the following prefeences followed by a reboot:
+
+- `/Library/Preferences/com.apple.networkextension.necp.plist`
+- `/Library/Preferences/com.apple.networkextension.plist`
+- `/Library/Preferences/com.apple.networkextension.uuidcache.plist`
 
 ## Credits and Resources
 [**Original Guide**](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) by badbrain. Translated from german and modified by me.

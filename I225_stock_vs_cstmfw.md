@@ -23,6 +23,12 @@ macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I2
 11.4 to 12.5  | OFF/ON |ON              | NO        | YES / YES              | NO / YES
 10.15 to 11.3 | OFF/ON |ON              | YES       | NO / NO                | **YES / YES**
 
+If you still can't access the Internet after changing settings, delete the following preferences followed by a reboot:
+
+- `/Library/Preferences/com.apple.networkextension.necp.plist`
+- `/Library/Preferences/com.apple.networkextension.plist`
+- `/Library/Preferences/com.apple.networkextension.uuidcache.plist`
+
 ### Config settings for Intel I225, stock firmware:
 
 macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
