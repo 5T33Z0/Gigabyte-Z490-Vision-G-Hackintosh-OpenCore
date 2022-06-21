@@ -1,7 +1,7 @@
 # Conditions for Intel I225-V and 3rd Party WiFi/LAN Cards to work
-I noticed that some users have issues with getting 3rd party WiFi and Ethernet cards to work if they dropped the DMAR table and replaced it with a modified one with removed memory regions. The DMAR table of the Z490 Vision G contains 2 reserved memory regions – one is for the XCHI Controller which handles USB. 
+I noticed that some users have issues with getting both 3rd party WiFi and Ethernet cards to work if they dropped the DMAR table and replaced it with a modified one with removed memory regions. The DMAR table of the Z490 Vision G contains 2 reserved memory regions – one of theme is for the XCHI Controller which handles USB. 
 
-I've read in a support thread for the Aquantia 10 Gigabit Card that it worked when the memory region for the XHCI controller (PCI Path: 14,00) remained in the DMAR table. So I did some test with 3 tables: one without no memory regions and 2 more with either one or the other memory region included. It turns out: if you've flashed the custom firmware for the Intel I225-V Controller it doesn't matter if you drop, replace or keep the stock DMAR table as long as `Vt-d` is enabled and `DisableIoMapper` is set to `false`. On the stock firmware, it's a different story. Below you find the results of my tests and recommended settings for different scenarios.
+I've read in a support thread for the Aquantia 10 Gigabit Ethernet Card that it worked when the memory region for the XHCI controller (PCI Path: 14,00) remained in the DMAR table. So I did some test with 3 variants of the DMAR table: one without memory regions and 2 more with either one or the other memory region included. It turns out: if you've flashed the custom firmware for the Intel I225-V Controller it doesn't matter if you drop, replace or keep the stock DMAR table as long as `Vt-d` is enabled and `DisableIoMapper` is set to `false`. On the stock firmware, it's a different story. Below you find the results of my tests and recommended settings for different scenarios.
 
 :warning: Please use the latest [release](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) of my EFI folder before reporting issues.
 
@@ -41,8 +41,8 @@ In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworki
 
 ### Modded firmware users
 - Luckily for us, the .dext version is still present under /S/L/DriverExtensions
-- Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` if you haven't already so that the I225 can connect to the .dext version of the driver.
-- So, if you are using the modded firmware this works without issues. 
+- Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` so that the I225 can connect to the .dext version of the driver.
+- If you are using the modded firmware this works without issues. 
 
 I have working Internet from macOS Catalina all the way up to Ventura.
 
