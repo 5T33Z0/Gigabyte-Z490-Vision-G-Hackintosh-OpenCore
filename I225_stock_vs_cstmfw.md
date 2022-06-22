@@ -46,8 +46,8 @@ In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworki
 
 I have working Internet from macOS Catalina all the way up to Ventura.
 
-### Stock Firmware
-Since the the stock firmware of the I225-V controller on this board contains an incorrect Subsystem-ID and Subsystem Vendor-ID (as explained [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#technical-backgroud)), it cannot connect to Venturea's dext driver, so flashing the modded firmware is mandatory on macOS 13.
+### Stock Firmware users
+No chance. Since the .kext driver was removed from macOS Ventura and the stock firmware of the I225-V has an incorrect Subsystem-ID and Subsystem Vendor-ID (as explained [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#technical-backgroud)), it cannot connect to the .dext driver without panicking. So flashing the modded firmware currently is the only option to resolve the issue and getting the I225-V to work in macOS 13.
 
 ## NOTES
 - You can leave the Kernel Patch for macOS Catalina enabled since it will only be applied up to Kernel 20.4 so it won't affect Big Sur and newer. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` since the included Device-ID will spoof the I225-V as I219 which will result in Internet not working on Big Sur 11.4 and newer. So put `#` in front of the mentioned PCI path to disable it. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
