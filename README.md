@@ -37,7 +37,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | :warning: Issues related to macOS Monterey/Ventura|
 |:--------------------------------------------------|
 |The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need to [flash a custom firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-|Getting 3rd party WiFi/BT/LAN cards to work is hit or miss. Since I don't use WiFi nor Bluetooth I can't help you with that. All I now about the issue and the required settings is documented [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md).
+|Getting 3rd party WiFi/BT/LAN cards to work is hit or miss. Since I don't use WiFi nor Bluetooth I can't help you with that. All I know about the issue and the required settings is documented [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md).
 |600/700-series NVIDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) (only compatible with macOS Monterey).
 		
 ## Build Info
