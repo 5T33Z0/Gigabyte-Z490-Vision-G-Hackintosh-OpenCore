@@ -1,15 +1,20 @@
-# Conditions for Intel I225-V and 3rd Party WiFi/LAN Cards to work
+# Conditions for Intel I225-V and 3rd party WiFi/LAN cards to work
 I noticed that some users have issues with getting both 3rd party WiFi and Ethernet cards to work if they dropped the DMAR table and replaced it with a modified one with removed memory regions. The DMAR table of the Z490 Vision G contains 2 reserved memory regions – one of theme is for the XCHI Controller which handles USB. 
 
-I've read in a support thread for the Aquantia 10 Gigabit Ethernet Card that it worked when the memory region for the XHCI controller (PCI Path: 14,00) remained in the DMAR table. So I did some test with 3 variants of the DMAR table: one without memory regions and 2 more with either one or the other memory region included. It turns out: if you've flashed the custom firmware for the Intel I225-V Controller it doesn't matter if you drop, replace or keep the stock DMAR table as long as `Vt-d` is enabled and `DisableIoMapper` is set to `false`. On the stock firmware, it's a different story. Below you find the results of my tests and recommended settings for different scenarios.
+I've read in a support thread for the Aquantia 10 Gigabit Ethernet Card that it worked when the memory region for the XHCI controller (PCI Path: 14,00) remained in the DMAR table. So I conducted some tests with 3 variants of the DMAR table: one without memory regions and 2 more with either one or the other memory region included. It turns out: 
 
-:warning: Please use the latest [release](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) of my EFI folder before reporting issues.
+- If you've flashed the custom firmware for the Intel I225-V Controller, it doesn't matter if you drop, replace or keep the stock `DMAR` table – it will work, as long as `Vt-d` is enabled and `DisableIoMapper` is set to `false`. 3rd Party Wifi/Ethernet cards may still require aforementioned Memory Regions, so it's best to not drop/replace the DMAR table!
+- On the stock firmware, it's a different story. 
+
+Below you find the results of my tests and recommended settings for different scenarios.
+
+:warning: Please use the latest [release](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) of my EFI folder before reporting any issues.
 
 ## Enabling the Intel I225-V Ethernet Controller
 
 |macOS |Procedure|
 |-------------|---------|
-**12 and 13 beta**| **Prerequisites**: [Flash a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) to fix the I225-V. Once that's done, change the following settings:</br></br> 1. **ACPI/Add** &rarr; Disable` DMAR.aml` </br>2. **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<br>3. **DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash `#` in front of it)<br> 4. **Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`</br>5. **Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</br></br>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
+**12 and 13 beta**| **Prerequisites**: [Flash a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) to fix the I225-V. Once that's done, change the following settings:</br></br> 1. **ACPI/Add** &rarr; Disable` DMAR.aml` </br>2. **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<br>3. **DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash symbol `#` in front of it)<br> 4. **Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`</br>5. **Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</br></br>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
 **11.4+**|1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put `#` in front of it)</br> 2. Add boot-arg `dk.e1000=0`</br> 3. Save and reboot
 **10.15 to 11.3**|1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel/Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot.
 **10.14 and older**| Not compatible. You need a third party Ethernet Card.
@@ -53,6 +58,6 @@ No chance. Since the .kext driver was removed from macOS Ventura and the stock f
 
 ## NOTES
 - You can leave the Kernel Patch for macOS Catalina enabled since it will only be applied up to Kernel 20.4 so it won't affect Big Sur and newer. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` since the included Device-ID will spoof the I225-V as I219 which will result in Internet not working on Big Sur 11.4 and newer. So put `#` in front of the mentioned PCI path to disable it. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
-- The provided info about WiFi is based on issue reports discussed here, the [I225-V thread for macOS Monterey](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/) since I don't use WiFi on my rig. There's also a support thread for [I225-V on macOS Ventura](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/#comment-2786429)
+- The provided info about WiFi is based on issue reports discussed here and in the [I225-V thread for macOS Monterey](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/) since I don't use WiFi on my rig. There's also a support thread for [I225-V on macOS Ventura](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/#comment-2786429)
 - Guide for [dropping/replacing the DMAR table](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_About_ACPI/ACPI_Dropping_Tables#method-2-dropping-tables-based-on-table-signature)
 - If you've changed something in the `DeviceProperties` for testing and revert the settings later, Internet may not work. In this case reset the kernel cache by entering `sudo kextcache -i /` in Terminal.
