@@ -8,7 +8,7 @@ On the Z490 Vision G, the I225-V Controller stopped working shortly after the fi
 Until now, the only reliable option was to just buy a third party network card supported by macOS 12. Fortunately, a new method to get the I225-V working again was discovered. But it requires flashing a modified firmware onto the EEPROM  so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully.
 
 ## Technical Backgroud
-The stock firmware for the Intel I225-V NIC used on this Board (and possibly other Z490 Boards by Gigabyte), usesan incorrect Subsystem-ID and Subsystem Vendor-ID. The Vendor-ID (`8086` for Intel) is also used as Subsystem-Vendor-ID (instead of `1458`) and the Subsystem-ID only contains zeros instead of the correct value (`E000`). 
+The stock firmware for the Intel I225-V NIC used on this Board (and possibly other Z490 Boards by Gigabyte), contains an incorrect Subsystem-ID and Subsystem Vendor-ID. The Vendor-ID (`8086` for Intel) is also used as Subsystem-Vendor-ID (instead of `1458`) and the Subsystem-ID only contains zeros instead of the correct value (`E000`). 
 
 The following screenshot shows the file header of the I225MOD binary in hex code. Values highlighted in green are the ones that were changed in order to make the controller work again:
 
