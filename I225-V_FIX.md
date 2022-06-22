@@ -16,16 +16,17 @@ The following screenshot shows the file header of the I225MOD binary in hex code
 
 ## Preparations
 
-- **BIOS**: enable `VT-d` if it isn't already
+- **BIOS**: enable `VT-d`
 - Save and reboot into macOS
 - Open **Network Settings**: set Ethernet > IPv4 to `DHCP` and Advanced… > Hardware > Configuration to `Automatic`.
 - **OpenCore**:
 	- Mount EFI
-	- Add `OpenShell` to OC/Tools and `config.plist`
+	- Add `OpenShell` to OC/Tools and `config.plist` (it's contained in the OpenCore Pkg)
 	- Disable/remove `DeviceProperties` for `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
 	- Disable/remove boot-arg `dk.e1000=0`
 	- Uncheck Kernel/Quirks `DisableIOMapper`
-	- Disable dropping/replacing of the `DMAR`table (the rule is already implemented in my OC config, you just have to disbale it)
+	- Under ACPI/add, disable the `DMAR` replacement table
+	- Under ACPI/delete, disable the rule for dropping the `DMAR`table
 	- Save your `config.plist`
 - Download `I225-Vmod.zip` from [here](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/?do=findComment&comment=2779420) and extract it. If the file is unavailable, ask the author of the post or send me a PM.
 - Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
@@ -50,6 +51,11 @@ If everything was done correct, you should now have working Internet connectivit
 ## Troubleshooting
 
 For me, the I225-V worked immediately after flashing the EEPROM and rebooting. The device is recognized by Hackintool as "Ethernet Controller I225-V". If you are still facing issues afterwards, you could try attaching the I225-V to the `AppleIntelI210Ethernet.kext` by using boot boot-arg `dk.e1000=0` (Big Sur) or `e1000=0` (Monterey).
+
+If you can't access the Internet after flashing the custom firmware, remove the following preferences via Terminal and reboot:
+
+- `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`
+- `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`
 
 If you still can't access the Internet, delete the following prefeences followed by a reboot:
 
