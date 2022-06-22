@@ -1,6 +1,16 @@
 # Gigabyte Z490 Vision G Intel I225-V fix for macOS Monterey and newer
- 
 > **Disclaimer**: This fix requires flashing a custom firmware onto the EEPROM of the Intel I225-V Ethernet Controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
+
+**TABLE of CONTENTS**
+
+- [About](#about)
+- [Technical Backgroud](#technical-backgroud)
+- [Option 1: Using a SSDT with corrected header description](#option-1-using-a-ssdt-with-corrected-header-description)
+- [Option 2: flashing a custom Firmware](#option-2-flashing-a-custom-firmware)
+	- [Preparations](#preparations)
+	- [Flashing the firmware with OpenShell](#flashing-the-firmware-with-openshell)
+- [Troubleshooting](#troubleshooting)
+- [Credits and Resources](#credits-and-resources)
 
 ## About
 On the Z490 Vision G, the I225-V Controller stopped working shortly after the first betas of macOS Monterey were released. Various tricks were tried to fix it: assigning IP addresses and settings manually, dropping tables, changing BIOS and Quirks settigs and – the scariest trick of them all – replacing network kexts of previously working builds, which breaks the seal of the snapshot partition and could corrupt macOS, leaving it in an unbootable state. On top of that, this method only worked temporarily until the next beta was released. There's a lengthy thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
@@ -14,19 +24,26 @@ The following screenshot shows the file header of the I225MOD binary in hex code
 
 <img width="554" alt="I225VEE" src="https://user-images.githubusercontent.com/76865553/166050133-ff5ec23e-68af-439f-af07-81c32f7ebe76.png">
 
-## Option 1: Using a SSDT with corrected header descriptions
-Before flashing a custom firmware as a last resort, you could try to inject the Intel I225-V controller via SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. MacAbe from Insanelymac has written a SSDT to do just that.
+## Option 1: Using a SSDT with corrected header description
+Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy [MacAbe](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786712) from Insanelymac has written a SSDT for it.
 
-- Download the SSDT
+- [**Download**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/SSDT-I255V.aml.zip?raw=true) the zipped SSDT and unpack it
+- Add it to your EFI/OC/ACPI folder and config.plist
+- Save the config
+- Reboot
+- [**Configure**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#enabling-the-intel-i225-v-ethernet-controller) and test it.
 
+Since I have flashed the modded firmware months ago, I really can't test if this is working but from the look of things it does inject the correct values.
 
 ## Option 2: flashing a custom Firmware
 
 ### Preparations
 
-- **BIOS**: enable `VT-d`
-- Save and reboot into macOS
-- Open **Network Settings**: set Ethernet > IPv4 to `DHCP` and Advanced… > Hardware > Configuration to `Automatic`.
+- **BIOS**: 
+	- enable `VT-d`
+	- Save and reboot into macOS
+- **macOS**
+	- Open **Network Settings**: set Ethernet > IPv4 to `DHCP` and Advanced… > Hardware > Configuration to `Automatic`.
 - **OpenCore**:
 	- Mount EFI
 	- Add `OpenShell` to OC/Tools and `config.plist` (it's contained in the OpenCore Pkg)
@@ -36,9 +53,10 @@ Before flashing a custom firmware as a last resort, you could try to inject the 
 	- Under ACPI/add, disable the `DMAR` replacement table
 	- Under ACPI/delete, disable the rule for dropping the `DMAR`table
 	- Save your `config.plist`
-- [Download](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/?do=findComment&comment=2779420) `I225-Vmod.zip` and extract it. If the file is unavailable, ask the author of the post or send me a PM.
-- Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
-- Restart the system
+- **USB Flash Drive**
+	- [**Download**](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/?do=findComment&comment=2779420) `I225-Vmod.zip` and extract it.
+	- Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
+	- Restart the system but stay in the boot picker
 
 ### Flashing the firmware with OpenShell	
 - From the OpenCore GUI, select `OpenShell`
@@ -72,4 +90,5 @@ If you still can't access the Internet, delete the following prefeences followed
 - `/Library/Preferences/com.apple.networkextension.uuidcache.plist`
 
 ## Credits and Resources
-[**Custom Firmware and Guide**](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) by badbrain. Translated from german and modified by me.
+- [**Custom Firmware and Guide**](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) by badbrain. Translated from german and modified by me.
+- [**MacAbe**](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786712) for the SSDT-I225-V.aml
