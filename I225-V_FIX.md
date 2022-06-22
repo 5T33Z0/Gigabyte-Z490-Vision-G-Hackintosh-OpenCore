@@ -64,4 +64,4 @@ If you still can't access the Internet, delete the following prefeences followed
 - `/Library/Preferences/com.apple.networkextension.uuidcache.plist`
 
 ## Credits and Resources
-[**Original Guide**](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) by badbrain. Translated from german and modified by me.
+[**Custom Firmware and Guide**](https://www.hackintosh-forum.de/forum/thread/56123-l%C3%B6sung-f%C3%BCr-i225-v-v2-problem-auf-z490-plattform-vornehmlich-gigabyte-boards-unte/) by badbrain. Translated from german and modified by me.
