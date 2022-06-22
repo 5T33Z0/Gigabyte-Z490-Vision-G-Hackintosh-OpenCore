@@ -9,12 +9,12 @@ I've read in a support thread for the Aquantia 10 Gigabit Ethernet Card that it 
 
 |macOS |Procedure|
 |-------------|---------|
-**12 and 13 beta**| You need to [flash a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) to make it work. After that, settings for macOS 11.4+ apply!</br> Disable/delete `dk.e1000=0` and `e1000=0` when using macOS Ventura.
-**11.4+**|1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (add `#` in front of it)</br>2. Go to `Kernel` > `Patch` and disable `I225-V Patch` </br> 3. Add boot-arg `dk.e1000=0`</br> 4. Save and reboot</br></br>**NOTE**: This is the default configuration. If you are running Big Sur 11.4 and newer you don’t have to change anything here!
+**12 and 13 beta**| **Prerequisites**: [Flash a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) to fix the I225-V. Once that's done, change the following settings:</br></br> 1. **ACPI/Add** &rarr; Disable` DMAR.aml` </br>2. **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<br>3. **DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash `#` in front of it)<br> 4. **Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`</br>5. **Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</br></br>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
+**11.4+**|1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put `#` in front of it)</br> 2. Add boot-arg `dk.e1000=0`</br> 3. Save and reboot
 **10.15 to 11.3**|1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel/Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot.
 **10.14 and older**| Not compatible. You need a third party Ethernet Card.
-	
-### Config settings for Intel I225-V, custom firmware:
+
+### Settings combinations, custom firmware:
 
 macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd Party working|
 :-------------|:------:|:--------------:|:---------:|:----------------------:|:--------------------------:
@@ -23,18 +23,20 @@ macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I2
 11.4 to 12.5  | OFF/ON |ON              | NO        | YES / YES              | NO / YES
 10.15 to 11.3 | OFF/ON |ON              | YES       | NO / NO                | **YES / YES**
 
+### Settings combinations, stock firmware
+
+macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
+:------------|----|:-------------:|:--------:|:---------------------:|:-----------------:
+12.5+ | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
+11.4 to 11.6.7 | ON | ON [^1]            | NO       | YES / YES             | [YES / YES](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/19#issuecomment-1153315826)
+10.15 to 11.3 | OFF/ON|OFF/ON      | YES      | NO / NO               | **YES / NO**
+
 If you can't access the Internet after applying the settings, remove the following files via Terminal and reboot:
 
 - `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`
 - `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist` 
 
-### Config settings for Intel I225, stock firmware:
-
-macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
-:------------|----|:-------------:|:--------:|:---------------------:|:-----------------:
-12.5+ | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
-11.4 to 11.6.7 | ON | ON            | NO       | YES / YES             | [YES / YES](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/19#issuecomment-1153315826)
-10.15 to 11.3 | OFF/ON|OFF/ON      | YES      | NO / NO               | **YES / NO**
+[^1]: Combining `Vt-D` and `DisableIOMapper` makes no sense to me but that's what the user reported as working.
 
 ## Intel I225-V and macOS Ventura
 In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworkingFamily.kext` located under /S/L/E/ because there are no Apple devices which have a 2.5 Gigabit port. Therefore, boot-args `dk.e1000=0` (Big Sur) and `e1000=0` (Monterey) which ensured that the I225 Controller could connect to the `AppleIntelI210Ethernet.kext` will no longer work.
