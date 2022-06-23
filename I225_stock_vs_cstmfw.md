@@ -30,11 +30,12 @@ macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I2
 
 ### Settings combinations, stock firmware
 
-macOS         |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
-:------------|----|:-------------:|:--------:|:---------------------:|:-----------------:
-12.5+ | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
-11.4 to 11.6.7 | ON | ON [^1]            | NO       | YES / YES             | [YES / YES](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/19#issuecomment-1153315826)
-10.15 to 11.3 | OFF/ON|OFF/ON      | YES      | NO / NO               | **YES / NO**
+macOS             |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
+:-----------------|----|:-------------:|:--------:|:---------------------:|:-----------------:
+12.5+ (Fix [Opt. 1](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description))| ON |**OFF**   | **YES**  | **NO / NO**           | **YES / YES**
+12.5+ (stock fw)  | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
+11.4 to 11.6.7    | ON | ON [^1]       | NO       | YES / YES             | [YES / YES](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/19#issuecomment-1153315826)
+10.15 to 11.3     | OFF/ON|OFF/ON      | YES      | NO / NO               | **YES / NO**
 
 If you can't access the Internet after applying the settings, remove the following files via Terminal and reboot:
 
