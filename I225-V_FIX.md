@@ -15,7 +15,7 @@
 ## About
 On the Z490 Vision G, the I225-V Controller stopped working shortly after the first betas of macOS Monterey were released. Various tricks were tried to fix it: assigning IP addresses and settings manually, dropping tables, changing BIOS and Quirks settigs and – the scariest trick of them all – replacing network kexts of previously working builds, which breaks the seal of the snapshot partition and could corrupt macOS, leaving it in an unbootable state. On top of that, this method only worked temporarily until the next beta was released. There's a lengthy thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
 
-Until now, the only reliable option was to just buy a third party network card supported by macOS 12. Fortunately, a new method to get the I225-V working again was discovered. But it requires flashing a modified firmware onto the EEPROM  so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully.
+Until now, the only reliable option was to just buy a third party network card supported by macOS 12 and newer. Fortunately, 2 fixes were discovered to get the I225-V working again. One requires flashing a modified firmware onto the EEPROM so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully. The other one uses and SSDT to inject the correct Header data for the I225-V into macOS so it can use to the .kext version of the AppleEthernetE1000 driver.
 
 ## Technical Backgroud
 The stock firmware for the Intel I225-V NIC used on this Board (and possibly other Z490 Boards by Gigabyte), contains an incorrect Subsystem-ID and Subsystem Vendor-ID. The Vendor-ID (`8086` for Intel) is also used as Subsystem-Vendor-ID (instead of `1458`) and the Subsystem-ID only contains zeros instead of the correct value (`E000`). 
@@ -25,19 +25,22 @@ The following screenshot shows the file header of the I225MOD binary in hex code
 <img width="554" alt="I225VEE" src="https://user-images.githubusercontent.com/76865553/166050133-ff5ec23e-68af-439f-af07-81c32f7ebe76.png">
 
 ## Option 1: Using a SSDT with corrected header description
-Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written a SSDT for it. For macOS Ventura, you also need to inject the .kext version of the AppleIntel210Ethernet driver to make it work.
+Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written an SSDT for it. For macOS Ventura, you also need to inject the .kext version of the AppleIntel210Ethernet driver to make it work.
 
-- [**Download**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/SSDT-I225V.aml.zip?raw=true) the zipped SSDT and unpack it
+**Instructions**:
+
+- [**Download**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/SSDT-I225V.aml.zip?raw=true) the zipped SSDT-I225V and unpack it
 - Add it to `EFI/OC/ACPI` folder and config.plist (just drag it into the ACPI/Add section in OCAT)
-- [**Download**](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) the `AppleIntel210Ethernet.kext` and unzip it. (required on macOS 13 only)
-- Add it to `EFI/OC/Kexts` and config.plist (just drag it into the Kernel/Add section in OCAT) (macOS 13 only)
-- :warning: Change `MinKernel` to `22.0.0` so the kext is only injected into macOS Ventura!
+- macOS 13 only: 
+	- [**Download**](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) the `AppleIntel210Ethernet.kext` and unzip it.
+	- Add it to `EFI/OC/Kexts` and config.plist (just drag it into the Kernel/Add section in OCAT)
+	- Change `MinKernel` to `22.0.0` so the AppleIntel210Ethernet.kext is only injected into macOS Ventura!
 - Add boot-arg `dk.e1000=0` (macOS Big Sur) or `e1000=0` (macOS Monterey/Ventura)
 - Save the config
 - Reboot
 - [**Configure**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware) and test it.
 
-Since I have flashed the modded firmware months ago, I really can't test if this is working but from the look of things it does inject the correct values.
+Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as [working successfully](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786756).
 
 ## Option 2: flashing a custom Firmware
 
