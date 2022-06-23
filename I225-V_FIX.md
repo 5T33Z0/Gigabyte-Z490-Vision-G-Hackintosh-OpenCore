@@ -34,7 +34,7 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 - Add boot-arg `dk.e1000=0` (macOS Big Sur) or `e1000=0` (macOS Monterey/Ventura)
 - Save the config
 - Reboot
-- [**Configure**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#enabling-the-intel-i225-v-ethernet-controller) and test it.
+- [**Configure**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware) and test it.
 
 Since I have flashed the modded firmware months ago, I really can't test if this is working but from the look of things it does inject the correct values.
 
