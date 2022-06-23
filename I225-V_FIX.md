@@ -28,7 +28,7 @@ The following screenshot shows the file header of the I225MOD binary in hex code
 Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written a SSDT for it. For macOS Ventura you also need to inject the .kext version of the AppleIntel210Ethernet driver.
 
 - [**Download**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/SSDT-I225V.aml.zip?raw=true) the zipped SSDT and unpack it
-- Add it to your EFI/OC/ACPI folder and config.plist (just drag it into the ACPI/Add section of OCAT)
+- Add it to `EFI/OC/ACPI` folder and config.plist (just drag it into the ACPI/Add section in OCAT)
 - [**Download**](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) the `AppleIntel210Ethernet.kext` and unzip it. (required on macOS 13 only)
 - Add it to `EFI/OC/Kexts` and config.plist (just drag it into the Kernel/Add section of OCAT) (macOS 13 only)
 - :warning: Change `MinKernel` to `22.0.0` so the kext is only injected into macOS Ventura!
