@@ -42,7 +42,7 @@ If you can't access the Internet after applying the settings, remove the followi
 - `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`
 - `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist` 
 
-[^1]: Combining `Vt-D` and `DisableIOMapper` makes no sense to me but that's what the user reported as working.
+[^1]: Combining `Vt-D` and `DisableIOMapper` makes no sense to me in regards to getting the I225-V working in macOS but that's what the user reported as working.
 
 ## Intel I225-V and macOS Ventura
 In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworkingFamily.kext` located under /S/L/E/ because there are no Apple devices which have a 2.5 Gigabit port. Therefore, boot-args `dk.e1000=0` (Big Sur) and `e1000=0` (Monterey) which ensured that the I225 Controller could connect to the `AppleIntelI210Ethernet.kext` will no longer work.
