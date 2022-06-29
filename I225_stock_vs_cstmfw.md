@@ -45,17 +45,16 @@ If you can't access the Internet after applying the settings, remove the followi
 [^1]: Combining `Vt-D` and `DisableIOMapper` makes no sense to me in regards to getting the I225-V working in macOS but that's what the user reported as working.
 
 ## Intel I225-V and macOS Ventura
-In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworkingFamily.kext` located under /S/L/E/ because there are no Apple devices which have a 2.5 Gigabit port. Therefore, boot-args `dk.e1000=0` (Big Sur) and `e1000=0` (Monterey) which ensured that the I225 Controller could connect to the `AppleIntelI210Ethernet.kext` will no longer work.
+In macOS Ventura, `AppleIntelI210Ethernet.kext` was removed from the `IONetworkingFamily.kext` located under /S/L/E/ because there are no Apple devices which have a 2.5 Gigabit port. Therefore, boot-args `dk.e1000=0` (Big Sur) and `e1000=0` (Monterey) which ensured that the I225 Controller could connect to the `AppleIntelI210Ethernet.kext` will no longer work. But there's a fix.
 
-### Modded firmware users
-- Luckily for us, the .dext version is still present under /S/L/DriverExtensions
+### Stock Firmware Users
+Follow these [**Instructions**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description) to enable the I225-V Controller in macOS Ventura.
+
+### Custom firmware users
+- Luckily for us, the .dext version of the AppleIntelI210Ethernet driver is still present under /S/L/DriverExtensions
 - Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` so that the I225 can connect to the .dext version of the driver.
-- If you are using the modded firmware this works without issues. 
 
-I have working Internet from macOS Catalina all the way up to Ventura.
-
-### Stock Firmware users
-No chance. Since the .kext driver was removed from macOS Ventura and the stock firmware of the I225-V has an incorrect Subsystem-ID and Subsystem Vendor-ID (as explained [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#technical-backgroud)), it cannot connect to the .dext driver without panicking. So flashing the modded firmware currently is the only option to resolve the issue and getting the I225-V to work in macOS 13.
+This way. I have working Internet from macOS Catalina all the way up to Ventura.
 
 ## NOTES
 - You can leave the Kernel Patch for macOS Catalina enabled since it will only be applied up to Kernel 20.4 so it won't affect Big Sur and newer. But you have to disable the device property `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` since the included Device-ID will spoof the I225-V as I219 which will result in Internet not working on Big Sur 11.4 and newer. So put `#` in front of the mentioned PCI path to disable it. See this [**issue report**](https://github.com/dortania/bugtracker/issues/213) for further details.
