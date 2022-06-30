@@ -29,7 +29,7 @@ The screenshot below shows the file header of the I225MOD binary in hex code. Va
 Before attempting to fix your Ethernet Controller make sure you have excluded all other sources for Network errors:
 
 - Check your BIOS and config.plist [settings](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#enabling-the-intel-i225-v-ethernet-controller) and adjust them accordingly
-- Reset your Network Settings:
+- Reset your Network Settings in Terminal:
 	- `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`
 	- `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`
 - Reset your Router
