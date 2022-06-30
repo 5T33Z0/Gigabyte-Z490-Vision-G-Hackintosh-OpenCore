@@ -33,7 +33,7 @@ Before attempting to fix your Ethernet Controller make sure you have excluded al
 	- `sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist`
 	- `sudo rm /Library/Preferences/SystemConfiguration/preferences.plist`
 - Reset your Router
-- Dump the stock firmware (see Option 2 for [instructions](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#flashing-the-firmware-with-openshell)) and analyze it in TextEdit or a HexEditor. If the Subsystem ID, Subsystem-Vendor-ID are correct, you may not need a fix.
+- Dump the stock firmware (Steps 1 - 7 of [Option 2](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#flashing-the-firmware-with-openshell)) and analyze it in TextEdit or a HexEditor. If the Subsystem ID, Subsystem-Vendor-ID are correct, you may not need a fix.
 
 ## Option 1: Using a SSDT with corrected header description
 Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written an SSDT for it. For macOS Ventura, you also need to inject the .kext version of the AppleIntel210Ethernet driver to make it work.
@@ -77,18 +77,18 @@ Since I have flashed the modded firmware months ago I can't test this, but this 
 	- Restart the system but stay in the boot picker
 
 ### Flashing the Firmware with OpenShell	
-- From the OpenCore GUI, select `OpenShell`
-- Type `fs0:` and hit `Enter` to change the working drive (`fs:0` is most likely your USB flash drive)
-- Type `ls` to list the content of the drive. In this case `ls0` is the correct drive letter:</br>![06143142](https://user-images.githubusercontent.com/76865553/162021483-39a7d188-5b96-4607-a1cd-a550dd1560d5.png)
-- Next, type `eeupdate64e /gui` and hit `Enter` to run the tool.
-- Select the "Intel(R) Ethernet Controller I225-V" with the arrow keys and hit `Enter`:</br>![06143155](https://user-images.githubusercontent.com/76865553/162020889-a98abf45-6f58-4c96-a7d3-ffb743895b16.png)
-- In the next screen, select "Raw EEPROM - Extended":</br>![06143203](https://user-images.githubusercontent.com/76865553/162020929-65ff5300-0838-4b6f-a26c-2401274b6b10.png)
-- Next, press `F3` to dump the original firmware to your Flash Drive
-- Enter a name for the backup file and confirm it with "OK". There won't be a any confirmation dialog, though:</br>![06143217_01](https://user-images.githubusercontent.com/76865553/162021033-ec75129f-4f4b-48f6-8403-2fc37f75446d.png)
-- Next, press `F4` to load the custom firmware file:</br>![06143217_02](https://user-images.githubusercontent.com/76865553/162021068-d4102c40-94e8-42f5-bc83-85605019ae0c.png)
-- Now type `I225MOD`, press `ENTER` and confirm loading the file. :warning: Keep the original MAC Address when flashing the firmware (you will be asked).
-- Press `ESC` to exit and confirm saving.
-- Reboot the system into macOS Monterey. 
+1. From the OpenCore GUI, select `OpenShell`
+2. Type `fs0:` and hit `Enter` to change the working drive (`fs:0` is most likely your USB flash drive)
+3. Type `ls` to list the content of the drive. In this case `ls0` is the correct drive letter:</br>![06143142](https://user-images.githubusercontent.com/76865553/162021483-39a7d188-5b96-4607-a1cd-a550dd1560d5.png)
+4. Next, type `eeupdate64e /gui` and hit `Enter` to run the tool.
+5. Select the "Intel(R) Ethernet Controller I225-V" with the arrow keys and hit `Enter`:</br>![06143155](https://user-images.githubusercontent.com/76865553/162020889-a98abf45-6f58-4c96-a7d3-ffb743895b16.png)
+6. In the next screen, select "Raw EEPROM - Extended":</br>![06143203](https://user-images.githubusercontent.com/76865553/162020929-65ff5300-0838-4b6f-a26c-2401274b6b10.png)
+7. Next, press `F3` to dump the original firmware to your Flash Drive
+8. Enter a name for the backup file and confirm it with "OK". There won't be a any confirmation dialog, though:</br>![06143217_01](https://user-images.githubusercontent.com/76865553/162021033-ec75129f-4f4b-48f6-8403-2fc37f75446d.png)
+9. Next, press `F4` to load the custom firmware file:</br>![06143217_02](https://user-images.githubusercontent.com/76865553/162021068-d4102c40-94e8-42f5-bc83-85605019ae0c.png)
+10. Now type `I225MOD`, press `ENTER` and confirm loading the file. :warning: Keep the original MAC Address when flashing the firmware (you will be asked).
+11. Press `ESC` to exit and confirm saving.
+12. Reboot the system into macOS Monterey. 
 
 If everything was done correct, you should now have working Internet connectivity. You may need to remove and add the network adapter again under System Preferences > Network.
 
