@@ -52,7 +52,7 @@ Follow these [**Instructions**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G
 
 ### Custom firmware users
 - Luckily for us, the .dext version of the AppleIntelI210Ethernet driver is still present under /S/L/DriverExtensions
-- Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` so that the I225 can connect to the .dext version of the driver.
+- Therefore you need to disable boot-args `dk.e1000=0` and `e1000=0` so that the I225 can connect to the .dext driver.
 
 This way. I have working Internet from macOS Catalina all the way up to Ventura.
 
