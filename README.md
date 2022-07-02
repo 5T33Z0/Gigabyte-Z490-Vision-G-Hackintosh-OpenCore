@@ -16,11 +16,11 @@
 	- [Installing macOS](#installing-macos)
 	- [EFI Install Guide for OpenCore](#efi-install-guide-for-opencore)
 - [Post-Install](#post-install)
+	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
 	- [Strengthen Security (recommended)](#strengthen-security-recommended)
-	- [Optimizing CPU Power Management](#optimizing-cpu-power-management)
-	- [Calculating Scan Policy (optional)](#calculating-scan-policy-optional)
+	- [Calculating a Scan Policy (optional)](#calculating-a-scan-policy-optional)
+	- [Patching-in NVIDIA Kepler Drivers](#patching-in-nvidia-kepler-drivers)
 	- [Changing Themes](#changing-themes)
-	- [Patching-in Kepler Drivers](#patching-in-kepler-drivers)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
 
@@ -159,13 +159,13 @@ EFI
 </details>
 
 ### About included ACPI Tables
-My EFI Folder contains additional ACPI Tables besides the usual, which you won't find in the OpenCore Install Guide. Some of them are board-specific, some of them are modified versions of the regular tables, some are just cosmetic. 
+My EFI Folder contains additional ACPI Tables besides the usual, which you won't find in the OpenCore Install Guide. Some of them are board-specific, some of them are modified versions of the regular tables, some are just cosmetic (and therefore disabled by default). 
 
 Here's what the extra tables do:
 
-- **DMAR**: DMAR replacement table without Reserved Memory Regions so the I225-V LAN Card works in macOS Big Sur and Monterey.
+- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Useful in cases where 3rd party Wifi/BT cards won't work when the Intel I225-V controller is enabled (macOS Big Sur and newer).
 - **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
-- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* macOS. See the "Additional Files" folder for a detailed list of available and mapped ports.
+- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* macOS. See the "Additional Files" folder for a detailed list of mapped ports.
 - **SSDT-DMAC** (optional): Adds a fake [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tree of I/O Registry. Disablked By default, since it's cosmetic.
 - **SDT-FWHD** (optional): Adds fake Firmware Hub Device (FWHD) to I/O Registry. Used by almost every intel-based Mac. Disabled by default since it's cosmetic.
 - **SSDT-PMC** (optional): Adds fake Apple-exclusive `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
@@ -196,8 +196,7 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 2. Select the config of your choice and rename it to `config.plist`
 3. Open `config.plist` with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) and adjust the following parameters according to your hardware and software configuration:
 	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):
-		- For **Monterey**: `EF0F0000` (0xFEF)</br>
-		- For **Big Sur**: `67080000` (0x867)
+		- For **Big Sur** to **Ventura**: `67080000` (0x867); if you want to completely disable SIP: `EF0F0000` (0xFEF)</br>
 		- For **Mojave/Catalina**: `FF070000` (0x7FF)
 		- For **High Sierra**: `FF030000` (0x3FF)
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
@@ -213,48 +212,58 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 10. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
 11. Continue with Post-Install!
 
-**IMPORTANT**:
+:warning: **IMPORTANT**
 
 - Using csr-active-config `EF0F0000` also disables incremental system updates on macOS 11 and newer. So everytime an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
 - AMD GPUs may require additional `boot-args`. Check [WhateverGreen's](https://github.com/acidanthera/WhateverGreen#boot-arguments) documentation for details.
 
 ## Post-Install
 
-### Strengthen Security (recommended)
-Once you got macOS running, you may want to change the following settings to make your system more secure:
-
-1. Enable System Integrity Protection (SIP): change `csr-active-config` to `00000000`.</br> **NOTE**: If you need GeForce Kepler Patcher, SIP needs to be disabled!
-2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
-3. Change `SecureBootModel` from `Disabled` to `j185f` (for iMac20,2) or `j185` (for iMac20,1). You should test these settings first booting from a USB flash drive since it can prevent the system from booting. Disable it for installing macOS Monterey if you have issues.
-
-**IMPORTANT**
-
-- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notfied about System Updates if `SecureBootModel` is set to `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following Patches in the config.plist:
-	- Skip Board ID check (&rarr; Booter/Patch)
-	- Reroute HW_BID to OC_BID (&rarr; Booter/Patch)
-	- Force IOGetVMMPresent (&rarr; Kernel/Patch)
-	- Reroute kern.hv_vmm_present patch (1) (&rarr; Kernel/Patch)
-	- Reroute kern.hv_vmm_present patch (2) (&rarr; Kernel/Patch)
-- `SecureBootModel` is only applicable to macOS Catalina and newer.
-- If you have to use Geforce Kepler Patcher to get your GeForce Kepler Card working, you have to set `SecureBootModel` to `Disabled`
-
-### Optimizing CPU Power Management
-You can follow my [guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md) to use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` alongside `CPUFriend.kext` to optimize the CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
+### Optimizing CPU Power Management (recommended)
+You can follow my [guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md) to use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
 
 <details><summary><strong>Screenshot</strong> (click to reveal)</summary>
 
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/CPU_PM.png)
 </details>
 
-### Calculating Scan Policy (optional)
+### Strengthen Security (recommended)
+Once you got macOS running, you should change the following settings to make your system more secure:
+
+1. Change `csr-active-config` to `00000000` to enable System Integrity Protection (SIP)
+2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
+3. Change `SecureBootModel` from `Disabled` to `j185` (for iMac20,1) or `j185f` (for iMac20,2). 
+
+:warning: You should have a working backup of your EFI folder on a FAT32 formatted USB flash drive since changing these settings can prevent the system from booting. You may have to disable them for installing macOS Monterey if you have issues.
+
+**NOTES**
+
+- `SecureBootModel` is only applicable to macOS Catalina and newer.
+- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notfied about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following Patches in the config.plist:
+	- Skip Board ID check (&rarr; Booter/Patch)
+	- Reroute HW_BID to OC_BID (&rarr; Booter/Patch)
+	- Force IOGetVMMPresent (&rarr; Kernel/Patch)
+	- Reroute kern.hv_vmm_present patch (1) (&rarr; Kernel/Patch)
+	- Reroute kern.hv_vmm_present patch (2) (&rarr; Kernel/Patch)
+
+### Calculating a Scan Policy (optional)
 The items displayed in the Boot Picker Menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under Misc > Security in the `config.plist.` The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
 
 To change the `ScanPolicy` to your liking, you can make use of this online calculator: https://oc-scanpolicy.vercel.app/. I am using `2687747` for example which hides EFI Folders and NTFS Drives. If I need windows I just boot it from the BIOS Boot Menu (F12).
 
-**IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker being empty, so you can't boot into macOS. So make sure to test the value first by booting from FAT32 formatted USB Stick containing your EFI Folder with the new value for "Scan Policy".
+:warning: **IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker being empty, so you can't boot into macOS. So make sure you have a working Backup of your EFI folder.
+
+### Patching-in NVIDIA Kepler Drivers
+
+Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So users of GPUs from the Kepler family need to patch them back in in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
+
+**Requirements**
+
+- Set `Misc/Security/SecureBootModel` to `Disabled`
+- Set `csr-active-config` to `EF0F0000`
 
 ### Changing Themes
-Besides the 3 themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
+Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional ones: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
 
 - Open `config.plist`
 - Go to Misc > Boot and change `PickerVariant` to: `Blackosx\BsxM1` or `velickovicdj\EnterTwilight`
@@ -263,11 +272,6 @@ Besides the 3 themes from Acidanthera which provide the standard macOS look and 
 To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
 **NOTE**: For more config tips and tricks, you can check out [this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
-
-### Patching-in Kepler Drivers
-
-Apple removed Kepler support from macOS Monterey beta 7. So users of NVIDIA GeForce Cards from the Kepler family need to patch them back in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher). If you require this patch, you can no longer boot with SIP enabled, so you have to disable it!
-</details>
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
