@@ -11,7 +11,7 @@ This optimization has to be performed on the each machine individually (unless y
 The resulting terminal output should be: 
 
 `"board-id" = <"Mac-AF89B6D9451A490B">` (for iMac20,2)</br>
-`"board-id" = <"Mac-CFF7D910A743CAAF">`(for iMac20,1)
+`"board-id" = <"Mac-CFF7D910A743CAAF">` (for iMac20,1)
 
 If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName` is set to `iMac20,2` or `iMac20,1, correct it, save the `config.plist` and reboot to apply the new SMBIOS.
 
