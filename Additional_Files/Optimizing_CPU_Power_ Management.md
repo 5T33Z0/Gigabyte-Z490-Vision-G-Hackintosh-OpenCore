@@ -17,7 +17,7 @@ If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName
 
 ## Generating a data provider kext using `CPUFriendFriend` 
 1. Unpack `CPUFriendFriend-master.zip`
-2. Doubleclick `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
+2. Double-click `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
 	![LFM](https://user-images.githubusercontent.com/76865553/151773085-f181f1d2-e8f3-4f97-8b29-5c8e741b2765.png)
 3. Enter a hex value for the `Low Frequency Mode`. It's the lowest possible frquency the CPU should clock down to without crashing. I am using `08` for 800 MHz. Add your value and hit `Enter`.
 4. Next, adjust the `Energy Performance Preference (EPP)`:</br>
@@ -41,5 +41,3 @@ Both, `CoreMax` (top line) and `CoreAvg` (jagged blue line) should drop if the c
 At the lower end of the scale, `CoreMin` should be below 1 gHz, since we entered 800 MHz as the LFM value. In this case it is even lower – 700 MHz. Thus, the CPU power management is working fine.
 
 If the frequency is never below the base frequency or permanently above it, something is probably wrong with the CPU power management – unless you’ve modified the CPU parameters in the BIOS by disabling speed step or overclocking all cores, etc.
-
-	 
