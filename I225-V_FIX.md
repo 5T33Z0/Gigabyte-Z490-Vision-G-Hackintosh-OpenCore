@@ -47,9 +47,9 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 	- Add it to `EFI/OC/Kexts` and config.plist (just drag it into the Kernel/Add section in OCAT)
 	- Change `MinKernel` to `22.0.0` so the AppleIntel210Ethernet.kext is only injected into macOS Ventura!
 - Add boot-arg `dk.e1000=0` (macOS Big Sur) or `e1000=0` (macOS Monterey/Ventura)
+- [**Configure**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware) it.
 - Save the config
-- Reboot
-- [**Configure**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware) and test it.
+- Reboot and test it.
 
 Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as [working successfully](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786756).
 
