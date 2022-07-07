@@ -5,6 +5,9 @@ AppleALC kext for the Z490 Vision G Board using Realtek ALC 1220. It only includ
 
 **Version**: 1.7.4
 
+### PinConfig
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Additional_Files/ALC1220/PinConfig_LayoutID_17.png)
+
 ### How to
 
 - Download and extract the .zip
