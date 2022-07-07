@@ -1,9 +1,9 @@
-## Apple ALC slimmed
+## Slimmed Apple ALC Kext
 
 ### About
-AppleALC kext for the Z490 Vision G Board using Realtek ALC 1220. It only included Layout-ID 17, which was routed for the Z490 Vision G specifically. It's only 86 kb. So a massive reduction in file size compared to the official build (3.7 mb)!
+AppleALC kext for the Z490 Vision G Board using Realtek ALC 1220. It only includes Layout-ID 17, which was routed for the Z490 Vision G specifically. It's only 86 KB in size. So a massive reduction in file size compared to the official build (3.7 mb)!
 
-**Version**: 1.7.2
+**Version**: 1.7.4
 
 ### How to
 
