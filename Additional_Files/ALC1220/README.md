@@ -5,6 +5,9 @@ AppleALC kext for the Z490 Vision G Board using Realtek ALC 1220. It only includ
 
 **Version**: 1.7.4
 
+### Codec Structure
+![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/33f07e2f57463acdba1b733b73faa53423b3372f/Additional_Files/ALC1220/codec_dump_dec.txt.svg)
+
 ### PinConfig
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Additional_Files/ALC1220/PinConfig_LayoutID_17.png)
 
