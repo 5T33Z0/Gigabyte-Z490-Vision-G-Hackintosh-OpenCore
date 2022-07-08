@@ -118,6 +118,7 @@ EFI
     │   ├── SSDT-DMAC.aml
     │   ├── SSDT-EC-USBX.aml
     │   ├── SSDT-FWHD.aml
+    │   ├── SSDT-I225V.aml
     │   ├── SSDT-PLUG.aml
     │   ├── SSDT-PMC.aml
     │   ├── SSDT-PORTS.aml
