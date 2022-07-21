@@ -38,8 +38,8 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | :warning: Issues related to macOS Monterey/Ventura|
 |:--------------------------------------------------|
 |The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-|600/700-series NVIDIA Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) (only compatible with macOS Monterey).
-		
+|600/700-series Nvidia Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher). Compatible with macOS ≤ 12.4 only!
+
 ## Build Info
 
 ### System Specs
