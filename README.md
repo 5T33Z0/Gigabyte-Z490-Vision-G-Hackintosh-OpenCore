@@ -199,8 +199,10 @@ The following Kexts are disabled by default since I don't know which CPU, GPU, H
 2. Select the config of your choice and rename it to `config.plist`
 3. Open `config.plist` with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) and adjust the following parameters according to your hardware and software configuration:
 	- Change `csr-active-config` based on the macOS version to disable SIP (when using GeForce Kepler Patcher, you _have_ to disable SIP):
-		- For **Big Sur** to **Ventura**: `67080000` (0x867); if you want to completely disable SIP: `EF0F0000` (0xFEF)</br>
-		- For **Mojave/Catalina**: `FF070000` (0x7FF)
+		- For **Big Sur** and newer: 
+			- `67080000` (0x867)
+			- `EF0F0000` (0xFEF) if you need to completely disable SIP (required for GeForce Kepler Patcher)
+		- For **Mojave/Catalina**: `EF070000` (0x7EF)
 		- For **High Sierra**: `FF030000` (0x3FF)
 	- If you want to use the Intel UHD 630 integrated graphics to drive a display, do the following in `DeviceProperties` > `Add`:
 		- Disable `PciRoot(0x0)/Pci(0x2,0x0)`(put `##` in front of it)
