@@ -1,21 +1,29 @@
 # Optimizing CPU Power Management
 
-For 10th gen Intel CPUs, the `iMac20,2` SMBIOS is best suited, since [these models](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,2) are equipped with i7/i9 CPUs. If you are using an i5, you should use [iMac20,1](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,1) instead.
+For 10th Gen Intel Core CPUs, a `iMac20,x` SMBIOS is best suited because it supports the iGPU (other than `iMacPro1,1` and `MacPro7,1`). For i5/i7, use [iMac20,1](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20%2C1), for i9 use [iMac20,2](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,2).
 
-Since I have an i9-10850K, I am using SMBIOS `iMac20,2`. The system runs smoother when using iMac20.2 instead of iMac19.1. The performance is also better and the idle frequency is lower. But it can be optimized even further with the help of `CPUFriend.kext` and an additional data provider kext which can be generated using a python script caled [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) (click on »Code« and select »Download zip«). 
+Since I have an i9-10850K, I am using `iMac20,2`. The system runs smoother than using iMac19.1 which if for Coffee Lake CPUs. The performance is also better and the idle frequency is lower. But it can be optimized even further with the help of `CPUFriend.kext` and an additional data provider kext which can be generated using a python script caled [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) (click on »Code« and select »Download zip«). 
 
-This optimization has to be performed on the each machine individually (unless you are using an i9 10850K as well). To do so, we first verify the current board ID by executing the following command in terminal:
+## Preparations: checking/correcting the Board-ID
+
+This optimization has to be performed on the each machine individually (unless you are using an i9 10850K as well). To do so, we first verify the current Board-ID by executing the following command in terminal:
 
 `ioreg -l | grep -i board-id`
 
-The resulting terminal output should be: 
+Terminal should return either one of these: 
 
-`"board-id" = <"Mac-AF89B6D9451A490B">` (for iMac20,2)</br>
-`"board-id" = <"Mac-CFF7D910A743CAAF">` (for iMac20,1)
+`"board-id" = <"Mac-CFF7D910A743CAAF">` (for iMac20,1)</br>
+`"board-id" = <"Mac-AF89B6D9451A490B">` (for iMac20,2)
 
-If your result differs, check if `PlatformInfo` > `Generic` > `SystemProductName` is set to `iMac20,2` or `iMac20,1, correct it, save the `config.plist` and reboot to apply the new SMBIOS.
+If your result differs, do the following:
 
-## Generating a data provider kext using `CPUFriendFriend` 
+- Change `PlatformInfo/Generic/SystemProductName` to either `iMac20,1` or `iMac20,2`
+- Generate new SMBIOS data with [**GenSMBIOS**](https://github.com/corpnewt/GenSMBIOS) or [**OC Auxiliary Tools**](https://github.com/ic005k/OCAuxiliaryTools). 
+- Save the `config.plist` and reboot to apply the new SMBIOS. 
+
+**NOTE**: You will be asked to verify your AppleID since you are technically reporting a new machine to Apple's Servers.
+
+## Generating a CPUFriendDataProver Kext with `CPUFriendFriend` 
 1. Unpack `CPUFriendFriend-master.zip`
 2. Double-click `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
 	![LFM](https://user-images.githubusercontent.com/76865553/151773085-f181f1d2-e8f3-4f97-8b29-5c8e741b2765.png)
@@ -26,7 +34,7 @@ This This describes how fast the CPUS scales from the lowest to the highest Turb
 5. Next, you have to specify the `Performance Bias Range`, which is used to set the general bias of the system between performance and energy efficiency. The scale ranges from `00` (maximum performance) to `15` (maximum power saving). Since this is more relevant for notebooks than an i9 workstation, I am using `01`:</br>
 	![BIAS](https://user-images.githubusercontent.com/76865553/151773244-f1bd7d7c-182e-468d-86ec-5702283dad13.png)</br>
 6. Next, you can apply Additional Energy Savings Options from the MacBook Air SMBIOS (optional):</br>![mba](https://user-images.githubusercontent.com/76865553/151773342-8ac88574-9926-4efb-af9d-7e4599f57e40.png)</br>Make your choice and hit `Enter`
-7. Finally, the `CPUFrienDataProver.kext` and additional Files are created:</br>![files](https://user-images.githubusercontent.com/76865553/151773395-212d209b-0e6b-43ca-b105-ccf0172f90e7.png)
+7. Finally, the `CPUFriendDataProver.kext` and additional Files are created:</br>![files](https://user-images.githubusercontent.com/76865553/151773395-212d209b-0e6b-43ca-b105-ccf0172f90e7.png)
 8. Copy `CPUFrienDataProver.kext` together with [`CPUFriend.kext`](https://github.com/acidanthera/CPUFriend/releases) into the kext folder and add it to your `config.plist`
 9. Save and reboot
 
