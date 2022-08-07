@@ -38,7 +38,7 @@ Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
 | :warning: Issues related to macOS Monterey/Ventura|
 |:--------------------------------------------------|
 |The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-|600/700-series Nvidia Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher). Compatible with macOS ≤ 12.4 only!
+|600/700-series Nvidia Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher).
 
 ## Build Info
 
@@ -53,7 +53,7 @@ Component     | Details
 **GPU**       | Saphire RX580 Nitro+ (4 GB)
 **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
 **Ethernet** (on-board)  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey
-**Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS)
+**Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS). Currently unused.
 
 ### BIOS Settings
 
@@ -99,8 +99,8 @@ Component     | Details
 * **Chime**: no
 * **FileVault**: `Optional`
 * **SIP:** `Disabled`
-* **SecureBootModel**: `Disabled`
-* **USB Ports Mapped:** Yes, via ACPI. Details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features#readme)
+* **SecureBootModel**: `j185f`
+* **USB Ports Mapped:** Yes, via ACPI.
 
 ### EFI Folder Structure
 
@@ -166,13 +166,13 @@ My EFI Folder contains additional ACPI Tables besides the usual, which you won't
 
 Here's what the extra tables do:
 
-- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Useful in cases where 3rd party Wifi/BT cards won't work when the Intel I225-V controller is enabled (macOS Big Sur and newer).
+- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Useful in cases where 3rd party LAN/Wifi/BT cards won't work when the Intel I225-V controller is enabled (macOS Big Sur and newer).
 - **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
-- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* macOS. See the "Additional Files" folder for a detailed list of mapped ports.
-- **SSDT-DMAC** (optional): Adds a fake [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tree of I/O Registry. Disablked By default, since it's cosmetic.
+- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [this pdf](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf) for a detailed list of mapped ports.
+- **SSDT-DMAC** (optional): Adds a fake [Direct Memory Access Controller](https://electronicsdesk.com/dma-controller.html) to the device tree of I/O Registry. Disabled by default since it's cosmetic.
 - **SDT-FWHD** (optional): Adds fake Firmware Hub Device (FWHD) to I/O Registry. Used by almost every intel-based Mac. Disabled by default since it's cosmetic.
 - **SSDT-PMC** (optional): Adds fake Apple-exclusive `PCMR` Device to ACPI. Required for 300-series mainboards but optional on 400-series and newer. Disabled.
-- [**SDT-RX580**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks) (disabled) &rarr; Improves Metal Performance on Radeon RX580 cards. See the test [results](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/tree/main/OC_Benchmarks#gpu-computing-benchmarks)
+- [**SSDT-RX580**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks) (disabled) &rarr; Improves Metal Performance on Radeon RX580 cards. See the test [results](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/tree/main/OC_Benchmarks#gpu-computing-benchmarks)
 - **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
  
 **NOTE**: More info about additional ACPI Tables can be found on my [OC Little Repo](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
