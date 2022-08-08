@@ -101,7 +101,7 @@ Setting     | Details
 **Boot Chime**| No
 **FileVault** |`Optional`
 **SIP**| `Disabled`. Adjust csr-active-config to your needs.
-**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`
+**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are usting a Kepler GPU and want to install/run macOS Monterey.
 **USB Port Mapping**| Yes, via ACPI.
 
 ### EFI Folder Structure
