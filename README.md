@@ -93,14 +93,16 @@ Component     | Details
 	
 ### OpenCore Details
 
-* **System Definition:** `iMac20,2`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this.
-* **macOS Compatibility**: 10.14 up to 13.0 beta (10.14 requires `iMac19,1` config)
-* **OpenCanopy**: enabled
-* **Chime**: no
-* **FileVault**: `Optional`
-* **SIP:** `Disabled`
-* **SecureBootModel**: `j185f`
-* **USB Ports Mapped:** Yes, via ACPI.
+Setting     | Details                                                       
+:----------:|-------------------------------------------------------------- 
+**SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this.
+**macOS Compatibility** | macOS 10.14 up to 13.0 beta (10.14 requires `iMac19,1` config)
+**OpenCanopy** | Enabled
+**Boot Chime**| No
+**FileVault** |`Optional`
+**SIP**| `Disabled`. Adjust csr-active-config to your needs.
+**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`
+**USB Port Mapping**| Yes, via ACPI.
 
 ### EFI Folder Structure
 
