@@ -51,7 +51,7 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 - Save the config
 - Reboot and test it.
 
-Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as [working successfully](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786756).
+**NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as [working successfully](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786756). But if this doesn't work for you, please use Option 2 instead.
 
 ## Option 2: flashing a custom Firmware
 
