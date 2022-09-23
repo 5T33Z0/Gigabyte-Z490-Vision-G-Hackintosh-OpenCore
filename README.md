@@ -117,23 +117,19 @@ EFI
     ├── ACPI
     │   ├── DMAR.aml
     │   ├── SSDT-AWAC-ARTC.aml
-    │   ├── SSDT-DMAC.aml
     │   ├── SSDT-EC-USBX.aml
-    │   ├── SSDT-FWHD.aml
     │   ├── SSDT-I225V.aml
     │   ├── SSDT-PLUG.aml
-    │   ├── SSDT-PMC.aml
     │   ├── SSDT-PORTS.aml
-    │   ├── SSDT-RX580.aml
-    │   ├── SSDT-SBUS-MCHC.aml
+    │   ├── SSDT-MCHC.aml
     │   └── SSDT-XSPI.aml
     ├── Drivers
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
     │   ├── OpenRuntime.efi
-    │   └── ResetNvramEntry.efi
+    │   ├── ResetNvramEntry.efi
+    │   └── ToggleSipEntry.efi
     ├── Kexts
-    │   ├── AGPMInjector.kext
     │   ├── AppleALC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
