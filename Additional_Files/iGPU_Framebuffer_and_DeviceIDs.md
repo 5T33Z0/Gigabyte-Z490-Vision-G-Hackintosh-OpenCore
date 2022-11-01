@@ -15,4 +15,4 @@
 - **Kernel/Emulate**:
   - **Cpuid1Data**: `EA060900 00000000 00000000 00000000`
   - **Cpuid1Mask**: `FFFFFFFF 00000000 00000000 00000000`
-- **SystemProductName**: iMac19,1
+- **SMBIOS**: `iMac19,1`
