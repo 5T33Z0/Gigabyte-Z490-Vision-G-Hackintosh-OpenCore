@@ -21,16 +21,20 @@ Below you find the results of my tests and recommended settings for different sc
 
 ### Settings combinations, custom firmware:
 
-macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd Party working|
+macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd party LAN/WiFi|
 :-------------|:------:|:--------------:|:---------:|:----------------------:|:--------------------------:
 11.4 to 13.0  | **ON** |**OFF**         | **YES**   | **NO / NO**            | **YES / YES**
 11.4 to 12.5  | ON     | OFF            | NO        | YES / YES              | YES/ NO
 11.4 to 12.5  | OFF/ON |ON              | NO        | YES / YES              | NO / YES
 10.15 to 11.3 | OFF/ON |ON              | YES       | NO / NO                | **YES / YES**
 
+**NOTES**:
+
+- On macOS 12 and newer, [dropping DMAR table](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-1-dropping-the-dmar-table) and [replacing it](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-2-replacing-the-dmar-table-by-a-modified-one) by a modified one without Reserved Memory Regions may be required for Intel WiFi cards to work.
+
 ### Settings combinations, stock firmware
 
-macOS             |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party working|
+macOS             |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party party LAN/WiFi|
 :-----------------|----|:-------------:|:--------:|:---------------------:|:-----------------:
 12.5+ (Fix [Opt. 1](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description))| ON |**OFF**   | **YES**  | **NO / NO**           | **YES / YES**
 12.5+ (stock fw)  | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
