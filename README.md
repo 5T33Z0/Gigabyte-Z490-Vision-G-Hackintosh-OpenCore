@@ -27,18 +27,18 @@
 </details>
 
 ## About
-EFI folder for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an .ioreg file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USBPort kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
+EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USB Port kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
 
-This is a *genuine* Z490 Vision G EFI, built from scratch. Unlike most pseudo Z490 Vision G EFIs posted on Forums and Repos, which are either based on generically patched DSDTs by Olarila/MaLDon (stay away from those!) or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary DeviceProperties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT. My EFI Folder doesn't contain any of this junk.
+This is a *genuine* Z490 Vision G EFI built from scratch. Unlike most so-called Z490 Vision G EFIs posted on Forums and Repos, which are either based on generic SSDTs by Olarila/MaLDon or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary Device Properties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT.
 
-Tested successfully with macOS Mojave, Catalina, Big Sur and Monterey.
+Tested successfully with macOS 10.14 to 13.1.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
 
 | :warning: Issues related to macOS Monterey/Ventura|
 |:--------------------------------------------------|
 |The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-|600/700-series Nvidia Cards require [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) or [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases).
+|600/700-series Nvidia Cards require [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) or [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to reinstall Nvidia drivers.
 
 ## Build Info
 
@@ -49,10 +49,10 @@ Component     | Details
 **Board**     | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`
 **CPU**       | Intel Core i9 10850K (Comet Lake)         
 **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT
-**iGPU**      | Intel UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.|
+**iGPU**      | Intel UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.
 **GPU**       | Saphire RX580 Nitro+ (4 GB)
 **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
-**Ethernet** (on-board)  | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey
+**Ethernet** (on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS). Currently unused.
 
 ### BIOS Settings
@@ -95,14 +95,14 @@ Component     | Details
 
 Setting     | Details                                                       
 :----------:|-------------------------------------------------------------- 
-**SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this.
-**macOS Compatibility** | macOS 10.14 up to 13.0 beta (10.14 requires `iMac19,1` config)
+**SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this
+**macOS Compatibility** | macOS 10.14 up to 13.1 (10.14 requires `iMac19,1` config)
 **OpenCanopy** | Enabled
 **Boot Chime**| No
 **FileVault** |`Optional`
-**SIP**| `Disabled`. Adjust csr-active-config to your needs.
-**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are usting a Kepler GPU and want to install/run macOS Monterey.
-**USB Port Mapping**| Yes, via ACPI.
+**SIP**| `Disabled`. Adjust `csr-active-config` based on used macOS version.
+**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are usting a Kepler GPU and want to install/run macOS Monterey
+**USB Port Mapping**| Yes, via ACPI
 
 ### EFI Folder Structure
 
@@ -253,7 +253,7 @@ To change the `ScanPolicy` to your liking, you can make use of this online calcu
 
 ### Patching-in NVIDIA Kepler Drivers
 
-Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So users of GPUs from the Kepler family need to patch them back in in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
+Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So users of GPUs from the Kepler family need to patch them back in in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (recommended) or [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
 
 **Requirements**
 
