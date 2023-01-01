@@ -2,7 +2,7 @@
 
 For 10th Gen Intel Core CPUs, a `iMac20,x` SMBIOS is best suited because it supports the iGPU (other than `iMacPro1,1` and `MacPro7,1`). For i5/i7, use [iMac20,1](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20%2C1), for i9 use [iMac20,2](https://everymac.com/ultimate-mac-lookup/?search_keywords=iMac20,2).
 
-Since I have an i9-10850K, I am using `iMac20,2`. The system runs smoother than using iMac19.1 which if for Coffee Lake CPUs. The performance is also better and the idle frequency is lower. But it can be optimized even further with the help of `CPUFriend.kext` and an additional data provider kext which can be generated using a python script caled [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) (click on »Code« and select »Download zip«). 
+Since I have an i9-10850K, I am using `iMac20,2`. The system runs smoother than using iMac19.1 which if for Coffee Lake CPUs. The performance is also better and the idle frequency is lower. But it can be optimized even further with the help of `CPUFriend.kext` and an additional data provider kext which can be generated using a python script called [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) (click on »Code« and select »Download zip«). 
 
 ## Preparations: checking/correcting the Board-ID
 
@@ -27,15 +27,15 @@ If your result differs, do the following:
 1. Unpack `CPUFriendFriend-master.zip`
 2. Double-click `CPUFriendFriend.command` to run it. You should see the following prompt:</br>
 	![LFM](https://user-images.githubusercontent.com/76865553/151773085-f181f1d2-e8f3-4f97-8b29-5c8e741b2765.png)
-3. Enter a hex value for the `Low Frequency Mode`. It's the lowest possible frquency the CPU should clock down to without crashing. I am using `08` for 800 MHz. Add your value and hit `Enter`.
+3. Enter a hex value for the `Low Frequency Mode`. It's the lowest possible frequency the CPU should clock down to without crashing. I am using `08` for 800 MHz. Add your value and hit `Enter`.
 4. Next, adjust the `Energy Performance Preference (EPP)`:</br>
 	![EPP](https://user-images.githubusercontent.com/76865553/151773160-38aa587d-93e7-414d-9fbe-50c0eee1c437.png)</br>
-This This describes how fast the CPUS scales from the lowest to the highest Turbo frequency, which has an impact on the overall power consumption. I use `00`.
+This This describes how fast the CPU scales from the lowest to the highest Turbo frequency, which has an impact on the overall power consumption. I use `00`.
 5. Next, you have to specify the `Performance Bias Range`, which is used to set the general bias of the system between performance and energy efficiency. The scale ranges from `00` (maximum performance) to `15` (maximum power saving). Since this is more relevant for notebooks than an i9 workstation, I am using `01`:</br>
 	![BIAS](https://user-images.githubusercontent.com/76865553/151773244-f1bd7d7c-182e-468d-86ec-5702283dad13.png)</br>
 6. Next, you can apply Additional Energy Savings Options from the MacBook Air SMBIOS (optional):</br>![mba](https://user-images.githubusercontent.com/76865553/151773342-8ac88574-9926-4efb-af9d-7e4599f57e40.png)</br>Make your choice and hit `Enter`
 7. Finally, the `CPUFriendDataProver.kext` and additional Files are created:</br>![files](https://user-images.githubusercontent.com/76865553/151773395-212d209b-0e6b-43ca-b105-ccf0172f90e7.png)
-8. Copy `CPUFrienDataProver.kext` together with [`CPUFriend.kext`](https://github.com/acidanthera/CPUFriend/releases) into the kext folder and add it to your `config.plist`
+8. Copy `CPUFriendDataProver.kext` together with [`CPUFriend.kext`](https://github.com/acidanthera/CPUFriend/releases) into the kext folder and add it to your `config.plist`
 9. Save and reboot
 
 ## Testing
