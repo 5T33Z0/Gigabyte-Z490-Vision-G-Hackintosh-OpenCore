@@ -93,7 +93,7 @@ Component     | Details
 
 ### General Information
 
-   | Details                                                       
+Parameter | Details                                                       
 ----------:|-------------------------------------------------------------- 
 **SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this
 **Supported macOS** | macOS 10.14 up to 13.x (10.14 requires `iMac19,1` config)
