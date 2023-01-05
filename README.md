@@ -286,7 +286,7 @@ Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So us
 
 - Enable both `Booter/Patches`
 - Set `Misc/Security/SecureBootModel` to `Disabled`
-- Set `csr-active-config` to `EF0F0000`
+- You may have to change `csr-active-config` to `EF0F0000` for installing NVDIA drivers. Afterwards you can revert it back to `67080000`
 
 ### Changing Themes
 Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional ones: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
