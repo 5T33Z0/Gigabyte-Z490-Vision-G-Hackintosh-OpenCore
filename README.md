@@ -207,7 +207,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 	- `FeatureUnlock`: see comments for details
 	- `RestrictEvents`: Only required when using `MacPro7,1` SMBIOS. Needs `revpatch=auto` boot-arg to disable Warning about unpopulated RAM slots.
-	- `AppleALC.kext`: Slimmed version which only contains  
+	- `AppleALC.kext`: Slimmed version which only contains Layout `17`
 
 6. **Kernel/Quirks**: If your BIOS does not provide the option to disable CFG Lock, either update it or enable `AppleXcpmCfgLock` instead. In this case you also need to enable RestrictEvents.kext to the 
 
