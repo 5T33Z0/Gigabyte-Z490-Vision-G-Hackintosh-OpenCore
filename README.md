@@ -292,10 +292,10 @@ Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So us
 Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional ones: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
 
 - Open `config.plist`
-- Go to Misc > Boot and change `PickerVariant` to: `Blackosx\BsxM1` or `velickovicdj\EnterTwilight`
+- Go to Misc/Boot and change `PickerVariant` to: `Blackosx\BsxM1` or `velickovicdj\EnterTwilight`
 - Save and reboot
 
-To revert these changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
+To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
 **NOTE**: For more config tips and tricks, you can check out [this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
 
