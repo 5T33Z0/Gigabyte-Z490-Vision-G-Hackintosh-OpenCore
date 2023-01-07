@@ -203,7 +203,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 5. **Kernel/Add** Section. The following Kexts are disabled by default since I don't know which CPU, GPU, Hard Disk and SMBIOS you will be using:
 
-	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider with [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) as explained [here](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md), replace the existing one and enable both
+	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) as explained [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md), replace the existing one and enable both
 	- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 	- `FeatureUnlock`: see comments for details
 	- `RestrictEvents`: Only required when using `MacPro7,1` SMBIOS. Needs `revpatch=auto` boot-arg to disable Warning about unpopulated RAM slots.
@@ -265,28 +265,34 @@ Once you got macOS running, you should change the following settings to make you
 **NOTES**
 
 - `SecureBootModel` is only applicable to macOS Catalina and newer.
+- `SIP` must stay disabled when pathing in NVDIA Kepler drivers!
 - Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notfied about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following in the `config.plist`:
 	- **Booter/Patch**: 
 		- Enable `Skip Board ID`
 		- Enable `Reroute HW_BID to OC_BID`
-	- **Kernel/Add**: Enable RestrictEvents.kext
+	- **Kernel/Add**: Enable `RestrictEvents.kext`
 
-### Calculate a Scan Policy (optional)
-The items displayed in the Boot Picker Menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
+### Addressing issues with DRM on AMD Cards in macOS 11+
+The `shikigva` boot-arg previously used to [**address DRM issues**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) is no longer supported in macOS 11 and newer. 
 
-To change the `ScanPolicy` to your liking, you can make use of this online calculator: https://oc-scanpolicy.vercel.app/. I am using `2687747` for example which hides EFI Folders and NTFS Drives. If I need windows I just boot it from the BIOS Boot Menu (F12).
+Instead **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [explained here](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
 
-:warning: **IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker being empty, so you can't boot into macOS. So make sure you have a working Backup of your EFI folder.
-
-### Patching-in NVIDIA Kepler Drivers
-
-Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So users of GPUs from the Kepler family need to patch them back in in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (recommended) or [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
+### Patching-in NVIDIA Kepler Drivers (macOS 12+ only)
+Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So users of with NVIDIA cards Kepler family (GTX 700, etc) need to reinstall them in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (recommended) or [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
 
 **Requirements**
 
 - Enable both `Booter/Patches`
 - Set `Misc/Security/SecureBootModel` to `Disabled`
+- Enabled `RestrictEvents.kext` &rarr; this enables the VMM board-id spoof. Required so System Updates work afterwards. Details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates)
 - You may have to change `csr-active-config` to `EF0F0000` for installing NVDIA drivers. Afterwards you can revert it back to `67080000`
+
+### Calculate a Scan Policy (optional)
+The items displayed in the Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
+
+To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolicy Generator**](https://oc-scanpolicy.vercel.app/). I am using `2687747` for example which hides EFI Folders and NTFS Drives. To add a custom entry for a Windows Disk to OpenCore's Boot Picker [follow my guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/I_Windows/Custom_Entries.md). Otherwise you can just boot Windows from the BIOS Boot Menu (F12) which also bypasses all the OpenCore injections.
+
+:warning: **IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker being empty, so you can't boot into macOS. So make sure you have a working Backup of your EFI folder.
 
 ### Changing Themes
 Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional ones: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
