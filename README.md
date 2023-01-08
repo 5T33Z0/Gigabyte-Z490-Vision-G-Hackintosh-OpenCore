@@ -46,7 +46,7 @@ Tested successfully with macOS 10.14 to 13.1.
 Component     | Details                                                       
 -------------:|-------------------------------------------------------------- 
 **Board**     | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`
-**CPU**       | Intel Core i9 10850K (Comet Lake)         
+**CPU**       | Intel Core i9 10850K (Comet Lake)      
 **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT
 **iGPU**      | Intel UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.
 **GPU**       | Saphire RX580 Nitro+ (4 GB)
@@ -103,7 +103,7 @@ Parameter | Details
 **FileVault** |`Optional`
 **SIP**| `Disabled`. Adjust `csr-active-config` based on used macOS version.
 **SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are usting a Kepler GPU and want to install/run macOS Monterey
-**USB Port Mapping**| Yes, via ACPI
+**USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf).
 
 ### EFI Folder Structure (OpenCore)
 
