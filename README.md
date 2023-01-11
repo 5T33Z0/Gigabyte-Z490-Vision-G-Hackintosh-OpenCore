@@ -30,7 +30,7 @@ EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been w
 
 This is a *genuine* Z490 Vision G EFI built from scratch. Unlike most so-called Z490 Vision G EFIs posted on Forums and Repos, which are either based on generic SSDTs by Olarila/MaLDon or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary Device Properties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT.
 
-Tested successfully with macOS 10.14 to 13.1.
+Tested successfully with macOS 10.14 to 13.2.
 
 **NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
 
@@ -185,13 +185,13 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	**NOTE**: More info about additional ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 2. **ACPI/Delete** Section
-	- Drop OEM DMAR Table &rarr; Only enable if you need to use the DMAR replacement table.
+	- Drop OEM DMAR Table &rarr; Only enable if you need to use the DMAR replacement table
 	- Drop OEM USB Port Map (xh_cmsd4) &rarr; Drops the original USB Port map so SSDT-PORTS.aml can replace it
 	- Drop HPET Table &rarr; Drops the table for the legacy High Precision Event Timer
 
 3. **Booter** Section
 	- **Booter/MMIOWhitelist**
-		- I added these memory regions/addresses after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them and the corresponding `DevirtualiseMmio` Quirk.
+		- I added these memory regions after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them and the corresponding `DevirtualiseMmio` Quirk.
 		- To figure out which ones your system uses, you can [follow this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 		- This is not a necessity, just some fine-tuning.
 	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [workaround](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using NVIDIA Kepler Card
@@ -200,14 +200,16 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [Read this](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
 	- `#PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Disabled Framebuffer for using the iGPU for driving a monitor. Delete the `#` to enable it.
 	- `PciRoot(0x0)/Pci(0x1F,0x3)` &rarr; Settings for on-board audio. Also contains the Layout-id
-	- `PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Headless Framebuffer for using a discrete GPU for display and the iGPU for computational tasks	
+	- `PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Headless Framebuffer for using a discrete GPU for display and the iGPU for computational tasks.
 
 5. **Kernel/Add** Section. The following Kexts are disabled by default since I don't know which CPU, GPU, Hard Disk and SMBIOS you will be using:
 
 	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) as explained [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md), replace the existing one and enable both
 	- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 	- `FeatureUnlock`: see comments for details
-	- `RestrictEvents`: Only required when using `MacPro7,1` SMBIOS. Needs `revpatch=auto` boot-arg to disable Warning about unpopulated RAM slots.
+	- `RestrictEvents`: 
+		- Required when using `MacPro7,1` SMBIOS. Needs `revpatch=auto` boot-arg &rarr; Disables warnings about unpopulated RAM slots.
+		- Required to enable the `VMM-x86_64` so OTA updates work when `SecureBootModel` is  set to `Disabled` (necessary when using NVIDIA Kepler Cards in macOS 12+).
 	- `AppleALC.kext`: Slimmed version which only contains Layout `17`
 
 6. **Kernel/Quirks**: If your BIOS does not provide the option to disable CFG Lock, either update it or enable `AppleXcpmCfgLock` instead. In this case you also need to enable RestrictEvents.kext to the 
