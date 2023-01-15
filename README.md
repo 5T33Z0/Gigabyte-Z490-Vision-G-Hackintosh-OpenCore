@@ -36,8 +36,8 @@ Tested successfully with macOS 10.14 to 13.2.
 
 | :warning: Issues related to macOS Monterey/Ventura|
 |:--------------------------------------------------|
-|The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-|600/700-series Nvidia Cards require [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) or [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) to reinstall Nvidia drivers.
+|The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [**fix**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
+|600/700-series Nvidia Cards require [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) or [**Geforce Kepler Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) to reinstall Nvidia drivers.
 
 ## Hardware Info
 
@@ -48,10 +48,10 @@ Component     | Details
 **Board**     | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`
 **CPU**       | Intel Core i9 10850K (Comet Lake)      
 **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT
-**iGPU**      | Intel UHD 630 (Headless). Use this [Framebuffer Patch](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.
+**iGPU**      | Intel UHD 630 (Headless). Use this [**Framebuffer Patch**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Graphics/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.
 **GPU**       | Saphire RX580 Nitro+ (4 GB)
 **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
-**Ethernet** (on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [flashing a custom Firmware](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey
+**Ethernet** (on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [**flashing a custom Firmware**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS). Currently unused.
 
 ### BIOS Settings
@@ -103,7 +103,7 @@ Parameter | Details
 **FileVault** |`Optional`
 **SIP**| `Disabled`. Adjust `csr-active-config` based on used macOS version.
 **SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are usting a Kepler GPU and want to install/run macOS Monterey
-**USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf).
+**USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
 ### EFI Folder Structure (OpenCore)
 
@@ -161,7 +161,7 @@ EFI
 </details>
 
 ## Installing/Upgrading macOS
-**Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [Dortania](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). No support from my end for issues related to UBS Installers created in Windows or Linux.
+**Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). No support from my end for issues related to UBS Installers created in Windows or Linux.
 
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, via the [**OpemCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) App or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Botch can download macOS High Sierra to Ventura and create a USB Installer as well.
 
@@ -178,7 +178,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	- Some Notes about some of the extra tables:
 		- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Useful in cases where 3rd party LAN/Wifi/BT cards won't work when the Intel I225-V controller is enabled (macOS Big Sur and newer).
 		- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
-		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [this pdf](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB_Ports_List.pdf) for a detailed list of mapped ports.
+		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports.
 		- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using CPUFriend.kext and the CPUFriendDataProvider.kext
 		- **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
 
@@ -192,19 +192,19 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 3. **Booter** Section
 	- **Booter/MMIOWhitelist**
 		- I added these memory regions after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them and the corresponding `DevirtualiseMmio` Quirk.
-		- To figure out which ones your system uses, you can [follow this guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
+		- To figure out which ones your system uses, you can [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 		- This is not a necessity, just some fine-tuning.
-	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [workaround](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` which.
+	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` which.
 
 4. **DeviceProperties**
-	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [Read this](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
+	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
 	- `#PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Disabled Framebuffer for using the iGPU for driving a monitor. Delete the `#` to enable it.
 	- `PciRoot(0x0)/Pci(0x1F,0x3)` &rarr; Settings for on-board audio. Also contains the Layout-id
 	- `PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Headless Framebuffer for using a discrete GPU for display and the iGPU for computational tasks.
 
 5. **Kernel/Add** Section. The following Kexts are disabled by default since I don't know which CPU, GPU, Hard Disk and SMBIOS you will be using:
 
-	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) as explained [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md), replace the existing one and enable both
+	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) as explained [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md), replace the existing one and enable both
 	- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 	- `FeatureUnlock`: see comments for details
 	- `RestrictEvents`: 
