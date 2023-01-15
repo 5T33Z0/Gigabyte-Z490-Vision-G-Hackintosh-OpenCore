@@ -232,7 +232,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		:warning: **IMPORTANT**
 
 		- Using csr-active-config `EF0F0000` also disables incremental system updates on macOS 11 and newer. So every time an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
-		- AMD GPUs may require additional `boot-args`. Check [WhateverGreen's](https://github.com/acidanthera/WhateverGreen#boot-arguments) documentation for details.
+		- AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details.
 
 9. **PlatfotmInfo/Generic** Section: 
 	- Generate SMBIOS data for `iMac20,1` (for Core i9) or `iMac20,2` (for Core i5/i7)
@@ -249,7 +249,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 ## Post-Install
 
 ### Optimizing CPU Power Management (recommended)
-You can follow my [guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Optimizing_CPU_Power_%20Management.md) to use [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
+You can follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
 
 <details><summary><strong>Screenshot</strong> (click to reveal)</summary>
 
@@ -260,7 +260,7 @@ You can follow my [guide](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hacki
 Once you got macOS running, you should change the following settings to make your system more secure:
 
 1. Change `csr-active-config` to `00000000` to enable System Integrity Protection (SIP)
-2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with the correct values for can be found [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
+2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with correct values can be found [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
 3. Change `SecureBootModel` from `Disabled` to `j185` (for iMac20,1) or `j185f` (for iMac20,2). 
 
 :warning: You should have a working backup of your EFI folder on a FAT32 formatted USB flash drive since changing these settings can prevent the system from booting. You may have to disable them for installing macOS Monterey if you have issues.
@@ -278,7 +278,7 @@ Once you got macOS running, you should change the following settings to make you
 ### Addressing issues with DRM on AMD Cards in macOS 11+
 The `shikigva` boot-arg previously used to [**address DRM issues**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) is no longer supported in macOS 11 and newer. 
 
-Instead **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [explained here](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
+Instead **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [**explained here**](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
 
 ### Patching-in NVIDIA Kepler Drivers (macOS 12+ only)
 Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So users of with NVIDIA cards Kepler family (GTX 700, etc) need to reinstall them in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (recommended) or [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
@@ -287,13 +287,13 @@ Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So us
 
 - Enable both `Booter/Patches`
 - Set `Misc/Security/SecureBootModel` to `Disabled`
-- Enabled `RestrictEvents.kext` &rarr; this enables the VMM board-id spoof. Required so System Updates work afterwards. Details [here](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates)
+- Enabled `RestrictEvents.kext` &rarr; this enables the VMM board-id spoof. Required for [**OTA System Updates**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates)
 - You may have to change `csr-active-config` to `EF0F0000` for installing NVDIA drivers. Afterwards you can revert it back to `67080000`
 
 ### Calculate a Scan Policy (optional)
 The items displayed in the Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
 
-To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolicy Generator**](https://oc-scanpolicy.vercel.app/). I am using `2687747` for example which hides EFI Folders and NTFS Drives. To add a custom entry for a Windows Disk to OpenCore's Boot Picker [follow my guide](https://github.com/5T33Z0/OC-Little-Translated/blob/main/I_Windows/Custom_Entries.md). Otherwise you can just boot Windows from the BIOS Boot Menu (F12) which also bypasses all the OpenCore injections.
+To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolicy Generator**](https://oc-scanpolicy.vercel.app/). I am using `2687747` for example which hides EFI Folders and NTFS Drives. To add a custom entry for a Windows Disk to OpenCore's Boot Picker [**follow my guide**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/I_Windows/Custom_Entries.md). Otherwise you can just boot Windows from the BIOS Boot Menu (F12) which also bypasses all the OpenCore injections.
 
 :warning: **IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker being empty, so you can't boot into macOS. So make sure you have a working Backup of your EFI folder.
 
@@ -306,14 +306,14 @@ Besides the included themes from Acidanthera which provide the standard macOS lo
 
 To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
-**NOTE**: For more config tips and tricks, you can check out [this](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
+**NOTE**: For more config tips and tricks, you can check out [**this**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
 [**SEE ALL RESULTS**](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits and Thank yous
-- Acidanthera and Team for the [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
+- Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
 - [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
 - daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
