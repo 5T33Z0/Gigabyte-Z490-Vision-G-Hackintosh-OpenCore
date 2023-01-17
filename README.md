@@ -309,11 +309,12 @@ To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and cha
 **NOTE**: For more config tips and tricks, you can check out [**this**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
 
 ## Alternate GPU Configurations
-If you have an AMD GPU and want to benefit from improved performance of Polaris, (Big) Navi and Vega cards, switch to SMBIOS `iMacPro1,1` or `MacPro1,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead.
+If you have an AMD GPU and want to benefit from improved performance of Polaris, (Big) Navi and Vega cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro1,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
 
-More details about choosing the right SMBIOS can be found [here](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
+But mind the following:
 
-Additional [config edits](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks#config-edits) are required when switching the SMBIOS, so that the card works as intented.
+- Additional [config edits](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks#config-edits) are required when switching the SMBIOS, so that the card works as intented.
+- If you are using CPUFriend, you have to generate a new CpuFriendDataprovider kext with CPUFriendFriend to adjust CPU Power Managent to the new SMBIOS as well.
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
