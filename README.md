@@ -194,7 +194,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		- I added these memory regions after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them and the corresponding `DevirtualiseMmio` Quirk.
 		- To figure out which ones your system uses, you can [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 		- This is not a necessity, just some fine-tuning.
-	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` which.
+	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the drivers. 
 
 4. **DeviceProperties**
 	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
