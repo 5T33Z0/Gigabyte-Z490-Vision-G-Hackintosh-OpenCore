@@ -18,17 +18,19 @@
 - [Post-Install](#post-install)
 	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
 	- [Strengthen Security (recommended)](#strengthen-security-recommended)
-	- [Addressing issues with DRM on AMD Cards in macOS 11+](#addressing-issues-with-drm-on-amd-cards-in-macos-11)
-	- [Patching-in NVIDIA Kepler Drivers (macOS 12+ only)](#patching-in-nvidia-kepler-drivers-macos-12-only)
 	- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
 	- [Changing Themes](#changing-themes)
+- [Alternate GPU Configurations](#alternate-gpu-configurations)
+	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
+	- [Addressing issues with DRM on AMD Cards in macOS 11 and newer](#addressing-issues-with-drm-on-amd-cards-in-macos-11-and-newer)
+	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
 
 ## About
 EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USB Port kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
 
-This is a *genuine* Z490 Vision G EFI built from scratch. Unlike most so-called Z490 Vision G EFIs posted on Forums and Repos, which are either based on generic SSDTs by Olarila/MaLDon or on SchmockLords EFI for the Z490 Vision D, which contains unnecessary Device Properties for Tunderbolt, an I219 Ethernet Controller and on-board WiFi/BT.
+This is a *genuine* Z490 Vision G EFI, built from scratch. Unlike most so-called Z490 Vision G EFIs posted on Forums and Repos, which are either based on generic ones by Olarila/MaLDon or on SchmockLord's EFI for the Z490 Vision D, which contains unnecessary Device Properties for devices not present on the Vision G – like Thunderbolt, an I219 Ethernet Controller and on-board WiFi/BT.
 
 Tested successfully with macOS 10.14 to 13.2.
 
@@ -102,7 +104,7 @@ Parameter | Details
 **Boot Chime**| No
 **FileVault** |`Optional`
 **SIP**| `Disabled`. Adjust `csr-active-config` based on used macOS version.
-**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are usting a Kepler GPU and want to install/run macOS Monterey
+**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are using a Kepler GPU and want to install/run macOS Monterey
 **USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
 ### EFI Folder Structure (OpenCore)
@@ -268,27 +270,12 @@ Once you got macOS running, you should change the following settings to make you
 **NOTES**
 
 - `SecureBootModel` is only applicable to macOS Catalina and newer.
-- `SIP` must stay disabled when pathing in NVDIA Kepler drivers!
-- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notfied about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following in the `config.plist`:
+- `SIP` must stay disabled when installing NVDIA Kepler drivers in Post-Install!
+- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notified about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following in the `config.plist`:
 	- **Booter/Patch**: 
 		- Enable `Skip Board ID`
 		- Enable `Reroute HW_BID to OC_BID`
 	- **Kernel/Add**: Enable `RestrictEvents.kext`
-
-### Addressing issues with DRM on AMD Cards in macOS 11+
-The `shikigva` boot-arg previously used to [**address DRM issues**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) is no longer supported in macOS 11 and newer. 
-
-Instead **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [**explained here**](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
-
-### Patching-in NVIDIA Kepler Drivers (macOS 12+ only)
-Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7. So users of with NVIDIA cards Kepler family (GTX 700, etc) need to reinstall them in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (recommended) or [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher).
-
-**Requirements**
-
-- Enable both `Booter/Patches`
-- Set `Misc/Security/SecureBootModel` to `Disabled`
-- Enabled `RestrictEvents.kext` &rarr; this enables the VMM board-id spoof. Required for [**OTA System Updates**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates)
-- You may have to change `csr-active-config` to `EF0F0000` for installing NVDIA drivers. Afterwards you can revert it back to `67080000`
 
 ### Calculate a Scan Policy (optional)
 The items displayed in the Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
@@ -309,22 +296,41 @@ To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and cha
 **NOTE**: For more config tips and tricks, you can check out [**this**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
 
 ## Alternate GPU Configurations
+
+### AMD GPUs and different SMBIOSes
 If you have an AMD GPU and want to benefit from improved performance of Polaris, (Big) Navi and Vega cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro1,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
 
-But mind the following:
+**Mind the following**:
 
-- Additional [config edits](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks#config-edits) are required when switching the SMBIOS, so that the card works as intented.
-- If you are using CPUFriend, you have to generate a new CpuFriendDataprovider kext with CPUFriendFriend to adjust CPU Power Managent to the new SMBIOS as well.
+- Additional [config edits](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks#config-edits) are required when switching the SMBIOS, so that the card works as intended.
+- If you are using CPUFriend, you have to generate a new `CpuFriendDataprovider.kext` with CPUFriendFriend and replace the previously used on tp adapt CPU Power Management to the new SMBIOS.
+
+### Addressing issues with DRM on AMD Cards in macOS 11 and newer
+The `shikigva` boot-arg previously used to [**address DRM issues**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) is no longer supported in macOS 11 and newer. 
+
+Instead **'unfairgva=x'** (x = bitmask with a number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [**explained here**](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
+
+### Using NVIDIA Kepler Cards in macOS 12 and newer
+Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward. So users with NVIDIA Cards of the Kepler family (GTX 700, etc) need to reinstall them in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) or [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (preferred).
+
+**Requirements**
+
+- Enable both `Booter/Patches` &rarr; Required so System Update Notifications work
+- Set `Misc/Security/SecureBootModel` to `Disabled` &rarr; Required so that the NVIDIA drivers can be loaded
+- Enabled `RestrictEvents.kext` &rarr; this enables the VMM board-id spoof. Required for [**OTA System Updates**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates)
+- You may have to change `csr-active-config` to `EF0F0000` for installing the drivers. Afterwards you can revert it back to `67080000`
+
+**NOTE**: This process breaks incremental (delta) updates. So each time a System Update is available, it will download the full Installer (12+ GB)! And once the installation has finished, you will have to re-install the NVIDIA drivers again. OCLP will ask you if you want to patch them in again.
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
 [**SEE ALL RESULTS**](https://browser.geekbench.com/v5/cpu/5386949)
 
 ## Credits and Thank yous
-- Acidanthera and Team for [OpenCore Bootloader](https://github.com/acidanthera/OpenCorePkg)
-- Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/)
-- [Corpnewt](https://github.com/corpnewt) for SSDTTime, GenSMBIOS and ProperTree
-- daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
-- [SL-Soft](https://www.sl-soft.de/software/) for Kext Updater and ANYmacOS
+- Acidanthera for [OpenCore Boot Manager](https://github.com/acidanthera/OpenCorePkg) and kexts
 - Chris1111 for [GeForce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher)
+- [Corpnewt](https://github.com/corpnewt) for ProperTree, SSDTTime and CPUFriendFriend
+- daliansky for [OC Little ACPI Hotpatch Collection](https://github.com/5T33Z0/OC-Little-Translated) 
+- Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/) and [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher)
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
+- [SL-Soft](https://www.sl-soft.de/en/software/) for Kext Updater and ANYmacOS
