@@ -214,7 +214,9 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		- Required to enable the `VMM-x86_64` so OTA updates work when `SecureBootModel` is  set to `Disabled` (necessary when using NVIDIA Kepler Cards in macOS 12+).
 	- `AppleALC.kext`: Slimmed version which only contains Layout `17`
 
-6. **Kernel/Quirks**: If your BIOS does not provide the option to disable CFG Lock, either update it or enable `AppleXcpmCfgLock` instead. In this case you also need to enable RestrictEvents.kext to the 
+6. **Kernel/Quirks**: 
+	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk instead.
+	- If you don't use Windows on your system, you can disable `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows)
 
 7. **Misc/Security**: 
 	- `SecureBootModel`: 
@@ -238,6 +240,8 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 9. **PlatfotmInfo/Generic** Section: 
 	- Generate SMBIOS data for `iMac20,1` (for Core i9) or `iMac20,2` (for Core i5/i7)
+	- If you're not using Windows on your system, change `UpdateSMBIOSMode` from `Custom` to `Create`
+
 10. Save the `config.plist`
 
 ### Testing the EFI
