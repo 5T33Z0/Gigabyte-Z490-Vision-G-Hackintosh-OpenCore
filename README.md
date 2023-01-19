@@ -24,6 +24,7 @@
 	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
 	- [Addressing issues with DRM on AMD Cards in macOS 11 and newer](#addressing-issues-with-drm-on-amd-cards-in-macos-11-and-newer)
 	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
+	- [Geekbench 5 UHD 630 Metal 3 Test Results](#geekbench-5-uhd-630-metal-3-test-results)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
 
@@ -325,6 +326,24 @@ Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward
 - You may have to change `csr-active-config` to `EF0F0000` for installing the drivers. Afterwards you can revert it back to `67080000`
 
 **NOTE**: This process breaks incremental (delta) updates. So each time a System Update is available, it will download the full Installer (12+ GB)! And once the installation has finished, you will have to re-install the NVIDIA drivers again. OCLP will ask you if you want to patch them in again.
+
+### Geekbench 5 UHD 630 Metal 3 Test Results
+
+Testing Metal Performance of the iGPU with stock configurtion vs Apples GUC Firmware vs. RPS Control.
+
+**CPU**: Intel i9-10850K with UHD 630 in "offline/headless" configuration</br>
+**AAPL,ig-platform-id:** `0300C89B`
+SMBIOS:
+
+Test #| Added Properties | Compute Score | Notes
+:------:|--------------------|---------------|------
+1| `enable-metal`|4671</br> [**Details**](https://browser.geekbench.com/v5/compute/6259341)| • Default </br>• `enable-metal` is required so Metal works 3 on macOS 13 </br> • iGPU Freq:: 0,33 GHz
+2| `enable-mtal` </br> `igfxfw=2` |4808 </br>[**Details**](https://browser.geekbench.com/v5/compute/6259442) | • Slightly Higher Score </br> • GUI feels snappier </br> • Slightly faster boot </br> • iGPU Freq.: 1,2 GHz
+3| `enable-mtal` </br> `igfxfw=2` </br> `rebuild-device-tree` | 4796</br>  [**Details**](https://browser.geekbench.com/v5/compute/6259548)| Rebuilding Device Tree doesn't make a difference
+4| `enable-mtal` </br> `rps-control`| 4754 </br> [**Details**](https://browser.geekbench.com/v5/compute/6259487) | • Slighty lower scare compared to `igfxfw=2`</br> • iGPU Freq: 1,2 GHz
+5| `enable-mtal`</br>`igfxfw=2`</br> `rebuild-device-tree` </br>`rps-control`| 4798 </br> [**Details**](https://browser.geekbench.com/v5/compute/6259133)| iGPU Freq.: 1,2 GHz
+
+Conclusion: Test number 2 produced the best results.
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
