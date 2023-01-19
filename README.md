@@ -21,10 +21,10 @@
 	- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
 	- [Changing Themes](#changing-themes)
 - [Alternate GPU Configurations](#alternate-gpu-configurations)
+	- [iGPU Optimizations](#igpu-optimizations)
 	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
-	- [Addressing issues with DRM on AMD Cards in macOS 11 and newer](#addressing-issues-with-drm-on-amd-cards-in-macos-11-and-newer)
+		- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
 	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
-	- [Geekbench 5 UHD 630 Metal 3 Test Results](#geekbench-5-uhd-630-metal-3-test-results)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
 
@@ -275,7 +275,7 @@ Once you got macOS running, you should change the following settings to make you
 **NOTES**
 
 - `SecureBootModel` is only applicable to macOS Catalina and newer.
-- `SIP` must stay disabled when installing NVDIA Kepler drivers in Post-Install!
+- `SIP` must stay disabled when installing NVIDIA Kepler drivers in Post-Install!
 - Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notified about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following in the `config.plist`:
 	- **Booter/Patch**: 
 		- Enable `Skip Board ID`
@@ -302,18 +302,38 @@ To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and cha
 
 ## Alternate GPU Configurations
 
+### iGPU Optimizations
+
+Listed below, you find results of benchmark tests conducted with Geekbench 5. I was testing Metal 3 performance of the iGPU for 3 different cases: default configuration vs. using Apples GUC Firmware vs. using RPS Control.
+
+**iGPU**: UHD 630 in "offline/headless" configuration</br>
+**AAPL,ig-platform-id:** 0300C89B</br>
+**SMBIOS**: iMac20,2 </br>
+**macOS**: 13.2</br>
+**Geekbench**: 5.5.0
+
+Test #| Added Properties | Compute Score | Notes
+:----:|------------------|---------------|-------
+1| `enable-metal`|4671</br> [**Details**](https://browser.geekbench.com/v5/compute/6259341)| • Default </br>• Mandatory to enable Metal 3 support in macOS 13 </br> • iGPU Freq: 0,33 GHz
+2| `enable-metal` </br> `igfxfw=2` |**4808** </br>[**Details**](https://browser.geekbench.com/v5/compute/6259442) | • `igfxfw=2` forces loading of Apple Graphics Unit Control (GUC) firmware </br> • Slightly higher score </br> • GUI feels snappier </br> • Slightly faster boot time </br> • iGPU Freq.: 1,2 GHz
+3| `enable-metal` </br> `igfxfw=2` </br> `rebuild-device-tree` | 4796</br> [**Details**](https://browser.geekbench.com/v5/compute/6259548)|• Rebuilding Device Tree doesn't make a difference</br> • iGPU Freq.: 1,2 GHz
+4| `enable-metal` </br> `rps-control`| 4754 </br> [**Details**](https://browser.geekbench.com/v5/compute/6259487) | • Uses RPS control patch (whatever that is)</br> • Slightly lower score compared to using `igfxfw=2`</br> • iGPU Freq: 1,2 GHz
+5| `enable-metal`</br>`igfxfw=2`</br> `rebuild-device-tree` </br>`rps-control`| 4798 </br> [**Details**](https://browser.geekbench.com/v5/compute/6259133)| iGPU Freq.: 1,2 GHz
+
+**Conclusion**: Test #2 produced the best result. But it's not really a significant increase in performance compared to the default configuration used in test #1. Results of Tests #3 and #5 are virtually identical. That's because `igfxfw=2` takes precedence over `rps-control`, so you shouldn't combine these two properties!
+
 ### AMD GPUs and different SMBIOSes
-If you have an AMD GPU and want to benefit from improved performance of Polaris, (Big) Navi and Vega cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro1,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
+If you have an AMD GPU and want to benefit from improved performance of Polaris, (Big) Navi and Vega cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro7,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
 
 **Mind the following**:
 
 - Additional [config edits](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/AMD_Radeon_Tweaks#config-edits) are required when switching the SMBIOS, so that the card works as intended.
 - If you are using CPUFriend, you have to generate a new `CpuFriendDataprovider.kext` with CPUFriendFriend and replace the previously used on tp adapt CPU Power Management to the new SMBIOS.
 
-### Addressing issues with DRM on AMD Cards in macOS 11 and newer
-The `shikigva` boot-arg previously used to [**address DRM issues**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) is no longer supported in macOS 11 and newer. 
+#### Addressing DRM issues with AMD GPUs in macOS 11 and newer
+The `shikigva` boot-arg previously used to [**address DRM issues**](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.Chart.md) is no longer supported in macOS Monterey and newer. 
 
-Instead **'unfairgva=x'** (x = bitmask with a number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [**explained here**](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
+Instead, **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [**explained here**](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
 
 ### Using NVIDIA Kepler Cards in macOS 12 and newer
 Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward. So users with NVIDIA Cards of the Kepler family (GTX 700, etc) need to reinstall them in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) or [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (preferred).
@@ -326,24 +346,6 @@ Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward
 - You may have to change `csr-active-config` to `EF0F0000` for installing the drivers. Afterwards you can revert it back to `67080000`
 
 **NOTE**: This process breaks incremental (delta) updates. So each time a System Update is available, it will download the full Installer (12+ GB)! And once the installation has finished, you will have to re-install the NVIDIA drivers again. OCLP will ask you if you want to patch them in again.
-
-### Geekbench 5 UHD 630 Metal 3 Test Results
-
-Testing Metal Performance of the iGPU with stock configurtion vs Apples GUC Firmware vs. RPS Control.
-
-**CPU**: Intel i9-10850K with UHD 630 in "offline/headless" configuration</br>
-**AAPL,ig-platform-id:** `0300C89B`
-SMBIOS:
-
-Test #| Added Properties | Compute Score | Notes
-:------:|--------------------|---------------|------
-1| `enable-metal`|4671</br> [**Details**](https://browser.geekbench.com/v5/compute/6259341)| • Default </br>• `enable-metal` is required so Metal works 3 on macOS 13 </br> • iGPU Freq:: 0,33 GHz
-2| `enable-mtal` </br> `igfxfw=2` |4808 </br>[**Details**](https://browser.geekbench.com/v5/compute/6259442) | • Slightly Higher Score </br> • GUI feels snappier </br> • Slightly faster boot </br> • iGPU Freq.: 1,2 GHz
-3| `enable-mtal` </br> `igfxfw=2` </br> `rebuild-device-tree` | 4796</br>  [**Details**](https://browser.geekbench.com/v5/compute/6259548)| Rebuilding Device Tree doesn't make a difference
-4| `enable-mtal` </br> `rps-control`| 4754 </br> [**Details**](https://browser.geekbench.com/v5/compute/6259487) | • Slighty lower scare compared to `igfxfw=2`</br> • iGPU Freq: 1,2 GHz
-5| `enable-mtal`</br>`igfxfw=2`</br> `rebuild-device-tree` </br>`rps-control`| 4798 </br> [**Details**](https://browser.geekbench.com/v5/compute/6259133)| iGPU Freq.: 1,2 GHz
-
-Conclusion: Test number 2 produced the best results.
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
