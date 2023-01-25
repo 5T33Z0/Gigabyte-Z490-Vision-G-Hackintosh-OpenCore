@@ -29,18 +29,17 @@
 - [Credits and Thank yous](#credits-and-thank-yous)
 
 ## About
-EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` Hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USB Port kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
+EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USB Port kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
 
-This is a *genuine* Z490 Vision G EFI, built from scratch. Unlike most so-called Z490 Vision G EFIs posted on Forums and Repos, which are either based on generic ones by Olarila/MaLDon or on SchmockLord's EFI for the Z490 Vision D, which contains unnecessary Device Properties for devices not present on the Vision G – like Thunderbolt, an I219 Ethernet Controller and on-board WiFi/BT.
+This is a *genuine* Z490 Vision G EFI that has been created from scratch. Unlike many other Z490 Vision G EFIs found on forums and repositories, which are either derived from generic ones by Olarila/MaLDon or from SchmockLord's EFI for the Z490 Vision D, it does not contain any unnecessary properties for devices that are not present on the Vision G, such as Thunderbolt, an I219 Ethernet controller, and on-board WiFi/BT.
 
-Tested successfully with macOS 10.14 to 13.2.
-
-**NOTE**: For best results, read and follow the install instruction carefully and thoroughly.
+Tested successfully with macOS 10.14 to 13.2. For best results, read and follow the install instruction carefully and thoroughly.
 
 | :warning: Issues related to macOS Monterey/Ventura|
 |:--------------------------------------------------|
 |The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [**fix**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
 |600/700-series Nvidia Cards require [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) or [**Geforce Kepler Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) to reinstall Nvidia drivers.
+| Deleted Clover EFIs for now since [**`HWTarget` is broken**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/page/1157/#comment-2800185) in macOS 13
 
 ## Hardware Info
 
