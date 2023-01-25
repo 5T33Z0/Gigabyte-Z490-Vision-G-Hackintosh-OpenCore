@@ -176,8 +176,8 @@ Download the EFI Folder from the [**Releases**](https://github.com/5T33Z0/Gigaby
 Select the config of your choice and rename it to `config.plist`. Open it with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) or a Plist Editor of your choice and check the following sections amd settings and adjust them to your needs:
 
 1. **ACPI/Add** Section 
-	- Enable/Disable ACPI tables as needed
-	- Some Notes about some of the extra tables:
+	- Enable/Disable SSDTs as needed
+	- Additional notes about some SSDTs:
 		- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Useful in cases where 3rd party LAN/Wifi/BT cards won't work when the Intel I225-V controller is enabled (macOS Big Sur and newer).
 		- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports.
