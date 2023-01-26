@@ -20,4 +20,4 @@
 ## Credits
 
 [**Chris1111**](https://github.com/chris1111)</br>
-**[Antuneddu](https://www.insanelymac.com/forum/profile/1390874-antuneddu/)** and from InsanelyMac Forum
+**[Antuneddu](https://www.insanelymac.com/forum/profile/1390874-antuneddu/)** from InsanelyMac Forum
