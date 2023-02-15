@@ -122,16 +122,15 @@ EFI
     │   ├── SSDT-AWAC-ARTC.aml
     │   ├── SSDT-EC-USBX.aml
     │   ├── SSDT-I225V.aml
-    │   ├── SSDT-PLUG.aml
-    │   ├── SSDT-PORTS.aml
     │   ├── SSDT-MCHC.aml
+    │   ├── SSDT-PLUG.aml
+    │   ├── SSDT-PORTS.aml
     │   └── SSDT-XSPI.aml
     ├── Drivers
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
     │   ├── OpenRuntime.efi
-    │   ├── ResetNvramEntry.efi
-    │   └── ToggleSipEntry.efi
+    │   └── ResetNvramEntry.efi
     ├── Kexts
     │   ├── AppleALC.kext
     │   ├── CPUFriend.kext
@@ -155,10 +154,12 @@ EFI
     │   │   ├── Blackosx
     │   │   │   └── BsxM1
     │   │   └── velickovicdj
-    │   │  	└── EnterTwilight
+    │   │  		└── EnterTwilight
     │   └── Label
-    ├── config.plist
-    └── config_iMac19,1.plist
+    ├── config_Catalina.plist
+    ├── config_iMac19,1.plist
+    ├── config_MacPro7,1.plist
+    └── config.plist
 ```
 </details>
 
@@ -225,8 +226,9 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 8. **NVRAM/Add**
 	- `4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102`: 
-		- revpatch:sbvmm &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof.
-		- OCLP-Settings: -allow_amfi &rarr; Required for OpenCore Legacy Patcher so Kepler Drivers can be installed
+		- revpatch:sbvmm &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof. Only required if you have to disable SecureBootModel in order to boot with patched in NVIDIA Drivers for Kepler GPUs.
+		- Boot-args: based on the [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description) you are using to get the Intel I225-V working in macOS 12 and newer, you might need `dk.e1000=0` (macOS Big Sur) or `e1000=0` (macOS Monterey+). 
+		- OCLP-Settings: `-allow_amfi` &rarr; Required for OpenCore Legacy Patcher so Kepler Drivers can be installed
 	- `7C436110-AB2A-4BBB-A880-FE41995C9F82`: 
 		- Change `csr-active-config` to disable SIP. When using OCL or GeForce Kepler Patcher, you _have_ to disable SIP):
 			- **Big Sur** and newer: `67080000` (0x867) or `EF0F0000` (0xFEF) if you need to completely disable SIP (required for GeForce Kepler Patcher)
