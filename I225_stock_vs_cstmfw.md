@@ -1,10 +1,11 @@
 # Conditions for Intel I225-V and 3rd party WiFi/LAN cards to work
-I noticed that some users have issues with getting both 3rd party WiFi and Ethernet cards to work if they dropped the DMAR table and replaced it with a modified one with removed memory regions. The DMAR table of the Z490 Vision G contains 2 reserved memory regions – one of theme is for the XCHI Controller which handles USB. 
 
-I've read in a support thread for the Aquantia 10 Gigabit Ethernet Card that it worked when the memory region for the XHCI controller (PCI Path: 14,00) remained in the DMAR table. So I conducted some tests with 3 variants of the DMAR table: one without memory regions and 2 more with either one or the other memory region included. It turns out: 
+I noticed that some users have issues with getting both 3rd party WiFi and Ethernet cards to work if they dropped the `DMAR` table and replaced it with a modified one without reserved memory regions. The DMAR table of the Z490 Vision G contains 2 reserved memory regions – one of theme is for the XHCI Controller which handles USB. 
 
-- If you've flashed the custom firmware for the Intel I225-V Controller, it doesn't matter if you drop, replace or keep the stock `DMAR` table – it will work, as long as `Vt-d` is enabled and `DisableIoMapper` is set to `false`. 3rd Party Wifi/Ethernet cards may still require aforementioned Memory Regions, so it's best to not drop/replace the DMAR table!
-- On the stock firmware, it's a different story. 
+I've read in a support thread for the Aquantia 10 Gigabit Ethernet Card that it worked when the memory region for the XHCI controller (**PCI Path: 14,00**) remained in the DMAR table. So I conducted some tests with 3 variants of the DMAR table: one without memory regions and two more with either one or the other memory region removed. It turns out that: 
+
+- If you've flashed the custom firmware for the Intel I225-V Controller, it doesn't matter if you drop, replace or keep the stock `DMAR` table – it will work, as long as `Vt-d` is enabled and `DisableIoMapper` is set to `false`. 3rd Party Wifi/Ethernet cards may still require aforementioned memory regions, so it's best to not drop/replace the DMAR table!
+- When using the stock firmware, it's a different story. 
 
 Below you find the results of my tests and recommended settings for different scenarios.
 
@@ -14,19 +15,19 @@ Below you find the results of my tests and recommended settings for different sc
 
 |macOS |Procedure|
 |-------------|---------|
-**12 and 13 beta**| **Prerequisites**: [Fix the Controller](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md). Once that's done, change the following settings:</br></br> 1. **ACPI/Add** &rarr; Disable `DMAR.aml` </br>2. **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<br>3. **DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash symbol `#` in front of it)<br> 4. **Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`</br>5. **Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</br></br>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
-**11.4+**|1. Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put `#` in front of it)</br> 2. Add boot-arg `dk.e1000=0`</br> 3. Save and reboot
-**10.15 to 11.3**|1. Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)</br> 2. Go to `Kernel/Patch` and enable `I225-V Patch`.</br> 3. Delete/disable boot-arg `dk.e1000=0`</br> 4. Save and reboot.
-**10.14 and older**| Not compatible. You need a third party Ethernet Card.
+**12 and 13 beta**| **Prerequisites**: [Fix the Controller](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md). Once that's done, change the following settings:<ol><li>**ACPI/Add** &rarr; Disable `DMAR.aml` <li> **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<li>**DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash symbol `#` in front of it)<li>**Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`<li>**Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</ol>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
+**11.4+**|<ol><li>**DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`(put `#` in front of it)<li>**Boot-args** &rarr; add `dk.e1000=0`<li>Save and reboot
+**10.15 to 11.3**|<ol><li>Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)<li> Go to `Kernel/Patch` and enable `I225-V Patch`.<li> Delete/disable boot-arg `dk.e1000=0`<li>Save and reboot.
+**10.14 and older**| Not compatible. You need a third party Ethernet Card!
 
 ### Settings combinations, custom firmware:
 
-macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd party LAN/WiFi|
-:-------------|:------:|:--------------:|:---------:|:----------------------:|:--------------------------:
-11.4 to 13.0  | **ON** |**OFF**         | **YES**   | **NO / NO**            | **YES / YES**
-11.4 to 12.5  | ON     | OFF            | NO        | YES / YES              | YES/ NO
-11.4 to 12.5  | OFF/ON |ON              | NO        | YES / YES              | NO / YES
-10.15 to 11.3 | OFF/ON |ON              | YES       | NO / NO                | **YES / YES**
+macOS|Vt-D|DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd party LAN/WiFi|
+:----|:------:|:--------------:|:---------:|:--------------:|:---------------:
+**11.4 to 13.0**  | **ON** |**OFF**| **YES**| **NO / NO**| **YES / YES**
+**11.4 to 12.5**  | ON| OFF| NO| YES / YES| YES/ NO
+**11.4 to 12.5**  | OFF/ON |ON| NO| YES / YES| NO / YES
+**10.15 to 11.3** | OFF/ON |ON| YES| NO / NO| **YES / YES**
 
 **NOTES**:
 
@@ -34,12 +35,12 @@ macOS         |Vt-D    |DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I2
 
 ### Settings combinations, stock firmware
 
-macOS             |Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party party LAN/WiFi|
-:-----------------|----|:-------------:|:--------:|:---------------------:|:-----------------:
-12.5+ (Fix [Opt. 1](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description))| ON |**OFF**   | **YES**  | **NO / NO**           | **YES / YES**
-12.5+ (stock fw)  | ON |**OFF**        | **YES**  | **NO / NO**           | **NO / YES**
-11.4 to 11.6.7    | ON | ON [^1]       | NO       | YES / YES             | [YES / YES](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/19#issuecomment-1153315826)
-10.15 to 11.3     | OFF/ON|OFF/ON      | YES      | NO / NO               | **YES / NO**
+macOS|Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party party LAN/WiFi
+:-----|----|:-------------:|:--------:|:---------------------:|:-----------------:
+**12.5+** (Fix [Opt. 1](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description))| ON |**OFF**| **YES**| **NO / NO**| **YES / YES**
+**12.5+** (stock fw) | ON |**OFF**| **YES**  | **NO / NO**| **NO / YES**
+**11.4 to 11.6.7**| ON | ON [^1]| NO| YES / YES| [**YES / YES**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/19#issuecomment-1153315826)
+**10.15 to 11.3** | OFF/ON|OFF/ON| YES | NO / NO | **YES / NO**
 
 If you can't access the Internet after applying the settings, remove the following files via Terminal and reboot:
 
