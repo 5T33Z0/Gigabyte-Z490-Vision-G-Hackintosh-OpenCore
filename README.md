@@ -315,13 +315,16 @@ Listed below, you find results of benchmark tests conducted with Geekbench 5. I 
 
 Test #| Added Properties | Compute Score | Notes
 :----:|------------------|:-------------:|-------
-1| `enable-metal`|[4671](https://browser.geekbench.com/v5/compute/6259341)| <li> Default <li> Mandatory to enable Metal 3 support in macOS 13 if your dGPU doesn't support it <li> iGPU Freq.: 0,33 GHz </li> 
-2| `enable-metal` </br> `igfxfw=2` |[**4808**](https://browser.geekbench.com/v5/compute/6259442)| <li> `igfxfw=2` forces loading of Apple Graphics Unit Control (GUC) firmware <li> Slightly higher score <li> GUI feels snappier <li>Slightly faster boot <li> iGPU Freq.: 1,2 GHz <li> Can cause system crashes </li>
-3| `enable-metal` </br> `igfxfw=2` </br> `rebuild-device-tree` | [4796](https://browser.geekbench.com/v5/compute/6259548) |<li>Rebuilding Device Tree doesn't make a difference <li>iGPU Freq.: 1,2 GHz
-4| `enable-metal` </br> `rps-control`| [4754](https://browser.geekbench.com/v5/compute/6259487) | <li> Uses RPS control patch (whatever that is) <li> Slightly lower score compared to using `igfxfw=2` <li> iGPU Freq: 1,2 GHz
-5| `enable-metal`</br>`igfxfw=2`</br> `rebuild-device-tree` </br>`rps-control`| [4798](https://browser.geekbench.com/v5/compute/6259133) | iGPU Freq.: 1,2 GHz </li>
+1| `enable-metal`|[4671](https://browser.geekbench.com/v5/compute/6259341)| <ul><li> Default <li> Mandatory to enable Metal 3 support in macOS 13 if your dGPU doesn't support it <li> iGPU Freq.: 0,33 GHz </li> 
+2| `enable-metal` </br> `igfxfw=2` |[**4808**](https://browser.geekbench.com/v5/compute/6259442)| <ul><li> `igfxfw=2` forces loading of Apple Graphics Unit Control (GUC) firmware <li> Slightly higher score <li> GUI feels snappier <li>Slightly faster boot <li> iGPU Freq.: 1,2 GHz <li> Can cause system crashes </li>
+3| `enable-metal` </br> `igfxfw=2` </br> `rebuild-device-tree` | [4796](https://browser.geekbench.com/v5/compute/6259548) |<ul><li>Rebuilding Device Tree doesn't make a difference <li>iGPU Freq.: 1,2 GHz
+4| `enable-metal` </br> `rps-control`| [4754](https://browser.geekbench.com/v5/compute/6259487) | <ul><li> Uses RPS control patch (whatever that is) <li> Slightly lower score compared to using `igfxfw=2` <li> iGPU Freq: 1,2 GHz
+5| `enable-metal`</br>`igfxfw=2`</br> `rebuild-device-tree` </br>`rps-control`| [4798](https://browser.geekbench.com/v5/compute/6259133) | <ul> <li> Same result as Test #3 <li> iGPU Freq.: 1,2 GHz
 
-**Conclusion**: Test #2 produced the best result. But it's not really a significant increase in performance compared to the default configuration used in test #1. Results of Tests #3 and #5 are virtually identical. That's because `igfxfw=2` takes precedence over `rps-control`, so you shouldn't combine these two properties!
+**Conclusions**: 
+
+- Test #2 produced the best result. But it's not really a significant increase in performance compared to the default configuration used in test #1. It basically runs the iGPU at a higher base frequency so the energy consumption is higher as well. It also seems that this setting is uncapped in terms of max frequency. This resulted in my system crashing sometimes when watching YouTube because the iGPU frequency went through the roof. So you might consider not using `igfxfw=2`.
+- Results of Tests #3 and #5 are virtually identical. That's because `igfxfw=2` takes precedence over `rps-control`, so you shouldn't combine these two properties!
 
 ### AMD GPUs and different SMBIOSes
 If you have an AMD GPU and want to benefit from improved performance of Polaris, (Big) Navi and Vega cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro7,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
