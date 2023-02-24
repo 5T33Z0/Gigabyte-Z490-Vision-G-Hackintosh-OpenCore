@@ -315,11 +315,11 @@ Listed below, you find results of benchmark tests conducted with Geekbench 5. I 
 
 Test #| Added Properties | Compute Score | Notes
 :----:|------------------|:-------------:|-------
-1| `enable-metal`|[4671](https://browser.geekbench.com/v5/compute/6259341)| • Default </br>• Mandatory to enable Metal 3 support in macOS 13 </br> • iGPU Freq: 0,33 GHz
-2| `enable-metal` </br> `igfxfw=2` |[**4808**](https://browser.geekbench.com/v5/compute/6259442)| • `igfxfw=2` forces loading of Apple Graphics Unit Control (GUC) firmware </br> • Slightly higher score </br> • GUI feels snappier </br> • Slightly faster boot time </br> • iGPU Freq.: 1,2 GHz
-3| `enable-metal` </br> `igfxfw=2` </br> `rebuild-device-tree` | [4796](https://browser.geekbench.com/v5/compute/6259548) |• Rebuilding Device Tree doesn't make a difference</br> • iGPU Freq.: 1,2 GHz
-4| `enable-metal` </br> `rps-control`| [4754](https://browser.geekbench.com/v5/compute/6259487) | • Uses RPS control patch (whatever that is)</br> • Slightly lower score compared to using `igfxfw=2`</br> • iGPU Freq: 1,2 GHz
-5| `enable-metal`</br>`igfxfw=2`</br> `rebuild-device-tree` </br>`rps-control`| [4798](https://browser.geekbench.com/v5/compute/6259133) | iGPU Freq.: 1,2 GHz
+1| `enable-metal`|[4671](https://browser.geekbench.com/v5/compute/6259341)| <li> Default <li> Mandatory to enable Metal 3 support in macOS 13 if your dGPU doesn't support it <li> iGPU Freq.: 0,33 GHz </li> 
+2| `enable-metal` </br> `igfxfw=2` |[**4808**](https://browser.geekbench.com/v5/compute/6259442)| <li> `igfxfw=2` forces loading of Apple Graphics Unit Control (GUC) firmware <li> Slightly higher score <li> GUI feels snappier <li>Slightly faster boot <li> iGPU Freq.: 1,2 GHz <li> Can cause system crashes </li>
+3| `enable-metal` </br> `igfxfw=2` </br> `rebuild-device-tree` | [4796](https://browser.geekbench.com/v5/compute/6259548) |<li>Rebuilding Device Tree doesn't make a difference <li>iGPU Freq.: 1,2 GHz
+4| `enable-metal` </br> `rps-control`| [4754](https://browser.geekbench.com/v5/compute/6259487) | <li> Uses RPS control patch (whatever that is) <li> Slightly lower score compared to using `igfxfw=2` <li> iGPU Freq: 1,2 GHz
+5| `enable-metal`</br>`igfxfw=2`</br> `rebuild-device-tree` </br>`rps-control`| [4798](https://browser.geekbench.com/v5/compute/6259133) | iGPU Freq.: 1,2 GHz </li>
 
 **Conclusion**: Test #2 produced the best result. But it's not really a significant increase in performance compared to the default configuration used in test #1. Results of Tests #3 and #5 are virtually identical. That's because `igfxfw=2` takes precedence over `rps-control`, so you shouldn't combine these two properties!
 
