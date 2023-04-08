@@ -218,6 +218,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 6. **Kernel/Quirks**: 
 	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk instead.
 	- If you don't use Windows on your system, you can disable `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows)
+	- OpenCore 0.9.2 inroduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It supposedly eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party cards.
 
 7. **Misc/Security**: 
 	- `SecureBootModel`: 

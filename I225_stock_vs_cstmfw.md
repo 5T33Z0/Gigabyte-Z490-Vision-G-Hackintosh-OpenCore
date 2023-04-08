@@ -32,6 +32,7 @@ macOS|Vt-D|DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd pa
 **NOTES**:
 
 - On macOS 12 and newer, [dropping DMAR table](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-1-dropping-the-dmar-table) and [replacing it](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-2-replacing-the-dmar-table-by-a-modified-one) by a modified one without Reserved Memory Regions may be required for Intel WiFi cards to work.
+- For macOS 13.3+, OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping`. It supposedly eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replaciing the DMAR table if you have issues with getting your 3rd party cards to work.
 
 ### Settings combinations, stock firmware
 
