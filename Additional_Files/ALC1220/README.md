@@ -1,10 +1,11 @@
 ## Slimmed AppleALC Kext
->**Current Version**: 1.7.9
+>**Current Version**: 1.8.2
 
 ### About
-- Slimmed down AppleALC.kext for the Z490 Vision G Board using Realtek ALC 1220 Codec.
-- **Only 86 KB in size**! The official release is about 3.7 mb.
-- :warning: Only contains Layout-ID `17`, which was routed for the Z490 Vision G specifically. 
+- Slimmed down AppleALC.kext for the Z490 Vision G Board 
+- Only contains settings for Realtek ALC 1220
+- Only contains Layout-ID `17`, which was routed for the Z490 Vision G specifically. 
+- **Only 86 KB in size**! Compared to the size of the official release (3.9 mb) which contains all layouts for all CODECs, this is a size reduction of over 99%.
 
 ### Codec Structure
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/2ceb7d214d2e36d6cbc17b79fe91f9710a7137fe/Additional_Files/ALC1220/Codec_Dump/codec_dump_dec.txt.svg)
