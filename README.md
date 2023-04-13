@@ -188,7 +188,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	**NOTE**: More info about additional ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 2. **ACPI/Delete** Section
-	- Drop OEM DMAR Table &rarr; Only enable if you need to use the DMAR replacement table
+	- Drop OEM DMAR Table &rarr; Only enable if you need to use the DMAR replacement table. Since OC 0.9.2, you can use `DisableIoMapperMapping` Quirk instead.
 	- Drop OEM USB Port Map (xh_cmsd4) &rarr; Drops the original USB Port map so SSDT-PORTS.aml can replace it
 	- Drop HPET Table &rarr; Drops the table for the legacy High Precision Event Timer
 
