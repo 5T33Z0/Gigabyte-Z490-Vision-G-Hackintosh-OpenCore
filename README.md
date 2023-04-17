@@ -104,7 +104,7 @@ Parameter | Details
 **Boot Chime**| No
 **FileVault** |`Optional`
 **SIP**| `Disabled`. Adjust `csr-active-config` based on used macOS version.
-**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are using a Kepler GPU and want to install/run macOS Monterey
+**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are using a Kepler GPU and want to install/run macOS Monterey and newer
 **USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
 ### EFI Folder Structure (OpenCore)
@@ -179,7 +179,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 1. **ACPI/Add** Section 
 	- Enable/Disable SSDTs as needed
 	- Additional notes about some SSDTs:
-		- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Useful in cases where 3rd party LAN/Wifi/BT cards won't work when the Intel I225-V controller is enabled (macOS Big Sur and newer).
+		- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Required for 3rd party LAN/Wifi/BT cards which won't work when VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). **NOTE**: OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` which handles this automatically, so it's no longer necessary to drop and replace the DMAR table (refer to the Documentation for more details)
 		- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. Note that macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports instead over the blue ones when running macOS.
 		- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using CPUFriend.kext and the CPUFriendDataProvider.kext
@@ -188,7 +188,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	**NOTE**: More info about additional ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 2. **ACPI/Delete** Section
-	- Drop OEM DMAR Table &rarr; Only enable if you need to use the DMAR replacement table. Since OC 0.9.2, you can use `DisableIoMapperMapping` Quirk instead.
+	- Drop OEM DMAR Table &rarr; Only enable if you need to use the DMAR replacement table. No longer required when using OpenCore 0.9.2+ – enable `DisableIoMapperMapping` Quirk instead.
 	- Drop OEM USB Port Map (xh_cmsd4) &rarr; Drops the original USB Port map so SSDT-PORTS.aml can replace it
 	- Drop HPET Table &rarr; Drops the table for the legacy High Precision Event Timer
 
