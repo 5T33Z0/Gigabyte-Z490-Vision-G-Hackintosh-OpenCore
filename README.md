@@ -179,25 +179,25 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 1. **ACPI/Add** Section 
 	- Enable/Disable SSDTs as needed
 	- Additional notes about some SSDTs:
-		- **DMAR** (optional): DMAR replacement table without Reserved Memory Regions. Required for 3rd party LAN/Wifi/BT cards which won't work when VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). **NOTE**: OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` which handles this automatically, so it's no longer necessary to drop and replace the DMAR table (refer to the Documentation for more details)
+		- **DMAR** (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Region removed. Required for 3rd party LAN/Wifi/BT cards which won't work when VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). **NOTE**: OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` which handles this automatically, so it's no longer necessary to drop and replace the DMAR table (refer to OpenCore's Documentation for more details)
 		- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. Note that macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports instead over the blue ones when running macOS.
-		- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using CPUFriend.kext and the CPUFriendDataProvider.kext
+		- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 		- **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
 
 	**NOTE**: More info about additional ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 2. **ACPI/Delete** Section
-	- Drop OEM DMAR Table &rarr; Only enable if you need to use the DMAR replacement table. No longer required when using OpenCore 0.9.2+ – enable `DisableIoMapperMapping` Quirk instead.
-	- Drop OEM USB Port Map (xh_cmsd4) &rarr; Drops the original USB Port map so SSDT-PORTS.aml can replace it
-	- Drop HPET Table &rarr; Drops the table for the legacy High Precision Event Timer
+	- **Drop OEM DMAR Table** &rarr; Only enable if you need to use the DMAR replacement table. No longer required when using OpenCore 0.9.2+ – enable `DisableIoMapperMapping` Quirk instead.
+	- **Drop OEM USB Port Map (xh_cmsd4)** &rarr; Drops the original USB Port map so SSDT-PORTS.aml can replace it
+	- **Drop HPET Table** &rarr; Drops the table for the legacy High Precision Event Timer
 
 3. **Booter** Section
 	- **Booter/MMIOWhitelist**
 		- I added these memory regions after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them and the corresponding `DevirtualiseMmio` Quirk.
-		- To figure out which ones your system uses, you can [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
+		- To figure out which ones your system uses, [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 		- This is not a necessity, just some fine-tuning.
-	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the drivers. 
+	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the GPU drivers. 
 
 4. **DeviceProperties**
 	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
