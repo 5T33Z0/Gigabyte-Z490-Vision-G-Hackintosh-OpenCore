@@ -134,7 +134,6 @@ EFI
     │   ├── AppleALC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
-    │   ├── FeatureUnlock
     │   ├── Lilu.kext
     │   ├── NVMeFix.kext
     │   ├── RestrictEvents
@@ -143,7 +142,7 @@ EFI
     │   ├── VirtualSMC.kext
     │   └── WhateverGreen.kext
     ├── OpenCore.efi
-    ├── Resources (NOTE: removed files of sub-folders from tree view to reduce clutter)
+    ├── Resources (NOTE: removed files in sub-folders from tree view to reduce clutter)
     │   ├── Font
     │   ├── Image
     │   │   ├── Acidanthera
@@ -163,24 +162,24 @@ EFI
 </details>
 
 ## Installing/Upgrading macOS
-**Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). No support from my end for issues related to UBS Installers created in Windows or Linux.
+**Coming from Windows/Linux**: If you are on Windows or Linux, follow the guide provided by [**Dortania**](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/#making-the-installer). I provide no support for issues with UBS Installers created in Windows or Linux or when installing macOS into a VM!
 
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, via the [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) App or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Botch can download macOS High Sierra to Ventura and create a USB Installer as well.
 
 ## Deployment
-Please read the following explanations carefully and follow the given instructions. In order to boot macOS with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your system configuration and the macOS version you want to install/run. 
+Please read the following explanations carefully and thoroughly and follow the given instructions. In order to boot your PC with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your system configuration and the macOS version you want to install/run. 
 
 ### Preparing the `config.plist`
-Download the EFI Folder from the [**Releases**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) section and unpack it. Make sure to check the included `Changelog.md` as well, since it contains useful explanations. 
+Download my latest EFI Folder from the [**Releases**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) section and unpack it. Make sure to check the included `Changelog.md` as well, since it contains important background information and useful explanations. 
 
-Select the config of your choice and rename it to `config.plist`. Open it with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) or a Plist Editor of your choice and check the following sections amd settings and adjust them to your needs:
+Select the config of your choice and rename it to `config.plist`. Open it with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) or a ProperTree and check the following sections/settings and adjust them to your needs:
 
 1. **ACPI/Add** Section 
 	- Enable/Disable SSDTs as needed
 	- Additional notes about some SSDTs:
 		- **DMAR** (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Region removed. Required for 3rd party LAN/Wifi/BT cards which won't work when VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). **NOTE**: OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` which handles this automatically, so it's no longer necessary to drop and replace the DMAR table in macOS 13.3+. Refer to OpenCore's Documentation for more details.
 		- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
-		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. Note that macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports instead over the blue ones when running macOS.
+		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or patches. Since the USB ports are mapped via ACPI, they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a schematic of the mapped ports. Note that macOS does not support USB 3.2. On macOS, Thunderbold 3 or newer is required to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports instead over the blue ones when running macOS.
 		- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 		- **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
 
@@ -188,8 +187,8 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 2. **ACPI/Delete** Section
 	- **Drop OEM DMAR Table** &rarr; Only enable if you need to use the DMAR replacement table. No longer required when using OpenCore 0.9.2+ – enable `DisableIoMapperMapping` Quirk instead.
-	- **Drop OEM USB Port Map (xh_cmsd4)** &rarr; Drops the original USB Port map so SSDT-PORTS.aml can replace it
-	- **Drop HPET Table** &rarr; Drops the table for the legacy High Precision Event Timer
+	- **Drop OEM USB Port Map (xh_cmsd4)** &rarr; Drops the original USB Port mapping so `SSDT-PORTS.aml` can replace it.
+	- **Drop HPET Table** &rarr; Drops the table for the High Precision Event Timer which is now a legacy device.
 
 3. **Booter** Section
 	- **Booter/MMIOWhitelist**
@@ -206,18 +205,17 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 5. **Kernel/Add** Section. The following Kexts are disabled by default since I don't know which CPU, GPU, Hard Disk and SMBIOS you will be using:
 
-	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) as explained [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md), replace the existing one and enable both
+	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider in Post-Install with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) as explained [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) and replace the existing one and enable both
 	- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
-	- `FeatureUnlock`: see comments for details
 	- `RestrictEvents`: 
-		- Required when using `MacPro7,1` SMBIOS. Needs `revpatch=auto` boot-arg &rarr; Disables warnings about unpopulated RAM slots.
-		- Required to enable the `VMM-x86_64` so OTA updates work when `SecureBootModel` is  set to `Disabled` (necessary when using NVIDIA Kepler Cards in macOS 12+).
+		- Only required when using `MacPro7,1` SMBIOS &rarr; Disables warnings about unpopulated RAM slots.
+		- Also required for enabling the `VMM-x86_64` Board-id so OTA updates work when `SecureBootModel` is  set to `Disabled` (necessary when using NVIDIA Kepler Cards in macOS 12+).
 	- `AppleALC.kext`: Slimmed version which only contains Layout `17`
 
 6. **Kernel/Quirks**: 
 	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk instead.
 	- If you don't use Windows on your system, you can disable `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows)
-	- OpenCore 0.9.2 inroduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It supposedly eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party cards.
+	- OpenCore 0.9.2 inroduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party cards.
 
 7. **Misc/Security**: 
 	- `SecureBootModel`: 
@@ -231,11 +229,11 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		- OCLP-Settings: `-allow_amfi` &rarr; Required for OpenCore Legacy Patcher so Kepler Drivers can be installed
 	- `7C436110-AB2A-4BBB-A880-FE41995C9F82`: 
 		- Change `csr-active-config` to disable SIP. When using OCL or GeForce Kepler Patcher, you _have_ to disable SIP):
-			- **Big Sur** and newer: `67080000` (0x867) or `EF0F0000` (0xFEF) if you need to completely disable SIP (required for GeForce Kepler Patcher)
+			- **Big Sur** and newer: `03080000` (0x867) or `EF0F0000` (0xFEF) if you need to completely disable SIP (required for GeForce Kepler Patcher)
 			- **Mojave/Catalina**: `EF070000` (0x7EF)
 			- **High Sierra**: `FF030000` (0x3FF)
 	
-		:warning: **IMPORTANT**
+		> **:Warning:**
 
 		- Using csr-active-config `EF0F0000` also disables incremental system updates on macOS 11 and newer. So every time an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
 		- AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details.
@@ -271,13 +269,13 @@ Once you got macOS running, you should change the following settings to make you
 2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with correct values can be found [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
 3. Change `SecureBootModel` from `Disabled` to `j185` (for iMac20,1) or `j185f` (for iMac20,2). 
 
-:warning: You should have a working backup of your EFI folder on a FAT32 formatted USB flash drive since changing these settings can prevent the system from booting. You may have to disable them for installing macOS Monterey if you have issues.
+> **:Warning:** You should have a working backup of your EFI folder on a FAT32 formatted USB flash drive since changing these settings can prevent the system from booting. You may have to disable them for installing macOS Monterey if you have issues.
 
 **NOTES**
 
 - `SecureBootModel` is only applicable to macOS Catalina and newer.
 - `SIP` must stay disabled when installing NVIDIA Kepler drivers in Post-Install!
-- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notified about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following in the `config.plist`:
+- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notified about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS. If you are using a legacy GPU, you have to  enable the following settings in the `config.plist`:
 	- **Booter/Patch**: 
 		- Enable `Skip Board ID`
 		- Enable `Reroute HW_BID to OC_BID`
