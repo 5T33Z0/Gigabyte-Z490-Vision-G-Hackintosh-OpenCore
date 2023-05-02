@@ -174,6 +174,7 @@ Download my latest EFI Folder from the [**Releases**](https://github.com/5T33Z0/
 
 Select the config of your choice and rename it to `config.plist`. Open it with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) or a ProperTree and check the following sections/settings and adjust them to your needs:
 
+<<<<<<< Updated upstream
 1. **ACPI/Add** Section 
 	- Enable/Disable SSDTs as needed
 	- Additional notes about some SSDTs:
@@ -182,6 +183,14 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or patches. Since the USB ports are mapped via ACPI, they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a schematic of the mapped ports. Note that macOS does not support USB 3.2. On macOS, Thunderbold 3 or newer is required to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports instead over the blue ones when running macOS.
 		- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 		- **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
+=======
+1. **ACPI/Add** Section. Enable/Disable SSDTs as needed
+	- **DMAR** (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Region removed. Required for 3rd party LAN/Wifi/BT cards which won't work when VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). **NOTE**: OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` which handles this automatically, so it's no longer necessary to drop and replace the DMAR table in macOS 13.3+. Refer to OpenCore's Documentation for more details.
+	- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
+	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. Note that macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports instead over the blue ones when running macOS.
+	- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
+	- **SSDT-XSPI** (optional, enabled): Adds PCH SPI Controller to IORegistry as `XSPI`. So it's not a fake device but probably only a cosmetic change.
+>>>>>>> Stashed changes
 
 	**NOTE**: More info about additional ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
@@ -195,7 +204,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		- I added these memory regions after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them and the corresponding `DevirtualiseMmio` Quirk.
 		- To figure out which ones your system uses, [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 		- This is not a necessity, just some fine-tuning.
-	- **Booter/Patch**: These patches are used in OpenCore to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the GPU drivers. 
+	- **Booter/Patch**: OpenCore patches used to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the GPU drivers. 
 
 4. **DeviceProperties**
 	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
@@ -224,7 +233,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 8. **NVRAM/Add**
 	- `4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102`: 
-		- revpatch:sbvmm &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof. Only required if you have to disable SecureBootModel in order to boot with patched in NVIDIA Drivers for Kepler GPUs.
+		- revpatch:sbvmm &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof. Only required if you have to disable `SecureBootModel` in order to boot with patched in NVIDIA Drivers for Kepler GPUs.
 		- Boot-args: based on the [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description) you are using to get the Intel I225-V working in macOS 12 and newer, you might need `dk.e1000=0` (macOS Big Sur) or `e1000=0` (macOS Monterey+). 
 		- OCLP-Settings: `-allow_amfi` &rarr; Required for OpenCore Legacy Patcher so Kepler Drivers can be installed
 	- `7C436110-AB2A-4BBB-A880-FE41995C9F82`: 
