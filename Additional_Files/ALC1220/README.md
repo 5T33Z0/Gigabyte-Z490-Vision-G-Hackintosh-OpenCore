@@ -12,7 +12,7 @@
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Additional_Files/ALC1220/Codec_Dump/PinConfig_LayoutID_17.png)
 
 ## How to
-- Download and extract the [**Latest AppleACL-Release**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/tree/main/Additional_Files/ALC1220/Slimmed_AppleALC)
+- Download and extract the [**Latest AppleALC-Release**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/tree/main/Additional_Files/ALC1220/Slimmed_AppleALC)
 - Replace the existing AppleALC.kext in your `EFI/OC/Kexts` folder
 - Change the Layout-ID in boot-args or Device Properties to `17`
 - Save and Reboot 
