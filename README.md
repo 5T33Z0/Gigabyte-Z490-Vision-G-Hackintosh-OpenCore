@@ -39,7 +39,7 @@ Tested successfully with macOS 10.14 to 13.2. For best results, read and follow 
 |:--------------------------------------------------|
 |The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [**fix**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
 |600/700-series Nvidia Cards require [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) or [**Geforce Kepler Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) to reinstall Nvidia drivers.
-| Deleted Clover EFI for now since Clover is no longer maintained by Slice and [**`HWTarget` is broken**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/page/1157/#comment-2800185) in macOS 13
+|Retired Clover EFI since Slice is no longer maintaining it. There are unresolved issues which haven't been fixed ([**`HWTarget` is broken**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/page/1157/#comment-2800185) in macOS 13)
 
 ## Hardware Info
 
