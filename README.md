@@ -56,6 +56,8 @@ Component     | Details
 **Ethernet** (on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [**flashing a custom Firmware**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey and newer.
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS). Currently unused.
 
+**Intel® 400 Series Chipset Datasheets** (PDF): [**Vol. 1**](https://cdrdv2.intel.com/v1/dl/getContent/615170) [**Vol. 2**](https://cdrdv2.intel.com/v1/dl/getContent/615146) [**Specs Update**](https://cdrdv2.intel.com/v1/dl/getContent/615296)
+
 ### BIOS Settings
 
 <details>
