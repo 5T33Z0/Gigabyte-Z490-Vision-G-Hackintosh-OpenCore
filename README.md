@@ -97,13 +97,13 @@ Component     | Details
 ### General Information
 
 Parameter | Details                                                       
-----------:|-------------------------------------------------------------- 
+---------:|-------------------------------------------------------------- 
 **SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this
 **Supported macOS** | macOS 10.14 up to 13.x (10.14 requires `iMac19,1` config)
 **OpenCanopy** | Enabled
 **Boot Chime**| No
 **FileVault** |`Optional`
-**SIP**| `Disabled`. Adjust `csr-active-config` based on used macOS version.
+**SIP**| `Enabled`. Adjust `csr-active-config` based on your specific needs.
 **SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are using a Kepler GPU and want to install/run macOS Monterey and newer
 **USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
