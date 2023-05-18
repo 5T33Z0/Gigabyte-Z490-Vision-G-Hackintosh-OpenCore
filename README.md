@@ -201,7 +201,9 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
 	- `#PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Disabled Framebuffer for using the iGPU for driving a monitor. Delete the `#` to enable it.
 	- `PciRoot(0x0)/Pci(0x1F,0x3)` &rarr; Settings for on-board audio. Also contains the Layout-id
-	- `PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Headless Framebuffer for using a discrete GPU for display and the iGPU for computational tasks.
+	- `PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Headless Framebuffer for using the iGPU for computational tasks only. 
+		- Disable this entry when using the `iMacPro1,1` or `MacPro7,1` SMBIOS.
+		- Delete/Disable the `enable-metal` property when using a AMD (Big) Navi Card, since these cards support Metal 3.
 
 5. **Kernel/Add** Section. The following Kexts are disabled by default since I don't know which CPU, GPU, Hard Disk and SMBIOS you will be using:
 
@@ -274,19 +276,19 @@ Once you got macOS running, you should change the following settings to make you
 **NOTES**
 
 - `SecureBootModel` is only applicable to macOS Catalina and newer.
-- `SIP` must stay disabled when installing NVIDIA Kepler drivers in Post-Install!
-- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notified about System Updates if `SecureBootModel` is `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS. If you are using a legacy GPU, you have to  enable the following settings in the `config.plist`:
+- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notified about System Updates if `SIP` and `SecureBootModel` are `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following settings in the `config.plist`:
 	- **Booter/Patch**: 
 		- Enable `Skip Board ID`
 		- Enable `Reroute HW_BID to OC_BID`
 	- **Kernel/Add**: Enable `RestrictEvents.kext`
+- `SIP` and `SecureBootModel` must stay disabled for booting macOS 12 or newer with patched-in NVIDIA Kepler drivers!
 
 ### Calculate a Scan Policy (optional)
 The items displayed in the Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
 
 To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolicy Generator**](https://oc-scanpolicy.vercel.app/). I am using `2687747` for example which hides EFI Folders and NTFS Drives. To add a custom entry for a Windows Disk to OpenCore's Boot Picker [**follow my guide**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/I_Windows/Custom_Entries.md). Otherwise you can just boot Windows from the BIOS Boot Menu (F12) which also bypasses all the OpenCore injections.
 
-:warning: **IMPORTANT**: Calculating a wrong `ScanPolicy` can lead to the Boot Picker being empty, so you can't boot into macOS. So make sure you have a working Backup of your EFI folder.
+:warning: **IMPORTANT**: Calculating an incorrect `ScanPolicy` can lead to a BootPicker without entries, so you can't select any OS. So make sure you have a working Backup of your EFI folder!
 
 ### Changing Themes
 Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional ones: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
@@ -325,7 +327,7 @@ Test #| Added Properties | Compute Score | Notes
 - Results of Tests #3 and #5 are virtually identical. That's because `igfxfw=2` takes precedence over `rps-control`, so you shouldn't combine these two properties!
 
 ### AMD GPUs and different SMBIOSes
-If you have an AMD GPU and want to benefit from improved performance of Polaris, (Big) Navi and Vega cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro7,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
+If you have an AMD GPU and want to benefit from improved performance of Polaris, Vega and (Big) Navi and cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro7,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
 
 **Mind the following**:
 
