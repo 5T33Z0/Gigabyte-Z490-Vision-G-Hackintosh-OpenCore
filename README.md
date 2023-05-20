@@ -181,9 +181,9 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
 	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. **NOTE**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
 	- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
-	- **SSDT-XSPI** (optional): Adds PCH SPI Controller to IORegistry as `XSPI`. Cosmetic only.
+	- [**SSDT-XSPI**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/SSDT-XSPI.dsl) (optional): Adds PCH SPI Controller to IORegistry as `XSPI`. Cosmetic only.
 
-	**NOTE**: More info about additional ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
+	**NOTE**: Additional info about these ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 2. **ACPI/Delete** Section
 	- **Drop OEM DMAR Table** &rarr; Only enable if you need to use the DMAR replacement table. No longer required when using OpenCore 0.9.2+ and macOS Ventura – enable `DisableIoMapperMapping` Quirk instead.
@@ -192,10 +192,10 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 3. **Booter** Section
 	- **Booter/MMIOWhitelist**
-		- I added these memory regions after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them and the corresponding `DevirtualiseMmio` Quirk.
-		- To figure out which ones your system uses, [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
+		- I added these memory regions after analyzing the bootlog. Since I don't know if these are used by all systems, I disabled them.
+		- To figure out which ones can be whitelisted, [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 		- This is not a necessity, just some fine-tuning.
-	- **Booter/Patch**: OpenCore patches used to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) if System Update Notifications are not working. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the GPU drivers. 
+	- **Booter/Patch**: OpenCore patches used to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) to fix System Update Notifications. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the GPU drivers. 
 
 4. **DeviceProperties**
 	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
@@ -207,17 +207,17 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 5. **Kernel/Add** Section. The following Kexts are disabled by default since I don't know which CPU, GPU, Hard Disk and SMBIOS you will be using:
 
-	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider in Post-Install with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) as explained [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) and replace the existing one and enable both
+	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider in Post-Install with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) to optimize CPU Power Management [**as explained here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md). It is recommended to create a new Data Provider kext after switching the SMBIOS and/or updating/upgrading macOS.
 	- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 	- `RestrictEvents`: 
-		- Only required when using `MacPro7,1` SMBIOS &rarr; Disables warnings about unpopulated RAM slots.
-		- Also required for enabling the `VMM-x86_64` Board-id so OTA updates work when `SecureBootModel` is  set to `Disabled` (necessary when using NVIDIA Kepler Cards in macOS 12+).
-	- `AppleALC.kext`: Slimmed version which only contains Layout `17`
+		- Required when using `MacPro7,1` SMBIOS &rarr; Disables warnings about unpopulated RAM slots.
+		- Also required for enabling the `VMM-x86_64` Board-id so OTA updates work when `SIP` and `SecureBootModel` are disabled (necessary when using NVIDIA Kepler Cards in macOS 12+).
+	- `AppleALC.kext`: Slimmed version of AppleALC I compiled myself. It only contains Layout `17` and is only 86 kB in size. If you want to use a different Layout, you need to use the regular version of AppleALC or [compile your own](https://github.com/5T33Z0/AppleALC-Guides/tree/main/Slimming_AppleALC).
 
 6. **Kernel/Quirks**: 
 	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk instead.
 	- If you don't use Windows on your system, you can disable `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows)
-	- OpenCore 0.9.2 inroduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party cards.
+	- OpenCore 0.9.2 inroduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party WiFi/BT cards.
 
 7. **Misc/Security**: 
 	- `SecureBootModel`: 
@@ -226,19 +226,16 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 8. **NVRAM/Add**
 	- `4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102`: 
-		- revpatch:sbvmm &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof. Only required if you have to disable `SecureBootModel` in order to boot with patched in NVIDIA Drivers for Kepler GPUs.
-		- Boot-args: based on the [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description) you are using to get the Intel I225-V working in macOS 12 and newer, you might need `dk.e1000=0` (macOS Big Sur) or `e1000=0` (macOS Monterey+). 
+		- revpatch:sbvmm &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof. Only required if you have to disable `SIP` and `SecureBootModel` in order to boot with patched in NVIDIA Drivers for Kepler GPUs.
+		- Boot-args: based on the [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description) you are using to get the Intel I225-V working in macOS 12 and newer, you might need `dk.e1000=0` (macOS Big Sur) and/or `e1000=0` (macOS Monterey+). 
 		- OCLP-Settings: `-allow_amfi` &rarr; Required for OpenCore Legacy Patcher so Kepler Drivers can be installed
 	- `7C436110-AB2A-4BBB-A880-FE41995C9F82`: 
-		- Change `csr-active-config` to disable SIP. When using OCL or GeForce Kepler Patcher, you _have_ to disable SIP):
-			- **Big Sur** and newer: `03080000` (0x867) or `EF0F0000` (0xFEF) if you need to completely disable SIP (required for GeForce Kepler Patcher)
+		- Change `csr-active-config` to disable SIP. When using OCLP or GeForce Kepler Patcher, you _have_ to disable SIP):
+			- **Big Sur** and newer: `03080000` (0x803) or `EF0F0000` (0xFEF) if you need to completely disable SIP (required for GeForce Kepler Patcher)
 			- **Mojave/Catalina**: `EF070000` (0x7EF)
 			- **High Sierra**: `FF030000` (0x3FF)
 	
-		> **:Warning:**
-
-		- Using csr-active-config `EF0F0000` also disables incremental system updates on macOS 11 and newer. So every time an update is available, the *full* installer will be downloaded. To avoid this, either enable SIP temporarily from the OpenCore GUI or use `67080000` instead.</br>
-		- AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details.
+		> **Warning:** <ul><li> AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details. <li> Applying root patches with OCLP results in a broken security seal which affects System Updates: incremental (or delta) system updates won't work after that. Instead, the *full* macOS installer (about 12 GB) will be downloaded every time a system update is available.</br>
 
 9. **PlatfotmInfo/Generic** Section: 
 	- Generate SMBIOS data for `iMac20,1` (for Core i9) or `iMac20,2` (for Core i5/i7)
@@ -257,7 +254,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 ## Post-Install
 
 ### Optimizing CPU Power Management (recommended)
-You can follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
+Follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
 
 <details><summary><strong>Screenshot</strong> (click to reveal)</summary>
 
