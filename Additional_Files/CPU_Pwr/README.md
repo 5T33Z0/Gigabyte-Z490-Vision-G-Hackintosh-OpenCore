@@ -35,8 +35,9 @@ This This describes how fast the CPU scales from the lowest to the highest Turbo
 	![BIAS](https://user-images.githubusercontent.com/76865553/151773244-f1bd7d7c-182e-468d-86ec-5702283dad13.png)</br>
 6. Next, you can apply Additional Energy Savings Options from the MacBook Air SMBIOS (optional):</br>![mba](https://user-images.githubusercontent.com/76865553/151773342-8ac88574-9926-4efb-af9d-7e4599f57e40.png)</br>Make your choice and hit `Enter`
 7. Finally, the `CPUFriendDataProver.kext` and additional Files are created:</br>![files](https://user-images.githubusercontent.com/76865553/151773395-212d209b-0e6b-43ca-b105-ccf0172f90e7.png)
-8. Copy `CPUFriendDataProver.kext` together with [`CPUFriend.kext`](https://github.com/acidanthera/CPUFriend/releases) into the kext folder and add it to your `config.plist`
-9. Save and reboot
+8. Copy `CPUFriendDataProver.kext` and [`CPUFriend.kext`](https://github.com/acidanthera/CPUFriend/releases) into the kext folder
+9. Add them to the `Kernel/Add` section of your config.plist and enable them
+10. Save and reboot
 
 ## Testing
 
