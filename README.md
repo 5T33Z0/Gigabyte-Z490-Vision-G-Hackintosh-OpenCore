@@ -1,4 +1,4 @@
-# Gigabyte Z490 Vision G Hackintosh OpenCore
+Gigabyte Z490 Vision G Hackintosh OpenCore
 [![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.9.3-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![macOS Big Sur](https://img.shields.io/badge/macOS-11.7.6-white.svg)](https://www.apple.com/macos/big-sur/) [![macOS Monterey](https://img.shields.io/badge/macOS-12.6.3-white.svg)](https://www.apple.com/macos/monterey/) [![macOS Ventura](https://img.shields.io/badge/macOS-13.4-white.svg)](https://www.apple.com/macos/ventura/) [![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>
 ![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
@@ -22,6 +22,7 @@
 	- [Changing Themes](#changing-themes)
 - [Alternate GPU Configurations](#alternate-gpu-configurations)
 	- [iGPU Optimizations](#igpu-optimizations)
+	- [Enabling Resizable BAR (optional)](#enabling-resizable-bar-optional)
 	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
 		- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
 	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
@@ -125,8 +126,7 @@ EFI
     │   ├── SSDT-I225V.aml
     │   ├── SSDT-MCHC.aml
     │   ├── SSDT-PLUG.aml
-    │   ├── SSDT-PORTS.aml
-    │   └── SSDT-XSPI.aml
+    │   └── SSDT-PORTS.aml
     ├── Drivers
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
@@ -179,7 +179,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 1. **ACPI/Add** Section. Add/Enable/Disable SSDTs as needed
 	- [**DMAR**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Region removed. Required for 3rd party LAN/Wifi/BT cards which won't work when VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). **NOTE**: Removed from latest version since OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` which handles this automatically, so it's no longer necessary to drop and replace the DMAR table in macOS 13.3+. Refer to OpenCore's Documentation for details.
 	- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
-	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. **NOTE**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greather than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
+	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. **NOTE**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
 	- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 	- [**SSDT-XSPI**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/SSDT-XSPI.dsl) (optional): Adds PCH SPI Controller to IORegistry as `XSPI`. Cosmetic only.
 
@@ -217,7 +217,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 6. **Kernel/Quirks**: 
 	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk instead.
 	- If you don't use Windows on your system, you can disable `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows)
-	- OpenCore 0.9.2 inroduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party WiFi/BT cards.
+	- OpenCore 0.9.2 introduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party WiFi/BT cards.
 
 7. **Misc/Security**: 
 	- `SecureBootModel`: 
@@ -322,6 +322,20 @@ Test #| Added Properties | Compute Score | Notes
 
 - Test #2 produced the best result. But it's not really a significant increase in performance compared to the default configuration used in test #1. It basically runs the iGPU at a higher base frequency so the energy consumption is higher as well. It also seems that this setting is uncapped in terms of max frequency. This resulted in my system crashing sometimes when watching YouTube because the iGPU frequency went through the roof. So you might consider not using `igfxfw=2`.
 - Results of Tests #3 and #5 are virtually identical. That's because `igfxfw=2` takes precedence over `rps-control`, so you shouldn't combine these two properties!
+
+### Enabling Resizable BAR (optional)
+
+- Check if your GPU supports resizable BAR – you can use GPU-Z in Windows for that. The RX 580 I am using does support it
+- In your config, change the following settings:
+	- `Booter/Quirks`: change `ResizeAppleGpuBars` from `-1` to `10` &rarr; This provides a max BAR size of 1 Gb which is the limit in macOS.
+	- `UEFI/Quirks`: Leave `ResizeGpuBars` at `-1` so other OSes are not affected by this change
+- Save your config and reboot
+- Enter the BIOS 
+- Change the following Options:
+	- Enable `Above 4G Decoding` (mandatory, otherwise Resizable BAR is not available)
+	- Change Resizable BAR mode to: `Auto`
+
+> **Note**: [About Resizable BAR](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/GPU-BAR_Size)
 
 ### AMD GPUs and different SMBIOSes
 If you have an AMD GPU and want to benefit from improved performance of Polaris, Vega and (Big) Navi and cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro7,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
