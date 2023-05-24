@@ -41,17 +41,15 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 **Instructions**
 
 - [**Download**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/I225-V/SSDT-I225V.aml.zip?raw=true) the zipped SSDT-I225V and unpack it
-- Add it to `EFI/OC/ACPI` folder and config.plist (just drag it into the ACPI/Add section in OCAT)
-- **macOS 13 only**: 
-	- [**Download**](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786214) the `AppleIntel210Ethernet.kext` or get it from Big Sur/Monterey. It's located under: `/System/Library/Extensions/IONetworkingFamily.kext/Contents/PlugIns/`) 
-	- Add it to `EFI/OC/Kexts` and config.plist (just drag it into the Kernel/Add section in OCAT)
-	- Change `MinKernel` to `22.0.0` so the AppleIntel210Ethernet.kext is only injected into macOS Ventura!
+- Add it to `EFI/OC/ACPI` folder and config.plist 
+- Additional steps (**macOS 13** only): 
+	- Add [**this kext**](https://github.com/5T33Z0/OC-Little-Translated/raw/main/01_Adding_missing_Devices_and_enabling_Features/Intel_I225-V_Fix_(SSDT-I225V)/AII210E.zip) 
+	- Change `MinKernel` to `22.0.0` so the kext is only injected into macOS Ventura!
 - Add boot-arg `dk.e1000=0` (macOS Big Sur) or `e1000=0` (macOS Monterey/Ventura)
-- [**Configure**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware) it.
-- Save the config
-- Reboot and test it.
+- [**Adjust Config**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware)
+- Save the config and reboot
 
-**NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as [working successfully](https://www.insanelymac.com/forum/topic/352281-intel-i225-v-on-ventura/?do=findComment&comment=2786756). But if this doesn't work for you, please use Option 2 instead.
+**NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as working successfully. But if this doesn't work for you, please use Option 2 instead.
 
 ## Option 2: flashing a custom Firmware
 
