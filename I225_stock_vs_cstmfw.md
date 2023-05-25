@@ -15,6 +15,9 @@ Below you find the results of my tests and recommended settings for different sc
 
 ## Enabling the Intel I225-V Ethernet Controller
 
+- Disable/Delete `FakePCIID.kext` (if present)
+- Disable/Delete `FakePCIID_Intel_I225-V.kext` (if present)
+
 |macOS |Procedure|
 |-------------|---------|
 **12 and 13**|[Apply the Controller Fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) and then adjust the following settings in the config.plist: <ol><li>**ACPI/Add** &rarr; Disable `DMAR.aml` <li> **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<li>**DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash symbol `#` in front of it)<li>**Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`<li> **Kernel/Quirks** &rarr; Select `DisableIoMapperMapping` <li> **Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</ol>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
