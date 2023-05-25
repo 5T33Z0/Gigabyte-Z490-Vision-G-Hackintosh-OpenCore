@@ -70,7 +70,7 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 	- Under ACPI/delete, disable the rule for dropping the `DMAR`table
 	- Save your `config.plist`
 - **USB Flash Drive**
-	- [**Download**](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/?do=findComment&comment=2779420) `I225-Vmod.zip` and extract it.
+	- [**Download**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/raw/main/Additional_Files/I225-V/I225-Vmod.zip) `I225-Vmod.zip` and extract it.
 	- Copy `eeupdate64.efi` and `I225MOD`to the root folder of a FAT32 formatted USB Flash Drive.
 	- Restart the system but stay in the boot picker
 
