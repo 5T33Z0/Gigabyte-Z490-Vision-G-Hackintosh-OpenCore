@@ -16,8 +16,8 @@
 	- [Preparing the `config.plist`](#preparing-the-configplist)
 	- [Testing the EFI](#testing-the-efi)
 - [Post-Install](#post-install)
-	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
 	- [Strengthen Security (recommended)](#strengthen-security-recommended)
+	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
 	- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
 	- [Changing Themes](#changing-themes)
 - [Alternate GPU Configurations](#alternate-gpu-configurations)
@@ -26,6 +26,7 @@
 	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
 		- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
 	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
+		- [Preparation](#preparation)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
 
@@ -80,7 +81,7 @@ Component     | Details
 		* OnBoard LAN Controller: Enabled
 		* Audio Controller: Enabled (if On-Board Sound Card is used)
 		* Above 4G Decoding: Enabled
-		* Re-Size BAR Support: Disabled
+		* Re-Size BAR Support: Disabled (Enable if your GPU supports it)
 		* IOAPIC 24-119 Entries: Enabled
 		* Super IO Configuration
 			* Serial Port: Disabled
@@ -254,14 +255,6 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 ## Post-Install
 
-### Optimizing CPU Power Management (recommended)
-Follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
-
-<details><summary><strong>Screenshot</strong> (click to reveal)</summary>
-
-![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/CPU_PM.png)
-</details>
-
 ### Strengthen Security (recommended)
 Once you got macOS running, you should change the following settings to make your system more secure:
 
@@ -281,8 +274,16 @@ Once you got macOS running, you should change the following settings to make you
 	- **Kernel/Add**: Enable `RestrictEvents.kext`
 - `SIP` and `SecureBootModel` must stay disabled for booting macOS 12 or newer with patched-in NVIDIA Kepler drivers!
 
+### Optimizing CPU Power Management (recommended)
+Follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
+
+<details><summary><strong>Screenshot</strong> (click to reveal)</summary>
+
+![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/CPU_PM.png)
+</details>
+
 ### Calculate a Scan Policy (optional)
-The items displayed in the Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
+The items displayed in OpenCore's Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
 
 To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolicy Generator**](https://oc-scanpolicy.vercel.app/). I am using `2687747` for example which hides EFI Folders and NTFS Drives. To add a custom entry for a Windows Disk to OpenCore's Boot Picker [**follow my guide**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/I_Windows/Custom_Entries.md). Otherwise you can just boot Windows from the BIOS Boot Menu (F12) which also bypasses all the OpenCore injections.
 
@@ -328,15 +329,18 @@ Test #| Added Properties | Compute Score | Notes
 
 - Check if your GPU supports resizable BAR – you can use GPU-Z in Windows for that. The RX 580 I am using does support it
 - In your config, change the following settings:
-	- `Booter/Quirks`: change `ResizeAppleGpuBars` from `-1` to `10` &rarr; This provides a max BAR size of 1 Gb which is the limit in macOS.
+	- `Booter/Quirks`: change `ResizeAppleGpuBars` from `-1` to `0` which will update GPU registers to their defaults when booting macOS
 	- `UEFI/Quirks`: Leave `ResizeGpuBars` at `-1` so other OSes are not affected by this change
 - Save your config and reboot
 - Enter the BIOS 
 - Change the following Options:
-	- Enable `Above 4G Decoding` (mandatory, otherwise Resizable BAR is not available)
+	- Enable `Above 4G Decoding` (otherwise the Resizable BAR option is not available)
 	- Change Resizable BAR mode to: `Auto`
 
-> **Note**: [About Resizable BAR](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/GPU-BAR_Size)
+**NOTES**: 
+
+- Enabling resizable BAR slightly increases performance (approx. 10 %). 
+- [About Resizable BAR](https://github.com/5T33Z0/OC-Little-Translated/tree/main/11_Graphics/GPU/GPU-BAR_Size)
 
 ### AMD GPUs and different SMBIOSes
 If you have an AMD GPU and want to benefit from improved performance of Polaris, Vega and (Big) Navi and cards, you can switch to SMBIOS `iMacPro1,1` or `MacPro7,1` instead. Since these Macs don't have an iGPU, tasks like  Quick Sync Video and HEVC encoding are then handled by the GPU instead. More details about choosing the right SMBIOS can be found [**here**](https://caizhiyuan.gitee.io/opencore-install-guide/extras/smbios-support.html#how-to-decide)
@@ -352,14 +356,15 @@ The `shikigva` boot-arg previously used to [**address DRM issues**](https://gith
 Instead, **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [**explained here**](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
 
 ### Using NVIDIA Kepler Cards in macOS 12 and newer
-Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward. So users with NVIDIA Cards of the Kepler family (GTX 700, etc) need to reinstall them in post-install using [**Geforce-Kepler-Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) or [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) (preferred).
+Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward. So users with NVIDIA Cards of the Kepler family (GTX 700, etc.) need to reinstall them in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher).
 
-**Requirements**
+#### Preparation
 
-- Enable both `Booter/Patches` &rarr; Required so System Update Notifications work
-- Set `Misc/Security/SecureBootModel` to `Disabled` &rarr; Required so that the NVIDIA drivers can be loaded
-- Enabled `RestrictEvents.kext` &rarr; this enables the VMM board-id spoof. Required for [**OTA System Updates**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates)
-- You may have to change `csr-active-config` to `EF0F0000` for installing the drivers. Afterwards you can revert it back to `67080000`
+Change the following settings in config.plist:
+
+- `Misc/Security/SecureBootModel` Set to `Disabled` &rarr; Required to load NVIDIA drivers – otherwise the system would crash
+- `Kernel/Add`: Enable `RestrictEvents.kext` &rarr; This enables the VMM board-id spoof. Required for [**OTA System Updates**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) to work with SIP disabled
+- `csr-active-config` to `03080000` for installing the drivers
 
 **NOTE**: This process breaks incremental (delta) updates. So each time a System Update is available, it will download the full Installer (12+ GB)! And once the installation has finished, you will have to re-install the NVIDIA drivers again. OCLP will ask you if you want to patch them in again.
 
