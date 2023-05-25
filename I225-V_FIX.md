@@ -61,13 +61,17 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 - **macOS**
 	- Open **Network Settings**: set Ethernet > IPv4 to `DHCP` and Advanced… > Hardware > Configuration to `Automatic`.
 - **OpenCore and config.plist**
-	- Mount EFI
-	- Add `OpenShell` to OC/Tools and `config.plist` (it's contained in the OpenCore Pkg)
-	- Disable/remove `DeviceProperties` for `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`
-	- Disable/remove boot-arg `dk.e1000=0`
-	- Uncheck Kernel/Quirks `DisableIOMapper`
-	- Under ACPI/add, disable the `DMAR` replacement table
-	- Under ACPI/delete, disable the rule for dropping the `DMAR`table
+	- Mount your EFI
+	- Add `OpenShell` (included in OpenCorePkg) to `EFI/OC/Tools` 
+	- Open your config.plist and change the following settings:
+		- `ACPI/Add`: Disable the `DMAR` replacement table
+		- `ACPI/Delete`: Disable the rule for dropping the `DMAR`table
+		- `DeviceProperties`: Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put `#` in front of it)
+		- `Kernel/Add`: Delete `FakePCIID.kext` (if present)
+		- `Kernel/Add`: Delete `FakePCIID_Intel_I225-V.kext` (if present)
+		- `Kernel/Quirks`: Uncheck `DisableIOMapper`
+		- `Misc/Tools`: Add `OpenShell`
+		- `NVRAM/Add/…-E41995C9F82`: Disable/remove boot-arg `dk.e1000=0` and/or `e1000=0`
 	- Save your `config.plist`
 - **USB Flash Drive**
 	- [**Download**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/raw/main/Additional_Files/I225-V/I225-Vmod.zip) `I225-Vmod.zip` and extract it.
@@ -75,7 +79,7 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 	- Restart the system but stay in the boot picker
 
 ### Flashing the Firmware with OpenShell	
-1. From the OpenCore GUI, select `OpenShell`
+1. From the OpenCore GUI, select `OpenShell` (press Space Bar to show if it's hidden)
 2. Type `fs0:` and hit `Enter` to change the working drive (`fs:0` is most likely your USB flash drive)
 3. Type `ls` to list the content of the drive. In this case `ls0` is the correct drive letter:</br>![06143142](https://user-images.githubusercontent.com/76865553/162021483-39a7d188-5b96-4607-a1cd-a550dd1560d5.png)
 4. Next, type `eeupdate64e /gui` and hit `Enter` to run the tool.
