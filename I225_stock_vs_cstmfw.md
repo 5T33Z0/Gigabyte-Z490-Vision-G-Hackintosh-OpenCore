@@ -20,7 +20,7 @@ Below you find the results of my tests and recommended settings for different sc
 
 |macOS |Procedure|
 |-------------|---------|
-**12 and 13**|[Apply the Controller Fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) and then adjust the following settings in the config.plist: <ol><li>**ACPI/Add** &rarr; Disable `DMAR.aml` <li> **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<li>**DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash symbol `#` in front of it)<li>**Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`<li> **Kernel/Quirks** &rarr; Select `DisableIoMapperMapping` <li> **Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</ol>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
+**12 and 13**|[Apply the Controller Fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) and then adjust the following settings in the config.plist: <ol><li>**ACPI/Add** &rarr; Disable `DMAR.aml` <li> **ACPI/Delete** &rarr; Disable `Drop OEM DMAR Table`<li>**DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (put a hash symbol `#` in front of it)<li>**Kernel/Quirks** &rarr; Uncheck `DisableIOMapper`<li> **Kernel/Quirks** &rarr; Select `DisableIoMapperMapping` (macOS 13.3+ only, see Notes)<li> **Boot-args** &rarr; Disable/Delete `dk.e1000=0` and/or `e1000=0` (put `#` in front of them)</ol>**NOTE**: This is the default configuration. If you are using the modded firmware and my config, you don't have to change anything here!
 **11.4+**|<ol><li>**DeviceProperties** &rarr; Disable `PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)`(put `#` in front of it)<li>**Boot-args** &rarr; add `dk.e1000=0`<li>Save and reboot
 **10.15 to 11.3**|<ol><li>Enable `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` (delete `#`)<li> Go to `Kernel/Patch` and enable `I225-V Patch`.<li> Delete/disable boot-arg `dk.e1000=0`<li>Save and reboot.
 **10.14 and older**| Not compatible. You need a 3rd party WiFi/Ethernet Card!
@@ -36,9 +36,9 @@ macOS|Vt-D|DisableIoMapper |DMAR (OEM) |DMAR (dropped/replaced) |I225-V / 3rd pa
 
 **NOTES**:
 
-- On macOS 12, [dropping DMAR table](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-1-dropping-the-dmar-table) and [replacing it](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-2-replacing-the-dmar-table-by-a-modified-one) by a modified one without Reserved Memory Regions may be required for Intel WiFi cards to work.
-- macOS 13.3+: OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` (works independently of `DisableIoMapper`). It eliminates the need for a modified DMAR table to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of dropping and replaciing the DMAR table if you have issues with getting your 3rd party WiFi/Ethernet card to work.
-
+- **In macOS 12**, [dropping DMAR table](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-1-dropping-the-dmar-table) and [replacing it](https://github.com/5T33Z0/OC-Little-Translated/tree/main/00_ACPI/ACPI_Dropping_Tables#example-2-replacing-the-dmar-table-by-a-modified-one) by a modified one without Reserved Memory Regions may be required for Intel WiFi cards to work.
+- **macOS 13.3+**: OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` (works independently of `DisableIoMapper`). It address compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled inroduced by macOS 13.3. So if you had no connectivity issues prior to updating to macOS 13.3 or nwer, you can try this quirk and see if it fixes the issue. If your configuration required dropping and replacinig the DMAR table before it's still required now.
+ 
 ### Settings combinations, stock firmware
 
 macOS|Vt-D|DisableIoMapper|DMAR (OEM)|DMAR (dropped/replaced)| I225-V / 3rd Party party LAN/WiFi
