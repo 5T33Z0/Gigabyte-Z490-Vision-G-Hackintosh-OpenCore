@@ -187,7 +187,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	**NOTE**: Additional info about these ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
 
 2. **ACPI/Delete** Section
-	- **Drop OEM DMAR Table** &rarr; Only enable if you need to use the DMAR replacement table. No longer required when using OpenCore 0.9.2+ and macOS Ventura – enable `DisableIoMapperMapping` Quirk instead.
+	- **Drop OEM DMAR Table** &rarr; Only enable if you need to use the DMAR replacement table. OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping`. It works independently of `DisableIoMapper` and addresses reoccurring connectivity issues in macOS 13.3+ which weren't there before. If your configuration required to drop/replace the DMAR table before it still does now!
 	- **Drop OEM USB Port Map (xh_cmsd4)** &rarr; Drops the original USB Port mapping so `SSDT-PORTS.aml` can replace it.
 	- **Drop HPET Table** &rarr; Drops the table for the High Precision Event Timer which is now a legacy device.
 
