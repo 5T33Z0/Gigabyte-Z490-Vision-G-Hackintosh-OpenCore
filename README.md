@@ -42,6 +42,7 @@ Tested successfully with macOS 10.14 to 13.2. For best results, read and follow 
 |The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [**fix**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
 |600/700-series Nvidia Cards require [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) or [**Geforce Kepler Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) to reinstall Nvidia drivers.
 |Retired Clover EFI since Slice is no longer maintaining it. There are unresolved issues which haven't been fixed ([**`HWTarget` is broken**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/page/1157/#comment-2800185) in macOS 13)
+| macOS Sonoma: Update Lilu to [latest nightly build](https://dortania.github.io/builds/?product=Lilu&viewall=true) and add boot-arg `-wegbeta` prior to installing!
 
 ## Hardware Info
 
@@ -359,7 +360,6 @@ Instead, **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bit
 Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward. So users with NVIDIA Cards of the Kepler family (GTX 700, etc.) need to reinstall them in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher).
 
 #### Preparation
-
 Change the following settings in config.plist:
 
 - `Misc/Security/SecureBootModel` Set to `Disabled` &rarr; Required to load NVIDIA drivers – otherwise the system would crash
