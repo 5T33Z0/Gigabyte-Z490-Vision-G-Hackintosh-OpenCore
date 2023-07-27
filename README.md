@@ -1,6 +1,5 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
-[![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.9.4-cyan.svg)](https://github.com/acidanthera/OpenCorePkg/releases/latest) [![macOS Catalina](https://img.shields.io/badge/macOS-10.15.7-white.svg)](https://www.apple.com/li/macos/catalina/) [![macOS Big Sur](https://img.shields.io/badge/macOS-11.7.6-white.svg)](https://www.apple.com/macos/big-sur/) [![macOS Monterey](https://img.shields.io/badge/macOS-12.6.3-white.svg)](https://www.apple.com/macos/monterey/) [![macOS Ventura](https://img.shields.io/badge/macOS-13.4-white.svg)](https://www.apple.com/macos/ventura/) [![macOS Ventura](https://img.shields.io/badge/macOS-14.0-white.svg)](https://www.apple.com/macos/sonoma-preview/)[![Release](https://img.shields.io/badge/Download-latest-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>
-![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
+[![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.9.4-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–14-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
 **TABLE of CONTENTS**
 
@@ -35,7 +34,7 @@ EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been w
 
 This is a *genuine* Z490 Vision G EFI that has been created from scratch. Unlike many other Z490 Vision G EFIs found on forums and repositories, which are either derived from generic ones by Olarila/MaLDon or from SchmockLord's EFI for the Z490 Vision D, it does not contain any unnecessary properties for devices that are not present on the Vision G, such as Thunderbolt, an I219 Ethernet controller, and on-board WiFi/BT.
 
-Tested successfully with macOS 10.14 to 13.2. For best results, read and follow the install instruction carefully and thoroughly.
+Tested successfully with macOS 10.14 to 14 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
 | :warning: Issues related to macOS Monterey/Ventura|
 |:--------------------------------------------------|
