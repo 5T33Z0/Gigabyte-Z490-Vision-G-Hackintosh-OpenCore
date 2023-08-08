@@ -35,7 +35,15 @@ Before attempting to fix your Ethernet Controller make sure you have excluded al
 - Reset your Router
 - Dump the stock firmware (Steps 1 - 7 of [Option 2](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#flashing-the-firmware-with-openshell)) and analyze it in TextEdit or a HexEditor. If the Subsystem ID, Subsystem-Vendor-ID are correct, you may not need a fix.
 
-## Option 1: Using a SSDT with corrected header description
+## Option 1: Add `AppleIGC.kext` 
+Terminalstrip [pointed me to a new kext](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/37) called [AppleIGC](https://github.com/SongXiaoXi/AppleIGC) which is an "Intel 2.5G Ethernet driver for macOS. Based on the Intel igc implementation in Linux". I tried it on my system which uses the custom ROM but it didn't work. But another user (verzadil) [managed to get it working](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/38) with the stock firmware with the following settings:
+
+- Prerequisites: Stock firmware!
+- Add `AppleIGC.kext` to `EFI/OC/Kexts` and config.plist.
+- Add `e1000=0` to `boot-args` (macOS Monterey+). For Big Sur, use `dk.e1000=0`.
+- In `Kernel/Quirks`, turn on `DisableIoMapper` (might work without it)
+
+## Option 2: Using a SSDT with corrected header description
 Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written an SSDT for it. For macOS Ventura, you also need to inject the .kext version of the AppleIntel210Ethernet driver to make it work.
 
 **Instructions**
@@ -51,7 +59,7 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 
 **NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as working successfully. But if this doesn't work for you, please use Option 2 instead.
 
-## Option 2: flashing a custom Firmware
+## Option 3: flashing a custom Firmware
 
 ### Preparations
 
