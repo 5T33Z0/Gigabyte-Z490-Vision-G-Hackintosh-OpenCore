@@ -1,26 +1,25 @@
-# Gigabyte Z490 Vision G Intel I225-V Fix for macOS Monterey and newer
+#Gigabyte Z490 Vision G Intel I225-V Fix for macOS Monterey and newer
 > **Disclaimer**: This fix may require flashing a custom firmware onto the EEPROM of the Intel I225-V Ethernet Controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
 
 **TABLE of CONTENTS**
 
-- [Gigabyte Z490 Vision G Intel I225-V Fix for macOS Monterey and newer](#gigabyte-z490-vision-g-intel-i225-v-fix-for-macos-monterey-and-newer)
-  - [About](#about)
-  - [Technical Backgroud](#technical-backgroud)
-    - [Verifying that you need a fix](#verifying-that-you-need-a-fix)
-  - [Option 1: Add `AppleIGC.kext`](#option-1-add-appleigckext)
-  - [Option 2: Using a SSDT with corrected header description](#option-2-using-a-ssdt-with-corrected-header-description)
-  - [Option 3: flashing a custom Firmware](#option-3-flashing-a-custom-firmware)
-    - [Preparations](#preparations)
-    - [Flashing the Firmware with OpenShell](#flashing-the-firmware-with-openshell)
-  - [Troubleshooting](#troubleshooting)
-  - [Credits and Resources](#credits-and-resources)
+- [About](#about)
+- [Technical Background](#technical-background)
+	- [Verifying that you need a fix](#verifying-that-you-need-a-fix)
+- [Option 1: Add `AppleIGC.kext`](#option-1-add-appleigckext)
+- [Option 2: Using a SSDT with corrected header description (obsolete)](#option-2-using-a-ssdt-with-corrected-header-description-obsolete)
+- [Option 3: flashing a custom Firmware (obsolete)](#option-3-flashing-a-custom-firmware-obsolete)
+	- [Preparations](#preparations)
+	- [Flashing the Firmware with OpenShell](#flashing-the-firmware-with-openshell)
+- [Troubleshooting](#troubleshooting)
+- [Credits and Resources](#credits-and-resources)
 
 ## About
 On the Z490 Vision G, the I225-V Controller stopped working shortly after the first betas of macOS Monterey were released. Various tricks were tried to fix it: assigning IP addresses and settings manually, dropping the DMAR table, changing BIOS Settings and Quirks and – the scariest trick of them all – replacing the IONetworkingFamily kext of previously working builds, which breaks the seal of the snapshot partition and can corrupt macOS, leaving it in an unbootable state. On top of that, this method only worked temporarily until the next beta was released. There's a lengthy thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
 
 Until now, the only reliable option was to just buy a third party network card supported by macOS 12 and newer. Fortunately, 2 fixes were discovered to get the I225-V working again. One requires flashing a modified firmware onto the EEPROM so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully. The other one uses an SSDT to inject the correct header description data for the I225-V into macOS so it can attache to the .kext version of the AppleEthernetE1000 driver.
 
-## Technical Backgroud
+## Technical Background
 The stock firmware for the Intel I225-V used on some of this Boards (and possibly other Z490 Boards by Gigabyte), contains an incorrect Subsystem-ID and Subsystem Vendor-ID. The Vendor-ID (`8086` for Intel) is also used as Subsystem-Vendor-ID (instead of `1458`) and the Subsystem-ID only contains zeros instead of the correct value (`E000`). 
 
 The screenshot below shows the file header of the I225MOD binary in hex code. Values highlighted in green are the ones that were changed in order to make the controller work again:
@@ -46,7 +45,7 @@ Terminalstrip [pointed me to a new kext](https://github.com/5T33Z0/Gigabyte-Z490
 - Save your config and reboot
 - Run IORegistryExplorer and verify that the kext is servicing the Intel I225-V: <br> ![](https://user-images.githubusercontent.com/88431749/259463074-b1d3801b-c46d-4250-ac8b-8f5c666698fe.png)
 
-## Option 2: Using a SSDT with corrected header description
+## Option 2: Using a SSDT with corrected header description (obsolete)
 Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written an SSDT for it. For macOS Ventura, you also need to inject the .kext version of the AppleIntel210Ethernet driver to make it work.
 
 **Instructions**
@@ -62,7 +61,7 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 
 **NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as working successfully. But if this doesn't work for you, please use Option 2 instead.
 
-## Option 3: flashing a custom Firmware
+## Option 3: flashing a custom Firmware (obsolete)
 
 ### Preparations
 

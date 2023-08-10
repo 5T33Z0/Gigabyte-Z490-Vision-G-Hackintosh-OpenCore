@@ -36,12 +36,10 @@ This is a *genuine* Z490 Vision G EFI that has been created from scratch. Unlike
 
 Tested successfully with macOS 10.14 to 14 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
-| :warning: Issues related to macOS Monterey/Ventura|
-|:--------------------------------------------------|
-|The Intel I225-V Ethernet Controller doesn't work in macOS 12+ by default. You need a [**fix**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md).
-|600/700-series Nvidia Cards require [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) or [**Geforce Kepler Patcher**](https://github.com/chris1111/Geforce-Kepler-patcher) to reinstall Nvidia drivers.
-|Retired Clover EFI since Slice is no longer maintaining it. There are unresolved issues which haven't been fixed ([**`HWTarget` is broken**](https://www.insanelymac.com/forum/topic/284656-clover-general-discussion/page/1157/#comment-2800185) in macOS 13)
-| macOS Sonoma: Update Lilu to [latest nightly build](https://dortania.github.io/builds/?product=Lilu&viewall=true) and add boot-arg `-wegbeta` prior to installing!
+|:warning: Important Updates|
+|:----------------------------------------------------|
+| The Intel I225-V Ethernet Controller finally got a dedicated kext called [**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC) so the [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) are now obsolete!
+|600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) to reinstall Nvidia drivers.
 
 ## Hardware Info
 
@@ -55,7 +53,7 @@ Component     | Details
 **iGPU**      | Intel UHD 630 (Headless). Use this [**Framebuffer Patch**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Graphics/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.
 **GPU**       | Saphire RX580 Nitro+ (4 GB)
 **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
-**Ethernet** (on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. Requires [**flashing a custom Firmware**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) for macOS Monterey and newer.
+**Ethernet** (on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer.
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS). Currently unused.
 
 **Intel® 400 Series Chipset Datasheets** (PDF): [**Vol. 1**](https://cdrdv2.intel.com/v1/dl/getContent/615170) [**Vol. 2**](https://cdrdv2.intel.com/v1/dl/getContent/615146) [**Specs Update**](https://cdrdv2.intel.com/v1/dl/getContent/615296)
@@ -103,7 +101,7 @@ Component     | Details
 Parameter | Details                                                       
 ---------:|-------------------------------------------------------------- 
 **SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this
-**Supported macOS** | macOS 10.14 up to 13.x (10.14 requires `iMac19,1` config)
+**Supported macOS** | macOS 10.14 up to 14.x (10.14 requires `iMac19,1` config)
 **OpenCanopy** | Enabled
 **Boot Chime**| No
 **FileVault** |`Optional`
@@ -135,6 +133,7 @@ EFI
     │   └── ResetNvramEntry.efi
     ├── Kexts
     │   ├── AppleALC.kext
+    │   ├── AppleIGC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
     │   ├── Lilu.kext
@@ -179,7 +178,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 1. **ACPI/Add** Section. Add/Enable/Disable SSDTs as needed
 	- [**DMAR**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Region removed. Required for 3rd party LAN/Wifi/BT cards which won't work when VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). **NOTE**: Removed from latest version since OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping` which handles this automatically, so it's no longer necessary to drop and replace the DMAR table in macOS 13.3+. Refer to OpenCore's Documentation for details.
-	- **SSDT-AWAC-ARTC**: Special variant of `SSDT-AWAC.` Disables AWAC Clock and enables RTC as ARTC instead. Also disables legacy `HPET` device.
+	- **SSDT-AWAC-ARTC**: Custom variant of `SSDT-AWAC.` Disables AWAC Clock and enables `RTC` as `ARTC` instead. Also disables legacy `HPET` device.
 	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. **NOTE**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
 	- **SSDT-PLUG.aml**: Not required on macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 	- [**SSDT-XSPI**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/SSDT-XSPI.dsl) (optional): Adds PCH SPI Controller to IORegistry as `XSPI`. Cosmetic only.
