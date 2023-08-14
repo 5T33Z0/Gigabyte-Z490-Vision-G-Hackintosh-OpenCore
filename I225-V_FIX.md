@@ -45,6 +45,8 @@ Terminalstrip [pointed me to a new kext](https://github.com/5T33Z0/Gigabyte-Z490
 - Save your config and reboot
 - Run IORegistryExplorer and verify that the kext is servicing the Intel I225-V: <br> ![](https://user-images.githubusercontent.com/88431749/259463074-b1d3801b-c46d-4250-ac8b-8f5c666698fe.png)
 
+:warning: **IMPORTANT**: If you previously used "Option 2" to get Ethernet working, you need to disable `SSDT-I225V` and `AppleIntelI210Ethernet.kext` so the new kext can be used.
+
 ## Option 2: Using a SSDT with corrected header description (obsolete)
 Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written an SSDT for it. For macOS Ventura, you also need to inject the .kext version of the AppleIntel210Ethernet driver to make it work.
 
@@ -59,7 +61,7 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 - [**Adjust Config**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware)
 - Save the config and reboot
 
-**NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as working successfully. But if this doesn't work for you, please use Option 2 instead.
+**NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as working successfully. But if this doesn't work for you, please use Option 1 instead.
 
 ## Option 3: flashing a custom Firmware (obsolete)
 
