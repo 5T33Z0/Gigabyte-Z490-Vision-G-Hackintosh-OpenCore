@@ -15,8 +15,24 @@ Below you find the results of my tests and recommended settings for different sc
 
 ## Enabling the Intel I225-V Ethernet Controller
 
-- Disable/Delete `FakePCIID.kext` (if present)
-- Disable/Delete `FakePCIID_Intel_I225-V.kext` (if present)
+### Instructions: 
+
+- **Revert previous Fixes**:
+	- Disable/Delete `SSDT-I225-V.aml`(if present) 
+	- Disable/Delete `FakePCIID.kext` (if present)
+	- Disable/Delete `FakePCIID_Intel_I225-V.kext` (if present)
+	- Disable/Delete `AppleIntelI210Ethernet.kext` (if preent)
+	- Disable Kernel/Patch `__Z18e1000_set_mac_typeP8e1000_hw` (if present)
+
+- **Add `AppleIGC.kext`**
+	- Add `AppleIGC.kext` to `EFI/OC/Kexts` and config.plist.
+	- Optional: add `e1000=0` to `boot-args` (macOS Monterey+). For Big Sur, use `dk.e1000=0`. I don't need it on my system.
+	- In `Kernel/Quirks`, turn on `DisableIoMapper` (might work without it. I need it on my I225-V with custom firmware).
+	- Save your config and reboot
+	- Run **IORegistryExplorer** and verify that the kext is servicing the Intel I225-V: <br> ![](https://user-images.githubusercontent.com/88431749/259463074-b1d3801b-c46d-4250-ac8b-8f5c666698fe.png)
+
+<details>
+<summary><strong>Previous instructions</strong> (Obsolete. Click to reveal.)</summary>
 
 |macOS |Procedure|
 |-------------|---------|

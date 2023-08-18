@@ -122,7 +122,6 @@ EFI
     ├── ACPI
     │   ├── SSDT-AWAC-ARTC.aml
     │   ├── SSDT-EC-USBX.aml
-    │   ├── SSDT-I225V.aml
     │   ├── SSDT-MCHC.aml
     │   ├── SSDT-PLUG.aml
     │   └── SSDT-PORTS.aml
@@ -199,7 +198,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	-  **Booter/Quirks**: If your GPU supports resizable BAR (enable Above 4G Decoding and Resizable BAR in BIOS), you can set `ResizeAppleGpuBars` to `0`. But leave `UEFI/Quirks` at `-1` to not affect the BAR size in other OSes.
 
 4. **DeviceProperties**
-	- `#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.
+	- ~~`#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.~~ No longer required.
 	- `#PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Disabled Framebuffer for using the iGPU for driving a monitor. Delete the `#` to enable it.
 	- `PciRoot(0x0)/Pci(0x1F,0x3)` &rarr; Settings for on-board audio. Also contains the Layout-id
 	- `PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Headless Framebuffer for using the iGPU for computational tasks only. 
