@@ -236,7 +236,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 			- **Mojave/Catalina**: `EF070000` (0x7EF)
 			- **High Sierra**: `FF030000` (0x3FF)
 	
-		> **Warning:** <ul><li> AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details. <li> Applying root patches with OCLP results in a broken security seal which affects System Updates: incremental (or delta) system updates won't work after that. Instead, the *full* macOS installer (about 12 GB) will be downloaded every time a system update is available.</br>
+		> **Warning:** <ul><li> AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details. <li> Applying root patches with OCLP results in a broken security seal which affects System Updates: incremental (or delta) system updates won't work after that. Instead, the *full* macOS installer (about 12 GB) will be downloaded every time a system update is available. But there's a [workaround](https://github.com/5T33Z0/OC-Little-Translated/blob/main/S_System_Updates/OTA_Updates.md) to apply delta updates so you don't have to download the full installer.</br>
 
 9. **PlatfotmInfo/Generic** Section: 
 	- Generate SMBIOS data for `iMac20,1` (for Core i9) or `iMac20,2` (for Core i5/i7)
