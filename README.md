@@ -226,12 +226,13 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 8. **NVRAM/Add**
 	- `4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102`: 
-		- revpatch:sbvmm &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof. Only required if you have to disable `SIP` and `SecureBootModel` in order to boot with patched in NVIDIA Drivers for Kepler GPUs.
+		- `revpatch:sbvmm` &rarr; Setting for RestrictEvents.kext to enable the board-id VMM spoof. Only required if you have to disable `SIP` and `SecureBootModel` in order to boot with patched in NVIDIA Drivers for Kepler GPUs.
 		- Boot-args: based on the [fix](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#option-1-using-a-ssdt-with-corrected-header-description) you are using to get the Intel I225-V working in macOS 12 and newer, you might need `dk.e1000=0` (macOS Big Sur) and/or `e1000=0` (macOS Monterey+). 
 		- OCLP-Settings: `-allow_amfi` &rarr; Required for OpenCore Legacy Patcher so Kepler Drivers can be installed
 	- `7C436110-AB2A-4BBB-A880-FE41995C9F82`: 
-		- Change `csr-active-config` to disable SIP. When using OCLP or GeForce Kepler Patcher, you _have_ to disable SIP):
-			- **Big Sur** and newer: `03080000` (0x803) or `EF0F0000` (0xFEF) if you need to completely disable SIP (required for GeForce Kepler Patcher)
+		- Change `csr-active-config` to disable SIP:
+  			- SIP fully enabled: `00000000`	 
+			- **Big Sur** and newer: `03080000` (0x803) &rarr; My default so macOS doesn't bother me. This is also the required value if you need to apply root patches with OCLP.
 			- **Mojave/Catalina**: `EF070000` (0x7EF)
 			- **High Sierra**: `FF030000` (0x3FF)
 	
