@@ -131,6 +131,7 @@ EFI
     │   ├── OpenRuntime.efi
     │   └── ResetNvramEntry.efi
     ├── Kexts
+    │   ├── AMFIPass.kext
     │   ├── AppleALC.kext
     │   ├── AppleIGC.kext
     │   ├── CPUFriend.kext
