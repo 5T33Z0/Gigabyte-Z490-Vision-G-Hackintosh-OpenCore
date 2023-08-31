@@ -131,6 +131,7 @@ EFI
     │   ├── OpenRuntime.efi
     │   └── ResetNvramEntry.efi
     ├── Kexts
+    │   ├── AdvancedMap.kext
     │   ├── AMFIPass.kext
     │   ├── AppleALC.kext
     │   ├── AppleIGC.kext
@@ -138,7 +139,8 @@ EFI
     │   ├── CPUFriendDataProvider.kext
     │   ├── Lilu.kext
     │   ├── NVMeFix.kext
-    │   ├── RestrictEvents
+    │   ├── RadeonSensor.kext
+    │   ├── RestrictEvents.kext
     │   ├── SMCProcessor.kext
     │   ├── SMCSuperIO.kext
     │   ├── VirtualSMC.kext
