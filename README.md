@@ -1,5 +1,5 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
-[![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.9.6-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–14.1-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
+[![BIOS](https://img.shields.io/badge/BIOS-F21-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.9.6-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–14.2b-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
 **TABLE of CONTENTS**
 
@@ -364,9 +364,10 @@ Change the following settings in config.plist:
 
 - `Misc/Security/SecureBootModel` Set to `Disabled` &rarr; Required to load NVIDIA drivers – otherwise the system would crash
 - `Kernel/Add`: Enable `RestrictEvents.kext` &rarr; This enables the VMM board-id spoof. Required for [**OTA System Updates**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) to work with SIP disabled
-- `csr-active-config` to `03080000` for installing the drivers
+- `csr-active-config` to `03080000` before applying root patches with OCLP
 
-**NOTE**: This process breaks incremental (delta) updates. So each time a System Update is available, it will download the full Installer (12+ GB)! And once the installation has finished, you will have to re-install the NVIDIA drivers again. OCLP will ask you if you want to patch them in again.
+>[!NOTE]
+>This process breaks incremental (delta) updates. So each time a System Update is available, it will download the full Installer (12+ GB)! And once the installation has finished, you will have to re-install the NVIDIA drivers again. OCLP will ask you if you want to patch them in again.
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
