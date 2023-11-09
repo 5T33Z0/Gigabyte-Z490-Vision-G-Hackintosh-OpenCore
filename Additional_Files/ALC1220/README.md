@@ -3,7 +3,7 @@
 **Mainboard**: Gigabyte Z490 Vision G</br>
 **Codec**: Realtek ALC1200 </br>
 **Included Layouts**: `17`</br>
-**AppleALC Version**: 1.8.3 (86 kb) </br>
+**AppleALC Version**: 1.8.8 (86 kb) </br>
 
 ## Codec Structure
 ![](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/2ceb7d214d2e36d6cbc17b79fe91f9710a7137fe/Additional_Files/ALC1220/Codec_Dump/codec_dump_dec.txt.svg)
