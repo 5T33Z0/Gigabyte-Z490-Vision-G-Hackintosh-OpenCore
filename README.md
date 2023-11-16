@@ -301,7 +301,8 @@ The items displayed in OpenCore's Boot Picker menu are based on a combination of
 
 To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolicy Generator**](https://oc-scanpolicy.vercel.app/). I am using `2687747` for example which hides EFI Folders and NTFS Drives. To add a custom entry for a Windows Disk to OpenCore's Boot Picker [**follow my guide**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/I_Windows/Custom_Entries.md). Otherwise you can just boot Windows from the BIOS Boot Menu (F12) which also bypasses all the OpenCore injections.
 
-> [!IMPORTANAT]
+> [!IMPORTANT]
+> 
 > Calculating an incorrect `ScanPolicy` can lead to a BootPicker without entries, so you can't select any OS. So make sure you have a working Backup of your EFI folder!
 
 ### Changing Themes
