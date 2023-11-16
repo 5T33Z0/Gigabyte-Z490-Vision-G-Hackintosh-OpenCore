@@ -269,7 +269,9 @@ Once you got macOS running, you should change the following settings to make you
 2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with correct values can be found [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
 3. Change `SecureBootModel` from `Disabled` to `j185` (for iMac20,1) or `j185f` (for iMac20,2). 
 
-> **:Warning:** You should have a working backup of your EFI folder on a FAT32 formatted USB flash drive since changing these settings can prevent the system from booting. You may have to disable them for installing macOS Monterey if you have issues.
+> [!WARNING]
+> 
+> You should have a working backup of your EFI folder on a FAT32 formatted USB flash drive since changing these settings can prevent the system from booting. You may have to disable them for installing macOS Monterey if you have issues.
 
 **NOTES**
 
@@ -299,7 +301,8 @@ The items displayed in OpenCore's Boot Picker menu are based on a combination of
 
 To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolicy Generator**](https://oc-scanpolicy.vercel.app/). I am using `2687747` for example which hides EFI Folders and NTFS Drives. To add a custom entry for a Windows Disk to OpenCore's Boot Picker [**follow my guide**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/I_Windows/Custom_Entries.md). Otherwise you can just boot Windows from the BIOS Boot Menu (F12) which also bypasses all the OpenCore injections.
 
-:warning: **IMPORTANT**: Calculating an incorrect `ScanPolicy` can lead to a BootPicker without entries, so you can't select any OS. So make sure you have a working Backup of your EFI folder!
+> [!IMPORTANAT]
+> Calculating an incorrect `ScanPolicy` can lead to a BootPicker without entries, so you can't select any OS. So make sure you have a working Backup of your EFI folder!
 
 ### Changing Themes
 Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional ones: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
@@ -310,7 +313,9 @@ Besides the included themes from Acidanthera which provide the standard macOS lo
 
 To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and change the Flavour of the NVRAM Reset Tool back to `Auto`.
 
-**NOTE**: For more config tips and tricks, you can check out [**this**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
+> [!NOTE]
+>
+> For more config tips and tricks, you can check out [**this**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
 
 ## Alternate GPU Configurations
 
