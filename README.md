@@ -3,6 +3,9 @@
 
 **TABLE of CONTENTS**
 
+<details>
+<summary><b>TOC</b> (Click to reveal)</summary>
+
 - [About](#about)
 - [Hardware Info](#hardware-info)
 	- [System Configuration](#system-configuration)
@@ -28,6 +31,8 @@
 		- [Preparation](#preparation)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
+
+</details>
 
 ## About
 EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USB Port kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
@@ -277,12 +282,17 @@ Once you got macOS running, you should change the following settings to make you
 - `SIP` and `SecureBootModel` must stay disabled for booting macOS 12 or newer with patched-in NVIDIA Kepler drivers!
 
 ### Optimizing CPU Power Management (recommended)
-Follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts:
+You can follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts.
 
-<details><summary><strong>Screenshot</strong> (click to reveal)</summary>
+<details>
+<summary><strong>Screenshot</strong> (click to reveal)</summary>
 
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/CPU_PM.png)
 </details>
+
+> [!WARNING]
+> 
+> Don't install Intel Power Gadget on macOS Sonoma 14.2 beta 3 or newer! The `EnergyDriver.kext` it installs causes all cores to permanently run at 100 %! Use the included Uninstaller to get rid of it prior to upgrading to macOS 14!
 
 ### Calculate a Scan Policy (optional)
 The items displayed in OpenCore's Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
@@ -358,17 +368,18 @@ The `shikigva` boot-arg previously used to [**address DRM issues**](https://gith
 Instead, **'unfairgva=x'** (x = number from 1 to 7) must be used now. It's a bitmask containing 3 bits (1, 2 and 4) which can be combined to enable different features (and combinations thereof) as [**explained here**](https://www.insanelymac.com/forum/topic/351752-amd-gpu-unfairgva-drm-sidecar-featureunlock-and-gb5-compute-help/)
 
 ### Using NVIDIA Kepler Cards in macOS 12 and newer
-Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward. So users with NVIDIA Cards of the Kepler family (GTX 700, etc.) need to reinstall them in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher).
+Apple removed support for NVIDIA GeForce Cards from macOS Monterey beta 7 onward. So users with NVIDIA  Kepler GPUs (GTX 700, etc.) need to reinstall them in post-install using [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher).
 
-#### Preparation
-Change the following settings in config.plist:
+#### Config Preparation
+Change the following settings in `config.plist`:
 
-- `Misc/Security/SecureBootModel` Set to `Disabled` &rarr; Required to load NVIDIA drivers – otherwise the system would crash
+- `Misc/Security/SecureBootModel`: Change it to `Disabled` &rarr; Required to load NVIDIA drivers – otherwise the system would crash during boot
 - `Kernel/Add`: Enable `RestrictEvents.kext` &rarr; This enables the VMM board-id spoof. Required for [**OTA System Updates**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) to work with SIP disabled
-- `csr-active-config` to `03080000` before applying root patches with OCLP
+- `csr-active-config`: Change to `03080000` before applying root patches with OCLP
 
->[!NOTE]
->This process breaks incremental (delta) updates. So each time a System Update is available, it will download the full Installer (12+ GB)! And once the installation has finished, you will have to re-install the NVIDIA drivers again. OCLP will ask you if you want to patch them in again.
+> [!IMPORTANT]
+>
+> Applying root patches breaks the seal of the snapshot volume. Once the seal is broken, delta OTA updates are no longer available in System Updates. Therefore, each time a System Update is available, the full macOS Installer (12+ GB) will be downloaded – and after the update is installed, OCLP has to re-apply the root patches again.
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
