@@ -42,7 +42,8 @@ This is a *genuine* Z490 Vision G EFI that has been created from scratch. Unlike
 Tested successfully with macOS 10.14 to 14 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
 |:warning: Important Updates|
-|:----------------------------------------------------|
+|:--------------------------|
+| Don't install Intel Power Gadget on macOS Sonoma! It causes all cores to run at 100%. Uninstall prior to upgrading!
 | The Intel I225-V Ethernet Controller finally got a dedicated kext called [**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC) so the [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) are now obsolete!
 |600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) to reinstall Nvidia drivers.
 
