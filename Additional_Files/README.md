@@ -8,3 +8,4 @@ This section contains additional files and guides, such as:
 - iGPU Framebuffers and Device IDs
 - Optimizing CPU Power Management
 - SSDT for the Intel I225-V NIC
+- MMIO Whitelist Entries
