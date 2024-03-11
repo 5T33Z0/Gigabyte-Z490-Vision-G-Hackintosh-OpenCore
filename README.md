@@ -1,10 +1,8 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 [![BIOS](https://img.shields.io/badge/BIOS-F22-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-0.9.9-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–14.4-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
-**TABLE of CONTENTS**
-
 <details>
-<summary><b>TOC</b> (Click to reveal)</summary>
+<summary><b>TABLE of CONTENTS</b> (Click to reveal)</summary>
 
 - [About](#about)
 - [Hardware Info](#hardware-info)
@@ -35,15 +33,16 @@
 </details>
 
 ## About
+
 EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USB Port kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
 
 This is a *genuine* Z490 Vision G EFI that has been created from scratch. Unlike many other Z490 Vision G EFIs found on forums and repositories, which are either derived from generic ones by Olarila/MaLDon or from SchmockLord's EFI for the Z490 Vision D, it does not contain any unnecessary properties for devices that are not present on the Vision G, such as Thunderbolt, an I219 Ethernet controller, and on-board WiFi/BT.
 
 Tested successfully with macOS 10.14 to 14 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
-|:warning: Important Updates|
+|:cautiom: Important Updates|
 |:--------------------------|
-| Don't install Intel Power Gadget on macOS Sonoma! It causes all cores to run at 100%. Uninstall prior to upgrading!
+| Upgrading from to macOS 14.3.1 to 14.4 via `System Update`causes a Kernel Panic during install! The workaround is to create a USB Installer (with OCLP for example) and install macOS 14.4 on a new APFS volume. Use Migration Manager afterwards to get your data onto the new volume ([**Background**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
 | The Intel I225-V Ethernet Controller finally got a dedicated kext called [**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC) so the [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) are now obsolete!
 |600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) to reinstall Nvidia drivers.
 
