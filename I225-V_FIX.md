@@ -1,4 +1,4 @@
-#Gigabyte Z490 Vision G Intel I225-V Fix for macOS Monterey and newer
+# Gigabyte Z490 Vision G Intel I225-V Fix for macOS Monterey and newer
 > **Disclaimer**: This fix may require flashing a custom firmware onto the EEPROM of the Intel I225-V Ethernet Controller. I am not responsible for any hardware failures that might occur during the process – execute the following guide at your own risk!
 
 **TABLE of CONTENTS**
