@@ -40,7 +40,7 @@ This is a *genuine* Z490 Vision G EFI that has been created from scratch. Unlike
 
 Tested successfully with macOS 10.14 to 14 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
-|:cautiom: Important Updates|
+|:caution: Important Updates|
 |:--------------------------|
 | Upgrading from to macOS 14.3.1 to 14.4 via `System Update`causes a Kernel Panic during install! The workaround is to create a USB Installer (with OCLP for example) and install macOS 14.4 on a new APFS volume. Use Migration Manager afterwards to get your data onto the new volume ([**Background**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
 | The Intel I225-V Ethernet Controller finally got a dedicated kext called [**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC) so the [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) are now obsolete!
