@@ -11,7 +11,9 @@ So I conducted some tests with 3 variants of the DMAR table: one without memory 
 
 Below you find the results of my tests and recommended settings for different scenarios.
 
-> **Warning**: Please use the [**Latest Release]**(https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) of my EFI folder before reporting any issues.
+> [!IMPORTANT]
+>
+> Please use the [**Latest Release]**(https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) of my EFI folder before reporting any issues.
 
 ## Enabling the Intel I225-V Ethernet Controller
 
