@@ -1,12 +1,11 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 [![BIOS](https://img.shields.io/badge/BIOS-F22-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-1.0.1-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–15.0-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
-<details>
-<summary><b>TABLE of CONTENTS</b> (Click to reveal)</summary>
+**TABLE of CONTENTS**
 
 - [About](#about)
 - [Hardware Info](#hardware-info)
-	- [System Configuration](#system-configuration)
+	- [System Specs](#system-specs)
 	- [BIOS Settings](#bios-settings)
 - [OpenCore Details](#opencore-details)
 	- [General Information](#general-information)
@@ -26,42 +25,38 @@
 	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
 		- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
 	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
-		- [Preparation](#preparation)
+		- [Config Preparation](#config-preparation)
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
 
-</details>
-
 ## About
 
-EFI folder and config.plist for the Gigabyte Z490 Vision G mainboard I've been working on and refining since September 2020. It's based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real iMac20,1. I've dumped the system `DSDT`, analyzed it and added missing components and features via `SSDT` hotpatches from Daliansky's "OC-Little" Repo to get it as close to a real Mac as possible. USB Ports are mapped via `ACPI`, so no USB Port kext is required. I think this is the most sophisticated Z490 Vision G EFI folder available on Github. 
+OpenCore EFI folder for the Gigabyte Z490 Vision G mainboard created from scratch and updated and refined regularly since September 2020. The configuration is based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real `iMac20,1`. USB Ports are mapped via `ACPI`, so no USB Port kext is required.
 
-This is a *genuine* Z490 Vision G EFI that has been created from scratch. Unlike many other Z490 Vision G EFIs found on forums and repositories, which are either derived from generic ones by Olarila/MaLDon or from SchmockLord's EFI for the Z490 Vision D, it does not contain any unnecessary properties for devices that are not present on the Vision G, such as Thunderbolt, an I219 Ethernet controller, and on-board WiFi/BT.
-
-Tested successfully with macOS 10.14 to 14 beta. For best results, read and follow the install instruction carefully and thoroughly.
+Tested successfully with macOS 10.14 to 15 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
 |⚠️ Important Updates|
 |:--------------------------|
-| Upgrading from to macOS 14.3.1 to 14.4 via `System Update`causes a Kernel Panic during install! The workaround is to create a USB Installer (with OCLP for example) and install macOS 14.4 on a new APFS volume. Use Migration Manager afterwards to get your data onto the new volume ([**Background**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
+| Upgrading from to macOS 14.3.1 to 14.4 and newer via `System Update`causes a Kernel Panic during install! The workaround is to temporarily disable `SecureBootModel` ([**Background**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
 | The Intel I225-V Ethernet Controller finally got a dedicated kext called [**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC) so the [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) are now obsolete!
 |600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) to reinstall Nvidia drivers.
 
 ## Hardware Info
 
-### System Configuration
+### System Specs
 
 Component     | Details                                                       
 -------------:|-------------------------------------------------------------- 
-**Board**     | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`
+**Mainboard** | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`
 **CPU**       | Intel Core i9 10850K (Comet Lake)      
 **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT
 **iGPU**      | Intel UHD 630 (Headless). Use this [**Framebuffer Patch**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Graphics/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.
-**GPU**       | Saphire RX580 Nitro+ (4 GB)
+**dGPU**       | Saphire RX580 Nitro+ (4 GB)
 **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
-**Ethernet** (on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer.
+**Ethernet** <br>(on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer.
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS). Currently unused.
 
-**Intel® 400 Series Chipset Datasheets** (PDF): [**Vol. 1**](https://cdrdv2.intel.com/v1/dl/getContent/615170) [**Vol. 2**](https://cdrdv2.intel.com/v1/dl/getContent/615146) [**Specs Update**](https://cdrdv2.intel.com/v1/dl/getContent/615296)
+**Intel® 400 Series Chipset Datasheets** (PDF): [**Vol. 1**](https://cdrdv2.intel.com/v1/dl/getContent/615170) | [**Vol. 2**](https://cdrdv2.intel.com/v1/dl/getContent/615146) | [**Specs Update**](https://cdrdv2.intel.com/v1/dl/getContent/615296)
 
 ### BIOS Settings
 
@@ -104,14 +99,14 @@ Component     | Details
 ### General Information
 
 Parameter | Details                                                       
----------:|-------------------------------------------------------------- 
+---------:|----------------------------- 
 **SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this
-**Supported macOS** | macOS 10.14 up to 14.x (10.14 requires `iMac19,1` config)
+**Supported macOS** | macOS 10.14 up to 15.x (10.14 requires `iMac19,1` config)
 **OpenCanopy** | Enabled
-**Boot Chime**| No
-**FileVault** |`Optional`
-**SIP**| `Enabled`. Adjust `csr-active-config` based on your specific needs.
-**SecureBootModel**| `j185f`. For `iMac20,1`, use `j185`. :warning: Set to `Disabled` if you are using a Kepler GPU and want to install/run macOS Monterey and newer
+**Boot Chime** | No
+**FileVault** | `Optional`
+**SIP** | Current value: `03080000`. Adjust `csr-active-config` based on the used OS and your specific needs.
+**SecureBootModel**| `Disabled`. Change to `j185f` for `iMac20,2` SMBIOS. For `iMac20,1`, use `j185`. :warning: Needs to be set to `Disabled` when using an NVIDIA Kepler GPU in macOS 12 or newer (requires root-patching with OCLP)
 **USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
 ### EFI Folder Structure (OpenCore)
@@ -140,14 +135,13 @@ EFI
     │   ├── AdvancedMap.kext
     │   ├── AMFIPass.kext
     │   ├── AppleALC.kext
-    │   ├── AppleIGC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
     │   ├── Lilu.kext
     │   ├── NVMeFix.kext
-    │   ├── RadeonSensor.kext
     │   ├── RestrictEvents.kext
     │   ├── SMCProcessor.kext
+    │   ├── SMCRadeonSensors.kext
     │   ├── SMCSuperIO.kext
     │   ├── VirtualSMC.kext
     │   └── WhateverGreen.kext
@@ -164,9 +158,6 @@ EFI
     │   │   └── velickovicdj
     │   │	└── EnterTwilight
     │   └── Label
-    ├── config_Catalina.plist
-    ├── config_iMac19,1.plist
-    ├── config_MacPro7,1.plist
     └── config.plist
 ```
 </details>
@@ -177,17 +168,19 @@ EFI
 **Coming from macOS**: If you already have access to macOS, you can either download macOS from the App Store, via the [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher) App or use [**ANYmacOS**](https://www.sl-soft.de/en/anymacos/). Botch can download macOS High Sierra to Ventura and create a USB Installer as well.
 
 ## Deployment
-Please read the following explanations carefully and thoroughly and follow the given instructions. In order to boot your PC with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your system configuration and the macOS version you want to install/run. 
+Please read the following explanations carefully and thoroughly and follow the given instructions. In order to boot your PC with this EFI successfully, adjustments to the `config.plist` and used kexts may be necessary to adapt the config to your system configuration and the macOS version you want to install/run.
+
+In general: if your system has the same hardware specs as mine, you can use the EFI folder as us. You only need to enter the required data in the `PlatformInfo/Generic` section (Model, Serial Number, MLB, ROM, etc.).
 
 ### Preparing the `config.plist`
-Download my latest EFI Folder from the [**Releases**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) section and unpack it. Make sure to check the included `Changelog.md` as well, since it contains important background information and useful explanations. 
+Download my latest EFI Folder from the [**Releases**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases) section and unpack it. Make sure to check the included `Changelog.md` as well, since it contains important information about config changes and useful explanations. 
 
 Select the config of your choice and rename it to `config.plist`. Open it with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) or a ProperTree and check the following sections/settings and adjust them to your needs:
 
 1. **ACPI/Add** Section. Add/Enable/Disable SSDTs as needed
-	- [**DMAR**] (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Region removed. For 3rd party LAN/Wifi/BT cards that won't work if VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). 
+	- [**DMAR**] (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Regions removed. For 3rd party LAN/Wifi/BT cards that won't work if VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). 
 	- **SSDT-AWAC-ARTC**: Custom variant of `SSDT-AWAC.` Disables AWAC Clock and enables `RTC` as `ARTC` instead. Also disables legacy `HPET` device.
-	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. **NOTE**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
+	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI, they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. **NOTE**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
 	- **SSDT-PLUG.aml**: Not needed for macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 
 	**NOTE**: Additional info about these ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
@@ -203,11 +196,11 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		- To figure out which ones can be whitelisted, [**follow this guide**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/12_MMIO_Whitelist)
 		- This is not a necessity, just some fine-tuning.
 	- **Booter/Patch**: OpenCore patches used to skip the board-id check as part of a [**workaround**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates) to fix System Update Notifications. Only needed when using an NVIDIA Kepler Card which requires disabling `SecureBootModel` and `SIP` in oder to install and load the GPU drivers.
-	-  **Booter/Quirks**: If your GPU supports resizable BAR (enable Above 4G Decoding and Resizable BAR in BIOS), you can set `ResizeAppleGpuBars` to `0`. But leave `UEFI/Quirks` at `-1` to not affect the BAR size in other OSes.
+	- **Booter/Quirks**: If your GPU supports resizable BAR (enable Above 4G Decoding and Resizable BAR in BIOS), you can set `ResizeAppleGpuBars` to `0`. But leave `UEFI/Quirks` at `-1` to not affect the BAR size in other OSes.
 
 4. **DeviceProperties**
 	- ~~`#PciRoot(0x0)/Pci(0x1C,0x1)/Pci(0x0,0x0)` &rarr; Disabled device-id spoof for the Intel I-225V. &rarr; Only required when running macOS Catalina! Delete the `#` to enable it. Requires `Kernel/Patch` as well. [**Read this**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#readme) for getting the Intel(R) I225-V Ethernet Controller to work on different versions of macOS.~~ No longer required.
-	- `#PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Disabled Framebuffer for using the iGPU for driving a monitor. Delete the `#` to enable it.
+	- `#PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Disabled Framebuffer for using the iGPU for driving a display. Delete the leading `#` to enable it.
 	- `PciRoot(0x0)/Pci(0x1F,0x3)` &rarr; Settings for on-board audio. Also contains the Layout-id
 	- `PciRoot(0x0)/Pci(0x2,0x0)` &rarr; Headless Framebuffer for using the iGPU for computational tasks only. 
 		- Disable this entry when using the `iMacPro1,1` or `MacPro7,1` SMBIOS.
@@ -216,16 +209,15 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 5. **Kernel/Add** Section. The following Kexts are disabled by default since I don't know which CPU, GPU, Hard Disk and SMBIOS you will be using:
 
 	- `CPUFriend.kext` and `CPUFriendDataProvider.kext`. Create your own CPUFriendDataProvider in Post-Install with [**CPUFriendFriend**](https://github.com/corpnewt/CPUFriendFriend) to optimize CPU Power Management [**as explained here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md). It is recommended to create a new Data Provider kext after switching the SMBIOS and/or updating/upgrading macOS.
-	- `NVMeFix.kext`: recommended for all 3rd party NVMe SSD drives
 	- `RestrictEvents`: 
 		- Required when using `MacPro7,1` SMBIOS &rarr; Disables warnings about unpopulated RAM slots.
-		- Also required for enabling the `VMM-x86_64` Board-id so OTA updates work when `SIP` and `SecureBootModel` are disabled (necessary when using NVIDIA Kepler Cards in macOS 12+).
+		- Also required for enabling the `VMM-x86_64` Board-id so OTA updates work when `SIP` is not fully enabled and `SecureBootModel` is set to `Disabled` (necessary when using NVIDIA Kepler Cards in macOS 12+).
 	- `AppleALC.kext`: Slimmed version of AppleALC I compiled myself. It only contains Layout `17` and is only 86 kB in size. If you want to use a different Layout, you need to use the regular version of AppleALC or [compile your own](https://github.com/5T33Z0/AppleALC-Guides/tree/main/Slimming_AppleALC).
 
 6. **Kernel/Quirks**: 
-	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk instead.
-	- If you don't use Windows on your system, you can disable `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows)
-	- OpenCore 0.9.2 introduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It eliminates the need for using a modified DMAR Table with removed Reserved Memory regions to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk instead of replacing the DMAR table to address issues with 3rd party WiFi/BT cards.
+	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk.
+	- If you don't use Microsoft Windows on your system, you can change `UpdateSMBIOSMode` from `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows) to `Create`
+	- OpenCore 0.9.2 introduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It can be used to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk to address issues with 3rd party WiFi/BT cards.
 
 7. **Misc/Security**: 
 	- `SecureBootModel`: 
@@ -244,7 +236,9 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 			- **Mojave/Catalina**: `EF070000` (0x7EF)
 			- **High Sierra**: `FF030000` (0x3FF)
 	
-		> **Warning:** <ul><li> AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details. <li> Applying root patches with OCLP results in a broken security seal which affects System Updates: incremental (or delta) system updates won't work after that. Instead, the *full* macOS installer (about 12 GB) will be downloaded every time a system update is available. But there's a [workaround](https://github.com/5T33Z0/OC-Little-Translated/blob/main/S_System_Updates/OTA_Updates.md) to apply delta updates so you don't have to download the full installer.</br>
+		> [!IMPORTANT] 
+		>
+		> <ul><li> AMD GPUs may require additional `boot-args`. Check WhateverGreen's [**documentation**](https://github.com/acidanthera/WhateverGreen#boot-arguments) for details. <li> Applying root patches with OCLP results in a broken security seal which affects System Updates: incremental (or delta) system updates won't work after that. Instead, the *full* macOS installer (about 12 GB) will be downloaded every time a system update is available. But there's a [workaround](https://github.com/5T33Z0/OC-Little-Translated/blob/main/S_System_Updates/OTA_Updates.md) to apply delta updates so you don't have to download the full installer.</br>
 
 9. **PlatfotmInfo/Generic** Section: 
 	- Generate SMBIOS data for `iMac20,1` (for Core i9) or `iMac20,2` (for Core i5/i7)
@@ -253,9 +247,10 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 10. Save the `config.plist`
 
 ### Testing the EFI
+
 1. Copy the EFI Folder to a FAT32 formatted USB flash drive for testing
 2. Reboot
-3. Perform an NVRAM Reset (hit Space Bar to reveal Tools)
+3. Perform an NVRAM Reset (hit Space Bar to reveal the option)
 4. Boot macOS from the USB flash drive
 5. If your system boots successfully, mount your ESP and copy over the EFI Folder to you HDD/SSD and reboot.
 6. Continue with Post-Install!
@@ -265,25 +260,16 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 ### Strengthen Security (recommended)
 Once you got macOS running, you should change the following settings to make your system more secure:
 
-1. Change `csr-active-config` to `00000000` to enable System Integrity Protection (SIP)
-2. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with correct values can be found [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
-3. Change `SecureBootModel` from `Disabled` to `j185` (for iMac20,1) or `j185f` (for iMac20,2). 
+1. Change `SecureBootModel` from `Disabled` to `j185` (for iMac20,1) or `j185f` (for iMac20,2). `SecureBootModel` is only applicable to macOS Catalina and newer.
+2. Change `csr-active-config` to `00000000` to enable System Integrity Protection (SIP). Lower/Disables SIP when using a legacy NVIDIA GPU!
+3. Under `UEFI/APFS`, change `MinDate` and `MinVersion` from `-1` (disabled) to the correct values for the macOS version you are using. A list with correct values can be found [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver).</br>
 
 > [!WARNING]
 > 
 > You should have a working backup of your EFI folder on a FAT32 formatted USB flash drive since changing these settings can prevent the system from booting. You may have to disable them for installing macOS Monterey if you have issues.
 
-**NOTES**
-
-- `SecureBootModel` is only applicable to macOS Catalina and newer.
-- Since SMBIOS `iMac20,x` is for an iMac with a T2 Security Chip, you won't be notified about System Updates if `SIP` and `SecureBootModel` are `Disabled`. To workaround this either select the correct `SecureBootModel` for your SMBIOS or enable the following settings in the `config.plist`:
-	- **Booter/Patch**: 
-		- Enable `Skip Board ID`
-		- Enable `Reroute HW_BID to OC_BID`
-	- **Kernel/Add**: Enable `RestrictEvents.kext`
-- `SIP` and `SecureBootModel` must stay disabled for booting macOS 12 or newer with patched-in NVIDIA Kepler drivers!
-
 ### Optimizing CPU Power Management (recommended)
+
 You can follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md) to generate a `CPUFriendDataProvider.kext` which works alongside `CPUFriend.kext` to optimize CPU Power Management for a more efficient performance. Have a look at the CPU behavior using Intel Power Gadget. The CPU idle frequency should be lower after adding the kexts.
 
 <details>
@@ -292,10 +278,6 @@ You can follow my [**guide**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-H
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/CPU_PM.png)
 </details>
 
-> [!WARNING]
-> 
-> Don't install Intel Power Gadget on macOS Sonoma 14.2 beta 3 or newer! The `EnergyDriver.kext` it installs causes all cores to permanently run at 100 %! Use the included Uninstaller to get rid of it prior to upgrading to macOS 14!
-
 ### Calculate a Scan Policy (optional)
 The items displayed in OpenCore's Boot Picker menu are based on a combination of bits representing supported devices (SATA, NVME, USB, etc.) and file systems (APFS, HFS, NTFS, etc.). There are 24 bits which can be turned on and off to modify what's displayed in the Boot Picker. The combination of selected bits create what's called the `ScanPolicy`. It's located under in the `config.plist` under `Misc/Security`. The default value of my EFI is `0` (everything). Although this is great for compatibility, it will also display EFI Folders on drives which are not the boot drive as well.
 
@@ -303,10 +285,10 @@ To change the `ScanPolicy` to your liking, you can use the [**OpenCore ScanPolic
 
 > [!IMPORTANT]
 > 
-> Calculating an incorrect `ScanPolicy` can lead to a BootPicker without entries, so you can't select any OS. So make sure you have a working Backup of your EFI folder!
+> Using an incorrect `ScanPolicy` can lead to an empty Boot Menu without any entries. So make sure you have a working Backup of your EFI folder!
 
 ### Changing Themes
-Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional ones: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
+Besides the included themes from Acidanthera which provide the standard macOS look and feel, I've added 2 additional themes: `BsxM1` (default) and `EnterTwilight`. To change them, do the following:
 
 - Open `config.plist`
 - Go to Misc/Boot and change `PickerVariant` to: `Blackosx\BsxM1` or `velickovicdj\EnterTwilight`
@@ -385,7 +367,7 @@ Change the following settings in `config.plist`:
 
 > [!IMPORTANT]
 >
-> Applying root patches breaks the seal of the snapshot volume. Once the seal is broken, delta OTA updates are no longer available in System Updates. Therefore, each time a System Update is available, the full macOS Installer (12+ GB) will be downloaded – and after the update is installed, OCLP has to re-apply the root patches again.
+> Applying root patches breaks the seal of the snapshot volume. Once the seal is broken, incremental OTA updates are no longer available in System Updates. Therefore, each time a System Update is available, the full macOS Installer (approx 15 GB) will be downloaded – and after the update is installed, OCLP has to re-apply the root patches again.
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
