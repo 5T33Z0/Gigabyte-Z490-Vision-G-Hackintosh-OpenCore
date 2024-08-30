@@ -244,7 +244,7 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 
 > [!IMPORTANT] 
 >
-> <ul><li> AMD GPUs may require additional `boot-args`. Check WhateverGreen's documentation for details. <li> Applying root patches with OCLP results in a broken security seal which affects System Updates: incremental (or delta) system updates won't work after that. Instead, the *full* macOS installer (about 12 GB) will be downloaded every time a system update is available. See https://github.com/5T33Z0/OC-Little-Translated/blob/main/S_System_Updates/OTA_Updates.md for a workaround to apply incremental updates so you don't have to download the full installer every time.
+> <ul><li> AMD GPUs may require additional `boot-args`. Check WhateverGreen's documentation for details. <li> Applying root patches with OCLP results in a broken security seal which affects System Updates: incremental (or delta) system updates won't work after that. Instead, the _full_ macOS installer (about 12 GB) will be downloaded every time a system update is available. See https://github.com/5T33Z0/OC-Little-Translated/blob/main/S_System_Updates/OTA_Updates.md for a workaround to apply incremental updates so you don't have to download the full installer every time.
 
 ### Testing the EFI
 
