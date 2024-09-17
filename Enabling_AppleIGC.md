@@ -1,6 +1,6 @@
 # Enabling AppleIGC
 
-In order to make use of the AppleIGC kext for Intel I225/226 NICs, the following config settings are required – otherwise Ethernet won't work:
+In order to make use of the `AppleIGC.kext` for Intel I225/I226 NICs, the following config settings are required – otherwise Ethernet won't work:
 
 - **ACPI**
 	- "Add" Section: enable `DMAR.aml`
