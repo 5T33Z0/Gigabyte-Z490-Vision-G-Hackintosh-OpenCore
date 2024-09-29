@@ -1,5 +1,5 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
-[![BIOS](https://img.shields.io/badge/BIOS-F23-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-1.0.1-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–15.0-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
+[![BIOS](https://img.shields.io/badge/BIOS-F23-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-1.0.1-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–15.1-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
 **TABLE of CONTENTS**
 
