@@ -122,10 +122,12 @@ EFI
     ├── ACPI
     │   ├── DMAR.aml
     │   ├── SSDT-AWAC-ARTC.aml
-    │   ├── SSDT-EC-USBX.aml
+    │   ├── SSDT-EC.aml
     │   ├── SSDT-MCHC.aml
     │   ├── SSDT-PLUG.aml
-    │   └── SSDT-PORTS.aml
+    │   ├── SSDT-PORTS.aml
+    │   ├── SSDT-SBUS.aml
+    │   └── SSDT-USBX.aml
     ├── Drivers
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
@@ -135,6 +137,7 @@ EFI
     │   ├── AdvancedMap.kext
     │   ├── AMFIPass.kext
     │   ├── AppleALC.kext
+    │   ├── AppleIGC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
     │   ├── Lilu.kext
@@ -150,13 +153,9 @@ EFI
     │   ├── Font
     │   ├── Image
     │   │   ├── Acidanthera
-    │   │   │   ├── Chardonnay
-    │   │   │   ├── GoldenGate
-    │   │   │   └── Syrah
-    │   │   ├── Blackosx
-    │   │   │   └── BsxM1
-    │   │   └── velickovicdj
-    │   │	└── EnterTwilight
+    │   │   │   └── GoldenGate
+    │   │   └── Blackosx
+    │   │       └── BsxM1
     │   └── Label
     └── config.plist
 ```
