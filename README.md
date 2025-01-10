@@ -176,13 +176,16 @@ Download my latest EFI Folder from the [**Releases**](https://github.com/5T33Z0/
 
 Select the config of your choice and rename it to `config.plist`. Open it with [**OCAT**](https://github.com/ic005k/QtOpenCoreConfig/releases) or a ProperTree and check the following sections/settings and adjust them to your needs:
 
-1. **ACPI/Add** Section. Add/Enable/Disable SSDTs as needed
-	- [**DMAR**] (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Regions removed. For 3rd party LAN/Wifi/BT cards that won't work if VT-D and the Intel I225-V controller are enabled (macOS Big Sur and newer). 
-	- **SSDT-AWAC-ARTC**: Custom variant of `SSDT-AWAC.` Disables AWAC Clock and enables `RTC` as `ARTC` instead. Also disables legacy `HPET` device.
-	- **SSDT-PORTS**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI, they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports. **NOTE**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
-	- **SSDT-PLUG.aml**: Not needed for macOS 12 and newer. Also not needed when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
+1. **ACPI/Add** Section. Add/Enable/Disable SSDTs as needed:
+	- [**`DMAR`**] (optional): [DMAR replacement table](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/ACPI/DMAR.dsl) with specific Reserved Memory Regions removed. For 3rd party LAN/Wifi/BT cards that won't work if `VT-D` and the Intel I225-V controller are enabled (macOS Big Sur and newer). 
+	- **`SSDT-AWAC-ARTC`**: Custom variant of `SSDT-AWAC.` Disables AWAC Clock and enables `RTC` as `ARTC` instead. Also disables legacy `HPET` device.
+	- **`SSDT-PORTS`**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI, they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports.	
+	- **`SSDT-PLUG.aml`**: Not required for macOS 12 and newer or when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 
-	**NOTE**: Additional info about these ACPI Tables can be found on my [**OC Little Repo**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features)
+	> [!NOTE]
+	> 
+	> - **USB**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
+	> - Additional info about these ACPI Tables can be found on my [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features#readme)
 
 2. **ACPI/Delete** Section
 	- **Drop OEM DMAR Table** &rarr; Only enable if you need to use the DMAR replacement table. OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping`. It works independently of `DisableIoMapper` and addresses reoccurring connectivity issues in macOS 13.3+ which weren't there before. If your configuration required to drop/replace the DMAR table before it still does now!
@@ -214,14 +217,14 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	- `AppleALC.kext`: Slimmed version of AppleALC I compiled myself. It only contains Layout `17` and is only 86 kB in size. If you want to use a different Layout, you need to use the regular version of AppleALC or [compile your own](https://github.com/5T33Z0/AppleALC-Guides/tree/main/Slimming_AppleALC).
 
 6. **Kernel/Quirks**: 
-	- If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable the `AppleXcpmCfgLock` Quirk.
-	- If you don't use Microsoft Windows on your system, you can change `UpdateSMBIOSMode` from `CustomSMBIOSGuid` (prohibits injecting SMBIOS data into Windows) to `Create`
-	- OpenCore 0.9.2 introduced a new Quirk for macOS 13.3+ called `DisableIoMapperMapping`. It can be used to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". So you can try this quirk to address issues with 3rd party WiFi/BT cards.
+	- **`AppleXcpmCfgLock`**: If your BIOS does not provide the option to disable CFG Lock (requires BIOS Update), enable this Quirk.
+	- **`CustomSMBIOSGuid`**: If you don't have Microsoft Windows installed, you can unselect it.
+	- **`DisableIoMapperMapping`**: Introduced in OpenCore 0.9.2, it is used to "resolve compatibility issues with Wi-Fi, Ethernet and Thunderbolt devices when `AppleVTD` is enabled". Needs to be enabled when using `AppleIGC.kext` for driving the Intel I225-V NIC and 3rd party WiFi/BT cards.
 
 7. **Misc/Security**: 
 	- `SecureBootModel`: 
 		- Set to to `j185` (for iMac20,1) or `j185f` (for iMac20,2).
-		- Set to `Disabled` if you are using an NVIDIA Kepler Card. Otherwise the system will crash on boot. In this case you also need to enable `RestrictEvents.kext` to enable the `VMM-x86_64` board-id so OTA updates will work. More details [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates). 
+		- Set to `Disabled` if you are using an NVIDIA Kepler Card and for installing macOS Sonoma and newer. Otherwise the system will crash on boot. In this case you also need to enable `RestrictEvents.kext` to enable the `VMM-x86_64` board-id so OTA updates will work. More details [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/S_System_Updates). 
 
 8. **NVRAM/Add**
 	- `4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102`: 
@@ -230,8 +233,10 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 		- OCLP-Settings: `-allow_amfi` &rarr; Required for OpenCore Legacy Patcher so Kepler Drivers can be installed
 	- `7C436110-AB2A-4BBB-A880-FE41995C9F82`: 
 		- Change `csr-active-config` to disable SIP:
-  			- SIP fully enabled: `00000000`	 
-			- **Big Sur** and newer: `03080000` (0x803) &rarr; My default so macOS doesn't bother me. This is also the required value if you need to apply root patches with OCLP.
+			- SIP fully enabled: `00000000`
+			- **Big Sur** and newer:
+				-  `03080000` (0x803) &rarr; Default Require if you need to apply root patches with OCLP.
+				-  `030A0000` (0xA03) &rarr; Required for systems with legacy NVIDIA GPUs that require root patchin with OCLP and loading 3rd party kexts (Nvidia WebDrivers)
 			- **Mojave/Catalina**: `EF070000` (0x7EF)
 			- **High Sierra**: `FF030000` (0x3FF)
 	
