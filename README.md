@@ -182,10 +182,10 @@ Select the config of your choice and rename it to `config.plist`. Open it with [
 	- **`SSDT-PORTS`**: OS-agnostic USB Port Mapping Table for the Z490 Vision G. No additional USB Port kext or quirks are required. Since the USB ports are mapped via ACPI, they will work in *any* version of macOS. Check [**this pdf**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for a detailed list of mapped ports.	
 	- **`SSDT-PLUG.aml`**: Not required for macOS 12 and newer or when using `CPUFriend.kext` and `CPUFriendDataProvider.kext`.
 
-	> [!NOTE]
-	> 
-	> - **USB**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
-	> - Additional info about these ACPI Tables can be found on my [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features#readme)
+	**NOTES**:
+	
+ 	- **USB**: macOS does not support USB 3.2 via the USB protocol. It requires Thunderbold 3 or newer instead to support speeds greater than 5 Gbit. So there's no speed benefit when using the red USB ports over the blue ones when running macOS!
+  	- Additional info about these ACPI Tables can be found [**here**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/01_Adding_missing_Devices_and_enabling_Features#readme)
 
 2. **ACPI/Delete** Section
 	- **Drop OEM DMAR Table** &rarr; Only enable if you need to use the DMAR replacement table. OpenCore 0.9.2 introduced a new Quirk called `DisableIoMapperMapping`. It works independently of `DisableIoMapper` and addresses reoccurring connectivity issues in macOS 13.3+ which weren't there before. If your configuration required to drop/replace the DMAR table before it still does now!
