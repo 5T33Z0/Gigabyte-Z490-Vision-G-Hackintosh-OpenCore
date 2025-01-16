@@ -15,9 +15,11 @@
 - [Credits and Resources](#credits-and-resources)
 
 ## About
-On the Z490 Vision G, the I225-V Controller stopped working shortly after the first betas of macOS Monterey were released. Various tricks were tried to fix it: assigning IP addresses and settings manually, dropping the DMAR table, changing BIOS Settings and Quirks and – the scariest trick of them all – replacing the IONetworkingFamily kext of previously working builds, which breaks the seal of the snapshot partition and can corrupt macOS, leaving it in an unbootable state. On top of that, this method only worked temporarily until the next beta was released. There's a lengthy thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
+On the Z490 Vision G, the I225-V Controller stopped working shortly after the first betas of macOS Monterey were released. Various tricks were tried to fix it: assigning IP addresses and settings manually, dropping the `DMAR` table, changing BIOS Settings and Quirks and – the scariest trick of them all – replacing the `IONetworkingFamily` kext of previously working builds, which breaks the seal of the snapshot partition and can corrupt macOS, leaving it in an unbootable state. On top of that, this method only worked temporarily until the next beta was released. There's a lengthy thread about the issue on [insanelymac](https://www.insanelymac.com/forum/topic/348493-discussion-intel-i225-v-on-macos-monterey/).
 
-Until now, the only reliable option was to just buy a third party network card supported by macOS 12 and newer. Fortunately, 2 fixes were discovered to get the I225-V working again. One requires flashing a modified firmware onto the EEPROM so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver successfully. The other one uses an SSDT to inject the correct header description data for the I225-V into macOS so it can attache to the .kext version of the AppleEthernetE1000 driver.
+Until recently, the only reliable option was to just buy a third party network card supported by macOS 12 and newer. Fortunately, 2 fixes were discovered to get the I225-V working again. One requires flashing a modified firmware onto the NIC's EEPROM, so macOS can detect and attach it to the `com.apple.DriverKit-AppleEthernetE1000.dext` driver. The other one uses an SSDT to inject the correct header description data for the I225-V into macOS so it can attach to the .kext version of the` AppleEthernetE1000` driver.
+
+Luckily, a dev ported a Linux driver for Intel I225/I226 2.5 GBit Ethernet controllers to macOS, so that we finally have a working kext and don't have to bother with these workarounds any longer.
 
 ## Technical Background
 The stock firmware for the Intel I225-V used on some of this Boards (and possibly other Z490 Boards by Gigabyte), contains an incorrect Subsystem-ID and Subsystem Vendor-ID. The Vendor-ID (`8086` for Intel) is also used as Subsystem-Vendor-ID (instead of `1458`) and the Subsystem-ID only contains zeros instead of the correct value (`E000`). 
@@ -37,15 +39,20 @@ Before attempting to fix your Ethernet Controller make sure you have excluded al
 - Dump the stock firmware (Steps 1 - 7 of [Option 2](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md#flashing-the-firmware-with-openshell)) and analyze it in TextEdit or a HexEditor. If the Subsystem ID, Subsystem-Vendor-ID are correct, you may not need a fix.
 
 ## Option 1: Add `AppleIGC.kext` 
-Terminalstrip [pointed me to a new kext](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/37) called [AppleIGC](https://github.com/SongXiaoXi/AppleIGC) which is an "Intel 2.5G Ethernet driver for macOS. Based on the Intel igc implementation in Linux". It works on both stock and custom firmware. Verzadil [managed to get it working](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/38) with the stock firmware with the following settings:
+The user Terminalstrip [pointed me to a new kext](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/37) called [AppleIGC](https://github.com/SongXiaoXi/AppleIGC) which is an "Intel 2.5G Ethernet driver for macOS. Based on the Intel igc implementation in Linux". It works on both stock and custom firmware. Verzadil [managed to get it working](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/issues/38) with the stock firmware with the following settings:
 
-- Add `AppleIGC.kext` to `EFI/OC/Kexts` and config.plist.
+- Drop the OEM's `DMAR` table and replace it by one with removed Reserved Memory regions. You can use SSDTTime to do so
+- Add `AppleIGC.kext` to `EFI/OC/Kexts` and your `config.plist`.
+- Under `Kernel/Quirks`, turn off `DisableIoMapper`.
+- Enable `DisableIoMapperMapping` (req. when using macOS 13.3+)
 - Optional: add `e1000=0` to `boot-args` (macOS Monterey+). For Big Sur, use `dk.e1000=0`. I don't need it on my system.
-- In `Kernel/Quirks`, turn on `DisableIoMapper` (might work without it. I need it on my I225-V with custom firmware).
 - Save your config and reboot
 - Run IORegistryExplorer and verify that the kext is servicing the Intel I225-V: <br> ![](https://user-images.githubusercontent.com/88431749/259463074-b1d3801b-c46d-4250-ac8b-8f5c666698fe.png)
 
-:warning: **IMPORTANT**: If you previously used "Option 2" to get Ethernet working, you need to disable `SSDT-I225V` and `AppleIntelI210Ethernet.kext` so the new kext can be used.
+> [!NOTE]
+> 
+> - If you previously used "Option 2" to get Ethernet working, you need to disable `SSDT-I225V` and `AppleIntelI210Ethernet.kext` so the new kext can be used.
+> - Replacing the `DMAR` table and changing the Quirks will allow `AppleVTD` service to work which is required by certain 3rd party WiFi/BT cards (verify in IORegistryExploer).
 
 ## Option 2: Using a SSDT with corrected header description (obsolete)
 Before flashing a custom firmware as a last resort, you can try to inject the Intel I225-V controller via an SSDT containing the correct Subsystem-ID and Subsystem Vendor-ID. The good guy MacAbe at Insanelymac Forums has written an SSDT for it. For macOS Ventura, you also need to inject the .kext version of the AppleIntel210Ethernet driver to make it work.
@@ -61,7 +68,9 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 - [**Adjust Config**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225_stock_vs_cstmfw.md#settings-combinations-stock-firmware)
 - Save the config and reboot
 
-**NOTE**: Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as working successfully. But if this doesn't work for you, please use Option 1 instead.
+> [!NOTE]
+> 
+> Since I have flashed the modded firmware months ago I can't test this, but this fix has been reported as working successfully. But if this doesn't work for you, please use Option 1 instead.
 
 ## Option 3: flashing a custom Firmware (obsolete)
 
