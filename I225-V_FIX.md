@@ -74,6 +74,10 @@ Before flashing a custom firmware as a last resort, you can try to inject the In
 
 ## Option 3: flashing a custom Firmware (obsolete)
 
+> [!CAUTION]
+>
+> Avoid this method and use the AppleIGC kext instead. I did flash my EEPROM with a custom ROM and only recently I realized that the I225-V on-board NIC was only operating at 100 Mbit/s. So if you have previously flashed your NIC I strongly suggest to revert it to the original ROM!
+
 ### Preparations
 
 - **BIOS**
