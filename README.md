@@ -55,7 +55,7 @@ Component     | Details
 **dGPU**       | Saphire RX580 Nitro+ (4 GB)
 **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
 **Ethernet** <br>(on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. For unknown reasons it only works at 100 mbps for me although it's connected via a CAT 7 cable to a Gigabit switch. This happens in macOS as well as Windows. I have seen other people reporting the same issue with this NIC, so you might consider buying a PCIe LAN Card instead.
-**Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS). Currently unused.
+**Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS version).
 
 **Intel® 400 Series Chipset Datasheets** (PDF): [**Vol. 1**](https://cdrdv2.intel.com/v1/dl/getContent/615170) | [**Vol. 2**](https://cdrdv2.intel.com/v1/dl/getContent/615146) | [**Specs Update**](https://cdrdv2.intel.com/v1/dl/getContent/615296)
 
