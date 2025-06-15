@@ -35,11 +35,12 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G mainboard created from scratc
 
 Tested successfully with macOS 10.14 to 15 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
-|⚠️ Important Updates|
-|:--------------------------|
-| Don't report any issues unless you are using the same BIOS version (F23) as I am!
-| The Intel I225-V NIC finally finally has dedicated kext called [**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC) so the [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) are obsolete!
-| Upgrading from to macOS 14.3.1 to 14.4 or newer via `System Update`causes a Kernel Panic during install! Fix: disable `SecureBootModel` ([**Background**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
+|⚠️ Important Updates |
+|:--------------------|
+| Don't report any issues unless you are using the latest BIOS version (F23)!
+| macOS Tahoe beta doesn't work with AMD Polaris cards (RX 5xx) currently. Use iGPU for driving a display.
+| Intel I225-V NIC now has a dedicated kext ([**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC)), rendering [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) obsolete.
+| Upgrading from macOS 14.3.1 to 14.4+ via System Update causes a Kernel Panic. **Fix**: disable `SecureBootModel` ([**Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md)).
 | 600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in Post-Install in order to work.
 
 ## Hardware Info
