@@ -3,10 +3,9 @@
 
 **TABLE of CONTENTS**
 
-- [About](#about)
-- [Hardware Info](#hardware-info)
-	- [System Specs](#system-specs)
-	- [BIOS Settings](#bios-settings)
+- [Overview](#overview)
+- [Hardware Specifications](#hardware-specifications)
+- [BIOS Settings](#bios-settings)
 - [OpenCore Details](#opencore-details)
 	- [General Information](#general-information)
 	- [EFI Folder Structure (OpenCore)](#efi-folder-structure-opencore)
@@ -31,9 +30,9 @@
 - [CPU Benchmark](#cpu-benchmark)
 - [Credits and Thank yous](#credits-and-thank-yous)
 
-## About
+## Overview
 
-OpenCore EFI folder for the Gigabyte Z490 Vision G mainboard created from scratch and updated and refined regularly since September 2020. The configuration is based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real `iMac20,1`. USB Ports are mapped via `ACPI`, so no USB Port kext is required.
+This repository provides an OpenCore EFI folder for the Gigabyte Z490 Vision G mainboard, meticulously crafted and maintained since September 2020. The configuration is based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real `iMac20,1`. USB ports are mapped via ACPI, eliminating the need for a USB kext.
 
 Tested successfully with macOS 10.14 to 15 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
@@ -45,9 +44,7 @@ Tested successfully with macOS 10.14 to 15 beta. For best results, read and foll
 | Upgrading from macOS 14.3.1 to 14.4+ via System Update causes a Kernel Panic. **Fix**: disable `SecureBootModel` ([**Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md)).
 | 600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in Post-Install in order to work.
 
-## Hardware Info
-
-### System Specs
+## Hardware Specifications
 
 Component     | Details                                                       
 -------------:|-------------------------------------------------------------- 
@@ -60,12 +57,16 @@ Component     | Details
 **Ethernet** <br>(on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. For unknown reasons it only works at 100 mbps for me although it's connected via a CAT 7 cable to a Gigabit switch. This happens in macOS as well as Windows. I have seen other people reporting the same issue with this NIC, so you might consider buying a PCIe LAN Card instead.
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS version).
 
-**Intel® 400 Series Chipset Datasheets** (PDF): [**Vol. 1**](https://cdrdv2.intel.com/v1/dl/getContent/615170) | [**Vol. 2**](https://cdrdv2.intel.com/v1/dl/getContent/615146) | [**Specs Update**](https://cdrdv2.intel.com/v1/dl/getContent/615296)
+**Resources:**
 
-### BIOS Settings
+- [Intel® 400 Series Chipset Datasheets: Vol. 1](https://cdrdv2.intel.com/v1/dl/getContent/615170)
+- [Vol. 2](https://cdrdv2.intel.com/v1/dl/getContent/615146)
+- [Specs Update](https://cdrdv2.intel.com/v1/dl/getContent/615296)
+
+## BIOS Settings
 
 <details>
-<summary><strong>Click to reveal</strong></summary>
+<summary><strong>Click to reveal</strong></summary><br>
 
 ![BIOS](https://user-images.githubusercontent.com/76865553/141654274-6d6a5803-e18e-407e-aa9f-767ab18094bc.jpg)
 
@@ -116,7 +117,7 @@ Parameter | Details
 ### EFI Folder Structure (OpenCore)
 
 <details>
-<summary><strong>Click to reveal</strong></summary>
+<summary><strong>Click to reveal</strong></summary><br>
 
 ```
 EFI
