@@ -375,6 +375,33 @@ Change the following settings in `config.plist`:
 >
 > Applying root patches breaks the seal of the snapshot volume. Once the seal is broken, incremental OTA updates are no longer available in System Updates. Therefore, each time a System Update is available, the full macOS Installer (approx 15 GB) will be downloaded – and after the update is installed, OCLP has to re-apply the root patches again.
 
+## macOS Tahoe RX580 test scenarios
+
+See the table below to figure out how to get macOS Tahoe running on this system.
+
+| Test | SMBIOS Model | GPU | iGPU (Mode) | Boot Arguments | Result |
+|:---:|--------------|-----|-------------|----------------|--------|
+| 1 | iMac20,2     | On  | Enabled (Headless) | None           | Fails to boot macOS Tahoe |
+| 2 | MacPro7,1    | On  | Disabled           | `-wegnoigpu`   | Fails to boot macOS Tahoe |
+| 3 | iMac20,2     | On  | Enabled (Display)  | None           | Fails to boot macOS Tahoe |
+| 4 | iMac20,2     | Off | Enabled (Display)  | `-wegnoegpu`   | Boots macOS Tahoe via iGPU (Display on onboard HDMI) |
+
+### Special Note about `Advise Features`
+
+- If the GPU is enabled and the iGPU is configured for display output (ie if a Framebuffer Patch is present), the System won't boot any macOS if `Advise Features` is disabled
+- However, if 'Advise Features` is enabled, you can boot macOS Sequoia and older with displays connected to the GPU and the iGPU. Firefox glitches in this case, but it works
+- Hower, when attempting to boot macOS Tahoe with this configuration, the WindowServer crashes. You have to use `-wegnoegpu` to disable the RX580 
+
+Here's a table summarizing the boot behavior and issues with different macOS versions based on the GPU, iGPU configuration, and `Advise Features` setting:
+
+| macOS Version | GPU Enabled | iGPU Configured for Display (Framebuffer Patch) | Advise Features | Boot Outcome | Notes |
+|----------|:--------:|:-------------:|-----------------|--------------|-------|
+| Sequoia and older | Yes | Yes | Disabled | Fails to boot | System won't boot any macOS. |
+| Sequoia and older | Yes | Yes | Enabled | Boots successfully | Firefox glitches, but display works with GPU and iGPU. |
+| Tahoe | Yes | Yes | Enabled | WindowServer crashes | Requires `-wegnoegpu` to disable RX580 for successful boot. |
+
+This table assumes the use of an RX580 GPU and the iGPU configured for display output with a Framebuffer Patch. 
+
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
 [**SEE ALL RESULTS**](https://browser.geekbench.com/v5/cpu/5386949)
