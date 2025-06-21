@@ -1,5 +1,5 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
-[![BIOS](https://img.shields.io/badge/BIOS-F23-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-1.0.5-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–26-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
+[![BIOS](https://img.shields.io/badge/BIOS-F23-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-1.0.5-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–26b-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
 **TABLE of CONTENTS**
 
@@ -19,6 +19,8 @@
 	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
 	- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
 	- [Changing Themes](#changing-themes)
+- [macOS Tahoe RX580 test scenarios](#macos-tahoe-rx580-test-scenarios)
+	- [A note about the effect of the `Advise Features` setting on GPU/iGPU](#a-note-about-the-effect-of-the-advise-features-setting-on-gpuigpu)
 - [Alternate GPU Configurations](#alternate-gpu-configurations)
 	- [iGPU Optimizations](#igpu-optimizations)
 	- [Enabling Resizable BAR (optional)](#enabling-resizable-bar-optional)
@@ -306,6 +308,33 @@ To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and cha
 >
 > For more config tips and tricks, you can check out [**this**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
 
+## macOS Tahoe RX580 test scenarios
+
+On my system, macOS Tahoe only runs, if the RX580 GPU is deisabled and the iGPU is used for graphics. The table below lists the tested config scenarios.
+
+| Test | SMBIOS Model | GPU | iGPU (Mode) | Boot Arguments | Result |
+|:---:|--------------|-----|-------------|----------------|--------|
+| 1 | iMac20,2     | On  | Enabled (Headless) | None           | Fails to boot macOS Tahoe |
+| 2 | MacPro7,1    | On  | Disabled           | `-wegnoigpu`   | Fails to boot macOS Tahoe |
+| 3 | iMac20,2     | On  | Enabled (Display)  | None           | Fails to boot macOS Tahoe |
+| 4 | iMac20,2     | Off | Enabled (Display)  | `-wegnoegpu`   | Boots macOS Tahoe via iGPU (Display on onboard HDMI) |
+
+### A note about the effect of the `Advise Features` setting on GPU/iGPU
+
+- If the GPU is enabled and the iGPU is configured for display output (ie if a Framebuffer Patch is present), the System won't boot any macOS if `Advise Features` is disabled
+- However, if 'Advise Features` is enabled, you can boot macOS Sequoia and older with displays connected to the GPU and the iGPU. Firefox glitches in this case, but it works
+- Hower, when attempting to boot macOS Tahoe with this configuration, the WindowServer crashes. You have to use `-wegnoegpu` to disable the RX580 
+
+Here's a table summarizing the boot behavior and issues with different macOS versions based on the GPU, iGPU configuration, and `Advise Features` setting:
+
+| macOS Version | GPU Enabled | iGPU Configured for Display (Framebuffer Patch) | Advise Features | Boot Outcome | Notes |
+|----------|:--------:|:-------------:|-----------------|--------------|-------|
+| Sequoia and older | Yes | Yes | Disabled | Fails to boot | System won't boot any macOS. |
+| Sequoia and older | Yes | Yes | Enabled | Boots successfully | Firefox glitches, but display works with GPU and iGPU. |
+| Tahoe | Yes | Yes | Enabled | WindowServer crashes | Requires `-wegnoegpu` to disable RX580 for successful boot. |
+
+This table assumes the use of an RX580 GPU and the iGPU configured for display output with a Framebuffer Patch. 
+
 ## Alternate GPU Configurations
 
 ### iGPU Optimizations
@@ -374,33 +403,6 @@ Change the following settings in `config.plist`:
 > [!IMPORTANT]
 >
 > Applying root patches breaks the seal of the snapshot volume. Once the seal is broken, incremental OTA updates are no longer available in System Updates. Therefore, each time a System Update is available, the full macOS Installer (approx 15 GB) will be downloaded – and after the update is installed, OCLP has to re-apply the root patches again.
-
-## macOS Tahoe RX580 test scenarios
-
-See the table below to figure out how to get macOS Tahoe running on this system.
-
-| Test | SMBIOS Model | GPU | iGPU (Mode) | Boot Arguments | Result |
-|:---:|--------------|-----|-------------|----------------|--------|
-| 1 | iMac20,2     | On  | Enabled (Headless) | None           | Fails to boot macOS Tahoe |
-| 2 | MacPro7,1    | On  | Disabled           | `-wegnoigpu`   | Fails to boot macOS Tahoe |
-| 3 | iMac20,2     | On  | Enabled (Display)  | None           | Fails to boot macOS Tahoe |
-| 4 | iMac20,2     | Off | Enabled (Display)  | `-wegnoegpu`   | Boots macOS Tahoe via iGPU (Display on onboard HDMI) |
-
-### Special Note about `Advise Features`
-
-- If the GPU is enabled and the iGPU is configured for display output (ie if a Framebuffer Patch is present), the System won't boot any macOS if `Advise Features` is disabled
-- However, if 'Advise Features` is enabled, you can boot macOS Sequoia and older with displays connected to the GPU and the iGPU. Firefox glitches in this case, but it works
-- Hower, when attempting to boot macOS Tahoe with this configuration, the WindowServer crashes. You have to use `-wegnoegpu` to disable the RX580 
-
-Here's a table summarizing the boot behavior and issues with different macOS versions based on the GPU, iGPU configuration, and `Advise Features` setting:
-
-| macOS Version | GPU Enabled | iGPU Configured for Display (Framebuffer Patch) | Advise Features | Boot Outcome | Notes |
-|----------|:--------:|:-------------:|-----------------|--------------|-------|
-| Sequoia and older | Yes | Yes | Disabled | Fails to boot | System won't boot any macOS. |
-| Sequoia and older | Yes | Yes | Enabled | Boots successfully | Firefox glitches, but display works with GPU and iGPU. |
-| Tahoe | Yes | Yes | Enabled | WindowServer crashes | Requires `-wegnoegpu` to disable RX580 for successful boot. |
-
-This table assumes the use of an RX580 GPU and the iGPU configured for display output with a Framebuffer Patch. 
 
 ## CPU Benchmark
 ![image](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)</br>
