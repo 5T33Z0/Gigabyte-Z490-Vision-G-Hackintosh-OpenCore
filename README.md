@@ -3,32 +3,35 @@
 
 **TABLE of CONTENTS**
 
-- [Overview](#overview)
-- [Hardware Specifications](#hardware-specifications)
-- [BIOS Settings](#bios-settings)
-- [OpenCore Details](#opencore-details)
-	- [General Information](#general-information)
-	- [EFI Folder Structure (OpenCore)](#efi-folder-structure-opencore)
-- [Installing/Upgrading macOS](#installingupgrading-macos)
-- [Deployment](#deployment)
-	- [Preparing the `config.plist`](#preparing-the-configplist)
-	- [Testing the EFI](#testing-the-efi)
-- [Post-Install](#post-install)
-	- [Strengthen Security (recommended)](#strengthen-security-recommended)
-	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
-	- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
-	- [Changing Themes](#changing-themes)
-- [macOS Tahoe RX580 test scenarios](#macos-tahoe-rx580-test-scenarios)
-	- [A note about the effect of the `Advise Features` setting on GPU/iGPU](#a-note-about-the-effect-of-the-advise-features-setting-on-gpuigpu)
-- [Alternate GPU Configurations](#alternate-gpu-configurations)
-	- [iGPU Optimizations](#igpu-optimizations)
-	- [Enabling Resizable BAR (optional)](#enabling-resizable-bar-optional)
-	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
-		- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
-	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
-		- [Config Preparation](#config-preparation)
-- [CPU Benchmark](#cpu-benchmark)
-- [Credits and Thank yous](#credits-and-thank-yous)
+- [Gigabyte Z490 Vision G Hackintosh OpenCore](#gigabyte-z490-vision-g-hackintosh-opencore)
+	- [Overview](#overview)
+	- [Hardware Specifications](#hardware-specifications)
+	- [BIOS Settings](#bios-settings)
+	- [OpenCore Details](#opencore-details)
+		- [General Information](#general-information)
+		- [EFI Folder Structure (OpenCore)](#efi-folder-structure-opencore)
+	- [Installing/Upgrading macOS](#installingupgrading-macos)
+	- [Deployment](#deployment)
+		- [Preparing the `config.plist`](#preparing-the-configplist)
+		- [Testing the EFI](#testing-the-efi)
+	- [Post-Install](#post-install)
+		- [Strengthen Security (recommended)](#strengthen-security-recommended)
+		- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
+		- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
+		- [Changing Themes](#changing-themes)
+	- [macOS Tahoe Support](#macos-tahoe-support)
+		- [macOS 26.0 Beta 2 (25A5295e) notes](#macos-260-beta-2-25a5295e-notes)
+		- [macOS 26 beta 1 (25A5279m) notes](#macos-26-beta-1-25a5279m-notes)
+		- [A note about the effect of the `Advise Features` setting on GPU/iGPU](#a-note-about-the-effect-of-the-advise-features-setting-on-gpuigpu)
+	- [Alternate GPU Configurations](#alternate-gpu-configurations)
+		- [iGPU Optimizations](#igpu-optimizations)
+		- [Enabling Resizable BAR (optional)](#enabling-resizable-bar-optional)
+		- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
+			- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
+		- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
+			- [Config Preparation](#config-preparation)
+	- [CPU Benchmark](#cpu-benchmark)
+	- [Credits and Thank yous](#credits-and-thank-yous)
 
 ## Overview
 
@@ -309,9 +312,20 @@ To revert the changes, enter `Acidanthera\GoldenGate` as `PickerVariant` and cha
 >
 > For more config tips and tricks, you can check out [**this**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks).
 
-## macOS Tahoe RX580 test scenarios
+## macOS Tahoe Support
 
-On my system, macOS Tahoe only runs, if the RX580 GPU is deisabled and the iGPU is used for graphics. The table below lists the tested config scenarios.
+### macOS 26.0 Beta 2 (25A5295e) notes
+
+- Don't install macOS Tahoe via System Update. Instead, download the full installer and install it on a separte APFS Volume!
+- GPU works again! Disable WEG during install, otherwise the installer crashes
+- `AppleHDA` was removed from beta 2 so on-board audio does not work out of the box &rarr; [Fix with OCLP Mod](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/Audio_Tahoe.md)
+- I225-V only works if `DisableIoMapper` is enabled
+
+---
+
+### macOS 26 beta 1 (25A5279m) notes
+
+On my system, macOS Tahoe beta 1 only runs, if the RX580 GPU is disabled and the iGPU is used for graphics. The table below lists the tested config scenarios.
 
 | Test | SMBIOS Model | GPU | iGPU (Mode) | Boot Arguments | Result |
 |:---:|--------------|-----|-------------|----------------|--------|
