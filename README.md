@@ -62,8 +62,7 @@ Component     | Details
 
 **Resources:**
 
-- [Intel® 400 Series Chipset Datasheets: Vol. 1](https://cdrdv2.intel.com/v1/dl/getContent/615170)
-- [Vol. 2](https://cdrdv2.intel.com/v1/dl/getContent/615146)
+- [Intel® 400 Series Chipset Datasheets: Vol. 1](https://cdrdv2.intel.com/v1/dl/getContent/615170), [Vol. 2](https://cdrdv2.intel.com/v1/dl/getContent/615146)
 - [Specs Update](https://cdrdv2.intel.com/v1/dl/getContent/615296)
 
 ## BIOS Settings
