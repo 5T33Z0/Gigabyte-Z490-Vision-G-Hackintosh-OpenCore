@@ -132,9 +132,9 @@ EFI
     │   ├── SSDT-EC.aml
     │   ├── SSDT-MCHC.aml
     │   ├── SSDT-PLUG.aml
-    │   ├── SSDT-PORTS.aml
     │   ├── SSDT-SBUS.aml
-    │   └── SSDT-USBX.aml
+    │   ├── SSDT-USBX.aml
+    │   └── SSDT-XHUB.aml
     ├── Drivers
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
