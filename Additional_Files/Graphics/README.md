@@ -1,4 +1,4 @@
-# iGPU Framebuffer Patches, Device-IDs and SMBIOS
+# iGPU Framebuffer Patches, Device-IDs and SMBIOS Settings
 
 ## i9 10850K (default)
 - **AAPL,ig-platform-id** 
