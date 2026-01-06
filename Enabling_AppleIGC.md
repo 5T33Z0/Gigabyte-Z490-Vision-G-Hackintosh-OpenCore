@@ -9,4 +9,4 @@ In order to make use of the `AppleIGC.kext` for Intel I225/I226 NICs, the follow
 	- "Add" Section: enable `AppleIGC.kext`
 	- "Quirks" Section: enable `DisableIoMapperMapping` quirk
 
-Tested with macOS Sonoma and Sequoia beta 5. But it should work with macOS Catalina and onward as well.
+Tested with macOS Sonoma to Tahoe. But it should work with macOS Catalina and onward.
