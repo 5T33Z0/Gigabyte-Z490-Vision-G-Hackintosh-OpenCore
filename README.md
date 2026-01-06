@@ -46,7 +46,7 @@ Tested successfully with macOS 10.14 to 15 beta. For best results, read and foll
 |⚠️ Important Updates |
 |:--------------------|
 | Don't report any issues unless you are using the latest BIOS version (F23)!
-| macOS Tahoe beta 2 Notes: <ul><li> Disable WhateverGreen during install. Once installation is completed you can re-enable it again and the RX580 will work <li> `AppleHDA` has been removed from beta 2 so no on-board Audio since AppleALC requires AppleHDA <li>Intel I225-V does not work in Tahoe beta 2. Use a PCIe NIC
+| macOS Tahoe Notes: <ul><li> Disable WhateverGreen during install. Once installation is completed, you can re-enable it again and the RX580 will work <li> `AppleHDA` has been removed from beta 2 so you need to apply root patches with OCLP-Mod to reenable it ([**Instructions**](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/Audio_Tahoe.md))
 | Intel I225-V NIC now has a dedicated kext ([**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC)), rendering [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) obsolete.
 | Upgrading from macOS 14.3.1 to 14.4+ via System Update causes a Kernel Panic. **Fix**: disable `SecureBootModel` ([**Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md)).
 | 600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in Post-Install in order to work.
