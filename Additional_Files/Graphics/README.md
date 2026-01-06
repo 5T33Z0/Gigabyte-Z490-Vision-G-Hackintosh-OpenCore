@@ -16,3 +16,10 @@
   - **Cpuid1Data**: `EA060900 00000000 00000000 00000000`
   - **Cpuid1Mask**: `FFFFFFFF 00000000 00000000 00000000`
 - **SMBIOS**: `iMac19,1`
+
+## FB-Patch for Z490 Vision G Board Rev 1.1
+
+Credits to [@verdazil](https://github.com/verdazil) for providing adjusting the FB Patch for compatibility with Board Revision 1.1.
+
+**Filename**: `Intel_UHD_630_BoardRev1.1.plist`
+
