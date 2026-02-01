@@ -103,6 +103,38 @@ Component     | Details
 	* CFGLock: Disabled (only available on newer BIOS versions)
 	* Windows 10 Features: Windows 10 
 	* CSM: Disabled (to get rid of legacy code from `DSDT`)
+
+| Category | Setting | Value | Notes |
+|----------|---------|-------|-------|
+| **Tweaker** | | | |
+| | Extreme Memory Profile (XMP) | Enabled | If supported by RAM |
+| | **Advanced CPU Settings** | | |
+| | → VT-d | Enabled | |
+| | → Intel Speed Shift | Enabled | |
+| **Settings** | | | |
+| | **Platform Power** | | |
+| | → Platform Power Management | Disabled | |
+| | → ErP | Enabled | So USB Power turns off after PC is shut down |
+| | **IO Ports** | | |
+| | → Internal Graphics | Enabled | If CPU has integrated graphics. **NOTE**: The config.plist uses dGPU for Display(s) and iGPU for computational tasks only by default. If you want to use the iGPU to drive a display you need a different Framebuffer Patch (see "EFI Install Instructions" for details). |
+| | → OnBoard LAN Controller | Enabled | |
+| | → Audio Controller | Enabled | If On-Board Sound Card is used |
+| | → Above 4G Decoding | Enabled | |
+| | → Re-Size BAR Support | Disabled | Enable if your GPU supports it |
+| | → IOAPIC 24-119 Entries | Enabled | |
+| | → **Super IO Configuration** | | |
+| | → → Serial Port | Disabled | |
+| | → **USB Configuration** | | |
+| | → → Legacy USB Support | Disabled | |
+| | → → XHCI Hand-off | Enabled | |
+| | → **Network Stack Configuration** | | |
+| | → → Network Stack | Disabled | |
+| **Boot** | | | |
+| | CFGLock | Disabled | Only available on newer BIOS versions |
+| | Windows 10 Features | Windows 10 | |
+| | CSM | Disabled | To get rid of legacy code from `DSDT` |
+
+
 </details>
 
 ## OpenCore Details
