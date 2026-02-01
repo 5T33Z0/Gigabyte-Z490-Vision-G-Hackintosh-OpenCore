@@ -5,51 +5,51 @@
 
 **TABLE of CONTENTS**
 
-- [Gigabyte Z490 Vision G Hackintosh OpenCore](#gigabyte-z490-vision-g-hackintosh-opencore)
-	- [Overview](#overview)
-	- [Hardware Specifications](#hardware-specifications)
-	- [BIOS Settings](#bios-settings)
-	- [OpenCore Details](#opencore-details)
-		- [General Information](#general-information)
-		- [EFI Folder Structure (OpenCore)](#efi-folder-structure-opencore)
-	- [Installing/Upgrading macOS](#installingupgrading-macos)
-	- [Deployment](#deployment)
-		- [Preparing the `config.plist`](#preparing-the-configplist)
-		- [Testing the EFI](#testing-the-efi)
-	- [Post-Install](#post-install)
-		- [Strengthen Security (recommended)](#strengthen-security-recommended)
-		- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
-		- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
-		- [Changing Themes](#changing-themes)
-	- [macOS Tahoe Support](#macos-tahoe-support)
-		- [macOS 26.0 Beta 2 (25A5295e) notes](#macos-260-beta-2-25a5295e-notes)
-		- [macOS 26 beta 1 (25A5279m) notes](#macos-26-beta-1-25a5279m-notes)
-		- [A note about the effect of the `Advise Features` setting on GPU/iGPU](#a-note-about-the-effect-of-the-advise-features-setting-on-gpuigpu)
-	- [Alternate GPU Configurations](#alternate-gpu-configurations)
-		- [iGPU Optimizations](#igpu-optimizations)
-		- [Enabling Resizable BAR (optional)](#enabling-resizable-bar-optional)
-		- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
-			- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
-		- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
-			- [Config Preparation](#config-preparation)
-	- [CPU Benchmark](#cpu-benchmark)
-	- [Credits and Thank yous](#credits-and-thank-yous)
+- [Overview](#overview)
+- [Hardware Specifications](#hardware-specifications)
+- [BIOS Settings](#bios-settings)
+- [OpenCore Details](#opencore-details)
+	- [Config Details](#config-details)
+	- [EFI Folder Structure)](#efi-folder-structure)
+- [Installing/Upgrading macOS](#installingupgrading-macos)
+- [Deployment](#deployment)
+	- [Preparing the `config.plist`](#preparing-the-configplist)
+	- [Testing the EFI](#testing-the-efi)
+- [Post-Install](#post-install)
+	- [Strengthen Security (recommended)](#strengthen-security-recommended)
+	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
+	- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
+	- [Changing Themes](#changing-themes)
+- [macOS Tahoe Support](#macos-tahoe-support)
+	- [macOS 26.0 Beta 2 (25A5295e) notes](#macos-260-beta-2-25a5295e-notes)
+	- [macOS 26 beta 1 (25A5279m) notes](#macos-26-beta-1-25a5279m-notes)
+	- [A note about the effect of the `Advise Features` setting on GPU/iGPU](#a-note-about-the-effect-of-the-advise-features-setting-on-gpuigpu)
+- [Alternate GPU Configurations](#alternate-gpu-configurations)
+	- [iGPU Optimizations](#igpu-optimizations)
+	- [Enabling Resizable BAR (optional)](#enabling-resizable-bar-optional)
+	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
+		- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
+	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
+		- [Config Preparation](#config-preparation)
+- [CPU Benchmark](#cpu-benchmark)
+- [Credits and Thank yous](#credits-and-thank-yous)
 
 ---
 
 ## Overview
 
-This repository provides an OpenCore EFI folder for the Gigabyte Z490 Vision G mainboard, meticulously crafted and maintained since September 2020. The configuration is based on Dortania's OpenCore Install Guide and analysis of an `.ioreg` file from a real `iMac20,1`. USB ports are mapped via ACPI, eliminating the need for a USB kext.
+This repository provides an OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and maintained since September 2020. The configuration is based on Dortania’s OpenCore Install Guide, along with analysis of the OpenCore debug boot log and the `.ioreg` file from a real `iMac20,1`. USB ports are mapped via ACPI, so no USB kext is required.
 
-Tested successfully with macOS 10.14 to 15 beta. For best results, read and follow the install instruction carefully and thoroughly.
+Tested successfully with macOS 10.14 to 26 beta. For best results, read and follow the install instruction carefully and thoroughly.
 
-|⚠️ Important Updates |
-|:--------------------|
-| Don't report any issues unless you are using the latest BIOS version (F23)!
-| macOS Tahoe Notes: <ul><li> Disable WhateverGreen during install. Once installation is completed, you can re-enable it again and the RX580 will work <li> `AppleHDA` has been removed from beta 2 so you need to apply root patches with OCLP-Mod to reenable it ([**Instructions**](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/Audio_Tahoe.md))
-| Intel I225-V NIC now has a dedicated kext ([**AppleIGC**](https://github.com/SongXiaoXi/AppleIGC)), rendering [**previous fixes**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/I225-V_FIX.md) obsolete.
-| Upgrading from macOS 14.3.1 to 14.4+ via System Update causes a Kernel Panic. **Fix**: disable `SecureBootModel` ([**Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md)).
-| 600/700-series Nvidia Cards require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in Post-Install in order to work.
+> [!IMPORTANT]
+>
+> - Don't report issues unless you are using the latest BIOS version (F23)!
+> - **macOS Tahoe Notes**: 
+> 	- AMD Polaris GPUs: Disable WhateverGreen kext during install. Once installation is completed, you can re-enable it again. Navi Cards are not affected.
+> 	- `AppleHDA` has been removed from beta 2 so you need to apply root patches with OCLP-Mod to reenable it ([**Instructions**](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/Audio_Tahoe.md))
+> - Upgrading from macOS 14.3.1 to 14.4+ via System Update causes a Kernel Panic. **Fix**: disable `SecureBootModel` ([**Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md)).
+> - 600/700-series Nvidia GPUs require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in Post-Install in order to work.
 
 ## Hardware Specifications
 
@@ -79,27 +79,27 @@ Component     | Details
 		* VT-d: Enabled
 		* Intel Speed Shit: Enabled
 * **Settings [TAB]**
-	* Platform Power
-		* Platform Power Management: Disabled
-		* ErP: Enabled (so USB Power turns off, after PC is shut down)
-	* IO Ports
-		* Internal Graphics: enabled (if CPU has integrated graphics). **NOTE**: The config.plist uses dGPU for Display(s) and iGPU for computational tasks only by default. If you want to use the iGPU to drive a display you need a different Framebuffer Patch (see "EFI Install Instructions" for details).
-		* OnBoard LAN Controller: Enabled
-		* Audio Controller: Enabled (if On-Board Sound Card is used)
-		* Above 4G Decoding: Enabled
-		* Re-Size BAR Support: Disabled (Enable if your GPU supports it)
-		* IOAPIC 24-119 Entries: Enabled
-		* Super IO Configuration
-			* Serial Port: Disabled
-		* USB Configuration
-			* Legacy USB Support: Disabled
-			* XHCI Hand-off: Enabled
-		* Network Stack Configuration
-			* Network Stack: Disabled
+	* **Platform Power**
+		* **Platform Power Management**: Disabled
+		* **ErP**: Enabled (so USB Power turns off, after PC is shut down)
+	* **IO Ports**
+		* **Internal Graphics**: enabled (if CPU has integrated graphics). **NOTE**: The config.plist uses dGPU for Display(s) and iGPU for computational tasks only by default. If you want to use the iGPU to drive a display you need a different Framebuffer Patch (see "EFI Install Instructions" for details).
+		* **OnBoard LAN Controller**: Enabled
+		* **Audio Controller**: Enabled (if On-Board Sound Card is used)
+		* **Above 4G Decoding**: Enabled
+		* **Re-Size BAR Support**: Disabled (Enable if your GPU supports it)
+		* **IOAPIC 24-119 Entries**: Enabled
+		* **Super IO Configuration**
+			* **Serial Port**: Disabled
+		* **USB Configuration**
+			* **Legacy USB Support**: Disabled
+			* **XHCI Hand-off**: Enabled
+		* **Network Stack Configuration**
+			* **Network Stack**: Disabled
 * **Boot [TAB]**
-	* CFGLock: Disabled (only available on newer BIOS versions)
-	* Windows 10 Features: Windows 10 
-	* CSM: Disabled (to get rid of legacy code from `DSDT`)
+	* **CFGLock**: Disabled (only available on newer BIOS versions)
+	* **Windows 10 Features**: Windows 10 or Other OS
+	* **CSM**: Disabled (to get rid of legacy code from `DSDT`)
 
 <details>
 <summary><strong>Screenshot</strong></summary><br>
@@ -110,12 +110,12 @@ Component     | Details
 
 ## OpenCore Details
 
-### General Information
+### Config Details
 
 Parameter | Details                                                       
 ---------:|----------------------------- 
 **SMBIOS** | `iMac20,2`. For i5/i7 CPUs, use `iMac20,1`. SMBIOS data needs to be generated. I use [**OCAT**](https://github.com/ic005k/OCAuxiliaryTools#readme) for this
-**Supported macOS** | macOS 10.14 up to 15.x (10.14 requires `iMac19,1` config)
+**Supported macOS** | macOS 10.14 up to 26.x (10.14 requires `iMac19,1` config)
 **OpenCanopy** | Enabled
 **Boot Chime** | No
 **FileVault** | `Optional`
@@ -123,7 +123,7 @@ Parameter | Details
 **SecureBootModel**| `Disabled`. Change to `j185f` for `iMac20,2` SMBIOS. For `iMac20,1`, use `j185`. :warning: Needs to be set to `Disabled` when using an NVIDIA Kepler GPU in macOS 12 or newer (requires root-patching with OCLP)
 **USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
-### EFI Folder Structure (OpenCore)
+### EFI Folder Structure)
 
 <details>
 <summary><strong>Click to reveal</strong></summary><br>
