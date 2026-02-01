@@ -1,38 +1,5 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
-[![BIOS](https://img.shields.io/badge/BIOS-F23-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-1.0.6-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–26b9-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
-
----
-
-**TABLE of CONTENTS**
-
-- [Overview](#overview)
-- [Hardware Specifications](#hardware-specifications)
-- [BIOS Settings](#bios-settings)
-- [OpenCore Details](#opencore-details)
-	- [Config Details](#config-details)
-	- [EFI Folder Structure)](#efi-folder-structure)
-- [Installing/Upgrading macOS](#installingupgrading-macos)
-- [Deployment](#deployment)
-	- [Preparing the `config.plist`](#preparing-the-configplist)
-	- [Testing the EFI](#testing-the-efi)
-- [Post-Install](#post-install)
-	- [Strengthen Security (recommended)](#strengthen-security-recommended)
-	- [Optimizing CPU Power Management (recommended)](#optimizing-cpu-power-management-recommended)
-	- [Calculate a Scan Policy (optional)](#calculate-a-scan-policy-optional)
-	- [Changing Themes](#changing-themes)
-- [macOS Tahoe Support](#macos-tahoe-support)
-	- [macOS 26.0 Beta 2 (25A5295e) notes](#macos-260-beta-2-25a5295e-notes)
-	- [macOS 26 beta 1 (25A5279m) notes](#macos-26-beta-1-25a5279m-notes)
-	- [A note about the effect of the `Advise Features` setting on GPU/iGPU](#a-note-about-the-effect-of-the-advise-features-setting-on-gpuigpu)
-- [Alternate GPU Configurations](#alternate-gpu-configurations)
-	- [iGPU Optimizations](#igpu-optimizations)
-	- [Enabling Resizable BAR (optional)](#enabling-resizable-bar-optional)
-	- [AMD GPUs and different SMBIOSes](#amd-gpus-and-different-smbioses)
-		- [Addressing DRM issues with AMD GPUs in macOS 11 and newer](#addressing-drm-issues-with-amd-gpus-in-macos-11-and-newer)
-	- [Using NVIDIA Kepler Cards in macOS 12 and newer](#using-nvidia-kepler-cards-in-macos-12-and-newer)
-		- [Config Preparation](#config-preparation)
-- [CPU Benchmark](#cpu-benchmark)
-- [Credits and Thank yous](#credits-and-thank-yous)
+[![BIOS](https://img.shields.io/badge/BIOS-F23-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore Version](https://img.shields.io/badge/OpenCore-1.0.7-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![MacOS](https://img.shields.io/badge/macOS-10.13–26.3-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)</br>![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
 ---
 
@@ -51,23 +18,29 @@ Tested successfully with macOS 10.14 to 26 beta. For best results, read and foll
 > - Upgrading from macOS 14.3.1 to 14.4+ via System Update causes a Kernel Panic. **Fix**: disable `SecureBootModel` ([**Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md)).
 > - 600/700-series Nvidia GPUs require root patching with [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in Post-Install in order to work.
 
-## Hardware Specifications
+## System Specs
 
-Component     | Details                                                       
+|     | Details                                                       
 -------------:|-------------------------------------------------------------- 
-**Mainboard** | Gigabyte Z490 Vision G. **BIOS**: F21. F5 or newer is required to disable `CFG Lock`. Otherwise enable Kernel Quirk `AppleXcpmCfgLock`
+**Mainboard** | Gigabyte Z490 Vision G.
+**Firmware**: | F25. F5 or newer is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`
 **CPU**       | Intel Core i9 10850K (Comet Lake)      
 **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT
+**dGPU**      | Saphire Radeon RX580 Nitro+ (4 GB)
 **iGPU**      | Intel UHD 630 (Headless). Use this [**Framebuffer Patch**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/Graphics/Intel_UHD_630_HDMI_DP_Framebuffer-Patch.plist) if you want to use it for driving a display.
-**dGPU**       | Saphire RX580 Nitro+ (4 GB)
 **Audio**     | Realtek® ALC1220-VB (Layout-id: `17`)
-**Ethernet** <br>(on-board) | Intel I225-V 2.5GbE. Compatible with macOS 10.15.7 and newer. For unknown reasons it only works at 100 mbps for me although it's connected via a CAT 7 cable to a Gigabit switch. This happens in macOS as well as Windows. I have seen other people reporting the same issue with this NIC, so you might consider buying a PCIe LAN Card instead.
+**Ethernet** <br>(on-board) | Intel I225-V 2.5GbE. 
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS version).
 
-**Resources:**
+--- 
 
-- [Intel® 400 Series Chipset Datasheets: Vol. 1](https://cdrdv2.intel.com/v1/dl/getContent/615170), [Vol. 2](https://cdrdv2.intel.com/v1/dl/getContent/615146)
-- [Specs Update](https://cdrdv2.intel.com/v1/dl/getContent/615296)
+**Additional Documentation:**
+
+- [Intel® 400 Series Chipset Family On-Package Platform Controller Hub](https://cdrdv2.intel.com/v1/dl/getContent/615170)
+- [Intel® 400 Series Chipset On-Package Platform Controller Hub Register Database](https://web.archive.org/web/20230117025504/https://cdrdv2-public.intel.com/615146/615146-001.pdf)
+- [Intel® 400 Series Chipset Family On-Package Platform Controller Hub (PCH). Specification Uodate](https://cdrdv2.intel.com/v1/dl/getContent/615296)
+
+---
 
 ## BIOS Settings
 
@@ -123,7 +96,7 @@ Parameter | Details
 **SecureBootModel**| `Disabled`. Change to `j185f` for `iMac20,2` SMBIOS. For `iMac20,1`, use `j185`. :warning: Needs to be set to `Disabled` when using an NVIDIA Kepler GPU in macOS 12 or newer (requires root-patching with OCLP)
 **USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
-### EFI Folder Structure)
+### EFI Folder Structure
 
 <details>
 <summary><strong>Click to reveal</strong></summary><br>
