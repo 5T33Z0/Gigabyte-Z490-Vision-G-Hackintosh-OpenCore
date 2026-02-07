@@ -54,7 +54,9 @@ Tested successfully with macOS 10.14 to 26 beta. For best results, read and foll
 * **Settings [TAB]**
 	* **Platform Power**
 		* **Platform Power Management**: Enabled
-  			* ASPM: Disabld → let macOS manage power using XCPM and device drivers 
+  			* **PEG ASPM**: Disabld → PEG ASPM = PCIe Active State Power Management for the GPU slot. Controls whether the GPU link can enter low-power PCIe states (L0s / L1). Disabling it gives you the highest stability and best sleep/wake reliability for macOS
+     		* **PCH ASPM**: Enabled &rarr; PCH SPM controls power management for chipset-integrated devices, such as USB controllers, SATA controllers, NVMe root ports, PCIe lanes coming from the chipset (not the CPU PEG slot). macOS expects these devices to support proper low-power states and coordinated sleep.
+       		* **DMI ASPM** = Disabled &rarr; DMI = Direct Media Interface, the link between CPU and PCH (chipset). Since macOS already manages chipset and CPU power via XCPM + PCH SPM, you don’t need DMI ASPM.
 		* **ErP**: Enabled (so USB Power turns off, after PC is shut down)
 	* **IO Ports**
 		* **Internal Graphics**: enabled (if CPU has integrated graphics). **NOTE**: The config.plist uses dGPU for Display(s) and iGPU for computational tasks only by default. If you want to use the iGPU to drive a display you need a different Framebuffer Patch (see "EFI Install Instructions" for details).
