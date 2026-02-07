@@ -74,7 +74,7 @@ Tested successfully with macOS 10.14 to 26 beta. For best results, read and foll
 			* **Network Stack**: Disabled
 * **Boot [TAB]**
 	* **CFGLock**: Disabled (only available on newer BIOS versions)
-	* **Windows 10 Features**: Windows 10 or Other OS
+	* **Windows 10 Features**: Other OS &rarr; Cleaner ACPI implementation
 	* **CSM**: Disabled (to get rid of legacy code from `DSDT`)
 
 <details>
