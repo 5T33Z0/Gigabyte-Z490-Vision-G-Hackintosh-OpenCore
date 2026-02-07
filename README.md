@@ -22,8 +22,8 @@ Tested successfully with macOS 10.14 to 26 beta. For best results, read and foll
 
 |     | Details                                                       
 -------------:|-------------------------------------------------------------- 
-**Mainboard** | Gigabyte Z490 Vision G.
-**Firmware** | F25. F5 or newer is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`
+**Mainboard** | Gigabyte Z490 Vision G
+**Firmware**  | F25. F5 or newer is required to disable `CFG Lock`. Otherwise use Kernel Quirk `AppleXcpmCfgLock`
 **CPU**       | Intel Core i9 10850K (Comet Lake)      
 **RAM**       | 32 GB DDR4 2400 Crucial Ballistix Sport LT
 **dGPU**      | Saphire Radeon RX580 Nitro+ (4 GB)
