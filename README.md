@@ -11,7 +11,7 @@ Tested successfully with macOS 10.14 to 26 beta. For best results, read and foll
 
 > [!IMPORTANT]
 >
-> - Don't report issues unless you are using the latest BIOS version (F23)!
+> - Don't report issues unless you are using the latest BIOS version (F24a)!
 > - **macOS Tahoe Notes**: 
 > 	- AMD Polaris GPUs: Disable WhateverGreen kext during install. Once installation is completed, you can re-enable it again. Navi Cards are not affected.
 > 	- `AppleHDA` has been removed from beta 2 so you need to apply root patches with OCLP-Mod to reenable it ([**Instructions**](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/Audio_Tahoe.md))
