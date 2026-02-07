@@ -50,10 +50,10 @@ Tested successfully with macOS 10.14 to 26 beta. For best results, read and foll
 	* Extreme Memory Profile (XMP): Enabled (if supported by RAM)
 	* Advanced CPU Settings
 		* VT-d: Enabled
-		* Intel Speed Shit: Enabled
+		* Intel SpeedStep: Enabled
 * **Settings [TAB]**
 	* **Platform Power**
-		* **Platform Power Management**: Disabled
+		* **Platform Power Management**: Enabled
 		* **ErP**: Enabled (so USB Power turns off, after PC is shut down)
 	* **IO Ports**
 		* **Internal Graphics**: enabled (if CPU has integrated graphics). **NOTE**: The config.plist uses dGPU for Display(s) and iGPU for computational tasks only by default. If you want to use the iGPU to drive a display you need a different Framebuffer Patch (see "EFI Install Instructions" for details).
