@@ -413,3 +413,6 @@ Change the following settings in `config.plist`:
 - Dortania for [OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/) and [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher)
 - jsassu20 for [MacDown](https://macdown.uranusjr.com/) Markdown Editor
 - [SL-Soft](https://www.sl-soft.de/en/software/) for Kext Updater and ANYmacOS
+
+## Links
+- [**AppleVTDPatch**](https://github.com/CaseySJ/Ventura-AppleVTD-Patch) by CaseySJ
