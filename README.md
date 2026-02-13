@@ -99,6 +99,17 @@ Parameter | Details
 **SecureBootModel**| `Disabled`. Change to `j185f` for `iMac20,2` SMBIOS. For `iMac20,1`, use `j185`. :warning: Needs to be set to `Disabled` when using an NVIDIA Kepler GPU in macOS 12 or newer (requires root-patching with OCLP)
 **USB Port Mapping**| Yes, via ACPI. Details [**here**](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf).
 
+### SMBIOS
+
+Choose the SMBIOS for your configuration based on your GPU and CPU. Check the table below for decision making.
+
+**Existing Mac Model Configurations**:
+
+GPU | CPU | SMBIOS
+----|-----|-------
+Radeon Pro 5300 <br> Radeon Pro 5500 XT | i5-10500 <br> i5-10600 <br>i7-10700K <br> i9-10910 | **iMac20,1**
+Radeon Pro 5700 <br> Radeon Pro 5700 XT | i7-10700K <br> i9-10910 | **iMac20,2**
+
 ### EFI Folder Structure
 
 <details>
