@@ -32,7 +32,7 @@ Tested successfully with macOS 10.14 to 26 beta. For best results, read and foll
 **Ethernet** <br>(on-board) | Intel I225-V 2.5GbE. 
 **Ethernet** (PCIe)| Intel PRO/1000 PT Dual Port Server Adapter (any macOS version).
 **Case** | Fractal Design [Define R5](https://www.fractal-design.com/de/products/cases/define/define-r5/)
-**CPU Coolder** | Arctic Cooling [Liquid Freezer II 280](https://www.arctic.de/LF2-280)
+**CPU Cooler** | Arctic Cooling [Liquid Freezer II 280](https://www.arctic.de/LF2-280)
 
 --- 
 
