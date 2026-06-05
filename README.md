@@ -213,9 +213,9 @@ For macOS 12+:
 3. Set `csr-active-config` to `03080000`
 4. Install drivers using [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher)
 
-> **Note:** Root patches break the system seal. System updates will download the full installer (~15 GB) instead of delta updates.
-
----
+> [!NOTE]
+>
+> Applying Root Patches with OpenCore Legacy Patcher modifies files on the sealed system volume, breaking Apple's cryptographic seal (Signed System Volume, SSV). Once the seal is broken, macOS can no longer verify that the system volume exactly matches the version distributed by Apple. As a result, a delta update may still be offered and downloaded, but the installation process ultimately fails because incremental updates require an unmodified baseline. After this failure, macOS downloads the full operating system installer (~18 GB), which can rebuild the system volume from a complete, trusted image rather than patching an unknown state.
 
 ## 📊 Performance
 
