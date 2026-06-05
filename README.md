@@ -136,7 +136,9 @@ csr-active-config: 00000000 (enables SIP)
 
 Update `UEFI/APFS` MinDate/MinVersion to match your macOS version ([reference](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver))
 
-> **Warning:** Have a USB backup EFI ready—these changes can prevent booting if misconfigured.
+> [!WARNING]
+>
+> Have a USB backup EFI ready—these changes can prevent booting if misconfigured.
 
 ### 2. Optimize CPU Power Management
 
