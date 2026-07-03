@@ -159,9 +159,8 @@ Full guide: [CPU Power Management](https://github.com/5T33Z0/Gigabyte-Z490-Visio
 **Calculate ScanPolicy** to control boot menu items using [this generator](https://oc-scanpolicy.vercel.app/)
 
 **Change theme** in `Misc/Boot/PickerVariant`:
-- `Acidanthera\GoldenGate` (default macOS style)
-- `Blackosx\BsxM1` (included)
-- `velickovicdj\EnterTwilight` (included)
+- `HJebbour\GoldenGateExt` (New default theme with 144 Icons)
+- `Blackosx\BsxM1` (mac M1 style)
 
 ---
 
