@@ -183,7 +183,8 @@ Full guide: [CPU Power Management](https://github.com/5T33Z0/Gigabyte-Z490-Visio
 - **AppleALC** — Audio (slimmed to layout 17 only)
 - **AppleIGC** — Intel I225-V ethernet
 - **CPUFriend** + DataProvider — CPU power management (disabled by default)
-- **RestrictEvents** — RAM warnings and OTA updates (disabled by default)
+- **RestrictEvents** — Addresses RAM warnings and fixes OTA updates (disabled by default)
+- **iBridged.kext** – New kext which enables proper OTA updates when using SMBIOS from T2 Macs
 
 ---
 
