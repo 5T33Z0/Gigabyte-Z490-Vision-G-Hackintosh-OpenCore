@@ -4,7 +4,9 @@
 
 ![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
-**OpenCore EFI configuration for the Gigabyte Z490 Vision G motherboard.** Tested with macOS 10.14 through macOS 26 beta. Based on [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/).
+## About
+
+**OpenCore EFI configuration for the Gigabyte Z490 Vision G motherboard.** Tested with macOS 10.14 through macOS Tahoe. Based on [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/).
 
 ---
 
@@ -31,7 +33,9 @@
 | **Ethernet** | Intel I225-V 2.5GbE (on-board) |
 | **SMBIOS** | iMac20,2 (use iMac20,1 for i5/i7) |
 
-> **Note:** If your hardware differs, you'll need to adjust the configuration accordingly.
+> [!NOTE]
+>
+> If your hardware differs, you'll need to adjust the configuration accordingly.
 
 ---
 
