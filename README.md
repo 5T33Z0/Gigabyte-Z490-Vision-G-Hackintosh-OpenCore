@@ -5,8 +5,7 @@
 ![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
 ## About
-
-**OpenCore EFI configuration for the Gigabyte Z490 Vision G motherboard.** Tested with macOS 10.14 through macOS Tahoe. Based on [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide/).
+OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and maintained since September 2020. The configuration is build based on Dortania’s OpenCore Install Guide and improved by analysis of the OpenCore debug boot log and the `.ioreg` file from a real `iMac20,1`. USB ports are mapped via ACPI, so no USB kext is required. It also support SATA Hotplug (needs to be enabled per SATA port in UEFI Settings).
 
 ---
 
