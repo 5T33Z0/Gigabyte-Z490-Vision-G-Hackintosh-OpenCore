@@ -162,15 +162,6 @@ Generate a custom `CPUFriendDataProvider.kext`:
 
 Full guide: [CPU Power Management](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md)
 
-### Optional Tweaks
-
-**Calculate ScanPolicy** to control boot menu items using [this generator](https://oc-scanpolicy.vercel.app/)
-
-**Change theme** in `Misc/Boot/PickerVariant`:
-- `HJebbour\GoldenGateExt` (New default theme with 144 Icons)
-- `Blackosx\BsxM1` (mac M1 style)
-
-
 ### Configure Power Management Settings
 Open Terminal and enter the following commands, to adjust Power Management. Desktop Macs use `hibernatemode 0` by default, which keeps session data in RAM for the fastest wake-ups:
 
@@ -194,6 +185,14 @@ Test sleep and wake by entering `pmset sleepnow`. Wait 30 seconds and move the m
 > [!NOTE]
 >
 > For more configuration options, follow my [hibernation configuration guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/04_Fixing_Sleep_and_Wake_Issues/Changing_Hibernation_Modes) properly.
+
+### Optional Tweaks
+
+**Calculate ScanPolicy** to control boot menu items using [this generator](https://oc-scanpolicy.vercel.app/)
+
+**Change theme** in `Misc/Boot/PickerVariant`:
+- `HJebbour\GoldenGateExt` (New default theme with 144 Icons)
+- `Blackosx\BsxM1` (mac M1 style)
 
 ---
 
