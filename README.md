@@ -7,13 +7,32 @@
 ## About
 OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and maintained since September 2020. The configuration is build based on Dortania’s OpenCore Install Guide and improved by analysis of the OpenCore debug boot log and the `.ioreg` file from a real `iMac20,1`. USB ports are mapped via ACPI, so no USB kext is required. It also support SATA Hotplug (needs to be enabled per SATA port in UEFI Settings).
 
+### What works?
+
+- [x] OS:
+  - [x] macOS Sonoma+
+  - [x] Windows 10+
+- [x] Audio
+- [x] Video (iGPU/GPU)
+- [x] SATA & NVME drives
+- [x] USB ports
+- [x] Ethernet
+- [x] Sleep and Wake
+
+### Notable Features
+- [x] USB Port Mapping via ACPI to maximize macOS compatibility – no USBPortMap kext needed
+- [x] Cleaner implementation of OSI checks in SSDTs, which makes the system feel snappier (→ [More Details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/SSDT-OSDW/README.md))
+- [x] Fully working incremental System Updates
+- [x] Hibernation fully working (Modess 0, 3, and 25)
+- [x] 3D Globe in Apple Maps.
+- [x] File system support for bppting Linux ([How to add a distro icon to the bootpicker](/Docs/Linux_Icon_OpenCanopy.md))
+
 ---
 
 ## ⚠️ Important Notes
 
 **Before you start:**
 - Use the latest BIOS version (F24a)
-- **macOS Tahoe (26.x)**: AMD Polaris GPUs require disabling WhateverGreen during install. Re-enable after installation.
 - **macOS 14.4+**: Disable `SecureBootModel` if upgrading from 14.3.1 causes kernel panic ([details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
 - **NVIDIA Kepler GPUs**: Require root patching with [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in macOS 12+
 
