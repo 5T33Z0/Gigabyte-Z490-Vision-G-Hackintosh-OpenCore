@@ -127,8 +127,16 @@ Navigate to `PlatformInfo/Generic`, and generate SMBIOS Ddta. Fill in:
 ---
 
 ## 🔧 Post-Installation
+This section contains post-install-measures to enable features, work around issues and some optional settings.
 
-### 1. Strengthen Security
+### Disable Gatekeeper
+Disable Gatekeeper since it blocks running 3rd party scripts and apps from github etc. To do so, enter `sudo spctl --master-disable` in Terminal. Disabling Gatekeeper in macOS Sequoia and Tahoe requires [additional steps](https://github.com/5T33Z0/OCLP4Hackintosh/tree/main/Guides/Disable_Gatekeeper.md).
+
+### Enabling Audio in macOS Tahoe
+
+There are 3 options to enable audio in macOS Tahoe see &rarr; [Re-enabling Audio in macOS Tahoe beta 2+](https://github.com/5T33Z0/OCLP4Hackintosh/blob/main/Enable_Features/Audio_Tahoe.md) for details.
+
+### Strengthen Security (optional)
 
 Once macOS is running, enhance security:
 
@@ -143,7 +151,7 @@ Update `UEFI/APFS` MinDate/MinVersion to match your macOS version ([reference](h
 >
 > Have a USB backup EFI ready—these changes can prevent booting if misconfigured.
 
-### 2. Optimize CPU Power Management
+### Optimize CPU Power Management
 
 Generate a custom `CPUFriendDataProvider.kext`:
 
@@ -154,13 +162,38 @@ Generate a custom `CPUFriendDataProvider.kext`:
 
 Full guide: [CPU Power Management](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md)
 
-### 3. Optional Tweaks
+### Optional Tweaks
 
 **Calculate ScanPolicy** to control boot menu items using [this generator](https://oc-scanpolicy.vercel.app/)
 
 **Change theme** in `Misc/Boot/PickerVariant`:
 - `HJebbour\GoldenGateExt` (New default theme with 144 Icons)
 - `Blackosx\BsxM1` (mac M1 style)
+
+
+### Configure Power Management Settings
+Open Terminal and enter the following commands, to adjust Power Management. Desktop Macs use `hibernatemode 0` by default, which keeps session data in RAM for the fastest wake-ups:
+
+```bash
+# Enable hibernatemode 0 (Sleep Mode)
+sudo pmset -a hibernatemode 0
+
+# Enable standby
+sudo pmset -a standby 1
+
+# Disable wake-causing features
+sudo pmset -a powernap 0              # Disable Power Nap
+sudo pmset -a tcpkeepalive 0          # Prevent network from waking system
+sudo pmset -a proximitywake 0         # Disable wake when iPhone/iPad nearby
+sudo pmset -a ttyskeepawake 0         # Prevent remote login from preventing sleep
+sudo pmset -a womp 0                  # Disable wake-on-LAN
+```
+
+Test sleep and wake by entering `pmset sleepnow`. Wait 30 seconds and move the mouse or press a key on the keyboard. The system and screen(s) should wake.
+
+> [!NOTE]
+>
+> For more configuration options, follow my [hibernation configuration guide](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/04_Fixing_Sleep_and_Wake_Issues/Changing_Hibernation_Modes) properly.
 
 ---
 
