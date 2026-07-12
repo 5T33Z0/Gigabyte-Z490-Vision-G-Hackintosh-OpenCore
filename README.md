@@ -69,7 +69,7 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 
 #### Add SMBIOS Data
 
-Navigate to `PlatformInfo/Generic`, and generate SMBIOS Ddta. Fill in:
+Navigate to `PlatformInfo/Generic`, and generate SMBIOS data. Fill in:
 
 - Model: `iMac20,2` (i9) or `iMac20,1` (i5/i7)
 - Serial Number
@@ -210,6 +210,7 @@ Test sleep and wake by entering `pmset sleepnow`. Wait 30 seconds and move the m
 **Calculate ScanPolicy** to control boot menu items using [this generator](https://oc-scanpolicy.vercel.app/)
 
 **Change theme** in `Misc/Boot/PickerVariant`:
+
 - `HJebbour\GoldenGateExt` (New default theme with 144 Icons)
 - `Blackosx\BsxM1` (mac M1 style)
 
