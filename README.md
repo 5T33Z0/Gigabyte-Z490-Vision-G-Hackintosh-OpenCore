@@ -4,28 +4,31 @@
 
 ![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
-## About
-OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and maintained since September 2020. The configuration is build based on Dortania’s OpenCore Install Guide and improved by analysis of the OpenCore debug boot log and the `.ioreg` file from a real `iMac20,1`. USB ports are mapped via ACPI, so no USB kext is required. It also support SATA Hotplug (needs to be enabled per SATA port in UEFI Settings).
+## ℹ️ About
+
+OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and maintained since September 2020. Originally based on Dortania's OpenCore Install Guide, the configuration has since evolved through extensive testing, OpenCore debug log analysis, and comparison with IORegistry data from a genuine iMac20,1. USB ports are mapped via ACPI, eliminating the need for a USB mapping kext. It also supports SATA hot-plugging (must be enabled individually for each SATA port in the UEFI settings).
 
 ### What works?
-
-- [x] OS:
-  - [x] macOS Sonoma+
-  - [x] Windows 10+
+- [x] macOS Support: macOS 10.15 or newer
 - [x] Audio
-- [x] Video (iGPU/GPU)
-- [x] SATA & NVME drives
+- [x] Video (iGPU/dGPU)
 - [x] USB ports
-- [x] Ethernet
+- [x] Intel I225-V Ethernet Controller (→ [**More Details**](/Enabling_AppleIGC.md))
 - [x] Sleep and Wake
 
 ### Notable Features
-- [x] USB Port Mapping via ACPI to maximize macOS compatibility – no USBPortMap kext needed
-- [x] Cleaner implementation of OSI checks in SSDTs, which makes the system feel snappier (→ [More Details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/SSDT-OSDW/README.md))
-- [x] Fully working incremental System Updates
-- [x] Hibernation fully working (Modess 0, 3, and 25)
-- [x] 3D Globe in Apple Maps.
-- [x] File system support for bppting Linux ([How to add a distro icon to the bootpicker](/Docs/Linux_Icon_OpenCanopy.md))
+
+- [x] Fully functional incremental macOS updates thanks to [**iBridged.kext**](https://github.com/Carnations-Botanica/iBridged)
+- [x] USB port mapping via ACPI for maximum macOS compatibility — no USBPortMap.kext required (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/03_USB_Fixes/ACPI_Mapping_USB_Ports/XHUB_Method))
+- [x] Streamlined implementation of OSI checks in SSDTs (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/SSDT-OSDW/README.md))
+- [x] SATA hot-plugging support
+- [x] Fully functional hibernation (modes 0, 3, and 25)
+- [x] Apple Maps 3D Globe support
+- [x] Linux filesystem support for OpenCore booting
+
+>[!NOTE]
+> 
+> This configuration is provided as-is. Always backup your data before installation. Hackintosh systems are not officially supported by Apple and may have compatibility issues.
 
 ---
 
@@ -38,7 +41,7 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 
 ---
 
-## 🖥️ My System Configuration
+## 🖥️ System Specs
 
 | Component | Details |
 |-----------|---------|
@@ -54,6 +57,60 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 > [!NOTE]
 >
 > If your hardware differs, you'll need to adjust the configuration accordingly.
+
+## 📂 EFI Folder Content
+
+<details>
+<summary><strong>Click to reveal</strong></summary><br>
+
+```
+EFI
+├── BOOT
+│   └── BOOTx64.efi
+└── OC
+    ├── ACPI
+    │   ├── DMAR.aml
+    │   ├── SSDT-AWAC-ARTC.aml
+    │   ├── SSDT-EC.aml
+    │   ├── SSDT-GPRW.aml
+    │   ├── SSDT-OSDW.aml
+    │   ├── SSDT-PLUG.aml
+    │   ├── SSDT-SSDT-SBUS-MCHC.aml
+    │   ├── SSDT-USBX.aml
+    │   └── SSDT-SSDT-XHUB.aml
+    ├── Drivers
+    │   ├── HfsPlus.efi
+    │   ├── OpenCanopy.efi
+    │   ├── OpenRuntime.efi
+    │   └── ResetNvramEntry.efi
+    ├── Kexts (loaded based on Min/Max Kernel settings)
+    │   ├── AdvancedMap.kext (macOS 12+)
+    │   ├── AMFIPass.kext (macOS 12+)
+    │   ├── AppleALC.kext
+    │   ├── CPUFriend.kext
+    │   ├── CPUFriendDataProvider.kext
+    │   ├── iBridged.kext
+    │   ├── Lilu.kext
+    │   ├── NVMeFix.kext
+    │   ├── RestrictEvents.kext (macOS 11+)
+    │   ├── SMCProcessor.kext
+    │   ├── SMCRadeonSensors.kext
+    │   ├── SMCSuperIO.kext
+    │   ├── VirtualSMC.kext
+    │   └── WhateverGreen.kext
+    ├── OpenCore.efi
+    ├── Resources (Shows sub-folders only, no files)
+    │   ├── Audio
+    │	├── Font
+    │   └── Image
+    │   │   └── Blackosx
+    │   │   │   └── BsxM1
+    │   │   └── HJebbour
+    │   │     	└── GoldenGateExt
+    │   └── Label
+    └── config.plist
+```
+</details>
 
 ---
 
@@ -94,7 +151,7 @@ Navigate to `PlatformInfo/Generic`, and generate SMBIOS data. Fill in:
 - Enable `RestrictEvents.kext`
 - Change `csr-active-config` to `03080000`
 
-**If your BIOS doesn't support CFG Lock disable:**
+**If your BIOS doesn't support CFG Lock, disable:**
 
 - Enable `Kernel/Quirks/AppleXcpmCfgLock`
 
@@ -157,14 +214,11 @@ There are 3 options to enable audio in macOS Tahoe see &rarr; [Re-enabling Audio
 
 ### Strengthen Security (optional)
 
-Once macOS is running, enhance security:
+Once macOS is running, enhance security. In config.plist, adjust the following settinG:
 
-```
-SecureBootModel: j185f (iMac20,2) or j185 (iMac20,1)
-csr-active-config: 00000000 (enables SIP)
-```
-
-Update `UEFI/APFS` MinDate/MinVersion to match your macOS version ([reference](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver))
+- **SecureBootModel**: j185f (iMac20,2) or j185 (iMac20,1)
+- **csr-active-config**: 00000000 (enables SIP. Only recommended if you don't need to apply root patches with OCLP)
+- Update `UEFI/APFS` MinDate/MinVersion to match your macOS version ([reference](https://github.com/5T33Z0/OC-Little-Translated/tree/main/A_Config_Tips_and_Tricks#mindateminversion-settings-for-the-apfs-driver))
 
 > [!WARNING]
 >
@@ -216,30 +270,6 @@ Test sleep and wake by entering `pmset sleepnow`. Wait 30 seconds and move the m
 
 ---
 
-## 💾 What's Included
-
-### ACPI Tables (SSDTs)
-
-- `SSDT-AWAC-ARTC` — Enables RTC clock
-- `SSDT-EC` — Fake embedded controller
-- `SSDT-PLUG` — CPU power management (not needed for macOS 12+)
-- `SSDT-XHUB` — USB port mapping via ACPI
-- `SSDT-USBX` — USB power properties
-- `DMAR` (optional) — For VT-d compatibility with certain Wifi/BT cards
-
-### Kexts
-
-- **VirtualSMC** + sensors — SMC emulation
-- **Lilu** — Patching engine
-- **WhateverGreen** — Graphics patches
-- **AppleALC** — Audio (slimmed to layout 17 only)
-- **AppleIGC** — Intel I225-V ethernet
-- **CPUFriend** + DataProvider — CPU power management (disabled by default)
-- **RestrictEvents** — Addresses RAM warnings and fixes OTA updates (disabled by default)
-- **iBridged.kext** – New kext which enables proper OTA updates when using SMBIOS from T2 Macs
-
----
-
 ## 🎮 GPU Configurations
 
 ### Using iGPU for Display
@@ -286,7 +316,7 @@ For macOS 12+:
 
 **Boot failure with black screen:**
 
-- Check `SecureBootModel` setting
+- Change `SecureBootModel` to `Disabled`
 - Verify BIOS settings (especially CSM disabled)
 - Test with `-v` boot argument for verbose mode
 
@@ -301,7 +331,7 @@ For macOS 12+:
 - Check selected Audio Devices in System Settings
 - Verify Layout-id is `17` in DeviceProperties
 - Check `AppleALC.kext` is enabled
-- For Tahoe, apply OCLP audio patch
+- For Tahoe, apply audio patch
 
 **USB issues:**
 
@@ -327,9 +357,3 @@ For macOS 12+:
 - [Corpnewt](https://github.com/corpnewt) — ProperTree, SSDTTime, CPUFriendFriend
 - [daliansky](https://github.com/daliansky) — OC-Little collection
 - [SL-Soft](https://www.sl-soft.de/en/software/) — Kext Updater and ANYmacOS
-
----
-
-## ⚖️ Disclaimer
-
-This configuration is provided as-is. Always backup your data before installation. Hackintosh systems are not officially supported by Apple and may have compatibility issues.
