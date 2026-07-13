@@ -9,7 +9,7 @@
 OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and maintained since September 2020. Originally based on Dortania's OpenCore Install Guide, the configuration has since evolved through extensive testing, OpenCore debug log analysis, and comparison with IORegistry data from a genuine iMac20,1. USB ports are mapped via ACPI, eliminating the need for a USB mapping kext. It also supports SATA hot-plugging (must be enabled individually for each SATA port in the UEFI settings).
 
 ### What works?
-- [x] macOS Support: macOS 10.15 or newer
+- [x] macOS Support: macOS Catalina to Tahoe
 - [x] Audio
 - [x] Video (iGPU/dGPU)
 - [x] USB ports
