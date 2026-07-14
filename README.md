@@ -51,12 +51,16 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 | **GPU** | Sapphire Radeon RX580 Nitro+ (4 GB) |
 | **iGPU** | Intel UHD 630 (Headless mode) |
 | **Audio** | Realtek ALC1220-VB (Layout-id: `17`) |
-| **Ethernet** | Intel I225-V 2.5GbE (on-board) |
+| **Ethernet** | Intel I225-V 2.5GbE (on-board) <br> PRO/1000 PT Dual Port (PCIE)|
 | **SMBIOS** | iMac20,2 (use iMac20,1 for i5/i7) |
 
 > [!NOTE]
 >
 > If your hardware differs, you'll need to adjust the configuration accordingly.
+
+> [!TIP]
+> 
+> The Intel I225-V is a real pain in the butt to get to work properly. I noticed that it often falls back to slower connection speeds (100 BaseT instead of 1000 BaseT). So, to spare you the headache, I suggest you get a macOS compatible PCI LAN card and use it instead. I am using an Intel PRO/1000 PT Dual Port (`8086:105E`). It works out of the box (requires AppleVTD).
 
 ## 📂 EFI Folder Content
 
