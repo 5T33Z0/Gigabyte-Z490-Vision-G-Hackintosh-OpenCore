@@ -314,6 +314,45 @@ For macOS 12+:
 
 ---
 
+## Running a Legacy Version of macOS
+
+### Avoid macOS High Sierra
+I strongly advise against installing macOS High Sierra if you plan to dual-boot with macOS Big Sur or newer. While High Sierra is the last version to support NVIDIA WebDrivers for Kepler cards, it alters the System Definition of the PreBoot Volume in a way that breaks Big Sur’s ability to boot—even if installed on a completely separate disk.
+
+After booting High Sierra, attempting to boot Big Sur will result in the "crossed-out circle" (prohibitory sign). To fix this, you must use the `-no_compat_check` boot-arg, which disables your ability to receive system updates via Software Update. To truly resolve the issue, you would need to perform complex terminal commands to reset the PreBoot volume or reinstall Big Sur over your existing installation. If you need 32-bit app support, **install macOS Mojave instead.**
+
+### Necessary Config Adjustments for Legacy Support
+If you intend to run macOS Mojave on this Z490 build, you must adjust your configuration. Mojave does not natively support 10th Gen Intel CPUs or their integrated graphics. Apply the following changes to your `config.plist` to enable compatibility:
+
+#### 1. DeviceProperties
+The standard Comet Lake Framebuffer will cause the boot process to stall in Mojave. You must spoof a compatible Coffee Lake UHD 630:
+
+- **AAPL,ig-platform-id:** `07009B3E`
+- **device-id:** `9B3E0000`
+
+#### 2. Kernel (Emulate)
+Since Mojave does not recognize "Comet Lake" processors, you must spoof the CPU ID to mimic a supported Coffee Lake architecture (like the i9-9900K). Under `Kernel -> Emulate`, apply these values:
+
+- **Cpuid1Data:** `EA060900 00000000 00000000 00000000`
+- **Cpuid1Mask:** `FFFFFFFF 00000000 00000000 00000000`
+
+#### 3. PlatformInfo
+Change your SMBIOS to a model that natively supports macOS Mojave:
+
+- **SystemProductName:** **`iMac19,1`**
+
+>[!NOTE]
+>
+>This SMBIOS is highly stable and can boot everything from Mojave up to Monterey. In benchmarking, the `iMac19,1` definition occasionally outperforms the native `iMac20,2` definition on this hardware.
+
+#### 4. Networking
+The onboard Intel I225-V Ethernet controller is not supported in macOS versions prior to Catalina. 
+
+- **Ethernet:** You will likely need a compatible 3rd-party PCIe Ethernet card for native Mojave support. 
+- **USB Tethering:** If you don't have a compatible card, you can use USB tethering via a mobile phone. iPhones work natively; Android users can use the [**HoRNDIS Kext**](https://github.com/jwise/HoRNDIS) to enable connectivity.
+
+---
+
 ## 🆘 Troubleshooting
 
 ### Common Issues
