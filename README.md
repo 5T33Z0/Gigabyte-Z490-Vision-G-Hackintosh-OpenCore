@@ -210,7 +210,17 @@ Navigate to `PlatformInfo/Generic`, and generate SMBIOS data. Fill in:
 This section contains post-install-measures to enable features, work around issues and some optional settings.
 
 ### Disable Gatekeeper
-Disable Gatekeeper since it blocks running 3rd party scripts and apps from github etc. To do so, enter `sudo spctl --master-disable` in Terminal. Disabling Gatekeeper in macOS Sequoia and Tahoe requires [additional steps](https://github.com/5T33Z0/OCLP4Hackintosh/tree/main/Guides/Disable_Gatekeeper.md).
+Disable Gatekeeper since it blocks running 3rd party scripts and apps from github etc:
+01. Open Terminal
+02. Enter 
+    ```
+    sudo spctl --master-disable
+    ```
+03. Enter your Password and press Return
+
+> [!NOTE]
+>
+> Disabling Gatekeeper in macOS Sequoia and Tahoe requires [additional steps](https://github.com/5T33Z0/OCLP4Hackintosh/tree/main/Guides/Disable_Gatekeeper.md).
 
 ### Enabling Audio in macOS Tahoe
 
