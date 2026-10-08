@@ -199,9 +199,8 @@ Navigate to `PlatformInfo/Generic`, and generate SMBIOS data. Fill in:
 
 ### 4. Install macOS
 
-**From macOS:** Download from App Store, [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher), or [ANYmacOS](https://www.sl-soft.de/en/anymacos/)
-
-**From Windows/Linux:** Follow [Dortania's guide](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/)
+- **From macOS:** Download with [**DownloadFullUInstaller**](https://github.com/perez987/DownloadFullInstaller), from App Store or use [**OpenCore Legacy Patcher**](https://github.com/dortania/OpenCore-Legacy-Patcher)
+- **From Windows/Linux:** Follow [Dortania's guide](https://dortania.github.io/OpenCore-Install-Guide/installer-guide/)
 
 ### 5. Test Your EFI
 
