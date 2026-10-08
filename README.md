@@ -149,6 +149,10 @@ Navigate to `PlatformInfo/Generic`, and generate SMBIOS data. Fill in:
 - Disable `CPUFriend.kext` and `CPUFriendDataProvider.kext` initially
 - Generate your own after installation (see Post-Install section) with [CPUFriendFriend](https://github.com/corpnewt/CPUFriendFriend)
 
+**If your system has more than 16 GB of RAM**
+
+- If your system has more than 16 GB of RAM and the iGPU is active/used, enable Kernel Quirk `DisableIoMapperMapping` if Ethernet/WiFi stops working after upgrading to macOS 13.3 or newer.
+
 **If using NVIDIA Kepler GPU (GTX 600/700):**
 
 - Change `Misc/Security/SecureBootModel` to `Disabled`
