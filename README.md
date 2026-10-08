@@ -8,23 +8,24 @@
 
 OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and maintained since September 2020. Originally based on Dortania's OpenCore Install Guide, the configuration has since evolved through extensive testing, OpenCore debug log analysis, and comparison with IORegistry data from a genuine iMac20,1. USB ports are mapped via ACPI, eliminating the need for a USB mapping kext. It also supports SATA hot-plugging (must be enabled individually for each SATA port in the UEFI settings).
 
-### What works?
-- [x] macOS Support: macOS Catalina to Tahoe
-- [x] Audio
-- [x] Video (iGPU/dGPU)
-- [x] USB ports
-- [x] Intel I225-V Ethernet Controller (→ [**More Details**](/Enabling_AppleIGC.md))
-- [x] Sleep and Wake
+### 🛠️ What works?
 
-### Notable Features
+- [x] 🍎 macOS Support: macOS Catalina to Tahoe
+- [x] 🔊 Audio
+- [x] 🖥️ Video (iGPU/dGPU)
+- [x] 🔌 USB ports
+- [x] 🌐 Intel I225-V Ethernet Controller (→ [**More Details**](/Enabling_AppleIGC.md))
+- [x] 😴 Sleep and Wake
 
-- [x] Fully functional incremental macOS updates thanks to [**iBridged.kext**](https://github.com/Carnations-Botanica/iBridged)
-- [x] USB port mapping via ACPI for maximum macOS compatibility — no USBPortMap.kext required (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/03_USB_Fixes/ACPI_Mapping_USB_Ports/XHUB_Method))
-- [x] Streamlined implementation of OSI checks in SSDTs (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/SSDT-OSDW/README.md))
-- [x] SATA hot-plugging support
-- [x] Fully functional hibernation (modes 0, 3, and 25)
-- [x] Apple Maps 3D Globe support
-- [x] Linux filesystem support for OpenCore booting
+### ✨ Notable Features
+
+- [x] 🔄 Fully functional incremental macOS updates thanks to [**iBridged.kext**](https://github.com/Carnations-Botanica/iBridged)
+- [x] 🔌 USB port mapping via ACPI for maximum macOS compatibility — no USBPortMap.kext required (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/03_USB_Fixes/ACPI_Mapping_USB_Ports/XHUB_Method))
+- [x] ⚙️ Streamlined implementation of OSI checks in SSDTs (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/SSDT-OSDW/README.md))
+- [x] 💾 SATA hot-plugging support
+- [x] 💤 Fully functional hibernation (modes 0, 3, and 25)
+- [x] 🌍 Apple Maps 3D Globe support
+- [x] 🐧 Linux filesystem support for OpenCore booting
 
 >[!NOTE]
 > 
@@ -34,8 +35,9 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 
 ## ⚠️ Important Notes
 
-**Before you start:**
-- Use the latest BIOS version (F24a)
+**Before you begin:**
+
+- Use the latest available BIOS version (F24a)
 - **macOS 14.4+**: Disable `SecureBootModel` if upgrading from 14.3.1 causes kernel panic ([details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
 - **NVIDIA Kepler GPUs**: Require root patching with [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in macOS 12+
 
