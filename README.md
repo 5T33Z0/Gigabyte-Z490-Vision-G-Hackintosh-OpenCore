@@ -159,7 +159,7 @@ Navigate to `PlatformInfo/Generic`, and generate SMBIOS data. Fill in:
 
 - Change `Misc/Security/SecureBootModel` to `Disabled`
 - Enable `RestrictEvents.kext`
-- Change `csr-active-config` to `03080000`
+- Change `csr-active-config` to `030A0000` (030A0000 = minimum requirement to apply root patches for Nvidia Web Drivers)
 
 **If your BIOS doesn't support CFG Lock, disable:**
 
