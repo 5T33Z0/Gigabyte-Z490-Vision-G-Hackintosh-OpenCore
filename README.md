@@ -19,6 +19,7 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 
 ### ✨ Notable Features
 
+- [x] 🔈 **Working audio in macOS Tahoe out of the box** — No root patches required
 - [x] 🔄 Fully functional incremental macOS updates thanks to [**iBridged.kext**](https://github.com/Carnations-Botanica/iBridged)
 - [x] 🔌 USB port mapping via ACPI for maximum macOS compatibility — no USBPortMap.kext required (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/tree/main/Content/03_USB_Fixes/ACPI_Mapping_USB_Ports/XHUB_Method))
 - [x] ⚙️ Streamlined implementation of OSI checks in SSDTs (→ [**More Details**](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/01_Adding_missing_Devices_and_enabling_Features/SSDT-OSDW/README.md))
