@@ -86,20 +86,26 @@ EFI
     │   ├── SSDT-USBX.aml
     │   └── SSDT-SSDT-XHUB.aml
     ├── Drivers
+    │   ├── apfs_aligned.efi
+    │   ├── btrfs_x64.efi
+    │   ├── ext4_x64.efi
     │   ├── HfsPlus.efi
     │   ├── OpenCanopy.efi
+    │   ├── OpenLinuxBoot.efi
     │   ├── OpenRuntime.efi
     │   └── ResetNvramEntry.efi
     ├── Kexts (loaded based on Min/Max Kernel settings)
     │   ├── AdvancedMap.kext (macOS 12+)
     │   ├── AMFIPass.kext (macOS 12+)
     │   ├── AppleALC.kext
+    │   ├── AppleIGC.kext
     │   ├── CPUFriend.kext
     │   ├── CPUFriendDataProvider.kext
     │   ├── iBridged.kext
     │   ├── Lilu.kext
     │   ├── NVMeFix.kext
     │   ├── RestrictEvents.kext (macOS 11+)
+    │   ├── SimpleHDA.kext
     │   ├── SMCProcessor.kext
     │   ├── SMCRadeonSensors.kext
     │   ├── SMCSuperIO.kext
