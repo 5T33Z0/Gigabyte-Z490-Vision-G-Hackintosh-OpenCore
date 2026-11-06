@@ -1,8 +1,12 @@
 # About `USBPorts` Package 
 
-The USBPorts kexts included in this package are optional since my EFI contains `SSDT-PORTS.aml` which handdles USB Port mapping via ACPI which is completely independent of the used macOS version - it just works!
+The USBPorts kexts included in this package are optional since my EFI contains `SSDT-XHUB.aml` which handdles USB Port mapping via ACPI which is completely independent of the used macOS version - it just works! 
 
-The USBPorts kext is only included for users who want to change to USB Port mapping but don't know how to do it in ACPI.
+The USBPorts kext is only preserved for documentational purposes.
+
+> [!TIP]
+> 
+> I have created a python script which allows you to convert your existing USB
 
 ## About included Files
 - `USBPorts.kext` with USB Port Mappings matching various `models`. Compatible works with the following SMBIOSes:
@@ -20,7 +24,6 @@ If you want to use the `USBPorts.kext` instead of `SSDT-PORTS.aml`, do the follo
 1. Mount your ESP
 2. Open your config with OCAT or ProperTree
 4. Add USBPorts.kext to your EFI/OC/Kexts folder and config and enable it
-5. Disable `ACPI/Add/SSDT-PORTS.aml`
-6. Disabled `ACPI/Delete/Drop OEM USB Port Map (xh_cmsd4)`
-7. Save and reboot
+5. Disable `ACPI/Add/SSDT-XHUB.aml`
+6. Save and reboot
 

@@ -1,6 +1,9 @@
 # Gigabyte Z490 Vision G Hackintosh OpenCore
 
-[![BIOS](https://img.shields.io/badge/BIOS-F24a-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) [![OpenCore](https://img.shields.io/badge/OpenCore-1.0.9-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true) ![macOS](https://img.shields.io/badge/macOS-10.14–26.x-purple.svg) [![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)
+[![BIOS](https://img.shields.io/badge/BIOS-F24a-important.svg)](https://www.gigabyte.com/Motherboard/Z490-VISION-G-rev-1x/support#support-dl-bios) 
+[![OpenCore](https://img.shields.io/badge/OpenCore-1.0.9-cyan.svg)](https://dortania.github.io/builds/?product=OpenCorePkg&viewall=true)
+![macOS](https://img.shields.io/badge/macOS-10.14–26.x-purple.svg) 
+[![Release](https://img.shields.io/badge/Download-Latest_Release-success.svg)](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/releases/latest)
 
 ![15161753](https://user-images.githubusercontent.com/76865553/173877386-1dd1b451-5e50-46b7-9f1e-554485b3a48a.png)
 
@@ -14,7 +17,7 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 - [x] 🔊 Audio
 - [x] 🖥️ Video (iGPU/dGPU)
 - [x] 🔌 USB ports
-- [x] 🌐 Intel I225-V Ethernet Controller (→ [**More Details**](/Enabling_AppleIGC.md))
+- [x] 🌐 Intel I225-V Ethernet Controller (→ [**More Details**](Docs/Networking/Enabling_AppleIGC.md))
 - [x] 😴 Sleep and Wake
 
 ### ✨ Notable Features
@@ -39,7 +42,7 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 **Before you begin:**
 
 - Use the latest available BIOS version (F24a)
-- **macOS 14.4+**: Disable `SecureBootModel` if upgrading from 14.3.1 causes kernel panic ([details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/W_Workarounds/macOS14.4.md))
+- **macOS 14.4+**: Disable `SecureBootModel` if upgrading from 14.3.1 causes kernel panic ([details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/W_Workarounds/macOS14.4.md))
 - **NVIDIA Kepler GPUs**: Require root patching with [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in macOS 12+
 
 ---
@@ -262,7 +265,7 @@ Generate a custom `CPUFriendDataProvider.kext`:
 3. Replace existing `CPUFriendDataProvider.kext`
 4. Enable both `CPUFriend.kext` and `CPUFriendDataProvider.kext`
 
-Full guide: [CPU Power Management](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/CPU_Pwr/README.md)
+Full guide: [CPU Power Management](Hardware_Support/CPU_Pwr/README.md)
 
 ### Configure Power Management Settings
 Open Terminal and enter the following commands, to adjust Power Management. Desktop Macs use `hibernatemode 0` by default, which keeps session data in RAM for the fastest wake-ups:
@@ -333,7 +336,7 @@ For macOS 12+:
 
 ## 📊 Performance
 
-![Benchmark](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Pics/BigSur_Benchmark.png)
+![Benchmark](https://raw.githubusercontent.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/main/Diagnostics/Benchmarks/Images/BigSur_Benchmark.png)
 
 [View full Geekbench results](https://browser.geekbench.com/v5/cpu/5386949)
 
@@ -405,7 +408,7 @@ The onboard Intel I225-V Ethernet controller is not supported in macOS versions 
 
 - SSDT-XHUB handles all USB mapping
 - No additional kexts needed
-- See [USB port list](https://github.com/5T33Z0/Gigabyte-Z490-Vision-G-Hackintosh-OpenCore/blob/main/Additional_Files/USB/USB_Ports_List.pdf) for details
+- See [USB port list](Hardware_Support/USB/USBPorts/Port%20Mapping%20List.pdf) for details
 
 ---
 
