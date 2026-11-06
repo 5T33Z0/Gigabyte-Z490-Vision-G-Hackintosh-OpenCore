@@ -7,6 +7,6 @@ In order to make use of the [**`AppleIGC.kext`**](https://github.com/dr0pmead/Ap
 	- "Delete" Sction: enable `Drop OEM HPET Table` rule
 - **Kernel**
 	- "Add" Section: enable `AppleIGC.kext`
-	- "Quirks" Section: enable `DisableIoMapperMapping` quirk
+	- "Quirks" Section: enable `DisableIoMapperMapping` (only required, if Ethernet doesn't work)
 
 Tested with macOS Sonoma to Tahoe. But it should work with macOS Catalina and onward.
