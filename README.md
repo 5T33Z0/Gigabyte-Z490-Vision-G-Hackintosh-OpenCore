@@ -41,7 +41,7 @@ OpenCore EFI folder for the Gigabyte Z490 Vision G motherboard, built and mainta
 
 **Before you begin:**
 
-- Use the latest available BIOS version (F24a)
+- Use the latest available BIOS version (F24c, from November 2026)
 - **macOS 14.4+**: Disable `SecureBootModel` if upgrading from 14.3.1 causes kernel panic ([details](https://github.com/5T33Z0/OC-Little-Translated/blob/main/Content/W_Workarounds/macOS14.4.md))
 - **NVIDIA Kepler GPUs**: Require root patching with [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) in macOS 12+
 
